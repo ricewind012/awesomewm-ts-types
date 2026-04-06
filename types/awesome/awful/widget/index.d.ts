@@ -1,0 +1,17 @@
+/// <reference path="modules/button.d.ts"/>
+/// <reference path="modules/calendar_popup.d.ts"/>
+/// <reference path="modules/clienticon.d.ts"/>
+/// <reference path="modules/awful.widget.common.d.ts"/>
+/// <reference path="modules/awful.widget.graph.d.ts"/>
+/// <reference path="modules/awful.widget.d.ts"/>
+/// <reference path="modules/keyboardlayout.d.ts"/>
+/// <reference path="modules/launcher.d.ts"/>
+/// <reference path="modules/layoutbox.d.ts"/>
+/// <reference path="modules/layoutlist.d.ts"/>
+/// <reference path="modules/only_on_screen.d.ts"/>
+/// <reference path="modules/awful.widget.progressbar.d.ts"/>
+/// <reference path="modules/prompt.d.ts"/>
+/// <reference path="modules/taglist.d.ts"/>
+/// <reference path="modules/tasklist.d.ts"/>
+/// <reference path="modules/awful.widget.textclock.d.ts"/>
+/// <reference path="modules/watch.d.ts"/>
