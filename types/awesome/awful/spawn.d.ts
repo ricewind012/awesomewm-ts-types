@@ -23,6 +23,14 @@ type EasyAsyncCallback = (
 
 type ExitReason = "exit" | "signal";
 
+/**
+ * Spawn sub-processes and optionally get their output.
+ *
+ * This module provides methods to start programs and supports startup
+ * notifications, which allows for callbacks and applying properties to the
+ * program after it has been launched. This requires currently that the
+ * application supports them.
+ */
 interface AwfulSpawn {
 	/**
 	 * Spawn a program, and optionally apply properties and/or run a callback.
@@ -37,6 +45,7 @@ interface AwfulSpawn {
 	 */
 	(
 		cmd: string | table,
+		// TODO see in https://awesomewm.org/apidoc/core_components/client.html#placement
 		sn_rules?: table | boolean,
 		callback?: () => void,
 	): LuaMultiReturn<[number, string]> | string;
