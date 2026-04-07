@@ -23,9 +23,14 @@ https://github.com/jf908/ldoc-to-tsdoc
   - [ ] etc. (TODO)
 - [ ] beautiful
 - [x] dbus
-- [ ] menubar
+- [x] menubar
 - [x] mousegrabber
 - [ ] naughty
+  - [ ] container
+  - [ ] notification
+  - [ ] layout
+  - [ ] list
+  - [ ] widget
 - [ ] ruled
 - [x] selection
 

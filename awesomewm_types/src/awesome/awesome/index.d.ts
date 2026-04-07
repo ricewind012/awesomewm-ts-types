@@ -162,6 +162,7 @@ declare module "awesome" {
 	 * @param func The function to call.
 	 */
 	export function connect_signal<K extends keyof SignalCallbackMap>(
+		this: void,
 		name: K,
 		func: SignalCallbackMap[K],
 	): void;
@@ -172,6 +173,7 @@ declare module "awesome" {
 	 * @param func The function to call.
 	 */
 	export function disconnect_signal<K extends keyof SignalCallbackMap>(
+		this: void,
 		name: K,
 		func: SignalCallbackMap[K],
 	): void;
@@ -182,6 +184,7 @@ declare module "awesome" {
 	 * @param args The signal arguments.
 	 */
 	export function emit_signal<K extends keyof SignalCallbackMap>(
+		this: void,
 		name: K,
 		...args: Parameters<SignalCallbackMap[K]>
 	): void;
@@ -190,7 +193,7 @@ declare module "awesome" {
 	 * Execute another application, probably a window manager, to replace awesome.
 	 * @param cmd The command line to execute.
 	 */
-	export function exec(cmd: string): void;
+	export function exec(this: void, cmd: string): void;
 
 	/**
 	 * Send a signal to a process.
@@ -198,7 +201,7 @@ declare module "awesome" {
 	 * meaning. See `man 3 kill`.
 	 * @param sig Signal number. See {@link unix_signal} for a list of signals.
 	 */
-	export function kill(pid: number, sig: number): boolean;
+	export function kill(this: void, pid: number, sig: number): boolean;
 
 	/**
 	 * Load an image from a given path.
@@ -206,6 +209,7 @@ declare module "awesome" {
 	 * @returns a [cairo surface as light user datum, the error message] tuple.
 	 */
 	export function load_image(
+		this: void,
 		name: string,
 	): LuaMultiReturn<[any, string | null]>;
 
@@ -215,13 +219,13 @@ declare module "awesome" {
 	 * @param path The pixbuf origin path
 	 * @returns A cairo surface as light user datum.
 	 */
-	export function pixbuf_to_surface(pixbuf: any, path: any): any;
+	export function pixbuf_to_surface(this: void, pixbuf: any, path: any): any;
 
 	/**
 	 * Quit awesome.
 	 * @param code The exit code to use when exiting.
 	 */
-	export function quit(code?: number): void;
+	export function quit(this: void, code?: number): void;
 
 	/**
 	 * Register a new xproperty.
@@ -229,6 +233,7 @@ declare module "awesome" {
 	 * @param type
 	 */
 	export function register_xproperty(
+		this: void,
 		name: string,
 		type: "string" | "number" | "boolean",
 	): void;
@@ -236,7 +241,7 @@ declare module "awesome" {
 	/**
 	 * Restart awesome.
 	 */
-	export function restart(): void;
+	export function restart(this: void): void;
 
 	/**
 	 * Set the preferred size for client icons.
@@ -246,7 +251,7 @@ declare module "awesome" {
 	 * icon.
 	 * @param size The size of the icons in pixels.
 	 */
-	export function set_preferred_icon_size(size: number): void;
+	export function set_preferred_icon_size(this: void, size: number): void;
 
 	/**
 	 * Spawn a program. The program will be started on the default screen.
@@ -275,6 +280,7 @@ declare module "awesome" {
 	 * stderr if `stderr` is true] tuple or an error string if an error occured.
 	 */
 	export function spawn(
+		this: void,
 		cmd: table,
 		use_sn: boolean,
 		stdin: boolean | string,
@@ -288,26 +294,26 @@ declare module "awesome" {
 	 * Synchronize with the X11 server. This is needed in the test suite to
 	 * avoid some race conditions. You should never need to use this function.
 	 */
-	export function sync(): void;
+	export function sync(this: void): void;
 
 	/**
 	 * Get layout short names.
 	 * @returns A string describing the current layout settings, e.g.:
 	 * 'pc+us+de:2+inet(evdev)+group(altshifttoggle)+ctrl(nocaps)'
 	 */
-	export function xkb_get_group_names(): string;
+	export function xkb_get_group_names(this: void): string;
 
 	/**
 	 * Get current layout number.
 	 * @returns Current layout number, integer from 0 to 3.
 	 */
-	export function xkb_get_layout_group(): number;
+	export function xkb_get_layout_group(this: void): number;
 
 	/**
 	 * Switch keyboard layout.
 	 * @param num Keyboard layout number, integer from 0 to 3
 	 */
-	export function xkb_set_layout_group(num: number): void;
+	export function xkb_set_layout_group(this: void, num: number): void;
 
 	/**
 	 * The AwesomeWM API level.

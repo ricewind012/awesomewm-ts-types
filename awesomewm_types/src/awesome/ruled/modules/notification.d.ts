@@ -7,7 +7,7 @@ declare module 'notification' {
     * @param name The source name.
     * @returns boolean - If the source was removed.
     */
-  module.remove_rule_source(
+ export function remove_rule_source(
     name: string,
   ): boolean;
   /**
@@ -19,21 +19,21 @@ declare module 'notification' {
     *
     * @param n The notification.
     */
-  module.apply(
+ export function apply(
     n: naughty.notification,
   ): void;
   /**
     * Add a new rule to the default set.
     * @param rule A valid rule.
     */
-  module.append_rule(
+ export function append_rule(
     rule: table,
   ): void;
   /**
     * Add a new rules to the default set.
     * @param rule A table with rules.
     */
-  module.append_rules(
+ export function append_rules(
     rule: table,
   ): void;
   /**
@@ -41,7 +41,7 @@ declare module 'notification' {
     * @param rule A valid rule.
     * @returns boolean - `true` if the rule was removed.
     */
-  module.remove_rule(
+ export function remove_rule(
     rule: table,
   ): boolean;
   /**
@@ -63,7 +63,7 @@ declare module 'notification' {
     *   priority over.
     * @returns boolean - Returns false if a dependency conflict was found.
     */
-  module.add_rule_source(
+ export function add_rule_source(
     name: string,
     c: client,
     properties: table,

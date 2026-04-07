@@ -4,14 +4,15 @@
 		"target": "ESNext",
 		"lib": ["ESNext"],
 		"moduleResolution": "Node",
-		"types": ["lua-types/jit"],
+		"types": ["@types/awesomewm", "lua-types/jit"],
 		"plugins": [{ "name": "typescript-tstl-plugin" }],
 		"outDir": "dist",
 		"strict": true
 	},
-	"include": ["src/**/*", "types"],
+	"include": ["src"],
 	"tstl": {
 		"buildMode": "default",
+		"noHeader": true,
 		"luaTarget": "JIT"
 	}
 }
