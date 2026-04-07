@@ -78,6 +78,9 @@ type Cursor =
 	| "watch"
 	| "xterm";
 
+/**
+ * @noSelf
+ */
 declare module "mousegrabber" {
 	/**
 	 * Check if mousegrabber is running.

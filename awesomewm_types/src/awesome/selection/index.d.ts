@@ -1,3 +1,6 @@
+/**
+ * @noSelf
+ */
 declare module "selection" {
 	/**
 	 * Get the selection (clipboard) content.

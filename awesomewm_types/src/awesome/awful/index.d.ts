@@ -1,5 +1,8 @@
 /// <reference path="./spawn.d.ts"/>
 
+/**
+ * @noSelf
+ */
 declare module "awful" {
 	export const completion: AwfulCompletion;
 	export const hotkeys_popup: AwfulHotkeysPopup;

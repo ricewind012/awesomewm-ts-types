@@ -4,8 +4,6 @@ import * as beautiful from "beautiful";
 import * as dbus from "dbus";
 import * as gears from "gears";
 import * as naughty from "naughty";
-import * as ruled from "ruled";
-import * as wibox from "wibox";
 
 /*
 const awesome_dir = "/tmp";
@@ -25,6 +23,8 @@ awesome.connect_signal("startup", () => {
 		timeout: 5,
 	});
 });
+
+const a = gears;
 
 awesome.connect_signal("debug::error", (err) => {
 	naughty.notification({ title: tostring(err) });

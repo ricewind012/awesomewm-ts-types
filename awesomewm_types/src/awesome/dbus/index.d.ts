@@ -1,3 +1,6 @@
+/**
+ * @noSelf
+ */
 declare module "dbus" {
 	/**
 	 * Register a D-Bus name to receive messages from.

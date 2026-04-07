@@ -476,9 +476,10 @@ interface SignalCallbackMap {
 	"request::screen": (notification: table, context: string) => void;
 }
 
+/**
+ * @noSelf
+ */
 declare module "naughty" {
-	export interface Test {}
-
 	/**
 	 * Connect a global signal on the module.
 	 *

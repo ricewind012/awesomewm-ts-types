@@ -23,6 +23,7 @@ https://github.com/jf908/ldoc-to-tsdoc
   - [ ] etc. (TODO)
 - [ ] beautiful
 - [x] dbus
+- [ ] gears
 - [x] menubar
 - [x] mousegrabber
 - [ ] naughty

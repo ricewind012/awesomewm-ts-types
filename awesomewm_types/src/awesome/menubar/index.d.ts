@@ -1,5 +1,6 @@
 /**
  * Menubar module, which aims to provide a freedesktop menu alternative.
+ * @noSelf
  */
 declare module "menubar" {
 	/**
