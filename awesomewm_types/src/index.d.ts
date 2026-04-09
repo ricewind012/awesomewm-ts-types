@@ -13,5 +13,5 @@
 /// <reference types="./awesome/naughty/index.d.ts" />
 //// <reference types="./awesome/naughty/layout/index.d.ts" />
 //// <reference types="./awesome/naughty/widget/index.d.ts" />
-/// <reference types="./awesome/ruled/index.d.ts" />
+//// <reference types="./awesome/ruled/index.d.ts" />
 /// <reference types="./awesome/selection/index.d.ts" />

@@ -1,10 +1,17 @@
 --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 local ____exports = {}
 local awesome = require("awesome")
+local awful = require("awful")
+local gears = require("gears")
 local naughty = require("naughty")
-local ____awesome_0 = awesome
-local connect_signal = ____awesome_0.connect_signal
-print(connect_signal)
+local awesome_dir = gears.filesystem.get_configuration_dir()
+if awesome.startup then
+    local cmd = ("sh -c \"while inotifywait -e modify " .. awesome_dir) .. "; do printf \"\n\"; done"
+    awful.spawn:with_line_callback(
+        cmd,
+        {stdout = function() return awesome.restart() end}
+    )
+end
 awesome.connect_signal(
     "startup",
     function()
@@ -18,7 +25,7 @@ awesome.connect_signal(
 )
 awesome.connect_signal(
     "debug::error",
-    function(____, err)
+    function(err)
         naughty.notification({title = tostring(err)})
     end
 )

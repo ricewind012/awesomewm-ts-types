@@ -1,4 +1,6 @@
-type TimerSignals = SignalMap & {
+/// <reference types="../../shared.d.ts" />
+
+type TimerSignalMap = SignalMap & {
 	/**
 	 * Emitted when the timer is started.
 	 */
@@ -19,7 +21,7 @@ type TimerSignals = SignalMap & {
 };
 
 interface Timer
-	extends Exclude<WithSignals<TimerSignals>, "disconnect_signal"> {
+	extends Exclude<SignalObject<TimerSignalMap>, "disconnect_signal"> {
 	/**
 	 * Start the timer.
 	 */
@@ -48,9 +50,9 @@ interface Timer
 	 * @param name A string with the event name.
 	 * @param func The function to call.
 	 */
-	weak_connect_signal<K extends keyof TimerSignals>(
+	weak_connect_signal<K extends keyof TimerSignalMap>(
 		name: K,
-		func: TimerSignals[K],
+		func: TimerSignalMap[K],
 	): void;
 
 	/**
@@ -67,9 +69,10 @@ interface Timer
 }
 
 /**
+ * lass to execute code at specific intervals.
  * @noSelf
  */
-export interface GearsTimer {
+interface GearsTimer {
 	/**
 	 * Create a new timer object.
 	 *
@@ -109,7 +112,7 @@ export interface GearsTimer {
 	}): Timer;
 
 	/**
-	 * Create a simple timer for calling the
+	 * Create a simple timer for calling the `callback` function continuously.
 	 *
 	 * @param timeout Timeout in seconds (e.g. 1.5).
 	 * @param callback Function to run.
@@ -119,7 +122,7 @@ export interface GearsTimer {
 	start_new(timeout: number, callback: () => void): Timer;
 
 	/**
-	 * Create a simple timer for calling the
+	 * Create a simple timer for calling the `callback` function continuously.
 	 *
 	 * @param timeout Timeout in seconds (e.g. 1.5).
 	 * @param callback Function to run.
@@ -136,10 +139,17 @@ export interface GearsTimer {
 	run_delayed_calls_now(): void;
 
 	/**
-	 * Call the given function at the end of the current GLib event loop iteration.
+	 * Call the given function at the end of the current GLib event loop
+	 * iteration.
 	 *
-	 * @param callback
+	 * @param callback The function that should be called
 	 * @param args Arguments to the callback function
 	 */
-	delayed_call(callback, ...args);
+	delayed_call(
+		callback: (...args: unknown[]) => void,
+		...args: unknown[]
+	): void;
+
+	// TODO: ?
+	timer: unknown;
 }

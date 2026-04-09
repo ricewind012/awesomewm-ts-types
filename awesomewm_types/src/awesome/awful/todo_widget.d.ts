@@ -59,7 +59,7 @@ declare module 'widget' {
   released.
     */
   widget_instance:show_help(
-    c: client,
+    c:AwesomeClient,
     s: screen,
     show_awesome_keys: boolean,
   ): awful.keygrabber;
@@ -91,7 +91,7 @@ declare module 'widget' {
   released.
     */
   show_help(
-    c?: client,
+    c?:AwesomeClient,
     s?: screen,
     show_awesome_keys: boolean,
   ): awful.keygrabber;

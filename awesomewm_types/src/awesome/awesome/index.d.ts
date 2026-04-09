@@ -1,3 +1,6 @@
+/**
+ * @noSelf
+ */
 interface SignalCallbackMap {
 	/**
 	 * A call into the Lua code aborted with an error.

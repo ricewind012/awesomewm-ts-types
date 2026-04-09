@@ -1,3 +1,7 @@
+# AwesomeWM TypeScript type definitions
+
+everything is copy pasted from awesomewm docs
+
 ## how
 https://github.com/jf908/ldoc-to-tsdoc
 
@@ -11,6 +15,7 @@ https://github.com/jf908/ldoc-to-tsdoc
 - [x] awesome
 - [ ] awful
   - [ ] button
+  - [x] client
   - [x] completion
   - [x] hotkeys_popup
   - [ ] layout
@@ -22,8 +27,9 @@ https://github.com/jf908/ldoc-to-tsdoc
   - [x] util
   - [ ] etc. (TODO)
 - [ ] beautiful
+- [ ] client
 - [x] dbus
-- [ ] gears
+- [x] gears (TODO: color/shape)
 - [x] menubar
 - [x] mousegrabber
 - [ ] naughty
@@ -34,6 +40,11 @@ https://github.com/jf908/ldoc-to-tsdoc
   - [ ] widget
 - [ ] ruled
 - [x] selection
+
+Globals:
+- [ ] awesome
+- [ ] client
+- [ ] screen
 
 #### cairo
 

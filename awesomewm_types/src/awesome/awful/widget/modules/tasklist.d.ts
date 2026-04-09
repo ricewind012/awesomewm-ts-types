@@ -150,7 +150,7 @@ declare module 'tasklist' {
     * @returns true if c is on screen, false otherwise
     */
   tasklist.filter.alltags(
-    c: client,
+    c:AwesomeClient,
     screen: screen,
   ): ;
   /**
@@ -163,7 +163,7 @@ declare module 'tasklist' {
     * @returns true if c is in a selected tag on screen, false otherwise
     */
   tasklist.filter.currenttags(
-    c: client,
+    c:AwesomeClient,
     screen: screen,
   ): ;
   /**
@@ -173,7 +173,7 @@ declare module 'tasklist' {
     * @returns true if c is in a selected tag on screen and is minimized, false otherwise
     */
   tasklist.filter.minimizedcurrenttags(
-    c: client,
+    c:AwesomeClient,
     screen: screen,
   ): ;
   /**
@@ -183,7 +183,7 @@ declare module 'tasklist' {
     * @returns true if c is focused on screen, false otherwise
     */
   tasklist.filter.focused(
-    c: client,
+    c:AwesomeClient,
     screen: screen,
   ): ;
   /**

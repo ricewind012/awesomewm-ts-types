@@ -1,0 +1,35 @@
+/// <reference types="../../shared.d.ts" />
+
+type NewGearsObject<C extends {}, M extends SignalMap> = SignalObject<M> & C;
+
+/**
+ * The object oriented programming base class used by various Awesome widgets
+ * and components. It provide basic observer pattern, signaling and dynamic
+ * properties.
+ *
+ * It provides basic observer pattern, signaling and dynamic properties.
+ * @noSelf
+ */
+interface GearsObject {
+	<C extends {}, M extends SignalMap>(args: {
+		/**
+		 * Automatically call getters and setters
+		 */
+		enable_properties?: boolean;
+
+		/**
+		 * Generate "property::xxxx" signals when an unknown property is set.
+		 */
+		enable_auto_signals?: boolean;
+
+		class?: C;
+	}): NewGearsObject<C, M>;
+
+	/**
+	 * Helper function to get the module name out of {@link debug.getinfo}.
+	 *
+	 * @param level Level for `debug.getinfo(level, "S")`. Typically 2 or 3.
+	 * @returns The module name, e.g. "wibox.container.background".
+	 */
+	modulename(level?: number): string;
+}

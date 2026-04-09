@@ -5,15 +5,13 @@ import * as dbus from "dbus";
 import * as gears from "gears";
 import * as naughty from "naughty";
 
-/*
-const awesome_dir = "/tmp";
+const awesome_dir = gears.filesystem.get_configuration_dir();
 if (awesome.startup) {
-	awful.spawn.with_line_callback(
-		`sh -c "while inotifywait -e modify ${awesome_dir}; do printf "\n"; done`,
-		{ stdout: () => awesome.restart() },
-	);
+	const cmd = `sh -c "while inotifywait -e modify ${awesome_dir}; do printf "\n"; done`;
+	awful.spawn.with_line_callback(cmd, {
+		stdout: () => awesome.restart(),
+	});
 }
-    */
 
 awesome.connect_signal("startup", () => {
 	naughty.notification({
@@ -23,8 +21,6 @@ awesome.connect_signal("startup", () => {
 		timeout: 5,
 	});
 });
-
-const a = gears;
 
 awesome.connect_signal("debug::error", (err) => {
 	naughty.notification({ title: tostring(err) });

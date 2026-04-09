@@ -1,9 +1,11 @@
+/// <reference path="./client.d.ts"/>
 /// <reference path="./spawn.d.ts"/>
 
 /**
  * @noSelf
  */
 declare module "awful" {
+	export const client: AwfulClient;
 	export const completion: AwfulCompletion;
 	export const hotkeys_popup: AwfulHotkeysPopup;
 	export const prompt: AwfulPrompt;

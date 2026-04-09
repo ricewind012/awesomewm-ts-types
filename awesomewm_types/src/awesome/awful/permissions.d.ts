@@ -21,7 +21,7 @@ declare module 'awful.permissions' {
     *   with the client.
     */
   activate(
-    c: client,
+    c:AwesomeClient,
     context: string,
     raise: boolean,
     switch_to_tag: boolean,
@@ -83,7 +83,7 @@ declare module 'awful.permissions' {
     * @param reason Why the tag is being changed.
     */
   tag(
-    c: client,
+    c:AwesomeClient,
     t?: tag|boolean,
     reason: nil|string,
   ): void;
@@ -93,7 +93,7 @@ declare module 'awful.permissions' {
     * @param urgent If the client should be urgent
     */
   urgent(
-    c: client,
+    c:AwesomeClient,
     urgent: boolean,
   ): void;
   /**
@@ -109,7 +109,7 @@ declare module 'awful.permissions' {
     *   or other desktop decoration when applying the geometry.
     */
   geometry(
-    c: client,
+    c:AwesomeClient,
     context: string,
     store_geometry: boolean,
     honor_workarea: boolean,
@@ -148,7 +148,7 @@ declare module 'awful.permissions' {
     *   than set it to `true`.
     */
   merge_maximization(
-    c: client,
+    c:AwesomeClient,
     context: string,
     toggle: boolean,
   ): void;
@@ -165,7 +165,7 @@ declare module 'awful.permissions' {
     * @param height The client height.
     */
   client_geometry_requests(
-    c: client,
+    c:AwesomeClient,
     context: string,
     x?: integer,
     y?: integer,
@@ -187,7 +187,7 @@ declare module 'awful.permissions' {
     * @param context Why is the border changed.
     */
   update_border(
-    c: client,
+    c:AwesomeClient,
     context: string,
   ): void;
   /**
@@ -206,7 +206,7 @@ declare module 'awful.permissions' {
     * @see activate
     */
   autoactivate(
-    c: client,
+    c:AwesomeClient,
     context: string,
     hints: table,
   ): void;

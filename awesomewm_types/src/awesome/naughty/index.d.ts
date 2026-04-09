@@ -1,3 +1,5 @@
+/// <reference types="../../client.d.ts" />
+
 interface NaughtyAction {}
 
 interface NaughtyNotification {}
@@ -233,7 +235,7 @@ interface NaughtyNotificationArgs {
 	 * applications (and scripts) calling the `notify-send` command wont have
 	 * any client.
 	 */
-	clients?: client[];
+	clients?: AwesomeClient[];
 
 	/**
 	 * Ignore this notification, do not display.

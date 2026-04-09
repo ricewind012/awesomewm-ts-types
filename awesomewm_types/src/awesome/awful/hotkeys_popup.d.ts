@@ -17,7 +17,7 @@ interface AwfulHotkeysPopup {
 	 * @param c The hostkeys for the client "c".
 	 * @param s The screen.
 	 */
-	show_help(c?: client, s?: screen): void;
+	show_help(c?: AwesomeClient, s?: screen): void;
 
 	/**
 	 * Add rules to match tmux session.

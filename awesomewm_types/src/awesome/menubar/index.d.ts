@@ -1,3 +1,6 @@
+/// <reference types="./menu_gen.d.ts" />
+/// <reference types="./utils.d.ts" />
+
 /**
  * Menubar module, which aims to provide a freedesktop menu alternative.
  * @noSelf
@@ -7,13 +10,13 @@ declare module "menubar" {
 	 * Refresh menubar's cache by reloading .desktop files.
 	 * @param scr Screen.
 	 */
-	export function refresh(scr: screen): void;
+	export function refresh(scr: awesome_screen): void;
 
 	/**
 	 * Show the menubar on the given screen.
 	 * @param scr Screen.
 	 */
-	export function show(scr: screen): void;
+	export function show(scr: awesome_screen): void;
 
 	/**
 	 * Hide the export function
@@ -25,7 +28,7 @@ declare module "menubar" {
 	 * @param scr Screen.
 	 * @returns menubar wibox.
 	 */
-	export function get(scr?: screen): table;
+	export function get(scr?: awesome_screen): table;
 
 	/**
 	 * Specifies the geometry of the export function   This is a table with the keys

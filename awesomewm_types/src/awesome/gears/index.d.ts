@@ -1,5 +1,29 @@
-import { GearsTimer } from "./timer";
+/// <reference types="./cache.d.ts" />
+/// <reference types="./debug.d.ts" />
+/// <reference types="./filesystem.d.ts" />
+/// <reference types="./geometry.d.ts" />
+/// <reference types="./object.d.ts" />
+/// <reference types="./protected_call.d.ts" />
+/// <reference types="./math.d.ts" />
+/// <reference types="./matrix.d.ts" />
+//// <reference types="./sort.d.ts" />
+/// <reference types="./string.d.ts" />
+/// <reference types="./table.d.ts" />
+/// <reference types="./timer.d.ts" />
+/// <reference types="./wallpaper.d.ts" />
 
 declare module "gears" {
+	export const cache: GearsCache;
+	export const debug: GearsDebug;
+	export const filesystem: GearsFilesystem;
+	export const geometry: GearsGeometry;
+	export const object: GearsObject;
+	export const protected_call: GearsProtectedCall;
+	export const math: GearsMath;
+	export const matrix: GearsMatrix;
+	//export const sort: GearsSort;
+	export const string: GearsString;
+	export const table: GearsTable;
 	export const timer: GearsTimer;
+	export const wallpaper: GearsWallpaper;
 }
