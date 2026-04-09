@@ -1,4 +1,4 @@
-/// <reference types="../../shared.d.ts" />
+/// <reference types="../shared.d.ts" />
 
 type TimerSignalMap = SignalMap & {
 	/**

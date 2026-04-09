@@ -1,4 +1,4 @@
-/// <reference types="../../shared.d.ts" />
+/// <reference types="../shared.d.ts" />
 
 type NewGearsObject<C extends {}, M extends SignalMap> = SignalObject<M> & C;
 

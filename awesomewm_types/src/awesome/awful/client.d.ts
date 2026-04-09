@@ -23,7 +23,7 @@ interface AwfulClient {
 	 * @param s The screen where to cycle clients.
 	 * @param stacked Use stacking order? (top to bottom)
 	 */
-	cycle(clockwise?: boolean, s?: awesome_screen, stacked?: boolean): void;
+	cycle(clockwise?: boolean, s?: AwesomeScreen, stacked?: boolean): void;
 
 	/**
 	 * Restore (=unminimize) a random client.
@@ -33,7 +33,7 @@ interface AwfulClient {
 	 * @returns The restored client if some client was restored, otherwise
 	 * `nil`.
 	 */
-	restore(s: awesome_screen): AwesomeClient;
+	restore(s: AwesomeScreen): AwesomeClient;
 
 	/**
 	 * Returns an iterator to cycle through clients.
@@ -48,7 +48,7 @@ interface AwfulClient {
 	iterate(
 		filter: (c: AwesomeClient) => boolean,
 		start: number,
-		s?: awesome_screen,
+		s?: AwesomeScreen,
 	): (...args: unknown[]) => any;
 
 	urgent: {
@@ -155,12 +155,9 @@ interface AwfulClient {
 	 *
 	 * @returns A table with all visible clients.
 	 *
-	 * @deprecated Use {@link awesome_screen.clients}
+	 * @deprecated Use {@link AwesomeScreen.clients}
 	 */
-	visible(
-		s: awesome_screen | number | null,
-		stacked?: boolean,
-	): AwesomeClient[];
+	visible(s: AwesomeScreen | number | null, stacked?: boolean): AwesomeClient[];
 
 	/**
 	 * Get visible and tiled clients
@@ -170,9 +167,9 @@ interface AwfulClient {
 	 *
 	 * @returns A table with all visible and tiled clients.
 	 *
-	 * @deprecated Use {@link awesome_screen.tiled_clients}
+	 * @deprecated Use {@link AwesomeScreen.tiled_clients}
 	 */
-	tiled(s: awesome_screen | number | null, stacked?: boolean): AwesomeClient[];
+	tiled(s: AwesomeScreen | number | null, stacked?: boolean): AwesomeClient[];
 
 	/**
 	 * Get the master window.
@@ -183,7 +180,7 @@ interface AwfulClient {
 	 *
 	 * @deprecated
 	 */
-	getmaster(s: awesome_screen): AwesomeClient;
+	getmaster(s: AwesomeScreen): AwesomeClient;
 
 	/**
 	 * Set the client as master: put it at the beginning of other windows.
@@ -250,7 +247,7 @@ interface AwfulClient {
 	 *
 	 * @deprecated Use {@link AwesomeClient.move_to_screen}
 	 */
-	movetoscreen(c: AwesomeClient | null, s: awesome_screen): void;
+	movetoscreen(c: AwesomeClient | null, s: AwesomeScreen): void;
 
 	/**
 	 * Mark a client, and then call 'marked' hook.

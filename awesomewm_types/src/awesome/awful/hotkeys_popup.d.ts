@@ -1,3 +1,6 @@
+/// <reference types="../client.d.ts" />
+/// <reference types="../screen.d.ts" />
+
 /**
  * Popup widget which shows current hotkeys and their descriptions.
  */
@@ -17,7 +20,7 @@ interface AwfulHotkeysPopup {
 	 * @param c The hostkeys for the client "c".
 	 * @param s The screen.
 	 */
-	show_help(c?: AwesomeClient, s?: screen): void;
+	show_help(c?: AwesomeClient, s?: AwesomeScreen): void;
 
 	/**
 	 * Add rules to match tmux session.

@@ -1,9 +1,4 @@
-interface Rectangle {
-	x: number;
-	y: number;
-	width: number;
-	height: number;
-}
+/// <reference types="../shared.d.ts" />
 
 /**
  * Helper functions used to compute geometries.

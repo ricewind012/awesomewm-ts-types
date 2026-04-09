@@ -1,0 +1,20 @@
+
+/**
+* Get the number of instances.
+*
+* @returns integer
+*         The number of client objects alive.
+*/
+instances  ()
+
+/**
+* Get all clients into a table.
+*
+* @param screen
+* @param stacked
+*
+* @returns table
+*         A table with clients.
+*/
+get  (screen, stacked)
+

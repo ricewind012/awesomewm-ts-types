@@ -1,3 +1,4 @@
+/// <reference types="../screen.d.ts" />
 /// <reference types="./menu_gen.d.ts" />
 /// <reference types="./utils.d.ts" />
 
@@ -10,13 +11,13 @@ declare module "menubar" {
 	 * Refresh menubar's cache by reloading .desktop files.
 	 * @param scr Screen.
 	 */
-	export function refresh(scr: awesome_screen): void;
+	export function refresh(scr: AwesomeScreen): void;
 
 	/**
 	 * Show the menubar on the given screen.
 	 * @param scr Screen.
 	 */
-	export function show(scr: awesome_screen): void;
+	export function show(scr: AwesomeScreen): void;
 
 	/**
 	 * Hide the export function
@@ -28,7 +29,7 @@ declare module "menubar" {
 	 * @param scr Screen.
 	 * @returns menubar wibox.
 	 */
-	export function get(scr?: awesome_screen): table;
+	export function get(scr?: AwesomeScreen): table;
 
 	/**
 	 * Specifies the geometry of the export function   This is a table with the keys

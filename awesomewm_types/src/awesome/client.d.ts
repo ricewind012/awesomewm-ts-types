@@ -1,3 +1,6 @@
+/// <reference types="../todo.d.ts" />
+/// <reference types="../utils.d.ts" />
+/// <reference types="./screen.d.ts" />
 /// <reference types="./shared.d.ts" />
 
 /**
@@ -180,7 +183,7 @@ type AwesomeClientSignalMap = SignalMap & {
 	"request::tag": (
 		c: AwesomeClient,
 		tag?: awesome_tag,
-		hints?: { reason?: string; screen?: awesome_screen },
+		hints?: { reason?: string; screen?: AwesomeScreen },
 	) => void;
 
 	/**
@@ -537,7 +540,7 @@ interface AwesomeClient
 	 *
 	 * @param s The screen, default to current + 1.
 	 */
-	move_to_screen(s: awesome_screen): void;
+	move_to_screen(s: AwesomeScreen): void;
 
 	/**
 	 * Find suitable tags for newly created clients.
@@ -687,7 +690,7 @@ interface AwesomeClient
 	/**
 	 * The client icon as a surface.
 	 */
-	icon: image;
+	icon: awesome_image;
 
 	/**
 	 * The available sizes of client icons.
@@ -697,7 +700,7 @@ interface AwesomeClient
 	/**
 	 * Client screen.
 	 */
-	screen: awesome_screen;
+	screen: AwesomeScreen;
 
 	/**
 	 * Define if the client must be hidden (Never mapped, invisible in taskbar).
@@ -722,7 +725,7 @@ interface AwesomeClient
 	/**
 	 * The client border color.
 	 */
-	border_color: color | null;
+	border_color: awesome_color | null;
 
 	/**
 	 * Set to true when the client ask for attention.
@@ -817,27 +820,27 @@ interface AwesomeClient
 	/**
 	 * The client's bounding shape as set by awesome as a (native) cairo surface.
 	 */
-	shape_bounding: image;
+	shape_bounding: awesome_image;
 
 	/**
 	 * The client's clip shape as set by awesome as a (native) cairo surface.
 	 */
-	shape_clip: image;
+	shape_clip: awesome_image;
 
 	/**
 	 * The client's input shape as set by awesome as a (native) cairo surface.
 	 */
-	shape_input: image;
+	shape_input: awesome_image;
 
 	/**
 	 * The client's bounding shape as set by the program as a (native) cairo surface.
 	 */
-	readonly client_shape_bounding: image;
+	readonly client_shape_bounding: awesome_image;
 
 	/**
 	 * The client's clip shape as set by the program as a (native) cairo surface.
 	 */
-	readonly client_shape_clip: image;
+	readonly client_shape_clip: awesome_image;
 
 	/**
 	 * The FreeDesktop StartId.

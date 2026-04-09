@@ -26,7 +26,7 @@ https://github.com/jf908/ldoc-to-tsdoc
   - [x] spawn
   - [x] util
   - [ ] etc. (TODO)
-- [ ] beautiful
+- [x] beautiful
 - [ ] client
 - [x] dbus
 - [x] gears (TODO: color/shape)

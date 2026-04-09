@@ -1,4 +1,5 @@
-/// <reference types="../../client.d.ts" />
+/// <reference types="../client.d.ts" />
+/// <reference types="../screen.d.ts" />
 
 interface NaughtyAction {}
 
@@ -31,7 +32,7 @@ interface NaughtyNotificationArgs {
 	 * Target screen for the notification.
 	 * @default focused
 	 */
-	screen?: number | screen;
+	screen?: number | AwesomeScreen;
 
 	/**
 	 * Corner of the workarea displaying the popups.
@@ -88,7 +89,7 @@ interface NaughtyNotificationArgs {
 	 * - The [icon](https://awesomewm.org/apidoc/core_components/naughty.notification.html#icon) from a client with `normal` type.
 	 * - The [icon](https://awesomewm.org/apidoc/core_components/naughty.notification.html#icon) of a client with `dialog` type.
 	 */
-	icon?: image;
+	icon?: awesome_image;
 
 	/**
 	 * Desired icon size in px.

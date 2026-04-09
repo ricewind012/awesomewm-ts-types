@@ -1,5 +1,11 @@
-/// <reference path="./client.d.ts"/>
-/// <reference path="./spawn.d.ts"/>
+/// <reference types="./client.d.ts" />
+/// <reference types="./completion.d.ts" />
+/// <reference types="./hotkeys_popup.d.ts" />
+/// <reference types="./permissions.d.ts" />
+/// <reference types="./prompt.d.ts" />
+/// <reference types="./spawn.d.ts" />
+/// <reference types="./widget.d.ts" />
+/// <reference types="./util.d.ts" />
 
 /**
  * @noSelf

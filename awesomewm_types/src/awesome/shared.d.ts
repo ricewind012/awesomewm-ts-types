@@ -1,10 +1,10 @@
-// utils
-type NonFunctionKeys<T> = {
-	// biome-ignore lint/complexity/noBannedTypes: XD
-	[K in keyof T]: T[K] extends Function ? never : K;
-}[keyof T];
+interface Rectangle {
+	x: number;
+	y: number;
+	width: number;
+	height: number;
+}
 
-// shared awesome types
 type SignalMap = Record<string, (...args: unknown[]) => void>;
 
 interface SignalObject<M extends SignalMap> {
