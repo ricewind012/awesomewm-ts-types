@@ -1,3 +1,6 @@
+/**
+ * @noSelf
+ */
 interface AwfulCompletion {
 	/**
 	 * Enable programmable bash completion in `awful.completion.bash` at the price

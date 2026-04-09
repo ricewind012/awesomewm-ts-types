@@ -6,7 +6,7 @@
 /**
  * @noSelf
  */
-type AwesomeClientSignalMap = SignalMap & {
+interface AwesomeClientSignalMap extends SignalMap {
 	/**
 	 * Emitted when AwesomeWM is about to scan for existing clients.
 	 *
@@ -98,7 +98,7 @@ type AwesomeClientSignalMap = SignalMap & {
 	/**
 	 * Emitted when the mouse enters a client.
 	 */
-	"mouse::enter": () => void;
+	"mouse::enter": (c: AwesomeClient) => void;
 
 	/**
 	 * Emitted when the mouse leaves a client.
@@ -316,7 +316,7 @@ type AwesomeClientSignalMap = SignalMap & {
 	 * @deprecated
 	 */
 	unmarked: never;
-};
+}
 
 interface AwesomeClientGeometry {
 	x: number;
@@ -334,7 +334,6 @@ interface AwesomeClientStrut {
 
 /**
  * @see https://awesomewm.org/apidoc/core_components/client.html
- * @noSelf
  */
 interface AwesomeClient
 	extends Omit<SignalObject<AwesomeClientSignalMap>, "disconnect_signal"> {
@@ -540,7 +539,7 @@ interface AwesomeClient
 	 *
 	 * @param s The screen, default to current + 1.
 	 */
-	move_to_screen(s: AwesomeScreen): void;
+	move_to_screen(s: AwesomeScreen | null): void;
 
 	/**
 	 * Find suitable tags for newly created clients.
@@ -932,3 +931,30 @@ interface AwesomeClient
 	 */
 	readonly active: boolean;
 }
+
+/**
+ * @noSelf
+ */
+interface AwesomeGlobalClient extends SignalObject<AwesomeClientSignalMap> {
+	/**
+	 * Get the number of instances.
+	 * @returns The number of client objects alive.
+	 */
+	instances(): number;
+
+	/**
+	 * Get all clients into a table.
+	 *
+	 * @param screen A screen number to filter clients on.
+	 * @param stacked Return clients in stacking order? (ordered from top to
+	 * bottom)
+	 * @returns A table with clients.
+	 */
+	get(screen?: AwesomeScreen, stacked?: boolean): AwesomeClient[];
+}
+
+declare global {
+	const client: AwesomeGlobalClient;
+}
+
+export {};

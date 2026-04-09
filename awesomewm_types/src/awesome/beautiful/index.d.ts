@@ -118,7 +118,7 @@ declare module "beautiful" {
 	 * theme values.
 	 * @returns True if successful, `nil` in case of error.
 	 */
-	export function init(config: string | Theme): true | null;
+	export function init(config: string | Partial<Theme>): true | null;
 
 	/**
 	 * The current theme path (if any)

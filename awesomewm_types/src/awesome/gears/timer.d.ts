@@ -1,6 +1,6 @@
 /// <reference types="../shared.d.ts" />
 
-type TimerSignalMap = SignalMap & {
+interface TimerSignalMap extends SignalMap {
 	/**
 	 * Emitted when the timer is started.
 	 */
@@ -18,7 +18,7 @@ type TimerSignalMap = SignalMap & {
 	 * `true` for the timer.
 	 */
 	timeout: () => void;
-};
+}
 
 interface Timer
 	extends Exclude<SignalObject<TimerSignalMap>, "disconnect_signal"> {

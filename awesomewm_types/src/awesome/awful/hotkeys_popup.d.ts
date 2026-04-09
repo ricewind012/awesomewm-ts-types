@@ -3,6 +3,8 @@
 
 /**
  * Popup widget which shows current hotkeys and their descriptions.
+ *
+ * @noSelf
  */
 interface AwfulHotkeysPopup {
 	/**

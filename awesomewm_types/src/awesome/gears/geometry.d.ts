@@ -58,7 +58,7 @@ interface GearsGeometry {
 		 * the given direction. `nil` if none found.
 		 */
 		get_in_direction(
-			dir: "up" | "down" | "left" | "right",
+			dir: Direction,
 			recttbl: Rectangle,
 			cur: Rectangle,
 		): number | null;

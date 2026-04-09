@@ -11,8 +11,9 @@
 	},
 	"include": ["src"],
 	"tstl": {
-		//"buildMode": "default",
-		//"noHeader": true,
+		// TODO: what does this do lol
+		"buildMode": "default",
+		"noHeader": true,
 		"luaTarget": "JIT"
 	}
 }

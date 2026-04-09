@@ -1,5 +1,7 @@
 /**
  * Various small utility functions not worth putting into new modules.
+ *
+ * @noSelf
  */
 interface AwfulUtil {
 	/**

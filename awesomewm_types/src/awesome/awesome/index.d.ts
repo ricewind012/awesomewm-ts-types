@@ -1,7 +1,7 @@
 /**
  * @noSelf
  */
-interface SignalCallbackMap {
+interface AwesomeGlobalSignalMap extends SignalMap {
 	/**
 	 * A call into the Lua code aborted with an error.
 	 *
@@ -161,42 +161,12 @@ interface SignalCallbackMap {
 /**
  * @noSelf
  */
-declare module "awesome" {
-	/**
-	 * Add a global signal.
-	 * @param name A string with the event name.
-	 * @param func The function to call.
-	 */
-	export function connect_signal<K extends keyof SignalCallbackMap>(
-		name: K,
-		func: SignalCallbackMap[K],
-	): void;
-
-	/**
-	 * Remove a global signal.
-	 * @param name A string with the event name.
-	 * @param func The function to call.
-	 */
-	export function disconnect_signal<K extends keyof SignalCallbackMap>(
-		name: K,
-		func: SignalCallbackMap[K],
-	): void;
-
-	/**
-	 * Emit a global signal.
-	 * @param name A string with the event name.
-	 * @param args The signal arguments.
-	 */
-	export function emit_signal<K extends keyof SignalCallbackMap>(
-		name: K,
-		...args: Parameters<SignalCallbackMap[K]>
-	): void;
-
+interface AwesomeGlobal extends SignalObject<AwesomeGlobalSignalMap> {
 	/**
 	 * Execute another application, probably a window manager, to replace awesome.
 	 * @param cmd The command line to execute.
 	 */
-	export function exec(cmd: string): void;
+	exec(cmd: string): void;
 
 	/**
 	 * Send a signal to a process.
@@ -204,16 +174,14 @@ declare module "awesome" {
 	 * meaning. See `man 3 kill`.
 	 * @param sig Signal number. See {@link unix_signal} for a list of signals.
 	 */
-	export function kill(pid: number, sig: number): boolean;
+	kill(pid: number, sig: number): boolean;
 
 	/**
 	 * Load an image from a given path.
 	 * @param name The file name.
 	 * @returns a [cairo surface as light user datum, the error message] tuple.
 	 */
-	export function load_image(
-		name: string,
-	): LuaMultiReturn<[any, string | null]>;
+	load_image(name: string): LuaMultiReturn<[any, string | null]>;
 
 	/**
 	 *
@@ -221,28 +189,25 @@ declare module "awesome" {
 	 * @param path The pixbuf origin path
 	 * @returns A cairo surface as light user datum.
 	 */
-	export function pixbuf_to_surface(pixbuf: any, path: any): any;
+	pixbuf_to_surface(pixbuf: any, path: any): any;
 
 	/**
 	 * Quit awesome.
 	 * @param code The exit code to use when exiting.
 	 */
-	export function quit(code?: number): void;
+	quit(code?: number): void;
 
 	/**
 	 * Register a new xproperty.
 	 * @param name The name of the X11 property.
 	 * @param type
 	 */
-	export function register_xproperty(
-		name: string,
-		type: "string" | "number" | "boolean",
-	): void;
+	register_xproperty(name: string, type: "string" | "number" | "boolean"): void;
 
 	/**
 	 * Restart awesome.
 	 */
-	export function restart(): void;
+	restart(): void;
 
 	/**
 	 * Set the preferred size for client icons.
@@ -252,7 +217,7 @@ declare module "awesome" {
 	 * icon.
 	 * @param size The size of the icons in pixels.
 	 */
-	export function set_preferred_icon_size(size: number): void;
+	set_preferred_icon_size(size: number): void;
 
 	/**
 	 * Spawn a program. The program will be started on the default screen.
@@ -280,7 +245,7 @@ declare module "awesome" {
 	 * `use_sn` is true, stdin if `stdin` is true, stdout if `stdout` is true,
 	 * stderr if `stderr` is true] tuple or an error string if an error occured.
 	 */
-	export function spawn(
+	spawn(
 		cmd: table,
 		use_sn: boolean,
 		stdin: boolean | string,
@@ -294,26 +259,26 @@ declare module "awesome" {
 	 * Synchronize with the X11 server. This is needed in the test suite to
 	 * avoid some race conditions. You should never need to use this function.
 	 */
-	export function sync(): void;
+	sync(): void;
 
 	/**
 	 * Get layout short names.
 	 * @returns A string describing the current layout settings, e.g.:
 	 * 'pc+us+de:2+inet(evdev)+group(altshifttoggle)+ctrl(nocaps)'
 	 */
-	export function xkb_get_group_names(): string;
+	xkb_get_group_names(): string;
 
 	/**
 	 * Get current layout number.
 	 * @returns Current layout number, integer from 0 to 3.
 	 */
-	export function xkb_get_layout_group(): number;
+	xkb_get_layout_group(): number;
 
 	/**
 	 * Switch keyboard layout.
 	 * @param num Keyboard layout number, integer from 0 to 3
 	 */
-	export function xkb_set_layout_group(num: number): void;
+	xkb_set_layout_group(num: number): void;
 
 	/**
 	 * The AwesomeWM API level.
@@ -343,50 +308,56 @@ declare module "awesome" {
 	 * This setting is global and read only, individual modules cannot set their
 	 * own API level.
 	 */
-	export const api_level: string;
+	readonly api_level: string;
 
 	/**
 	 * True if a composite manager is running.
 	 */
-	export const composite_manager_running: boolean;
+	composite_manager_running: boolean;
 
 	/**
 	 * The configuration file which has been loaded.
 	 */
-	export const conffile: string;
+	conffile: string;
 
 	/**
 	 * The hostname of the computer on which we are running.
 	 */
-	export const hostname: string;
+	hostname: string;
 
 	/**
 	 * The path where icons were installed to.
 	 */
-	export const icon_path: string;
+	icon_path: string;
 
 	/**
 	 * True if we are still in startup, false otherwise.
 	 */
-	export const startup: boolean;
+	startup: boolean;
 
 	/**
 	 * Error message for errors that occurred during startup.
 	 */
-	export const startup_errors: string;
+	startup_errors: string;
 
 	/**
 	 * The path where themes were installed to.
 	 */
-	export const themes_path: string;
+	themes_path: string;
 
 	/**
 	 * Table mapping between signal numbers and signal identifiers.
 	 */
-	export const unix_signal: table;
+	unix_signal: table;
 
 	/**
 	 * The AwesomeWM release name.
 	 */
-	export const version: string;
+	version: string;
 }
+
+declare global {
+	const awesome: AwesomeGlobal;
+}
+
+export {};

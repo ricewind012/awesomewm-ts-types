@@ -1,3 +1,5 @@
+/// <reference types="../shared.d.ts" />
+
 /**
  * @noSelf
  */
@@ -73,11 +75,7 @@ interface AwfulClient {
 		 * @param c
 		 * @param stacked
 		 */
-		bydirection(
-			dir: "up" | "down" | "left" | "right",
-			c?: AwesomeClient,
-			stacked?: boolean,
-		): void;
+		bydirection(dir: Direction, c?: AwesomeClient, stacked?: boolean): void;
 
 		/**
 		 * Swap a client with another client in the given direction. Swaps
@@ -86,10 +84,7 @@ interface AwfulClient {
 		 * @param dir The direction.
 		 * @param sel The client.
 		 */
-		global_bydirection(
-			dir: "up" | "down" | "left" | "right",
-			sel?: AwesomeClient,
-		): void;
+		global_bydirection(dir: Direction, sel?: AwesomeClient): void;
 
 		/**
 		 * Swap a client by its relative index.

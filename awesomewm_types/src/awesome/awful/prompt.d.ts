@@ -1,5 +1,7 @@
 /**
  * Convert a {@link wibox.widget.textbox} into an input prompt.
+ *
+ * @noSelf
  */
 interface AwfulPrompt {
 	/**

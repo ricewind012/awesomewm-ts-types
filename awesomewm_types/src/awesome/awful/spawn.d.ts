@@ -30,6 +30,8 @@ type ExitReason = "exit" | "signal";
  * notifications, which allows for callbacks and applying properties to the
  * program after it has been launched. This requires currently that the
  * application supports them.
+ *
+ * @noSelf
  */
 interface AwfulSpawn {
 	/**
