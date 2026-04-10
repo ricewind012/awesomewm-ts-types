@@ -355,9 +355,3 @@ interface AwesomeGlobal extends SignalObject<AwesomeGlobalSignalMap> {
 	 */
 	version: string;
 }
-
-declare global {
-	const awesome: AwesomeGlobal;
-}
-
-export {};

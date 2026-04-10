@@ -83,43 +83,6 @@ for i in string.gmatch(strOutput, '[^\r\n]*') do
 end
 
 ------------------------------------------------------------
--- start.lua
-------------------------------------------------------------
-beautiful.init(g_strAwesome .. '/themes/light-line.lua')
-
-if awesome.startup then
-	awful.spawn.with_line_callback(
-		string.format(
-			'sh -c "while inotifywait -e modify %s; do printf \"\\n\"; done"',
-			g_strAwesome
-		),
-		{
-			stdout = function()
-				awesome.restart()
-			end
-		}
-	)
-end
-
-awesome.connect_signal('startup', function()
-	naughty.notification {
-		icon    = string.format(
-			'%s/1697911331072543.png',
-			os.getenv('HOME')
-		),
-		title   = 'Reloaded',
-		urgency = 'low',
-		timeout = 5,
-	}
-end)
-
-awesome.connect_signal('debug::error', function(e)
-	naughty.notification {
-		title = tostring(e)
-	}
-end)
-
-------------------------------------------------------------
 -- menu.lua
 ------------------------------------------------------------
 local strEditorCmd = string.format(
@@ -310,25 +273,6 @@ end)
 ------------------------------------------------------------
 -- window.lua
 ------------------------------------------------------------
-client.connect_signal('manage', function(c)
-	c:move_to_screen(awful.screen.focused())
-	c:activate { raise = true }
-
-	if
-		not c.size_hints.user_position and
-		not c.size_hints.program_position
-	then
-		awful.placement.no_offscreen(c)
-	end
-end)
-
-client.connect_signal('mouse::enter', function(c)
-	c:activate {
-		context = 'mouse_enter',
-		raise   = false,
-	}
-end)
-
 client.connect_signal('request::titlebars', function(c)
 	local hTitlebar = awful.titlebar(c, {
 		size     = 16,

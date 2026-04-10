@@ -453,7 +453,7 @@ interface AwesomeClient
 	 * @returns A lightuserdata for a cairo surface. This reference must be
 	 *  destroyed!
 	 */
-	get_icon(index: number): surface;
+	get_icon(index: number): cairo_surface;
 
 	/**
 	 * Jump to the given client.
@@ -471,28 +471,28 @@ interface AwesomeClient
 	 *
 	 * @param key The key.
 	 */
-	append_keybinding(key: awful.key): void;
+	append_keybinding(key: awful_key): void;
 
 	/**
 	 * Remove a keybinding.
 	 *
 	 * @param key The key.
 	 */
-	remove_keybinding(key: awful.key): void;
+	remove_keybinding(key: awful_key): void;
 
 	/**
 	 * Append a mousebinding.
 	 *
 	 * @param button The button.
 	 */
-	append_mousebinding(button: awful.button): void;
+	append_mousebinding(button: awful_button): void;
 
 	/**
 	 * Remove a mousebinding.
 	 *
 	 * @param button The button.
 	 */
-	remove_mousebinding(button: awful.button): void;
+	remove_mousebinding(button: awful_button): void;
 
 	/**
 	 * Move the client to the most significant layout position.
@@ -734,7 +734,7 @@ interface AwesomeClient
 	/**
 	 * A cairo surface for the client window content.
 	 */
-	readonly content: raw_curface;
+	readonly content: awesome_raw_curface;
 
 	/**
 	 * The client opacity.
@@ -793,8 +793,9 @@ interface AwesomeClient
 
 	/**
 	 * A table with size hints of the client.
+	 * TODO: may be null ?
 	 */
-	readonly size_hints: table | null;
+	readonly size_hints: any;
 
 	/**
 	 * The motif WM hints of the client.
@@ -952,9 +953,3 @@ interface AwesomeGlobalClient extends SignalObject<AwesomeClientSignalMap> {
 	 */
 	get(screen?: AwesomeScreen, stacked?: boolean): AwesomeClient[];
 }
-
-declare global {
-	const client: AwesomeGlobalClient;
-}
-
-export {};

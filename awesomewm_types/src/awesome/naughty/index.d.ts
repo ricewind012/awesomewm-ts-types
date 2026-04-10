@@ -39,8 +39,8 @@ interface NaughtyNotificationArgs {
 	 * @default "top_right"
 	 */
 	position?:
-		| "top_right"
 		| "top_left"
+		| "top_right"
 		| "bottom_left"
 		| "bottom_right"
 		| "top_middle"

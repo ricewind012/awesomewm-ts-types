@@ -1,4 +1,8 @@
+/// <reference types="./client.d.ts" />
+
 type Direction = "up" | "down" | "left" | "right";
+
+type Drawable = AwesomeClient | AwesomeMouse | AwesomeWidgetBox;
 
 interface Rectangle {
 	x: number;

@@ -2,6 +2,11 @@
 
 /// <reference types="./lua.d.ts" />
 
+/// <reference types="./awesome/client" />
+/// <reference types="./awesome/global" />
+/// <reference types="./awesome/screen" />
+/// <reference types="./awesome/shared" />
+
 /// <reference types="./awesome/awesome" />
 /// <reference types="./awesome/awful" />
 //// <reference types="./awesome/awful/widget" />
