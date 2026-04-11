@@ -20,5 +20,6 @@ declare module "awful" {
 	export const prompt: AwfulPrompt;
 	export const screen: AwfulScreen;
 	export const spawn: AwfulSpawn;
+	export const titlebar: AwfulTitlebar;
 	export const util: AwfulUtil;
 }

@@ -1,7 +1,5 @@
 /// <reference types="../shared.d.ts" />
 
-type NewGearsObject<C extends {}, M extends SignalMap> = SignalObject<M> & C;
-
 /**
  * The object oriented programming base class used by various Awesome widgets
  * and components. It provide basic observer pattern, signaling and dynamic
@@ -23,7 +21,7 @@ interface GearsObject {
 		enable_auto_signals?: boolean;
 
 		class?: C;
-	}): NewGearsObject<C, M>;
+	}): SignalObject<M> & C;
 
 	/**
 	 * Helper function to get the module name out of {@link debug.getinfo}.

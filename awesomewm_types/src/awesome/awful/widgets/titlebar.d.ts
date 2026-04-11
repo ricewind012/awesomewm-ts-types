@@ -37,8 +37,8 @@ interface AwfulTitlebar {
 			bg_focus?: string;
 			bg_urgent?: string;
 			bgimage_normal?: string;
-			bgimage_focus: string;
-			fg_normal: string;
+			bgimage_focus?: string;
+			fg_normal?: string;
 			fg_focus?: string;
 			fg_urgent?: string;
 			font?: string;

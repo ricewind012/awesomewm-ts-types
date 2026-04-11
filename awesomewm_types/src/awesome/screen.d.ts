@@ -320,7 +320,7 @@ interface AwesomeScreen extends SignalObject<AwesomeScreenSignalMap> {
 		/**
 		 * A parent drawable to use as base geometry.
 		 */
-		parent?: awesome_drawable;
+		parent?: Drawable;
 
 		/**
 		 * A bounding rectangle. This parameter is incompatible with
@@ -560,7 +560,7 @@ interface AwesomeGlobalScreen {
 	 * TODO: this is just `screen` XD
 	 * @returns A lua iterator function
 	 */
-	screen(): Function;
+	screen(): (...args: unknown[]) => any;
 
 	/**
 	 * Get the number of screens.
@@ -574,7 +574,8 @@ interface AwesomeGlobalScreen {
 	primary: AwesomeScreen;
 
 	/**
-	 * If `screen` objects are created automatically when new viewports are detected.
+	 * If `screen` objects are created automatically when new viewports are
+	 * detected.
 	 */
 	automatic_factory: any;
 }

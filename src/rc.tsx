@@ -2,6 +2,7 @@ import * as awful from "awful";
 import * as beautiful from "beautiful";
 import * as gears from "gears";
 import * as naughty from "naughty";
+import { make_widget } from "./jsx";
 
 const awesome_dir = gears.filesystem.get_configuration_dir();
 if (awesome.startup) {
@@ -52,6 +53,15 @@ client.connect_signal("mouse::enter", (c) => {
 		context: "mouse_enter",
 		raise: false,
 	});
+});
+
+client.connect_signal("request::titlebars", (c) => {
+	const titlebar = awful.titlebar(c, {
+		size: 16,
+		position: "bottom",
+	});
+
+	titlebar.setup();
 });
 
 /*

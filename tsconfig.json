@@ -3,6 +3,8 @@
 	"compilerOptions": {
 		"target": "ESNext",
 		"lib": ["ESNext"],
+		"jsx": "react",
+		"jsxFactory": "make_widget",
 		"moduleResolution": "Node",
 		"types": ["@types/awesomewm", "lua-types/jit"],
 		"plugins": [{ "name": "typescript-tstl-plugin" }],

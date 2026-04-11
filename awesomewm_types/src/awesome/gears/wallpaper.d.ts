@@ -1,3 +1,5 @@
+/// <reference types="../screen.d.ts" />
+
 /**
  * Functions for setting the wallpaper.
  *
@@ -17,7 +19,7 @@ interface GearsWallpaper {
 	 *         A cairo context that the wallpaper should be drawn to.
 	 */
 	prepare_context(
-		s: Screen,
+		s: AwesomeScreen,
 	): LuaMultiReturn<[{ width: number; height: number }, any]>;
 
 	/**
@@ -41,7 +43,7 @@ interface GearsWallpaper {
 	 */
 	centered(
 		surf: string | table,
-		s: Screen,
+		s: AwesomeScreen,
 		background: any,
 		scale: number,
 	): void;
@@ -56,7 +58,7 @@ interface GearsWallpaper {
 	 */
 	tiled(
 		surf: string | table,
-		s: Screen,
+		s: AwesomeScreen,
 		offset: { x: number; y: number },
 	): void;
 
@@ -72,7 +74,7 @@ interface GearsWallpaper {
 	 */
 	maximized(
 		surf: string | table,
-		s: Screen,
+		s: AwesomeScreen,
 		ignore_aspect: boolean,
 		offset: { x: number; y: number },
 	): void;
@@ -86,5 +88,5 @@ interface GearsWallpaper {
 	 * @param background The background color that should be used. Gets handled
 	 * via `gears.color`. The default is black.
 	 */
-	fit(surf: string | table, s: Screen, background: any): void;
+	fit(surf: string | table, s: AwesomeScreen, background: any): void;
 }

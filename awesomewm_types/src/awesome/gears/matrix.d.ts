@@ -105,7 +105,7 @@ interface GearsMatrixInstance {
 	 *            number
 	 *         The y coordinate of the transformed point.
 	 */
-	transform_point(x: number, ynumber): LuaMultiReturn<[number, number]>;
+	transform_point(x: number, y: number): LuaMultiReturn<[number, number]>;
 
 	/**
 	 * Calculate a bounding rectangle for transforming a rectangle by a matrix.

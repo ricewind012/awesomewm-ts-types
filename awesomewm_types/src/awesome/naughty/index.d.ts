@@ -324,7 +324,7 @@ interface NotificationPreset {
 	timeout?: number;
 }
 
-interface SignalCallbackMap {
+interface NaughtySignalMap {
 	/**
 	 * Emitted when an error occurred and requires attention.
 	 *
@@ -494,9 +494,9 @@ declare module "naughty" {
 	 * @param name The name of the signal
 	 * @param func The function to attach
 	 */
-	export function connect_signal<K extends keyof SignalCallbackMap>(
+	export function connect_signal<K extends keyof NaughtySignalMap>(
 		name: K,
-		func: SignalCallbackMap[K],
+		func: NaughtySignalMap[K],
 	): void;
 
 	/**
@@ -520,9 +520,9 @@ declare module "naughty" {
 	 * @param func The attached function
 	 * @returns if the disconnection was successful
 	 */
-	export function disconnect_signal<K extends keyof SignalCallbackMap>(
+	export function disconnect_signal<K extends keyof NaughtySignalMap>(
 		name: K,
-		func: SignalCallbackMap[K],
+		func: NaughtySignalMap[K],
 	): boolean;
 
 	/**
@@ -531,9 +531,9 @@ declare module "naughty" {
 	 * @param name The signal name
 	 * @param args The signal callback arguments.
 	 */
-	export function emit_signal<K extends keyof SignalCallbackMap>(
+	export function emit_signal<K extends keyof NaughtySignalMap>(
 		name: K,
-		...args: Parameters<SignalCallbackMap[K]>
+		...args: Parameters<NaughtySignalMap[K]>
 	): void;
 
 	/**

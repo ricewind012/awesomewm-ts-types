@@ -626,7 +626,7 @@ interface AwesomeClient
 	 * @param permission The permission name (just the name, no `request::`).
 	 * @param context The reason why this permission is requested.
 	 */
-	grant(permission: string, context: string);
+	grant(permission: string, context: string): void;
 
 	/**
 	 * Deny a permission for a client.
