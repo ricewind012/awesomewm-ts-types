@@ -2,7 +2,8 @@ import * as awful from "awful";
 import * as beautiful from "beautiful";
 import * as gears from "gears";
 import * as naughty from "naughty";
-import { make_widget } from "./jsx";
+import * as wibox from "wibox";
+import make_widget from "./jsx";
 
 const awesome_dir = gears.filesystem.get_configuration_dir();
 if (awesome.startup) {
@@ -61,16 +62,47 @@ client.connect_signal("request::titlebars", (c) => {
 		position: "bottom",
 	});
 
-	titlebar.setup();
+	const test = <wibox.test.abc a={true} />;
+	const test2 = test.children;
+
+	titlebar.setup(
+		<wibox.layout.align.horizontal>
+			<wibox.layout.flex.horizontal />
+			<wibox.layout.flex.horizontal
+				buttons={gears.table.join(
+					awful.button([], awful.button.names.LEFT, () => {
+						c.activate();
+						awful.mouse.client.move(c);
+					}),
+					awful.button([], awful.button.names.RIGHT, () => {
+						c.activate();
+						awful.mouse.client.resize(c);
+					}),
+				)}
+			/>
+		</wibox.layout.align.horizontal>,
+		/*
+		[
+			{ layout: wibox.layout.flex.horizontal },
+			{
+				buttons: gears.table.join(
+					awful.button([], awful.button.names.LEFT, () => {
+						c.activate();
+						awful.mouse.client.move(c);
+					}),
+					awful.button([], awful.button.names.RIGHT, () => {
+						c.activate();
+						awful.mouse.client.resize(c);
+					}),
+				),
+			},
+		],
+		*/
+	);
 });
 
 /*
 client.connect_signal('request::titlebars', function(c)
-	local hTitlebar = awful.titlebar(c, {
-		size     = 16,
-		position = 'bottom',
-	})
-
 	hTitlebar:setup {
 		{
 			layout  = wibox.layout.flex.horizontal,

@@ -1,3 +1,4 @@
+/// <reference types="../../wibox/widget/base.d.ts" />
 /// <reference types="../../client.d.ts" />
 
 type TitlebarPosition = "top" | "left" | "right" | "bottom";
@@ -6,7 +7,7 @@ interface WiboxDrawable {
 	/**
 	 * Set a declarative widget hierarchy description.
 	 */
-	setup(args: table): void;
+	setup(widget: BaseWidget): void;
 }
 
 /**
@@ -57,7 +58,7 @@ interface AwfulTitlebar {
 		 *
 		 * @returns The title widget.
 		 */
-		titlewidget(c: AwesomeClient): wibox.widget;
+		titlewidget(c: AwesomeClient): BaseWidget;
 
 		/**
 		 * Create a new icon widget.
@@ -70,7 +71,7 @@ interface AwfulTitlebar {
 		 *
 		 * @returns The icon widget.
 		 */
-		iconwidget(c: AwesomeClient): wibox.widget;
+		iconwidget(c: AwesomeClient): BaseWidget;
 
 		/**
 		 * Create a new button widget.
@@ -91,52 +92,56 @@ interface AwfulTitlebar {
 		 * displayed.
 		 * @param action Function that is called when the button is clicked.
 		 *
-		 * @returns wibox.widget
-		 *         The widget
+		 * @returns The widget
 		 */
-		button(c: AwesomeClient, name: string, selector, action): wibox.widget;
+		button(
+			c: AwesomeClient,
+			name: string,
+			selector: () => void,
+			action: () => void,
+		): BaseWidget;
 
 		/**
 		 * Create a new float button for a client.
 		 *
 		 * @param c The client for which the widget should be created.
 		 */
-		floatingbutton(c: AwesomeClient): wibox.widget;
+		floatingbutton(c: AwesomeClient): BaseWidget;
 
 		/**
 		 * Create a new maximize button for a client.
 		 *
 		 * @param c The client for which the widget should be created.
 		 */
-		maximizedbutton(c: AwesomeClient): wibox.widget;
+		maximizedbutton(c: AwesomeClient): BaseWidget;
 
 		/**
 		 * Create a new minimize button for a client.
 		 *
 		 * @param c The client for which the widget should be created.
 		 */
-		minimizebutton(c: AwesomeClient): wibox.widget;
+		minimizebutton(c: AwesomeClient): BaseWidget;
 
 		/**
 		 * Create a new closing button for a client.
 		 *
 		 * @param c The client for which the widget should be created.
 		 */
-		closebutton(c: AwesomeClient): wibox.widget;
+		closebutton(c: AwesomeClient): BaseWidget;
 
 		/**
 		 * Create a new ontop button for a client.
 		 *
 		 * @param c The client for which the widget should be created.
 		 */
-		ontopbutton(c: AwesomeClient): wibox.widget;
+		ontopbutton(c: AwesomeClient): BaseWidget;
 
 		/**
 		 * Create a new sticky button for a client.
 		 *
 		 * @param c The client for which the widget should be created.
 		 */
-		stickybutton(c: AwesomeClient): wibox.widget;
+		stickybutton(c: AwesomeClient): BaseWidget;
 	};
 
 	/**

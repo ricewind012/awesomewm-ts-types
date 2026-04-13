@@ -66,6 +66,7 @@ interface Theme {
 }
 
 /**
+ * @noResolution
  * @noSelf
  */
 declare module "beautiful" {

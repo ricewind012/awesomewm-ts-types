@@ -79,6 +79,7 @@ type Cursor =
 	| "xterm";
 
 /**
+ * @noResolution
  * @noSelf
  */
 declare module "mousegrabber" {

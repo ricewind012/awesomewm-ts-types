@@ -1,11 +1,7 @@
-type AwesomeWidgetBase = any;
-type AwesomeWidgetBaseProps<T> = T;
-
-export function make_widget<T extends AwesomeWidgetBase>(
-	this: void,
+export default function make_widget<T extends BaseWidget>(
 	widget: T,
-	props: AwesomeWidgetBaseProps<T>,
+	props: T,
 	...children: T[]
 ) {
-	return [widget, props, children];
+	return null;
 }

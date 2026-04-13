@@ -1,6 +1,5 @@
 local ____exports = {}
-function ____exports.make_widget(widget, props, ...)
-    local children = {...}
-    return {widget, props, children}
+function ____exports.default(self, widget, props, ...)
+    return nil
 end
 return ____exports

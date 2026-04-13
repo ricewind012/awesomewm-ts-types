@@ -441,9 +441,16 @@ interface AwfulClient {
 	 * @param c The child client (having `transient_for`).
 	 * @param c2 The parent client to check.
 	 *
-	 * @returns The parent client or nil.
+	 * @returns The parent client or `nil`.
 	 *
 	 * @deprecated Use {@link AwesomeClient.is_transient_for}.
 	 */
 	is_transient_for(c: AwesomeClient, c2: AwesomeClient): AwesomeClient | null;
+
+	/**
+	 * This table allow to add more dynamic properties to the clients.
+	 */
+	object: {
+		[prop: string]: any;
+	};
 }

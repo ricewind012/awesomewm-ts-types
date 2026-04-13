@@ -1,11 +1,12 @@
 /// <reference types="./awesome" />
-/// <reference types="./client.d.ts" />
-/// <reference types="./screen.d.ts" />
+/// <reference types="./awful/mouse" />
+/// <reference types="./client" />
+/// <reference types="./screen" />
 
 declare global {
 	const awesome: AwesomeGlobal;
 	const client: AwesomeGlobalClient;
-	// @ts-expect-error: DOM global
+	const mouse: AwesomeGlobalMouse;
 	const screen: AwesomeGlobalScreen;
 }
 

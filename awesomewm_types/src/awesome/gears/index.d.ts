@@ -12,6 +12,9 @@
 /// <reference types="./timer.d.ts" />
 /// <reference types="./wallpaper.d.ts" />
 
+/**
+ * @noResolution
+ */
 declare module "gears" {
 	export const cache: GearsCache;
 	export const debug: GearsDebug;

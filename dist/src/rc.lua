@@ -1,14 +1,17 @@
 local ____exports = {}
-local awful = require("src.awful")
-local beautiful = require("src.beautiful")
-local gears = require("src.gears")
-local naughty = require("src.naughty")
+local awful = require("awful")
+local beautiful = require("beautiful")
+local gears = require("gears")
+local naughty = require("naughty")
+local wibox = require("wibox")
+local ____jsx = require("src.jsx")
+local make_widget = ____jsx.default
 local awesome_dir = gears.filesystem.get_configuration_dir()
 if awesome.startup then
     local cmd = ("sh -c \"while inotifywait -e modify " .. awesome_dir) .. "; do printf \"\n\"; done"
     awful.spawn.with_line_callback(
         cmd,
-        {stdout = function() return awesome.restart() end}
+        {stdout = function() return awesome:restart() end}
     )
 end
 local theme_file = awesome_dir .. "/themes/light-line.lua"
@@ -59,7 +62,62 @@ client.connect_signal(
     "request::titlebars",
     function(c)
         local titlebar = awful:titlebar(c, {size = 16, position = "bottom"})
-        titlebar:setup()
+        local test = make_widget(
+            nil,
+            wibox.layout.align.horizontal,
+            nil,
+            make_widget(nil, wibox.layout.flex.horizontal, nil),
+            make_widget(
+                nil,
+                wibox.layout.flex.horizontal,
+                {buttons = gears.table.join(
+                    awful:button(
+                        {},
+                        awful.button.names.LEFT,
+                        function()
+                            c:activate()
+                            awful.mouse.client.move(c)
+                        end
+                    ),
+                    awful:button(
+                        {},
+                        awful.button.names.RIGHT,
+                        function()
+                            c:activate()
+                            awful.mouse.client.resize(c)
+                        end
+                    )
+                )}
+            )
+        )
+        titlebar:setup(make_widget(
+            nil,
+            wibox.layout.align.horizontal,
+            nil,
+            make_widget(nil, wibox.layout.flex.horizontal, nil),
+            make_widget(
+                nil,
+                wibox.layout.flex.horizontal,
+                {buttons = gears.table.join(
+                    awful:button(
+                        {},
+                        awful.button.names.LEFT,
+                        function()
+                            c:activate()
+                            awful.mouse.client.move(c)
+                        end
+                    ),
+                    awful:button(
+                        {},
+                        awful.button.names.RIGHT,
+                        function()
+                            c:activate()
+                            awful.mouse.client.resize(c)
+                        end
+                    )
+                )}
+            )
+        ))
     end
 )
 return ____exports

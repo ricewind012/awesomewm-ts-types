@@ -1,6 +1,9 @@
 /**
  * Various small utility functions not worth putting into new modules.
  *
+ * **Note**: deprecated functions are not typed, use their respective
+ * replacements.
+ *
  * @noSelf
  */
 interface AwfulUtil {
@@ -24,7 +27,7 @@ interface AwfulUtil {
 	 * @param path The file path.
 	 *
 	 * @returns A function if everything is alright, a string with the error
-	 *  otherwise.
+	 * otherwise.
 	 */
 	checkfile(path: string): ((...args: unknown[]) => void) | string;
 

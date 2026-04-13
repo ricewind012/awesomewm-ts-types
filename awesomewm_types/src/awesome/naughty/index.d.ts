@@ -480,6 +480,7 @@ interface NaughtySignalMap {
 }
 
 /**
+ * @noResolution
  * @noSelf
  */
 declare module "naughty" {

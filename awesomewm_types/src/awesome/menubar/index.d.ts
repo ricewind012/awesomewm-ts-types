@@ -4,7 +4,7 @@
 
 /**
  * Menubar module, which aims to provide a freedesktop menu alternative.
- * @noSelf
+ * @noResolution
  */
 declare module "menubar" {
 	/**

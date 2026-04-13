@@ -22,6 +22,8 @@ function text_to_md(parent, end) {
 					return [` \`${kid_text}\` `, ""];
 				case "P":
 					return [text_to_md(kid, kid.childNodes.length), "\n"];
+				case "STRONG":
+					return [` **${kid_text}** `, "\n"];
 				case "OL":
 				case "UL":
 					return [
@@ -40,8 +42,12 @@ function text_to_md(parent, end) {
 }
 
 decls = [];
-for (const func_text of $0.querySelectorAll("dt > strong")) {
-	const text = func_text.innerText.match(/[:.](\w+)/, "")?.[1];
+sel_el = $0.classList.contains("function") ? $0 : $0.closest(".function");
+for (const func_text of sel_el.querySelectorAll("dt > strong")) {
+	const text = func_text.innerText
+		.match(/[:.](\w+)/g)
+		?.join("")
+		.slice(1);
 	const next =
 		func_text.parentElement.nextElementSibling || func_text.parentElement;
 
@@ -58,6 +64,7 @@ for (const func_text of $0.querySelectorAll("dt > strong")) {
 		client: "AwesomeClient",
 		function: "(...args: unknown[]) => any",
 		integer: "number",
+		nil: "null",
 		screen: "AwesomeScreen",
 		widget: "BaseWidget",
 	};

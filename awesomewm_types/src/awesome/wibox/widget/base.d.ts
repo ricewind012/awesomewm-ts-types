@@ -1,3 +1,5 @@
+/// <reference types="../../awful/button.d.ts" />
+
 interface FindWidgetsResult {
 	/**
 	 * The drawable containing the widget.
@@ -144,7 +146,7 @@ interface BaseWidget extends SignalObject<BaseWidgetSignalMap> {
 	 *
 	 * @param button The button to add.
 	 */
-	add_button(button: awful.button): void;
+	add_button(button: AwfulButtonInstance): void;
 
 	/**
 	 * Emit a signal and ensure all parent widgets in the hierarchies also
@@ -226,7 +228,7 @@ interface BaseWidget extends SignalObject<BaseWidgetSignalMap> {
 	/**
 	 * The widget buttons.
 	 */
-	buttons: awful.button[];
+	buttons: AwfulButtonInstance[];
 }
 
 /**

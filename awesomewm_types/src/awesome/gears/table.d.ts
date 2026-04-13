@@ -11,7 +11,7 @@ interface GearsTable {
 	 *
 	 * @returns A new table containing all entries from the arguments.
 	 */
-	join<T>(...tables: T[][]): T[];
+	join<T>(...tables: T[]): T[];
 
 	/**
 	 * Override elements in the target table with values from the source table.

@@ -1,4 +1,5 @@
 /**
+ * @noResolution
  * @noSelf
  */
 declare module "selection" {

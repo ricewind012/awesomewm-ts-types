@@ -485,14 +485,14 @@ interface AwesomeClient
 	 *
 	 * @param button The button.
 	 */
-	append_mousebinding(button: awful_button): void;
+	append_mousebinding(button: AwfulButtonInstance): void;
 
 	/**
 	 * Remove a mousebinding.
 	 *
 	 * @param button The button.
 	 */
-	remove_mousebinding(button: awful_button): void;
+	remove_mousebinding(button: AwfulButtonInstance): void;
 
 	/**
 	 * Move the client to the most significant layout position.
@@ -933,9 +933,6 @@ interface AwesomeClient
 	readonly active: boolean;
 }
 
-/**
- * @noSelf
- */
 interface AwesomeGlobalClient extends SignalObject<AwesomeClientSignalMap> {
 	/**
 	 * Get the number of instances.
@@ -952,4 +949,17 @@ interface AwesomeGlobalClient extends SignalObject<AwesomeClientSignalMap> {
 	 * @returns A table with clients.
 	 */
 	get(screen?: AwesomeScreen, stacked?: boolean): AwesomeClient[];
+
+	/**
+	 * The focused client or `nil` (in case there is none).
+	 *
+	 * It is not recommended to set the focused client using this property.
+	 * Please use {@link AwesomeClient.activate} instead of `client.focus = c`.
+	 * Setting the focus directly bypasses all the filters and emits fewer
+	 * signals, which tend to cause unwanted side effects and make it harder to
+	 * alter the code behavior in the future. It usually takes more code to use
+	 * this rather than {@link AwesomeClient.activate} because all the
+	 * boilerplate code (such as `c:raise()`) needs to be added everywhere.
+	 */
+	focus: AwesomeClient;
 }
