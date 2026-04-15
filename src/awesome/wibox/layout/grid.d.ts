@@ -125,7 +125,7 @@ interface WiboxLayoutGridWidget
 	 *
 	 * @returns The index of the inserted column
 	 */
-	insert_column(index: number | null): number;
+	insert_column(index: number | undefined): number;
 
 	/**
 	 * Extend column at index.
@@ -313,14 +313,14 @@ interface WiboxLayoutGridWidget
 	 *
 	 * @deprecated Use {@link row_count}
 	 */
-	forced_num_rows: number | null;
+	forced_num_rows: number | undefined;
 
 	/**
 	 * Force the number of columns of the layout.
 	 *
 	 * @deprecated Use {@link column_count}
 	 */
-	forced_num_cols: number | null;
+	forced_num_cols: number | undefined;
 
 	/**
 	 * Set the minimum size for the columns.

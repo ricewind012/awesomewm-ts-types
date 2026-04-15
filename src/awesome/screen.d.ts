@@ -318,7 +318,7 @@ interface AwesomeScreen extends SignalObject<AwesomeScreenSignalMap> {
 		/**
 		 * Use this tag's screen.
 		 */
-		tag?: awesome_tag;
+		tag?: AwesomeTag;
 
 		/**
 		 * A parent drawable to use as base geometry.
@@ -478,17 +478,17 @@ interface AwesomeScreen extends SignalObject<AwesomeScreenSignalMap> {
 	 * Use `tag.screen`, `awful.tag.add`, `awful.tag.new` or `t:delete()` to
 	 * alter this list.
 	 */
-	readonly tags: awesome_tag[];
+	readonly tags: AwesomeTag[];
 
 	/**
 	 * A list of all selected tags on the screen.
 	 */
-	readonly selected_tags: awesome_tag[];
+	readonly selected_tags: AwesomeTag[];
 
 	/**
 	 * The first selected tag.
 	 */
-	readonly selected_tag: awesome_tag | null;
+	readonly selected_tag: AwesomeTag | undefined;
 
 	/**
 	 * The number of pixels per inch of the screen.

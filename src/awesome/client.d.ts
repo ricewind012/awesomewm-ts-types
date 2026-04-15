@@ -185,7 +185,7 @@ type AwesomeClientSignalMap = SignalMap & {
 	"request::tag": (
 		this: void,
 		c: AwesomeClient,
-		tag?: awesome_tag,
+		tag?: AwesomeTag,
 		hints?: { reason?: string; screen?: AwesomeScreen },
 	) => void;
 
@@ -237,7 +237,7 @@ type AwesomeClientSignalMap = SignalMap & {
 	/**
 	 * Emitted when a client gets tagged.
 	 */
-	tagged: (this: void, t: awesome_tag) => void;
+	tagged: (this: void, t: AwesomeTag) => void;
 
 	/**
 	 * Emitted when a client gets unfocused.
@@ -247,7 +247,7 @@ type AwesomeClientSignalMap = SignalMap & {
 	/**
 	 * Emitted when a client gets untagged.
 	 */
-	untagged: (this: void, t: awesome_tag) => void;
+	untagged: (this: void, t: AwesomeTag) => void;
 
 	/**
 	 * Emitted when the client is raised within its layer.
@@ -388,7 +388,7 @@ interface AwesomeClient
 	 *
 	 * @returns A table with all tags.
 	 */
-	tags(tags_table?: awesome_tag[]): awesome_tag[];
+	tags(tags_table?: AwesomeTag[]): AwesomeTag[];
 
 	/**
 	 * Raise a client on top of others which are on the same layer.
@@ -530,21 +530,21 @@ interface AwesomeClient
 	 *
 	 * @param target The tag to move the client to.
 	 */
-	move_to_tag(target: awesome_tag): void;
+	move_to_tag(target: AwesomeTag): void;
 
 	/**
 	 * Toggle a tag on a client.
 	 *
 	 * @param target The tag to move the client to.
 	 */
-	toggle_tag(target: awesome_tag): void;
+	toggle_tag(target: AwesomeTag): void;
 
 	/**
 	 * Move a client to a screen. Default is next screen, cycling.
 	 *
 	 * @param s The screen, default to current + 1.
 	 */
-	move_to_screen(s: AwesomeScreen | null): void;
+	move_to_screen(s?: AwesomeScreen): void;
 
 	/**
 	 * Find suitable tags for newly created clients.
@@ -569,7 +569,7 @@ interface AwesomeClient
 	 */
 	get_transient_for_matching(
 		matcher: (c: AwesomeClient) => boolean,
-	): AwesomeClient | null;
+	): AwesomeClient | undefined;
 
 	/**
 	 * Is a client transient for another one?
@@ -582,7 +582,7 @@ interface AwesomeClient
 	 *
 	 * @returns The parent client or `nil`.
 	 */
-	is_transient_for(c2: AwesomeClient): AwesomeClient | null;
+	is_transient_for(c2: AwesomeClient): AwesomeClient | undefined;
 
 	/**
 	 * Activate (focus) a client.
@@ -724,12 +724,12 @@ interface AwesomeClient
 	/**
 	 * The client border width.
 	 */
-	border_width: number | null;
+	border_width: number | undefined;
 
 	/**
 	 * The client border color.
 	 */
-	border_color: awesome_color | null;
+	border_color: awesome_color | undefined;
 
 	/**
 	 * Set to true when the client ask for attention.
@@ -784,7 +784,7 @@ interface AwesomeClient
 	/**
 	 * The client the window is transient for.
 	 */
-	readonly transient_for: AwesomeClient | null;
+	readonly transient_for: AwesomeClient | undefined;
 
 	/**
 	 * Window identification unique to a group of windows.
@@ -860,7 +860,7 @@ interface AwesomeClient
 	/**
 	 * The first tag of the client.
 	 */
-	readonly first_tag: awesome_tag | null;
+	readonly first_tag: AwesomeTag | undefined;
 
 	/**
 	 * Get or set mouse buttons bindings for a client.

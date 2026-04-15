@@ -6,7 +6,7 @@ interface WiboxLayoutFlexWidget extends WiboxLayoutBaseWidget {
 	 *
 	 * That is, maximum width for horizontal and maximum height for vertical.
 	 */
-	max_widget_size: number | null;
+	max_widget_size: number | undefined;
 
 	/**
 	 * A widget to insert as a separator between child widgets.

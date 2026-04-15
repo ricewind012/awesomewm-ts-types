@@ -33,21 +33,21 @@ interface WiboxLayoutAlignWidget
 	 *
 	 * This is the widget that is at the left/top.
 	 */
-	first: BaseWidget | null;
+	first: BaseWidget | undefined;
 
 	/**
 	 * The widget in slot 2.
 	 *
 	 * This is the centered one.
 	 */
-	second: BaseWidget | null;
+	second: BaseWidget | undefined;
 
 	/**
 	 * The widget in slot 3.
 	 *
 	 * This is the widget that is at the right/bottom.
 	 */
-	third: BaseWidget | null;
+	third: BaseWidget | undefined;
 
 	/**
 	 * Set the expand mode, which determines how child widgets expand to take up

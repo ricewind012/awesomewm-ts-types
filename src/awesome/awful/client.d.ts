@@ -14,7 +14,11 @@ interface AwfulClient {
 	 *
 	 * @returns A client, or `nil` if no client is available.
 	 */
-	next(i: number, sel?: AwesomeClient, stacked?: boolean): AwesomeClient | null;
+	next(
+		i: number,
+		sel?: AwesomeClient,
+		stacked?: boolean,
+	): AwesomeClient | undefined;
 
 	/**
 	 * Cycle through the clients to change the focus.
@@ -35,7 +39,7 @@ interface AwfulClient {
 	 * @returns The restored client if some client was restored, otherwise
 	 * `nil`.
 	 */
-	restore(s: AwesomeScreen): AwesomeClient;
+	restore(s?: AwesomeScreen): AwesomeClient;
 
 	/**
 	 * Returns an iterator to cycle through clients.
@@ -64,7 +68,7 @@ interface AwfulClient {
 	 *
 	 * @deprecated Use {@link AwesomeClient.jump_to}
 	 */
-	jumpto(c: AwesomeClient, merge: ((t: awesome_tag) => void) | boolean): void;
+	jumpto(c: AwesomeClient, merge: ((t: AwesomeTag) => void) | boolean): void;
 
 	/**
 	 * Get visible clients from a screen.
@@ -76,7 +80,10 @@ interface AwfulClient {
 	 *
 	 * @deprecated Use {@link AwesomeScreen.clients}
 	 */
-	visible(s: AwesomeScreen | number | null, stacked?: boolean): AwesomeClient[];
+	visible(
+		s: AwesomeScreen | number | undefined,
+		stacked?: boolean,
+	): AwesomeClient[];
 
 	/**
 	 * Get visible and tiled clients
@@ -88,7 +95,10 @@ interface AwfulClient {
 	 *
 	 * @deprecated Use {@link AwesomeScreen.tiled_clients}
 	 */
-	tiled(s: AwesomeScreen | number | null, stacked?: boolean): AwesomeClient[];
+	tiled(
+		s: AwesomeScreen | number | undefined,
+		stacked?: boolean,
+	): AwesomeClient[];
 
 	/**
 	 * Get the master window.
@@ -99,7 +109,7 @@ interface AwfulClient {
 	 *
 	 * @deprecated
 	 */
-	getmaster(s: AwesomeScreen): AwesomeClient;
+	getmaster(s?: AwesomeScreen): AwesomeClient;
 
 	/**
 	 * Set the client as master: put it at the beginning of other windows.
@@ -146,7 +156,7 @@ interface AwfulClient {
 	 *
 	 * @deprecated Use {@link AwesomeClient.move_to_tag}
 	 */
-	movetotag(target: awesome_tag, c?: AwesomeClient): void;
+	movetotag(target: AwesomeTag, c?: AwesomeClient): void;
 
 	/**
 	 * Toggle a tag on a client.
@@ -156,7 +166,7 @@ interface AwfulClient {
 	 *
 	 * @deprecated Use {@link AwesomeClient.toggle_tag}
 	 */
-	toggletag(target: awesome_tag, c: AwesomeClient): void;
+	toggletag(target: AwesomeTag, c: AwesomeClient): void;
 
 	/**
 	 * Move a client to a screen.  Default is next screen, cycling.
@@ -166,7 +176,7 @@ interface AwfulClient {
 	 *
 	 * @deprecated Use {@link AwesomeClient.move_to_screen}
 	 */
-	movetoscreen(c: AwesomeClient | null, s: AwesomeScreen): void;
+	movetoscreen(c: AwesomeClient | undefined, s: AwesomeScreen): void;
 
 	/**
 	 * Mark a client, and then call 'marked' hook.
@@ -256,7 +266,7 @@ interface AwfulClient {
 	get_transient_for_matching(
 		c: AwesomeClient,
 		matcher: (c: AwesomeClient) => boolean,
-	): AwesomeClient | null;
+	): AwesomeClient | undefined;
 
 	/**
 	 * Is a client transient for another one?
@@ -268,7 +278,10 @@ interface AwfulClient {
 	 *
 	 * @deprecated Use {@link AwesomeClient.is_transient_for}.
 	 */
-	is_transient_for(c: AwesomeClient, c2: AwesomeClient): AwesomeClient | null;
+	is_transient_for(
+		c: AwesomeClient,
+		c2: AwesomeClient,
+	): AwesomeClient | undefined;
 
 	dockable: {
 		/**
@@ -379,7 +392,7 @@ interface AwfulClient {
 		 *
 		 * @param c A client.
 		 */
-		filter(c: AwesomeClient): AwesomeClient | null;
+		filter(c: AwesomeClient): AwesomeClient | undefined;
 
 		/**
 		 * Focus a client by the given direction.
@@ -448,7 +461,7 @@ interface AwfulClient {
 			get(
 				s: AwesomeScreen | number,
 				idx: number,
-				filter: (c: AwesomeClient) => AwesomeClient | null,
+				filter: (c: AwesomeClient) => AwesomeClient | undefined,
 			): AwesomeClient;
 
 			/**

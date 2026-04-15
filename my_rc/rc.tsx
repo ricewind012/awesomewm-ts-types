@@ -58,7 +58,7 @@ client.connect_signal("mouse::enter", (c) => {
 });
 
 function wdg(widget: stuff) {
-	if (widget.children === null) {
+	if (widget.children === undefined) {
 		return gears.table.join(widget, widget.children);
 	}
 

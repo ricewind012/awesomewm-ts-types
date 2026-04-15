@@ -522,7 +522,7 @@ declare module "naughty" {
 	export function destroy_all_notifications(
 		screens: table,
 		reason: notification_closed_reason,
-	): true | null;
+	): true | undefined;
 
 	/**
 	 * Disconnect a signal from a source.
@@ -553,7 +553,7 @@ declare module "naughty" {
 	 * @param id ID of the notification.
 	 * @returns notification object if it was found, nil otherwise
 	 */
-	export function get_by_id(id: number): NaughtyNotification | null;
+	export function get_by_id(id: number): NaughtyNotification | undefined;
 
 	/**
 	 * Create a notification.
@@ -570,7 +570,7 @@ declare module "naughty" {
 		 * freedesktop hints via `args.freedesktop_hints` if any where
 		 * specified.
 		 */
-		notify_callback?: ((...args: unknown[]) => void) | null;
+		notify_callback?: ((...args: unknown[]) => void) | undefined;
 
 		/**
 		 * Notification presets for

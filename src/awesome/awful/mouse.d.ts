@@ -1,5 +1,6 @@
 /// <reference types="../client.d.ts" />
 /// <reference types="./button.d.ts" />
+/// <reference types="./shared.d.ts" />
 
 type ClientCorner =
 	| "auto"
@@ -29,7 +30,14 @@ declare enum MouseResizeMode {
  *
  * @noSelf
  */
-interface AwfulMouse {
+interface AwfulMouse extends AwfulInputHandler {
+	/**
+	 * Get the client object under the pointer.
+	 *
+	 * @deprecated Use {@link AwesomeGlobalMouse.current_client}
+	 */
+	client_under_pointer(): AwesomeClient | undefined;
+
 	client: {
 		/**
 		 * Move a client.
@@ -76,6 +84,14 @@ interface AwfulMouse {
 		 * @returns The corner (| side) name
 		 */
 		resize(c: AwesomeClient, corner?: ClientCorner, args?: table): ClientCorner;
+	};
+
+	drag_to_tag: {
+		/**
+		 * Enable changing tag when a client is dragged to the edge of the
+		 * screen.
+		 */
+		enabled: boolean;
 	};
 
 	resize: {
@@ -147,82 +163,6 @@ interface AwfulMouse {
 		add_leave_callback(cb: (...args: unknown[]) => any, context?: string): void;
 	};
 
-	wibox: {
-		/**
-		 * Move the wibox under the cursor.
-		 *
-		 * @param w The wibox to move, or none to use that under the pointer
-		 */
-		move(w: BaseWidget): void;
-	};
-
-	/**
-	 * Add an
-	 * [awful.button](https://awesomewm.org/apidoc/input_handling/awful.button.html#)
-	 * based mousebinding to the global set. A **global** mousebinding is one
-	 * which is always present, even when there is no focused client. If your
-	 * intent is too add a mousebinding which acts on the focused client do
-	 * **not** use this.
-	 *
-	 * @param button The button object.
-	 */
-	append_global_mousebinding(button: AwfulButtonInstance): void;
-
-	/**
-	 * Add multiple
-	 * [awful.button](https://awesomewm.org/apidoc/input_handling/awful.button.html#)
-	 * based mousebindings to the global set. A **global** mousebinding is one
-	 * which is always present, even when there is no focused client. If your
-	 * intent is too add a mousebinding which acts on the focused client do
-	 * **not** use this
-	 *
-	 * @param buttons A table of `awful.button` objects. Optionally, it can have
-	 * a `group` entry. If set, the `group` property will be set on all
-	 * `awful.buttons` objects.
-	 */
-	append_global_mousebindings(buttons: table): void;
-
-	/**
-	 * Remove a mousebinding from the global set.
-	 *
-	 * @param button The button object.
-	 */
-	remove_global_mousebinding(button: AwfulButtonInstance): void;
-
-	/**
-	 * Add an
-	 * [awful.button](https://awesomewm.org/apidoc/input_handling/awful.button.html#)
-	 * to the default client buttons.
-	 *
-	 * @param button The button.
-	 */
-	append_client_mousebinding(button: AwfulButtonInstance): void;
-
-	/**
-	 * Add a
-	 * [awful.button](https://awesomewm.org/apidoc/input_handling/awful.button.html#)
-	 * s to the default client buttons.
-	 *
-	 * @param buttons A table containing awful.button objects.
-	 */
-	append_client_mousebindings(buttons: table): void;
-
-	/**
-	 * Remove a mousebinding from the default client buttons.
-	 *
-	 * @param button The button.
-	 *
-	 * @returns True if the button was removed and false if it wasn't found.
-	 */
-	remove_client_mousebinding(button: AwfulButtonInstance): boolean;
-
-	/**
-	 * Get the client object under the pointer.
-	 *
-	 * @deprecated Use {@link AwesomeGlobalMouse.current_client}
-	 */
-	client_under_pointer(): AwesomeClient | null;
-
 	snap: {
 		/**
 		 * Snap a client to the closest client or screen edge.
@@ -268,12 +208,13 @@ interface AwfulMouse {
 		client_enabled: boolean;
 	};
 
-	drag_to_tag: {
+	wibox: {
 		/**
-		 * Enable changing tag when a client is dragged to the edge of the
-		 * screen.
+		 * Move the wibox under the cursor.
+		 *
+		 * @param w The wibox to move, or none to use that under the pointer
 		 */
-		enabled: boolean;
+		move(w: BaseWidget): void;
 	};
 }
 
@@ -286,7 +227,7 @@ interface AwesomeGlobalMouse {
 	 *
 	 * @returns A client, wibox or nil.
 	 */
-	object_under_pointer(): AwesomeClient | BaseWidget | null;
+	object_under_pointer(): AwesomeClient | BaseWidget | undefined;
 
 	/**
 	 * Get or set the mouse coords.
@@ -314,37 +255,37 @@ interface AwesomeGlobalMouse {
 	 * might happen is if you use `fake_resize` to have a smaller area than the
 	 * physical screen.
 	 */
-	screen: AwesomeScreen | null;
+	screen: AwesomeScreen | undefined;
 
 	/**
 	 * Get the client currently under the mouse cursor.
 	 */
-	current_client: AwesomeClient | null;
+	current_client: AwesomeClient | undefined;
 
 	/**
 	 * Get the wibox currently under the mouse cursor.
 	 */
-	current_wibox: wibox | null;
+	current_wibox: wibox | undefined;
 
 	/**
 	 * Get the widgets currently under the mouse cursor.
 	 */
-	current_widgets: BaseWidget[] | null;
+	current_widgets: BaseWidget[] | undefined;
 
 	/**
 	 * Get the topmost widget currently under the mouse cursor.
 	 */
-	current_widget: BaseWidget | null;
+	current_widget: BaseWidget | undefined;
 
 	/**
 	 * Get the current widget geometry.
 	 */
-	current_widget_geometry: Rectangle | null;
+	current_widget_geometry: Rectangle | undefined;
 
 	/**
 	 * Get the current widget geometries.
 	 */
-	current_widget_geometries: Rectangle[] | null;
+	current_widget_geometries: Rectangle[] | undefined;
 
 	/**
 	 * True if the left mouse button is pressed.

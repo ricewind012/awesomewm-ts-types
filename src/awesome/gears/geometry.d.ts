@@ -30,7 +30,7 @@ interface GearsGeometry {
 			list: Rectangle[],
 			x: number,
 			y: number,
-		): number | null;
+		): number | undefined;
 
 		/**
 		 * Return the rectangle containing the [x, y] point.
@@ -45,7 +45,7 @@ interface GearsGeometry {
 		 * @returns The key from the closest geometry. In case no result is
 		 * found, `nil` is returned.
 		 */
-		get_by_coord(list: Rectangle[], x: number, y: number): number | null;
+		get_by_coord(list: Rectangle[], x: number, y: number): number | undefined;
 
 		/**
 		 * Get the nearest rectangle in the given direction.
@@ -61,7 +61,7 @@ interface GearsGeometry {
 			dir: Direction,
 			recttbl: Rectangle,
 			cur: Rectangle,
-		): number | null;
+		): number | undefined;
 
 		/**
 		 * Return true if the area are exactly identical.

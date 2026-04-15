@@ -25,7 +25,7 @@ interface GearsMath {
 	 *
 	 * @returns An integer in (1, t) or nil if t is less than or equal to zero.
 	 */
-	cycle(t: number, i: number): number | null;
+	cycle(t: number, i: number): number | undefined;
 
 	/**
 	 * Round a number to an integer.

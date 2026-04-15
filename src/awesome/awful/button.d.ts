@@ -29,18 +29,19 @@ interface AwfulButton {
 	/**
 	 * Create a new button to use as binding.
 	 */
-	(
+	<T = never>(
+		// TODO: for some reason ignores noSelf
 		this: void,
-		mod: ButtonModifier[],
+		mod: ButtonModifier[] | undefined,
 		button: MouseButtonName,
-		press: (this: void, c: AwesomeClient) => void,
-		release?: (this: void, c: AwesomeClient) => void,
+		press: (this: void, arg: T) => void,
+		release?: (this: void, arg: T) => void,
 	): AwfulButtonInstance;
-	(args: {
-		modifiers: ButtonModifier[];
+	<T = never>(args: {
+		modifiers: ButtonModifier[] | undefined;
 		button: MouseButtonName;
-		on_press: (this: void, c: AwesomeClient) => void;
-		on_release: (this: void, c: AwesomeClient) => void;
+		on_press: (this: void, arg: T) => void;
+		on_release: (this: void, arg: T) => void;
 	}): AwfulButtonInstance;
 
 	/**

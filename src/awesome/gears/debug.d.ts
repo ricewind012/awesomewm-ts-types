@@ -46,7 +46,7 @@ interface GearsDebug {
 	 * @param args Extra arguments.
 	 */
 	deprecate(
-		see: string | null,
+		see: string | undefined,
 		args: {
 			/**
 			 * Print the message as-is without the automatic context

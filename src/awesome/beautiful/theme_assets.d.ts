@@ -102,8 +102,8 @@ interface BeautifulThemeAssets {
 		theme: Theme,
 		color: awesome_color,
 		state: "normal" | "focus",
-		postfix: "hover" | "press" | null,
-		toggle_state: "active" | "inactive" | null,
+		postfix: "hover" | "press" | undefined,
+		toggle_state: "active" | "inactive" | undefined,
 	): Theme;
 
 	/**

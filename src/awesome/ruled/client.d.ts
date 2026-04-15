@@ -1,6 +1,7 @@
 interface RuledClientRuleRule {
 	class?: string | string[];
 	instance?: string | string[];
+	name?: string | string[];
 	role?: string | string[];
 	type?: string[];
 }
@@ -8,14 +9,14 @@ interface RuledClientRuleRule {
 interface RuledClientProperties {
 	append_actions: NaughtyAction[];
 	floating: boolean;
-	focus: (c: AwesomeClient) => AwesomeClient | null;
+	focus: (c: AwesomeClient) => AwesomeClient | undefined;
 	maximized_vertical: boolean;
 	maximized_horizontal: boolean;
 	placement: {
 		[placement in keyof AwfulPlacement]: AwfulPlacement[placement];
 	};
 	switch_to_tags: boolean;
-	tag: awesome_tag | string;
+	tag: AwesomeTag | string;
 	titlebars_enabled: boolean;
 }
 

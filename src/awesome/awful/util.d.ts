@@ -37,7 +37,7 @@ interface AwfulUtil {
 	 *
 	 * @returns Never return if awesome restart, or return a string error.
 	 */
-	restart(): string | null;
+	restart(): string | undefined;
 
 	/**
 	 * Search for an icon and return the full path.
@@ -58,7 +58,7 @@ interface AwfulUtil {
 		exts?: string[],
 		dirs?: string[],
 		size?: string,
-	): string | null;
+	): string | undefined;
 
 	/**
 	 * The default shell used when spawning processes.

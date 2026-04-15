@@ -9,7 +9,7 @@
  * @noSelf
  */
 interface GearsObject {
-	<C extends {}, M extends SignalMap>(args: {
+	<M extends SignalMap, C extends {}>(args: {
 		/**
 		 * Automatically call getters and setters
 		 */

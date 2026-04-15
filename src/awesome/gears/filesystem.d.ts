@@ -153,5 +153,5 @@ interface GearsFilesystem {
 		path: string,
 		exts?: string[],
 		absolute_path?: boolean,
-	): string | null;
+	): string | undefined;
 }

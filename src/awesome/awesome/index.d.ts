@@ -186,7 +186,7 @@ interface AwesomeGlobal extends SignalObject<AwesomeGlobalSignalMap> {
 	 * @param name The file name.
 	 * @returns a [cairo surface as light user datum, the error message] tuple.
 	 */
-	load_image(name: string): LuaMultiReturn<[any, string | null]>;
+	load_image(name: string): LuaMultiReturn<[any, string | undefined]>;
 
 	/**
 	 *

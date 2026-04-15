@@ -51,7 +51,7 @@ declare module "dbus" {
 	export function connect_signal(
 		interface: string,
 		func: (...args: unknown[]) => void,
-	): boolean | LuaMultiReturn<[null, any]>;
+	): boolean | LuaMultiReturn<[undefined, any]>;
 
 	/**
 	 * Remove a signal receiver on the D-Bus.

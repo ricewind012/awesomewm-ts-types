@@ -17,7 +17,7 @@ interface AwfulScreen {
 	 *
 	 * @returns The screen index
 	 */
-	getbycoord(x: number, y: number): number | null;
+	getbycoord(x: number, y: number): number | undefined;
 
 	/**
 	 * Move the focus to a screen.
@@ -84,7 +84,7 @@ interface AwfulScreen {
 		 * Use the mouse screen
 		 */
 		mouse?: boolean;
-	}): AwesomeScreen | null;
+	}): AwesomeScreen | undefined;
 
 	/**
 	 * Call a function for each existing and created-in-the-future screen.
@@ -179,7 +179,7 @@ interface AwfulScreen {
 	 */
 	padding(
 		s: AwesomeScreen,
-		padding: AwesomeClientGeometry | number | null,
+		padding: AwesomeClientGeometry | number | undefined,
 	): AwesomeClientGeometry;
 
 	/**

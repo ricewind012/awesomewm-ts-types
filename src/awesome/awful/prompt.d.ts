@@ -26,7 +26,7 @@ interface AwfulPrompt {
 			 * @param cur_pos_before_comp The current cursor position.
 			 * @param ncomp The number of the currently completed element.
 			 */
-			completion_callback: (
+			completion_callback?: (
 				command_before_comp: string,
 				cur_pos_before_comp: number,
 				ncomp: number,
@@ -38,12 +38,12 @@ interface AwfulPrompt {
 			 *
 			 * @param cmd The command (as entered).
 			 */
-			exe_callback: (cmd: string) => void;
+			exe_callback?: (cmd: string) => void;
 
 			/**
 			 * The textbox to use for the prompt.
 			 */
-			textbox: widget;
+			textbox?: widget;
 			fg_cursor?: gears_color;
 			bg_cursor?: gears_color;
 			ul_cursor?: gears_color;
@@ -65,7 +65,7 @@ interface AwfulPrompt {
 			 * File path where the history should be saved, set `nil` to disable
 			 * history
 			 */
-			history_path?: string | null;
+			history_path?: string | undefined;
 
 			/**
 			 * Set the maximum entries in history file, 50 by default
@@ -117,13 +117,13 @@ interface AwfulPrompt {
 			 */
 			hooks?: table;
 		},
-		textbox: any,
-		exe_callback: any,
-		completion_callback: any,
-		history_path: any,
-		history_max: any,
-		done_callback: any,
-		changed_callback: any,
-		keypressed_callback: any,
+		textbox?: any,
+		exe_callback?: any,
+		completion_callback?: any,
+		history_path?: any,
+		history_max?: any,
+		done_callback?: any,
+		changed_callback?: any,
+		keypressed_callback?: any,
 	): void;
 }

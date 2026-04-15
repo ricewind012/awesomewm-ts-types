@@ -54,7 +54,7 @@ interface GearsTable {
 	 *
 	 * @returns The key of the item.
 	 */
-	hasitem<T extends {}>(t: T[], item: T): string | number | null;
+	hasitem<T extends {}>(t: T[], item: T): string | number | undefined;
 
 	/**
 	 * Get all matching table keys for a `matcher` function.
@@ -72,7 +72,7 @@ interface GearsTable {
 		matcher: (key: K, value: V) => boolean,
 		ordered?: boolean,
 		max?: number,
-	): Record<K, V> | null;
+	): Record<K, V> | undefined;
 
 	/**
 	 * Find the first key that matches a function.
@@ -88,7 +88,7 @@ interface GearsTable {
 		t: Record<K, V>,
 		matcher: (key: K, value: V) => boolean,
 		ordered?: boolean,
-	): Record<K, V> | null;
+	): Record<K, V> | undefined;
 
 	/**
 	 * Get a sorted table with all keys from a table.
@@ -172,7 +172,7 @@ interface GearsTable {
 		step_size?: number,
 		filter?: (value: T) => boolean,
 		start_at?: number,
-	): number | null;
+	): number | undefined;
 
 	/**
 	 * Iterate over a table.

@@ -54,7 +54,7 @@ interface PlacementCommonArgs {
 	/**
 	 * Use a tag geometry.
 	 */
-	tag: awesome_tag;
+	tag: AwesomeTag;
 
 	margins: number | table;
 

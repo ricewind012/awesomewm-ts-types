@@ -209,12 +209,12 @@ interface BaseWidget extends SignalObject<BaseWidgetSignalMap> {
 	/**
 	 * Force a widget height.
 	 */
-	forced_height: number | null;
+	forced_height: number | undefined;
 
 	/**
 	 * Force a widget width.
 	 */
-	forced_width: number | null;
+	forced_width: number | undefined;
 
 	/**
 	 * The widget opacity (transparency, value is from 0 to 1).
@@ -259,7 +259,7 @@ interface WiboxWidgetBase {
 	make_widget_from_value<T extends BaseWidget>(
 		wdg: T,
 		...args: any[]
-	): T | null;
+	): T | undefined;
 
 	/**
 	 * Create an empty widget skeleton.
