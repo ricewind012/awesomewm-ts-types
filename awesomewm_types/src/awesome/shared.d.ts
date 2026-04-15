@@ -2,7 +2,8 @@
 
 type Direction = "up" | "down" | "left" | "right";
 
-type Drawable = AwesomeClient | AwesomeMouse | AwesomeWidgetBox;
+type AwesomeMouse = any;
+type Drawable = AwesomeClient | AwesomeMouse | BaseWidget;
 
 interface Rectangle {
 	x: number;

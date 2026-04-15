@@ -3,11 +3,22 @@
 
 type TitlebarPosition = "top" | "left" | "right" | "bottom";
 
+interface stuff
+	extends Partial<
+		Pick<
+			BaseWidget,
+			"buttons" | "forced_height" | "forced_width" | "opacity" | "visible"
+		>
+	> {
+	layout: any;
+	children?: stuff[];
+}
+
 interface WiboxDrawable {
 	/**
 	 * Set a declarative widget hierarchy description.
 	 */
-	setup(widget: BaseWidget): void;
+	setup(widget: stuff): void;
 }
 
 /**
@@ -30,6 +41,8 @@ interface AwfulTitlebar {
 	 * @returns The newly created titlebar object.
 	 */
 	(
+		// TODO: for some reason this ignores noSelf
+		this: void,
 		c: AwesomeClient,
 		args?: {
 			size?: number;

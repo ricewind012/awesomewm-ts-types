@@ -3,12 +3,13 @@
 /// <reference types="./completion.d.ts" />
 /// <reference types="./hotkeys_popup.d.ts" />
 /// <reference types="./mouse.d.ts" />
-/// <reference types="./permissions.d.ts" />
+// TODO
+//// <reference types="./permissions.d.ts" />
 /// <reference types="./placement.d.ts" />
 /// <reference types="./prompt.d.ts" />
 /// <reference types="./screen.d.ts" />
 /// <reference types="./spawn.d.ts" />
-/// <reference types="./widgets/titlebar" />
+/// <reference types="./widgets" />
 /// <reference types="./util.d.ts" />
 
 /**

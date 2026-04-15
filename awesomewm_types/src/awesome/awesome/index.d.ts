@@ -1,7 +1,4 @@
-/**
- * @noSelf
- */
-interface AwesomeGlobalSignalMap extends SignalMap {
+type AwesomeGlobalSignalMap = SignalMap & {
 	/**
 	 * A call into the Lua code aborted with an error.
 	 *
@@ -12,7 +9,7 @@ interface AwesomeGlobalSignalMap extends SignalMap {
 	 * @param err Table with the error object, can be converted to a string with
 	 * `tostring(err)`.
 	 */
-	"debug::error": (err: table) => void;
+	"debug::error": (this: void, err: table) => void;
 
 	/**
 	 * A deprecated Lua function was called.
@@ -22,7 +19,12 @@ interface AwesomeGlobalSignalMap extends SignalMap {
 	 * @param see The name of the newer API
 	 * @param args The name of the newer API
 	 */
-	"debug::deprecation": (hint: string, see?: string, args?: table) => void;
+	"debug::deprecation": (
+		this: void,
+		hint: string,
+		see?: string,
+		args?: table,
+	) => void;
 
 	/**
 	 * An invalid key was read from an object.
@@ -32,7 +34,11 @@ interface AwesomeGlobalSignalMap extends SignalMap {
 	 * @param unknown1 Class?
 	 * @param unknown2 Key?
 	 */
-	"debug::index::miss": (unknown1: unknown, unknown2: unknown) => void;
+	"debug::index::miss": (
+		this: void,
+		unknown1: unknown,
+		unknown2: unknown,
+	) => void;
 
 	/**
 	 * An invalid key was written to an object.
@@ -44,6 +50,7 @@ interface AwesomeGlobalSignalMap extends SignalMap {
 	 * @param unknown3 Value?
 	 */
 	"debug::newindex::miss": (
+		this: void,
 		unknown1: unknown,
 		unknown2: unknown,
 		unknown3: unknown,
@@ -82,7 +89,7 @@ interface AwesomeGlobalSignalMap extends SignalMap {
 	 *
 	 * @param group Integer containing the changed group
 	 */
-	"xkb::group_changed.": (group: number) => void;
+	"xkb::group_changed.": (this: void, group: number) => void;
 
 	/**
 	 * Refresh.
@@ -108,7 +115,7 @@ interface AwesomeGlobalSignalMap extends SignalMap {
 	 * @param reason_restart Boolean value is true if the signal was sent
 	 * because of a restart.
 	 */
-	exit: (reason_restart: boolean) => void;
+	exit: (this: void, reason_restart: boolean) => void;
 
 	/**
 	 * The output status of a screen has changed.
@@ -118,6 +125,7 @@ interface AwesomeGlobalSignalMap extends SignalMap {
 	 * output.
 	 */
 	"screen::change": (
+		this: void,
 		output: string,
 		connection_state: "Connected" | "Disconnected" | "Unknown",
 	) => void;
@@ -127,36 +135,36 @@ interface AwesomeGlobalSignalMap extends SignalMap {
 	 *
 	 * @param arg Table which only got the "id" key set
 	 */
-	"spawn::canceled": (arg: table) => void;
+	"spawn::canceled": (this: void, arg: table) => void;
 
 	/**
 	 * When one of the fields from the {@link spawn::initiated} table changes
 	 *
 	 * @param arg Table which describes the spawn event
 	 */
-	"spawn::change": (arg: table) => void;
+	"spawn::change": (this: void, arg: table) => void;
 
 	/**
 	 * An application finished starting
 	 *
 	 * @param arg Table which only got the "id" key set
 	 */
-	"spawn::completed": (arg: table) => void;
+	"spawn::completed": (this: void, arg: table) => void;
 
 	/**
 	 * When a new client is beginning to start
 	 *
 	 * @param arg Table which describes the spawn event
 	 */
-	"spawn::initiated": (arg: table) => void;
+	"spawn::initiated": (this: void, arg: table) => void;
 
 	/**
 	 * An application started a spawn event but didn't start in time.
 	 *
 	 * @param arg Table which only got the "id" key set
 	 */
-	"spawn::timeout": (arg: table) => void;
-}
+	"spawn::timeout": (this: void, arg: table) => void;
+};
 
 interface AwesomeGlobal extends SignalObject<AwesomeGlobalSignalMap> {
 	/**

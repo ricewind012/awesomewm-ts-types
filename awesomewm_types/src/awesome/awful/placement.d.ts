@@ -61,7 +61,7 @@ interface PlacementCommonArgs {
 	/**
 	 * A parent drawable to use a base geometry
 	 */
-	parent: Drawable | awesome_mouse;
+	parent: Drawable | AwesomeMouse;
 
 	bounding_rect: Rectangle;
 
@@ -93,6 +93,9 @@ interface PlacementCommonArgs {
 	update_workarea: boolean;
 }
 
+/**
+ * @noSelf
+ */
 interface AwfulPlacement {
 	/**
 	 * Move a drawable to the closest corner of the parent geometry (such as the

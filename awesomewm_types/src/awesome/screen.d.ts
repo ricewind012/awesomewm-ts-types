@@ -54,10 +54,7 @@ interface AwesomeScreenViewport {
 	preferred_dpi: number;
 }
 
-/**
- * @noSelf
- */
-interface AwesomeScreenSignalMap extends SignalMap {
+type AwesomeScreenSignalMap = SignalMap & {
 	/**
 	 * AwesomeWM is done scanning for screens.
 	 *
@@ -65,8 +62,8 @@ interface AwesomeScreenSignalMap extends SignalMap {
 	 * context is initialized and modules are loaded, but before screens are
 	 * added.
 	 *
-	 * To manage screens manually, set @link AwesomeScreen.automatic_factory} to
-	 * `false` and connect to the `property::viewports` signal. It is then
+	 * To manage screens manually, set {@link AwesomeScreen.automatic_factory}
+	 * to `false` and connect to the `property::viewports` signal. It is then
 	 * possible to use {@link AwesomeScreen.fake_add} to create virtual screens.
 	 * Be careful when using this, when done incorrectly, no screens will be
 	 * created. Using Awesome with zero screens is **not** supported.
@@ -112,7 +109,7 @@ interface AwesomeScreenSignalMap extends SignalMap {
 	 * @param screen The other screen
 	 * @param is_source If self is the source or the destination of the swap
 	 */
-	swapped: (screen: AwesomeScreen, is_source: boolean) => void;
+	swapped: (this: void, screen: AwesomeScreen, is_source: boolean) => void;
 
 	/**
 	 * This signal is emitted when the list of physical screen viewport changes.
@@ -120,7 +117,10 @@ interface AwesomeScreenSignalMap extends SignalMap {
 	 * Each viewport in the list corresponds to a physical screen rectangle,
 	 * which is **not** the `viewports` property of the `screen` objects.
 	 */
-	"property::viewports": (viewports: AwesomeScreenViewport[]) => void;
+	"property::viewports": (
+		this: void,
+		viewports: AwesomeScreenViewport[],
+	) => void;
 
 	/**
 	 * Emitted when a new screen is added.
@@ -134,7 +134,7 @@ interface AwesomeScreenSignalMap extends SignalMap {
 	 *
 	 * @param context The context.
 	 */
-	"request::desktop_decoration": (context: string) => void;
+	"request::desktop_decoration": (this: void, context: string) => void;
 
 	/**
 	 * Emitted when a new screen needs a wallpaper.
@@ -148,7 +148,7 @@ interface AwesomeScreenSignalMap extends SignalMap {
 	 *
 	 * @param context The context.
 	 */
-	"request::wallpaper": (context: string) => void;
+	"request::wallpaper": (this: void, context: string) => void;
 
 	/**
 	 * When a new (physical) screen area has been added.
@@ -170,6 +170,7 @@ interface AwesomeScreenSignalMap extends SignalMap {
 	 * @param args
 	 */
 	"request::create": (
+		this: void,
 		viewport: AwesomeScreenViewport,
 		args: {
 			/**
@@ -199,6 +200,7 @@ interface AwesomeScreenSignalMap extends SignalMap {
 	 * @param args
 	 */
 	"request::remove": (
+		this: void,
 		viewport: AwesomeScreenViewport,
 		args: {
 			/**
@@ -228,6 +230,7 @@ interface AwesomeScreenSignalMap extends SignalMap {
 	 * ```
 	 */
 	"request::resize": (
+		this: void,
 		old_viewport: AwesomeScreenViewport,
 		new_viewport: AwesomeScreenViewport,
 		args: {
@@ -242,7 +245,7 @@ interface AwesomeScreenSignalMap extends SignalMap {
 	 * When the tag history changed.
 	 */
 	"tag::history::update": () => void;
-}
+};
 
 interface AwesomeScreen extends SignalObject<AwesomeScreenSignalMap> {
 	/**

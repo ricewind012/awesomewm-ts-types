@@ -2,6 +2,7 @@ import * as awful from "awful";
 import * as beautiful from "beautiful";
 import * as gears from "gears";
 import * as naughty from "naughty";
+import * as ruled from "ruled";
 import * as wibox from "wibox";
 import make_widget from "./jsx";
 
@@ -56,16 +57,41 @@ client.connect_signal("mouse::enter", (c) => {
 	});
 });
 
+function wdg(widget: stuff) {
+	if (widget.children === null) {
+		return gears.table.join(widget, widget.children);
+	}
+
+	return widget;
+}
+
 client.connect_signal("request::titlebars", (c) => {
 	const titlebar = awful.titlebar(c, {
 		size: 16,
 		position: "bottom",
 	});
 
-	const test = <wibox.test.abc a={true} />;
-	const test2 = test.children;
-
 	titlebar.setup(
+		wdg({
+			layout: wibox.layout.flex.horizontal,
+			children: [
+				wdg({ layout: wibox.layout.flex.horizontal }),
+				wdg({
+					layout: wibox.layout.flex.horizontal,
+					buttons: gears.table.join(
+						awful.button([], awful.button.names.LEFT, () => {
+							c.activate();
+							awful.mouse.client.move(c);
+						}),
+						awful.button([], awful.button.names.RIGHT, () => {
+							c.activate();
+							awful.mouse.client.resize(c);
+						}),
+					),
+				}),
+			],
+		}),
+		/*
 		<wibox.layout.align.horizontal>
 			<wibox.layout.flex.horizontal />
 			<wibox.layout.flex.horizontal
@@ -81,93 +107,53 @@ client.connect_signal("request::titlebars", (c) => {
 				)}
 			/>
 		</wibox.layout.align.horizontal>,
-		/*
-		[
-			{ layout: wibox.layout.flex.horizontal },
-			{
-				buttons: gears.table.join(
-					awful.button([], awful.button.names.LEFT, () => {
-						c.activate();
-						awful.mouse.client.move(c);
-					}),
-					awful.button([], awful.button.names.RIGHT, () => {
-						c.activate();
-						awful.mouse.client.resize(c);
-					}),
-				),
-			},
-		],
 		*/
 	);
 });
 
+client.connect_signal("request::default_mousebindings", () => {
+	awful.mouse.append_client_mousebindings([
+		awful.button(["Mod4"], awful.button.names.LEFT, (c) => {
+			c.activate({
+				context: "mouse_click",
+				action: "mouse_move",
+			});
+		}),
+		awful.button(["Mod4"], awful.button.names.RIGHT, (c) => {
+			c.activate({
+				context: "mouse_click",
+				action: "mouse_resize",
+			});
+		}),
+	]);
+});
+
+ruled.client.connect_signal("request::rules", () => {
+	const p = awful.placement;
+
+	ruled.client.append_rule({
+		id: "global",
+		rule: {},
+		properties: {
+			focus: awful.client.focus.filter,
+			raise: true,
+			screen: awful.screen.preferred,
+			// @ts-expect-error: Just Lua things
+			placement: p.no_overlap + p.no_offscreen + p.centered,
+		},
+	});
+	ruled.client.append_rule({
+		id: "titlebars",
+		rule_any: {
+			type: ["normal", "dialog"],
+		},
+		properties: {
+			titlebars_enabled: true,
+		},
+	});
+});
+
 /*
-client.connect_signal('request::titlebars', function(c)
-	hTitlebar:setup {
-		{
-			layout  = wibox.layout.flex.horizontal,
-		},
-		{
-			buttons = gears.table.join(
-				awful.button({}, 1, function()
-					client.focus = c
-					c:raise()
-					awful.mouse.client.move(c)
-				end),
-
-				awful.button({}, 3, function()
-					client.focus = c
-					c:raise()
-					awful.mouse.client.resize(c)
-				end)
-			),
-			layout  = wibox.layout.flex.horizontal,
-		},
-		layout = wibox.layout.align.horizontal
-	}
-end)
-
--- TODO is this neeeded
-client.connect_signal('request::default_mousebindings', function()
-	awful.mouse.append_client_mousebindings {
-		awful.button({ g_strModKey }, 1, function(c)
-			c:activate {
-				context = 'mouse_click',
-				action  = 'mouse_move',
-			}
-		end),
-
-		awful.button({ g_strModKey }, 3, function(c)
-			c:activate {
-				context = 'mouse_click',
-				action  = 'mouse_resize',
-			}
-		end)
-	}
-end)
-
--- TODO same ^
-ruled.client.connect_signal('request::rules', function()
-	local p = awful.placement
-
-	ruled.client.append_rule {
-		id         = 'global',
-		rule       = {},
-		properties = {
-			focus     = awful.client.focus.filter,
-			raise     = true,
-			screen    = awful.screen.preferred,
-			placement = p.no_overlap + p.no_offscreen + p.centered
-		}
-	}
-
-	ruled.client.append_rule {
-		id         = 'titlebars',
-		rule_any   = { type = { 'normal', 'dialog' } },
-		properties = { titlebars_enabled = true },
-	}
-end)
-
 tag.connect_signal('request::default_layouts', function()
 	awful.layout.append_default_layouts {
 		awful.layout.suit.floating,

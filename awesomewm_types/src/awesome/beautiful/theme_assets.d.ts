@@ -35,7 +35,7 @@ interface BeautifulThemeAssets {
 	 * @param alt_fg Accent foreground color.
 	 */
 	gen_awesome_name(
-		cr,
+		cr: any,
 		height: number,
 		bg: awesome_color,
 		fg: awesome_color,
@@ -52,7 +52,7 @@ interface BeautifulThemeAssets {
 	 * @param fg Foreground color.
 	 */
 	gen_logo(
-		cr,
+		cr: any,
 		width: number,
 		height: number,
 		bg: awesome_color,

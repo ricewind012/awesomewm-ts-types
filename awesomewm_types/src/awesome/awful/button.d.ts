@@ -1,3 +1,5 @@
+/// <reference types="../client" />
+
 declare enum MouseButtonName {
 	LEFT,
 	MIDDLE,
@@ -28,16 +30,17 @@ interface AwfulButton {
 	 * Create a new button to use as binding.
 	 */
 	(
+		this: void,
 		mod: ButtonModifier[],
 		button: MouseButtonName,
-		press: () => void,
-		release?: () => void,
+		press: (this: void, c: AwesomeClient) => void,
+		release?: (this: void, c: AwesomeClient) => void,
 	): AwfulButtonInstance;
 	(args: {
 		modifiers: ButtonModifier[];
 		button: MouseButtonName;
-		on_press: () => void;
-		on_release: () => void;
+		on_press: (this: void, c: AwesomeClient) => void;
+		on_release: (this: void, c: AwesomeClient) => void;
 	}): AwfulButtonInstance;
 
 	/**

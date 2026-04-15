@@ -1,22 +1,26 @@
 {
-	"$schema": "https://raw.githubusercontent.com/TypeScriptToLua/TypeScriptToLua/master/tsconfig-schema.json",
-	"compilerOptions": {
-		"target": "ESNext",
-		"lib": ["ESNext"],
-		"jsx": "react",
-		"jsxFactory": "make_widget",
-		"moduleResolution": "node",
-		"noImplicitThis": true,
-		"outDir": "dist",
-		"plugins": [{ "name": "typescript-tstl-plugin" }],
-		"strict": true,
-		"types": ["@types/awesomewm", "lua-types/jit"]
-	},
-	"include": ["src"],
-	"tstl": {
-		// TODO: what does this do lol
-		"buildMode": "default",
-		"noHeader": true,
-		"luaTarget": "JIT"
-	}
+  "$schema": "https://raw.githubusercontent.com/TypeScriptToLua/TypeScriptToLua/master/tsconfig-schema.json",
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": ["ESNext"],
+    "jsx": "react",
+    "jsxFactory": "make_widget",
+    "moduleResolution": "node",
+    "noImplicitThis": true,
+    "outDir": "dist",
+    // Disabled because of the following error, which is a bug but it
+    // compiles anyway:
+    // "Unable to convert function with no 'this' parameter to function
+    // 'func' with 'this'."
+    //"plugins": [{ "name": "typescript-tstl-plugin" }],
+    "strict": true,
+    "types": ["@types/awesomewm", "lua-types/jit"]
+  },
+  "include": ["src"],
+  "tstl": {
+    // TODO: what does this do lol
+    "buildMode": "default",
+    "noHeader": true,
+    "luaTarget": "JIT"
+  }
 }

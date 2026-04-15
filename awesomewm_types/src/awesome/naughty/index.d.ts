@@ -5,7 +5,7 @@ interface NaughtyAction {}
 
 interface NaughtyNotification {}
 
-interface NaughtyNotificationArgs {
+interface NotificationProperties {
 	/**
 	 * Text of the notification.
 	 * @default ""
@@ -32,7 +32,7 @@ interface NaughtyNotificationArgs {
 	 * Target screen for the notification.
 	 * @default focused
 	 */
-	screen?: number | AwesomeScreen;
+	screen?: AwesomeScreen | number | string;
 
 	/**
 	 * Corner of the workarea displaying the popups.
@@ -324,7 +324,7 @@ interface NotificationPreset {
 	timeout?: number;
 }
 
-interface NaughtySignalMap {
+type NaughtySignalMap = SignalMap & {
 	/**
 	 * Emitted when an error occurred and requires attention.
 	 *
@@ -332,21 +332,25 @@ interface NaughtySignalMap {
 	 * @param startup If the error occurred during the initial loading of rc.lua
 	 * (and thus caused the fallback to kick in).
 	 */
-	"request::display_error": (message: string, startup: boolean) => void;
+	"request::display_error": (
+		this: void,
+		message: string,
+		startup: boolean,
+	) => void;
 
 	/**
 	 * Emitted when a notification is created.
 	 *
 	 * @param notification The `naughty.notification` object.
 	 */
-	added: (notification: NaughtyNotification) => void;
+	added: (this: void, notification: NaughtyNotification) => void;
 
 	/**
 	 * Emitted when a notification is destroyed.
 	 *
 	 * @param notification The `naughty.notification` object.
 	 */
-	destroyed: (notification: NaughtyNotification) => void;
+	destroyed: (this: void, notification: NaughtyNotification) => void;
 
 	/**
 	 * Emitted when a notification has to be displayed.
@@ -367,6 +371,7 @@ interface NaughtySignalMap {
 	 * properties.
 	 */
 	"request::display": (
+		this: void,
 		notification: NaughtyNotification,
 		context: string,
 		args: table,
@@ -402,6 +407,7 @@ interface NaughtySignalMap {
 	 * @param hints
 	 */
 	"request::action_icon": (
+		this: void,
 		action: NaughtyAction,
 		context: string,
 		hints: table,
@@ -443,6 +449,7 @@ interface NaughtySignalMap {
 	 * @param hints The hints.
 	 */
 	"request::icon": (
+		this: void,
 		n: NaughtyNotification,
 		context:
 			| "app_icon"
@@ -476,8 +483,8 @@ interface NaughtySignalMap {
 	 * either "new" or "removed".
 	 * @param context Why is the signal sent.
 	 */
-	"request::screen": (notification: table, context: string) => void;
-}
+	"request::screen": (this: void, notification: table, context: string) => void;
+};
 
 /**
  * @noResolution
@@ -549,7 +556,7 @@ declare module "naughty" {
 	 * Create a notification.
 	 */
 	export function notification(
-		args: NaughtyNotificationArgs,
+		args: Partial<NotificationProperties>,
 	): NaughtyNotification;
 
 	export const config: {

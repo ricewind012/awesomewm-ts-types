@@ -51,10 +51,7 @@ interface FindWidgetsResult {
 	widget_height: number;
 }
 
-/**
- * @noSelf
- */
-interface BaseWidgetSignalMap extends SignalMap {
+type BaseWidgetSignalMap = SignalMap & {
 	/**
 	 * When the layout (size) change. This signal is emitted when the previous
 	 * results of `:layout()` and `:fit()` are no longer valid. Unless this
@@ -85,6 +82,7 @@ interface BaseWidgetSignalMap extends SignalMap {
 	 * {@link find_widgets} for the position that the mouse hit.
 	 */
 	"button::press": (
+		this: void,
 		self: BaseWidget,
 		lx: number,
 		ly: number,
@@ -107,6 +105,7 @@ interface BaseWidgetSignalMap extends SignalMap {
 	 * {@link find_widgets} for the position that the mouse hit.
 	 */
 	"button::release": (
+		this: void,
 		self: BaseWidget,
 		lx: number,
 		ly: number,
@@ -123,6 +122,7 @@ interface BaseWidgetSignalMap extends SignalMap {
 	 * {@link find_widgets} for the position that the mouse hit.
 	 */
 	"mouse::enter": (
+		this: void,
 		self: BaseWidget,
 		find_widgets_result: FindWidgetsResult,
 	) => void;
@@ -135,10 +135,11 @@ interface BaseWidgetSignalMap extends SignalMap {
 	 * {@link find_widgets} for the position that the mouse hit.
 	 */
 	"mouse::leave": (
+		this: void,
 		self: BaseWidget,
 		find_widgets_result: FindWidgetsResult,
 	) => void;
-}
+};
 
 interface BaseWidget extends SignalObject<BaseWidgetSignalMap> {
 	/**

@@ -3,10 +3,7 @@
 /// <reference types="./screen.d.ts" />
 /// <reference types="./shared.d.ts" />
 
-/**
- * @noSelf
- */
-interface AwesomeClientSignalMap extends SignalMap {
+type AwesomeClientSignalMap = SignalMap & {
 	/**
 	 * Emitted when AwesomeWM is about to scan for existing clients.
 	 *
@@ -40,7 +37,7 @@ interface AwesomeClientSignalMap extends SignalMap {
 	 * @param client The other client
 	 * @param is_source If self is the source or the destination of the swap
 	 */
-	swapped: (client: AwesomeClient, is_source: boolean) => void;
+	swapped: (this: void, client: AwesomeClient, is_source: boolean) => void;
 
 	/**
 	 * Emitted when a new client appears and gets managed by Awesome.
@@ -57,6 +54,7 @@ interface AwesomeClientSignalMap extends SignalMap {
 	 * with the other `request::` signals).
 	 */
 	"request::manage": (
+		this: void,
 		c: AwesomeClient,
 		context: "new" | "startup",
 		hints: table,
@@ -80,6 +78,7 @@ interface AwesomeClientSignalMap extends SignalMap {
 	 * with the other `request::` signals).
 	 */
 	"request::unmanage": (
+		this: void,
 		c: AwesomeClient,
 		context: "user" | "reparented" | "destroyed",
 		hints: table,
@@ -98,7 +97,7 @@ interface AwesomeClientSignalMap extends SignalMap {
 	/**
 	 * Emitted when the mouse enters a client.
 	 */
-	"mouse::enter": (c: AwesomeClient) => void;
+	"mouse::enter": (this: void, c: AwesomeClient) => void;
 
 	/**
 	 * Emitted when the mouse leaves a client.
@@ -119,6 +118,7 @@ interface AwesomeClientSignalMap extends SignalMap {
 	 * @param hints A table with additional hints
 	 */
 	"request::activate": (
+		this: void,
 		c: AwesomeClient,
 		context: string,
 		hints?: {
@@ -148,6 +148,7 @@ interface AwesomeClientSignalMap extends SignalMap {
 	 * @param hints A table with additional hints
 	 */
 	"request::autoactivate": (
+		this: void,
 		c: AwesomeClient,
 		context: string,
 		hints?: {
@@ -168,6 +169,7 @@ interface AwesomeClientSignalMap extends SignalMap {
 	 * this differently.
 	 */
 	"request::geometry": (
+		this: void,
 		c: AwesomeClient,
 		context: string,
 		hints?: table,
@@ -181,6 +183,7 @@ interface AwesomeClientSignalMap extends SignalMap {
 	 * @param hints
 	 */
 	"request::tag": (
+		this: void,
 		c: AwesomeClient,
 		tag?: awesome_tag,
 		hints?: { reason?: string; screen?: AwesomeScreen },
@@ -205,7 +208,7 @@ interface AwesomeClientSignalMap extends SignalMap {
 	 *
 	 * @param c The client whose property changed.
 	 */
-	"request::urgent": (c: AwesomeClient) => void;
+	"request::urgent": (this: void, c: AwesomeClient) => void;
 
 	/**
 	 * Emitted once to request default client mousebindings during the initial
@@ -217,7 +220,7 @@ interface AwesomeClientSignalMap extends SignalMap {
 	 *
 	 * @param context The reason why the signal was sent.
 	 */
-	"request::default_mousebindings": (context: "startup") => void;
+	"request::default_mousebindings": (this: void, context: "startup") => void;
 
 	/**
 	 * Emitted once to request default client keybindings during the initial startup
@@ -229,12 +232,12 @@ interface AwesomeClientSignalMap extends SignalMap {
 	 *
 	 * @param context The reason why the signal was sent.
 	 */
-	"request::default_keybindings": (context: "startup") => void;
+	"request::default_keybindings": (this: void, context: "startup") => void;
 
 	/**
 	 * Emitted when a client gets tagged.
 	 */
-	tagged: (t: awesome_tag) => void;
+	tagged: (this: void, t: awesome_tag) => void;
 
 	/**
 	 * Emitted when a client gets unfocused.
@@ -244,7 +247,7 @@ interface AwesomeClientSignalMap extends SignalMap {
 	/**
 	 * Emitted when a client gets untagged.
 	 */
-	untagged: (t: awesome_tag) => void;
+	untagged: (this: void, t: awesome_tag) => void;
 
 	/**
 	 * Emitted when the client is raised within its layer.
@@ -269,6 +272,7 @@ interface AwesomeClientSignalMap extends SignalMap {
 	 * @param hints Some hints.
 	 */
 	"request::titlebars": (
+		this: void,
 		c: AwesomeClient,
 		content: string,
 		hints: table,
@@ -292,6 +296,7 @@ interface AwesomeClientSignalMap extends SignalMap {
 	 * @param hints The hints.
 	 */
 	"request::border": (
+		this: void,
 		c: AwesomeClient,
 		context: "added" | "active" | "inactive" | "urgent" | "floating",
 		hints: table,
@@ -316,7 +321,7 @@ interface AwesomeClientSignalMap extends SignalMap {
 	 * @deprecated
 	 */
 	unmarked: never;
-}
+};
 
 interface AwesomeClientGeometry {
 	x: number;
@@ -616,7 +621,7 @@ interface AwesomeClient
 		/**
 		 * Once activated, perform an action.
 		 */
-		action?: boolean;
+		action?: boolean | string;
 		toggle_minimization?: boolean;
 	}): void;
 

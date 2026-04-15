@@ -25,7 +25,7 @@ interface MenubarMenuGen {
 	 * @param icon_name
 	 * @param use
 	 */
-	all_categories(multimedia, name, icon_name, use): void;
+	all_categories(multimedia: any, name: any, icon_name: any, use: any): void;
 
 	/**
 	 * Specifies all directories where menubar should look for .desktop

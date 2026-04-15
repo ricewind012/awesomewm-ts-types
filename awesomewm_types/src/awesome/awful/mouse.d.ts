@@ -239,7 +239,7 @@ interface AwfulMouse {
 		 * @returns The new geometry.
 		 */
 		(
-			c?: AwesomeClient,
+			c: AwesomeClient,
 			snap: number,
 			x: number,
 			y: number,

@@ -7,7 +7,7 @@ declare global {
 	const awesome: AwesomeGlobal;
 	const client: AwesomeGlobalClient;
 	const mouse: AwesomeGlobalMouse;
-	const screen: AwesomeGlobalScreen;
+	//const screen: AwesomeGlobalScreen;
 }
 
 export {};

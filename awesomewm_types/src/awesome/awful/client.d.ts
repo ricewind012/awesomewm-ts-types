@@ -53,82 +53,6 @@ interface AwfulClient {
 		s?: AwesomeScreen,
 	): (...args: unknown[]) => any;
 
-	urgent: {
-		/**
-		 * Jump to the client that received the urgent hint first.
-		 *
-		 * @param merge If true then merge tags (select the client's first tag
-		 * additionally) when the client is not visible. If it is a function, it
-		 * will be called with the client as argument.
-		 */
-		jumpto(merge: boolean | ((c: AwesomeClient) => void)): void;
-	};
-
-	swap: {
-		/**
-		 * Swap a client with another client in the given direction.
-		 *
-		 * This will not cross the screen boundary. If you want this behavior,
-		 * use {@link awful.client.swap.global_bydirection}.
-		 *
-		 * @param dir
-		 * @param c
-		 * @param stacked
-		 */
-		bydirection(dir: Direction, c?: AwesomeClient, stacked?: boolean): void;
-
-		/**
-		 * Swap a client with another client in the given direction. Swaps
-		 * across screens.
-		 *
-		 * @param dir The direction.
-		 * @param sel The client.
-		 */
-		global_bydirection(dir: Direction, sel?: AwesomeClient): void;
-
-		/**
-		 * Swap a client by its relative index.
-		 *
-		 * @param i The index. Use `1` to get the next, `-1` to get the
-		 * previous.
-		 * @param c The client, otherwise focused one is used.
-		 *
-		 * @example
-		 * ```lua
-		 * -- Print at which index each client is now at.
-		 * local function print_indices()
-		 *     local output = ""
-		 *
-		 *     for idx, c in ipairs(client.get()) do
-		 *          output = output .. c.name .. ":" .. idx .. ", "
-		 *     end
-		 *
-		 *     print(output)
-		 * end
-		 *
-		 * print_indices()
-		 *
-		 * print("Call swap.byidx")
-		 * awful.client.swap.byidx(3, client.get()[1])
-		 * print_indices()
-		 *
-		 * print("Call swap.byidx")
-		 * awful.client.swap.byidx(2, client.get()[4])
-		 * print_indices()
-		 * ```
-		 *
-		 * Output:
-		 * ```
-		 * c1:1, c2:2, c3:3, c4:4,
-		 * Call swap.byidx
-		 * c4:1, c2:2, c3:3, c1:4,
-		 * Call swap.byidx
-		 * c4:1, c1:2, c3:3, c2:4,
-		 * ```
-		 */
-		byidx(i: number, c?: AwesomeClient): void;
-	};
-
 	/**
 	 * Jump to the given client. Takes care of focussing the screen, the right
 	 * tag, etc.
@@ -289,6 +213,63 @@ interface AwfulClient {
 	 */
 	getmarked(): AwesomeClient[];
 
+	/**
+	 * Return if a client has a fixed size or not.
+	 *
+	 * @param c The client.
+	 *
+	 * @deprecated Use {@link AwesomeClient.is_fixed}.
+	 */
+	isfixed(c: AwesomeClient): boolean;
+
+	/**
+	 * Switch to a client matching the given condition if running, else spawn
+	 * it. If multiple clients match the given condition then the next one is
+	 * focused.
+	 *
+	 * @param cmd The command to execute.
+	 * @param matcher A function that returns true to indicate a matching client
+	 * @param merge If true then merge tags (select the client's first tag
+	 * additionally) when the client is not visible. If it is a function, it
+	 * will be called with the client as argument.
+	 *
+	 * @deprecated See `awful.spawn.once`, `awful.spawn.single_instance`,
+	 * `awful.spawn.raise_or_spawn`.
+	 */
+	run_or_raise(
+		cmd: string,
+		matcher: (c: AwesomeClient) => boolean,
+		merge: boolean | ((c: AwesomeClient) => boolean),
+	): void;
+
+	/**
+	 * Get a matching transient_for client (if any).
+	 *
+	 * @param c The client.
+	 * @param matcher A function that should return true, if a matching parent
+	 * client is found.
+	 *
+	 * @returns The matching parent client or nil.
+	 *
+	 * @deprecated Use {@link AwesomeClient.get_transient_for_matching}
+	 */
+	get_transient_for_matching(
+		c: AwesomeClient,
+		matcher: (c: AwesomeClient) => boolean,
+	): AwesomeClient | null;
+
+	/**
+	 * Is a client transient for another one?
+	 *
+	 * @param c The child client (having `transient_for`).
+	 * @param c2 The parent client to check.
+	 *
+	 * @returns The parent client or `nil`.
+	 *
+	 * @deprecated Use {@link AwesomeClient.is_transient_for}.
+	 */
+	is_transient_for(c: AwesomeClient, c2: AwesomeClient): AwesomeClient | null;
+
 	dockable: {
 		/**
 		 * Get a client's dockable state.
@@ -349,6 +330,167 @@ interface AwfulClient {
 		toggle(c: AwesomeClient): void;
 	};
 
+	focus: {
+		/**
+		 * Focus a client by its relative index.
+		 *
+		 *  **Usage example output** :
+		 *
+		 * c1:1, c2:2, c3:3, c4:4,
+		 * Call focus.byidx
+		 * c1:1, c2:2, c3:3, c4:4,
+		 * Call focus.byidx
+		 * c1:1, c2:2, c3:3, c4:4,
+		 *
+		 * **Usage example:**
+		 * ```lua
+		 * -- Print at which index each client is now at.
+		 * local function print_indices()
+		 *     color_focus()
+		 *     local output = ""
+		 *
+		 *     for idx, c in ipairs(client.get()) do
+		 *          output = output .. c.name .. ":" .. idx .. ", "
+		 *     end
+		 *
+		 *     print(output)
+		 * end
+		 *
+		 * print_indices()
+		 *
+		 * print("Call focus.byidx")
+		 * awful.client.focus.byidx(3, client.get()[1])
+		 * print_indices()
+		 *
+		 * print("Call focus.byidx")
+		 * awful.client.focus.byidx(2, client.get()[4])
+		 * print_indices()
+		 * ```
+		 *
+		 * @param i The index.
+		 * @param c The client.
+		 */
+		byidx(i: number, c?: AwesomeClient): void;
+
+		/**
+		 * Filter out window that we do not want handled by focus. This usually
+		 * means that desktop, dock and splash windows are not registered and
+		 * cannot get focus.
+		 *
+		 * @param c A client.
+		 */
+		filter(c: AwesomeClient): AwesomeClient | null;
+
+		/**
+		 * Focus a client by the given direction.
+		 *
+		 * ```lua
+		 * -- It will go up in the same column.
+		 * awful.client.focus.bydirection("up", client.focus)
+		 *
+		 * -- Nothing happens because it cannot change screen.
+		 * awful.client.focus.bydirection("right", client.focus)
+		 *
+		 * -- Moves to the first column.
+		 * awful.client.focus.bydirection("left", client.focus)
+		 * ```
+		 *
+		 * @param dir The direction.
+		 * @param c The client.
+		 * @param stacked Use stacking order? (top to bottom)
+		 */
+		bydirection(dir: Direction, c?: AwesomeClient, stacked?: boolean): void;
+
+		/**
+		 * Focus a client by the given direction.  Moves across screens.
+		 *
+		 * ```lua
+		 * -- It will go up in the same column.
+		 * awful.client.focus.global_bydirection("up", client.focus)
+		 *
+		 * -- It will cross to screen[2].
+		 * awful.client.focus.global_bydirection("right", client.focus)
+		 *
+		 * -- Moves to the first column.
+		 * awful.client.focus.global_bydirection("left", client.focus)
+		 * ```
+		 *
+		 * @param dir The direction.
+		 * @param c The client.
+		 * @param stacked Use stacking order? (top to bottom)
+		 */
+		global_bydirection(
+			dir: Direction,
+			c?: AwesomeClient,
+			stacked?: boolean,
+		): void;
+
+		history: {
+			/**
+			 * Update client focus history.
+			 *
+			 * @param c The client that has been focused.
+			 */
+			add(c: AwesomeClient): void;
+
+			/**
+			 * Get the latest focused client for a screen in history.
+			 *
+			 * @param s The screen to look for.
+			 * @param idx The index: 0 will return first candidate, 1 will
+			 * return second, etc.
+			 * @param filter An optional filter. If no client is found in the
+			 * first iteration, {@link filter} is used by default to get any
+			 * client.
+			 *
+			 * @returns A client.
+			 */
+			get(
+				s: AwesomeScreen | number,
+				idx: number,
+				filter: (c: AwesomeClient) => AwesomeClient | null,
+			): AwesomeClient;
+
+			/**
+			 * Focus the previous client in history.
+			 */
+			previous(): void;
+
+			/**
+			 * Remove a client from the focus history
+			 *
+			 * @param c The client that must be removed.
+			 */
+			delete(c: AwesomeClient): void;
+
+			/**
+			 * Is history tracking enabled?
+			 *
+			 * @returns
+			 * - `bool` True if history tracking is enabled.
+			 * - `int` The number of times that tracking has been disabled.
+			 */
+			is_enabled(): LuaMultiReturn<[boolean, number]>;
+
+			/**
+			 * Enable history tracking. This is the default, but can be disabled
+			 * through {@link disable_tracking}.
+			 *
+			 * @returns True if history tracking has been enabled.
+			 */
+			enable_tracking(): boolean;
+
+			/**
+			 * Disable history tracking. See {@link enable_tracking} to enable
+			 * it again.
+			 *
+			 * @returns The internal value of disabled_count (calls to this
+			 * function without calling {@link enable_tracking}).
+			 */
+			disable_tracking(): number;
+		};
+	};
+
 	property: {
 		/**
 		 * Get a client property.
@@ -390,62 +532,81 @@ interface AwfulClient {
 		persist(prop: string, kind: "string" | "number" | "boolean"): void;
 	};
 
-	/**
-	 * Return if a client has a fixed size or not.
-	 *
-	 * @param c The client.
-	 *
-	 * @deprecated Use {@link AwesomeClient.is_fixed}.
-	 */
-	isfixed(c: AwesomeClient): boolean;
+	urgent: {
+		/**
+		 * Jump to the client that received the urgent hint first.
+		 *
+		 * @param merge If true then merge tags (select the client's first tag
+		 * additionally) when the client is not visible. If it is a function, it
+		 * will be called with the client as argument.
+		 */
+		jumpto(merge: boolean | ((c: AwesomeClient) => void)): void;
+	};
 
-	/**
-	 * Switch to a client matching the given condition if running, else spawn
-	 * it. If multiple clients match the given condition then the next one is
-	 * focused.
-	 *
-	 * @param cmd The command to execute.
-	 * @param matcher A function that returns true to indicate a matching client
-	 * @param merge If true then merge tags (select the client's first tag
-	 * additionally) when the client is not visible. If it is a function, it
-	 * will be called with the client as argument.
-	 *
-	 * @deprecated See `awful.spawn.once`, `awful.spawn.single_instance`,
-	 * `awful.spawn.raise_or_spawn`.
-	 */
-	run_or_raise(
-		cmd: string,
-		matcher: (c: AwesomeClient) => boolean,
-		merge: boolean | ((c: AwesomeClient) => boolean),
-	): void;
+	swap: {
+		/**
+		 * Swap a client with another client in the given direction.
+		 *
+		 * This will not cross the screen boundary. If you want this behavior,
+		 * use {@link awful.client.swap.global_bydirection}.
+		 *
+		 * @param dir
+		 * @param c
+		 * @param stacked
+		 */
+		bydirection(dir: Direction, c?: AwesomeClient, stacked?: boolean): void;
 
-	/**
-	 * Get a matching transient_for client (if any).
-	 *
-	 * @param c The client.
-	 * @param matcher A function that should return true, if a matching parent
-	 * client is found.
-	 *
-	 * @returns The matching parent client or nil.
-	 *
-	 * @deprecated Use {@link AwesomeClient.get_transient_for_matching}
-	 */
-	get_transient_for_matching(
-		c: AwesomeClient,
-		matcher: (c: AwesomeClient) => boolean,
-	): AwesomeClient | null;
+		/**
+		 * Swap a client with another client in the given direction. Swaps
+		 * across screens.
+		 *
+		 * @param dir The direction.
+		 * @param sel The client.
+		 */
+		global_bydirection(dir: Direction, sel?: AwesomeClient): void;
 
-	/**
-	 * Is a client transient for another one?
-	 *
-	 * @param c The child client (having `transient_for`).
-	 * @param c2 The parent client to check.
-	 *
-	 * @returns The parent client or `nil`.
-	 *
-	 * @deprecated Use {@link AwesomeClient.is_transient_for}.
-	 */
-	is_transient_for(c: AwesomeClient, c2: AwesomeClient): AwesomeClient | null;
+		/**
+		 * Swap a client by its relative index.
+		 *
+		 * @param i The index. Use `1` to get the next, `-1` to get the
+		 * previous.
+		 * @param c The client, otherwise focused one is used.
+		 *
+		 * @example
+		 * ```lua
+		 * -- Print at which index each client is now at.
+		 * local function print_indices()
+		 *     local output = ""
+		 *
+		 *     for idx, c in ipairs(client.get()) do
+		 *          output = output .. c.name .. ":" .. idx .. ", "
+		 *     end
+		 *
+		 *     print(output)
+		 * end
+		 *
+		 * print_indices()
+		 *
+		 * print("Call swap.byidx")
+		 * awful.client.swap.byidx(3, client.get()[1])
+		 * print_indices()
+		 *
+		 * print("Call swap.byidx")
+		 * awful.client.swap.byidx(2, client.get()[4])
+		 * print_indices()
+		 * ```
+		 *
+		 * Output:
+		 * ```
+		 * c1:1, c2:2, c3:3, c4:4,
+		 * Call swap.byidx
+		 * c4:1, c2:2, c3:3, c1:4,
+		 * Call swap.byidx
+		 * c4:1, c1:2, c3:3, c2:4,
+		 * ```
+		 */
+		byidx(i: number, c?: AwesomeClient): void;
+	};
 
 	/**
 	 * This table allow to add more dynamic properties to the clients.

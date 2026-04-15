@@ -16,5 +16,6 @@
 /// <reference types="./awesome/menubar" />
 /// <reference types="./awesome/mousegrabber" />
 /// <reference types="./awesome/naughty" />
+/// <reference types="./awesome/ruled" />
 /// <reference types="./awesome/selection" />
 /// <reference types="./awesome/wibox" />
