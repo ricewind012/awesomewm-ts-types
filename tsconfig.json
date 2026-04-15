@@ -16,7 +16,7 @@
     "strict": true,
     "types": ["@types/awesomewm", "lua-types/jit"]
   },
-  "include": ["src"],
+  "include": ["modular-awm-default-ts"],
   "tstl": {
     // TODO: what does this do lol
     "buildMode": "default",

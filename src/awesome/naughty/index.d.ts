@@ -28,6 +28,9 @@ interface NotificationProperties {
 	 */
 	hover_timeout?: number;
 
+	// Not mentioned in docs, but is in rc.lua
+	message?: string;
+
 	/**
 	 * Target screen for the notification.
 	 * @default focused
