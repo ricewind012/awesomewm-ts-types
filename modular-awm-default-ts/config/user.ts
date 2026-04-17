@@ -14,7 +14,7 @@ interface UserPrefs {
 
 	// Table of layouts to cover with awful.layout.inc, ORDER MATTERS, the first layout
 	// in the table is your DEFAULT LAYOUT.
-	layouts: any[];
+	layouts: AwesomeLayout[];
 }
 
 export const user: UserPrefs = {

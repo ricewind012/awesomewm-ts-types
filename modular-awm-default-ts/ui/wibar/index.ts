@@ -3,6 +3,7 @@ import * as wibox from "wibox";
 
 import * as module from "./module";
 
+/** @noSelf */
 export default (s: AwesomeScreen) => {
 	s.mypromptbox = awful.widget.prompt(); // Create a promptbox.
 

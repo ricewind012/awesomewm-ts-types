@@ -3,13 +3,14 @@ import * as beautiful from "beautiful";
 import * as wibox from "wibox";
 
 import { user } from "../config/user";
+import wibar from "../ui/wibar";
 
 /// Attach tags and widgets to all screens.
 screen.connect_signal("request::desktop_decoration", (s) => {
 	// Create all tags and attach the layouts to each of them.
 	awful.tag(user.tags, s, awful.layout.layouts[1]);
 	// Attach a wibar to each screen.
-	s.bar = require("ui.wibar")(s);
+	s.bar = wibar(s);
 });
 
 /// Wallpaper.

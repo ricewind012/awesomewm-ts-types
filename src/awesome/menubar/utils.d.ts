@@ -1,3 +1,5 @@
+type DesktopFileEntry = Record<string, boolean | string | string[]>;
+
 /**
  * Utility functions for the `menubar` module.
  */
@@ -28,14 +30,17 @@ interface MenubarUtils {
 	 * @param file The .desktop file.
 	 * @returns A table with file entries.
 	 */
-	parse_desktop_file(file: any): table;
+	parse_desktop_file(file: string): DesktopFileEntry | undefined;
 
 	/**
 	 * Parse a directory with .desktop files recursively.
 	 * @param dir_path The directory path.
 	 * @param programs Paths of found .desktop files.
 	 */
-	parse_dir(dir_path: string, programs: table): void;
+	parse_dir(
+		dir_path: string,
+		callback: (entries: DesktopFileEntry[]) => void,
+	): void;
 
 	/**
 	 * Terminal which applications that need terminal would open in.

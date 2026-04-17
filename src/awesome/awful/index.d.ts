@@ -1,9 +1,10 @@
 /// <reference types="./button.d.ts" />
 /// <reference types="./client.d.ts" />
 /// <reference types="./completion.d.ts" />
-/// <reference types="./hotkeys_popup.d.ts" />
 /// <reference types="./key.d.ts" />
 /// <reference types="./keyboard.d.ts" />
+/// <reference types="./layout.d.ts" />
+/// <reference types="./menu.d.ts" />
 /// <reference types="./mouse.d.ts" />
 // TODO
 //// <reference types="./permissions.d.ts" />
@@ -25,6 +26,8 @@ declare module "awful" {
 	export const hotkeys_popup: AwfulHotkeysPopup;
 	export const key: AwfulKey;
 	export const keyboard: AwfulKeyboard;
+	export const layout: AwfulLayout;
+	export const menu: AwfulMenu;
 	export const mouse: AwfulMouse;
 	export const placement: AwfulPlacement;
 	export const prompt: AwfulPrompt;
@@ -33,4 +36,5 @@ declare module "awful" {
 	export const tag: AwfulTag;
 	export const titlebar: AwfulTitlebar;
 	export const util: AwfulUtil;
+	export const wallpaper: AwfulWallpaper;
 }

@@ -12,7 +12,7 @@ interface GearsDebug {
 	 *
 	 * @returns A string that contains the expanded value of data.
 	 */
-	dump_return(data: any, tag: any, depth?: number): string;
+	dump_return(data: any, tag: string, depth?: number): string;
 
 	/**
 	 * Print the table (or any other value) to the console.
@@ -21,7 +21,7 @@ interface GearsDebug {
 	 * @param tag The name of the table.
 	 * @param depth Depth of recursion.
 	 */
-	dump(data: any, tag: any, depth?: number): void;
+	dump(data: any, tag: string, depth?: number): void;
 
 	/**
 	 * Print an warning message
@@ -40,7 +40,9 @@ interface GearsDebug {
 	/**
 	 * Display a deprecation notice, but only once per traceback.
 	 *
-	 *  This function also emits the `debug::deprecation` signal on the {@link awesome} global object. If the deprecated API has been deprecated for more than one API level, it will also send a non-fatal error.
+	 * This function also emits the `debug::deprecation` signal on the
+	 * {@link awesome} global object. If the deprecated API has been deprecated
+	 * for more than one API level, it will also send a non-fatal error.
 	 *
 	 * @param see The message to a new method / function to use.
 	 * @param args Extra arguments.
@@ -62,8 +64,8 @@ interface GearsDebug {
 	): void;
 
 	/**
-	 * Create a class proxy with deprecation messages.
-	 *  This is useful when a class has moved somewhere else.
+	 * Create a class proxy with deprecation messages. This is useful when a
+	 * class has moved somewhere else.
 	 *
 	 * @param fallback The new class.
 	 * @param old_name The old class name.
@@ -72,8 +74,8 @@ interface GearsDebug {
 	 *
 	 * @returns A proxy class.
 	 */
-	deprecate_class(
-		fallback: table,
+	deprecate_class<T extends {}>(
+		fallback: T,
 		old_name: string,
 		new_name: string,
 		args?: {
@@ -82,5 +84,5 @@ interface GearsDebug {
 			 */
 			deprecated_in?: number;
 		},
-	): table;
+	): T;
 }

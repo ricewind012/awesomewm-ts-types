@@ -66,6 +66,7 @@ for (const func_text of sel_el.querySelectorAll("dt > strong")) {
     integer: "number",
     nil: "undefined",
     screen: "AwesomeScreen",
+    tag: "AwesomeTag",
     widget: "BaseWidget",
   };
   const args_el = get_header_el("Parameters:");

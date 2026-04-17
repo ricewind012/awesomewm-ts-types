@@ -29,21 +29,21 @@ interface AwfulKeyData {
 	 *
 	 * This is used, for example, by {@link AwfulHotkeysPopup}
 	 */
-	description?: string;
+	description: string;
 
 	/**
 	 * The key group bound to a function in a key binding.
 	 *
 	 * This is used, for example, by {@link AwfulHotkeysPopup}
 	 */
-	group?: string;
+	group: string;
 
 	/**
 	 * The key name.
 	 *
 	 * This can be useful when searching for keybindings by keywords.
 	 */
-	name?: string;
+	name: string;
 }
 
 interface AwfulKeyInstance extends AwfulButtonInstance {
@@ -80,6 +80,7 @@ interface AwfulKey {
 	/**
 	 * Create a new key binding.
 	 */
+	// OH MY GOD https://github.com/awesomeWM/awesome/blob/master/lib/awful/key.lua#L282
 	<T = never>(
 		// TODO: for some reason ignores noSelf
 		this: void,
@@ -90,6 +91,16 @@ interface AwfulKey {
 		data?: Partial<AwfulKeyData>,
 	): AwfulKeyInstance;
 	<T = never>(
+		// TODO: for some reason ignores noSelf
+		this: void,
+		mod: ButtonModifier[] | undefined,
+		_key: string,
+		press: (this: void, arg: T) => void,
+		data?: Partial<AwfulKeyData>,
+	): AwfulKeyInstance;
+	<T = never>(
+		// TODO: for some reason ignores noSelf
+		this: void,
 		args: Partial<AwfulKeyData> & {
 			key?: string;
 			keygroup?: KeyGroupName;
@@ -129,5 +140,7 @@ interface AwfulKey {
 	 * bindings with the property {@link keygroup} instead of accessing this
 	 * table directly.
 	 */
-	keygroups: table;
+	keygroups: {
+		[group in KeyGroupName]: string[][];
+	};
 }

@@ -1,9 +1,10 @@
 import * as awful from "awful";
 
-import { mod } from "../../../../binds/mod";
+import { mod } from "../../../binds/mod";
 
 const { modkey } = mod;
 
+/** @noSelf */
 export default (s: AwesomeScreen) => {
 	// Create a taglist widget
 	return awful.widget.taglist({
@@ -17,7 +18,7 @@ export default (s: AwesomeScreen) => {
 
 			// Mod + Left-clicking a tag sends the currently focused client to it.
 			awful.button<AwesomeTag>([modkey], awful.button.names.LEFT, (t) => {
-				if (client.focus) {
+				if (client.focus !== undefined) {
 					client.focus.move_to_tag(t);
 				}
 			}),
@@ -29,7 +30,7 @@ export default (s: AwesomeScreen) => {
 			// in it.
 			// TODO: how is this not giving an error lol?
 			awful.button([modkey], awful.button.names.RIGHT, (t) => {
-				if (client.focus) {
+				if (client.focus !== undefined) {
 					client.focus.toggle_tag(t);
 				}
 			}),

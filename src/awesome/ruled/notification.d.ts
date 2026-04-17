@@ -43,6 +43,9 @@ interface RuledNotification {
 	 */
 	remove_rule(rule: table): boolean;
 
+	// what the FUCK is this?
+	connect_signal(name: "request::rules", callback: () => void): void;
+
 	/**
 	 * Add a new rule source.
 	 *

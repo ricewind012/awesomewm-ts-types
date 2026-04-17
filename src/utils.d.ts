@@ -1,4 +1,3 @@
 type NonFunctionKeys<T> = {
-	// biome-ignore lint/complexity/noBannedTypes: XD
-	[K in keyof T]: T[K] extends Function ? never : K;
+	[K in keyof T]: T[K] extends (...args: unknown[]) => unknown ? never : K;
 }[keyof T];

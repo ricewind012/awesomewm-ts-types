@@ -108,8 +108,8 @@ interface GearsGeometry {
 		get_intersection(a: Rectangle, b: Rectangle): table;
 
 		/**
-		 * Remove an area from a list, splitting the space between several area that can
-		 * overlap.
+		 * Remove an area from a list, splitting the space between several area
+		 * that can overlap.
 		 *
 		 * @param areas Table of areas.
 		 * @param elem Area to remove.

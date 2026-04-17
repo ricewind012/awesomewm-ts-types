@@ -1,6 +1,7 @@
 import * as awful from "awful";
 
-export default (s: AwesomeScreen) => {
+/** @noSelf */
+export default (s: AwesomeScreen | string) => {
 	// Create a tasklist widget
 	return awful.widget.tasklist({
 		screen: s,

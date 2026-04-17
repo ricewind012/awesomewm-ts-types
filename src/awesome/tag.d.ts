@@ -82,9 +82,6 @@ type AwesomeTagSignalMap = SignalMap & {
 	"removal-pending": () => void;
 };
 
-/**
- * @noSelf
- */
 interface AwesomeTag extends SignalObject<AwesomeTagSignalMap> {
 	/**
 	 * Get or set the clients attached to this tag.
@@ -176,4 +173,82 @@ interface AwesomeTag extends SignalObject<AwesomeTagSignalMap> {
 	 *  screen[1].tags[2]:view_only()
 	 */
 	view_only(): void;
+
+	/**
+	 * Tag name.
+	 */
+	name: string;
+
+	/**
+	 * True if the tag is selected to be viewed.
+	 */
+	selected: boolean;
+
+	/**
+	 * True if the tag is active and can be used.
+	 */
+	activated: boolean;
+
+	/**
+	 * The tag index.
+	 */
+	index: number;
+
+	/**
+	 * The tag screen.
+	 */
+	screen: AwesomeScreen;
+
+	/**
+	 * The tag master width factor.
+	 */
+	master_width_factor: number;
+
+	/**
+	 * The tag client layout.
+	 * TODO: accepts a function too apparently?
+	 */
+	layout: AwesomeLayout;
+
+	/**
+	 * The (proposed) list of available layouts for this tag.
+	 */
+	layouts: AwesomeLayout[] | undefined;
+
+	/**
+	 * Define if the tag must be deleted when the last client is untagged.
+	 */
+	volatile: boolean;
+
+	/**
+	 * The gap (spacing, also called useless_gap) between clients.
+	 */
+	gap: number;
+
+	/**
+	 * Enable gaps for a single client.
+	 */
+	gap_single_client: boolean;
+
+	/**
+	 * Set size fill policy for the master client(s).
+	 */
+	master_fill_policy: string;
+
+	/**
+	 * Set the number of master windows.
+	 */
+	master_count: number;
+
+	/**
+	 * Set the tag icon.
+	 */
+	icon: awesome_image | undefined;
+
+	/**
+	 * Set the number of columns.
+	 */
+	column_count: number;
 }
+
+interface AwesomeGlobalTag extends SignalObject<AwesomeTagSignalMap> {}

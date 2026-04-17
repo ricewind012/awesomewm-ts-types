@@ -20,6 +20,7 @@ interface MenubarMenuGen {
 	 * Specify the mapping of .desktop Categories section to the
 	 * categories in the menubar. If "use" flag is set to false then any of
 	 * the applications that fall only to this category will not be shown.
+	 *
 	 * @param multimedia
 	 * @param name
 	 * @param icon_name
@@ -31,5 +32,5 @@ interface MenubarMenuGen {
 	 * Specifies all directories where menubar should look for .desktop
 	 * files. The search is recursive.
 	 */
-	all_menu_dirs: unknown;
+	all_menu_dirs: string[];
 }

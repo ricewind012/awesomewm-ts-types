@@ -620,11 +620,4 @@ interface AwfulClient {
 		 */
 		byidx(i: number, c?: AwesomeClient): void;
 	};
-
-	/**
-	 * This table allow to add more dynamic properties to the clients.
-	 */
-	object: {
-		[prop: string]: any;
-	};
 }

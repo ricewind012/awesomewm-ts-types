@@ -6,6 +6,15 @@ import * as naughty from "naughty";
 // found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader");
 
+// Variables that you assign to things like "screen" must also be declared here
+// to satisfy TypeScript.
+declare global {
+	interface AwesomeScreen {
+		mypromptbox: any;
+		mywibox: any;
+	}
+}
+
 /// Error handling.
 // Check if awesome encountered an error during startup and fell back to
 // another config (This code will only ever execute for the fallback config).
@@ -18,6 +27,7 @@ naughty.connect_signal("request::display_error", (message, startup) => {
 });
 
 // Allow Awesome to automatically focus a client upon changing tags or loading.
+// TODO(ts): deprecated
 import "awful/autofocus";
 // Enable hotkeys help widget for VIM and other apps when client with a matching
 // name is opened:

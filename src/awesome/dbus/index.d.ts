@@ -45,8 +45,8 @@ declare module "dbus" {
 	 * @param interface A string with the interface name.
 	 * @param func The function to call.
 	 *
-	 * @returns true on success, nil + error if the signal could not be connected
-	 *  because another function is already connected.
+	 * @returns true on success, nil + error if the signal could not be
+	 * connected because another function is already connected.
 	 */
 	export function connect_signal(
 		interface: string,
@@ -77,10 +77,10 @@ declare module "dbus" {
 	 * @param value_2nd_arg Value of 2nd argument ... etc
 	 */
 	export function emit_signal(
-		bus: any,
-		path: any,
-		interface: any,
-		method: any,
+		bus: string,
+		path: string,
+		interface: string,
+		method: string,
 		type_1st_arg: any,
 		value_1st_arg: any,
 		type_2nd_arg: any,

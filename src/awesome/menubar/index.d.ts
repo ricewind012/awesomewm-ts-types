@@ -5,6 +5,7 @@
 /**
  * Menubar module, which aims to provide a freedesktop menu alternative.
  * @noResolution
+ * @noSelf
  */
 declare module "menubar" {
 	/**
@@ -17,7 +18,7 @@ declare module "menubar" {
 	 * Show the menubar on the given screen.
 	 * @param scr Screen.
 	 */
-	export function show(scr: AwesomeScreen): void;
+	export function show(scr?: AwesomeScreen): void;
 
 	/**
 	 * Hide the export function
@@ -32,28 +33,27 @@ declare module "menubar" {
 	export function get(scr?: AwesomeScreen): table;
 
 	/**
-	 * Specifies the geometry of the export function   This is a table with the keys
-	 *  x, y, width and height. Missing values are replaced via the screen's
-	 *  geometry. However, missing height is replaced by the font size.
+	 * Specifies the geometry of the export function. Missing values are
+	 * replaced via the screen's geometry. However, missing height is replaced
+	 * by the font size.
 	 */
-	export const geometry: table;
+	export const geometry: Rectangle;
 
 	/**
-	 * Allows user to specify custom parameters for prompt.run function
-	 *  (like colors).  This will merge with the default parameters, overriding affected values.
+	 * Allows user to specify custom parameters for `prompt.run` function (like
+	 * colors). This will merge with the default parameters, overriding affected
+	 * values.
 	 */
 	export const prompt_args: table;
 
 	/**
-	 * When true the .desktop files will be reparsed only when the
-	 *  extension is initialized.  Use this if menubar takes much time to
-	 *  open.
+	 * When true the .desktop files will be reparsed only when the extension is
+	 * initialized. Use this if menubar takes much time to open.
 	 */
 	export const cache_entries: boolean;
 
 	/**
-	 * When true the categories will be shown alongside application
-	 *  entries.
+	 * When true the categories will be shown alongside application entries.
 	 */
 	export const show_categories: boolean;
 

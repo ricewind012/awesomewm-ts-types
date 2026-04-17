@@ -1,5 +1,6 @@
 import * as awful from "awful";
 
+/** @noSelf */
 export default (s: AwesomeScreen) => {
 	// Create an imagebox widget which will contain an icon indicating which layout we're using.
 	// We need one layoutbox per screen.

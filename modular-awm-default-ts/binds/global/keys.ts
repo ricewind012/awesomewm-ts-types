@@ -1,7 +1,9 @@
 import * as awful from "awful";
 import * as gears from "gears";
+import * as menubar from "menubar";
 
 import { apps } from "../../config/apps";
+import { menu } from "../../ui/menu";
 import { mod } from "../mod";
 
 const { modkey } = mod;
@@ -9,7 +11,7 @@ const { modkey } = mod;
 /// Global key bindings
 awful.keyboard.append_global_keybindings([
 	// General Awesome keys.
-	awful.key([modkey], "s", require("awful.hotkeys_popup").show_help, {
+	awful.key([modkey], "s", awful.hotkeys_popup.show_help, {
 		description: "show help",
 		group: "awesome",
 	}),
@@ -17,7 +19,7 @@ awful.keyboard.append_global_keybindings([
 		[modkey],
 		"w",
 		() => {
-			require("ui.menu").main.show();
+			menu.main.show();
 		},
 		{ description: "show main menu", group: "awesome" },
 	),
@@ -33,12 +35,15 @@ awful.keyboard.append_global_keybindings([
 		[modkey],
 		"x",
 		() => {
-			awful.prompt.run({
-				prompt: "Run Lua code: ",
-				textbox: awful.screen.focused().mypromptbox.widget,
-				exe_callback: awful.util.eval,
-				history_path: `${gears.filesystem.get_cache_dir()}/history_eval`,
-			});
+			const s = awful.screen.focused();
+			if (s !== undefined) {
+				awful.prompt.run({
+					exe_callback: awful.util.eval,
+					history_path: `${gears.filesystem.get_cache_dir()}/history_eval`,
+					prompt: "Run Lua code: ",
+					textbox: s.mypromptbox.widget,
+				});
+			}
 		},
 		{ description: "lua execute prompt", group: "awesome" },
 	),
@@ -54,7 +59,10 @@ awful.keyboard.append_global_keybindings([
 		[modkey],
 		"r",
 		() => {
-			awful.screen.focused().mypromptbox.run();
+			const s = awful.screen.focused();
+			if (s) {
+				s.mypromptbox.run();
+			}
 		},
 		{ description: "run prompt", group: "launcher" },
 	),
@@ -62,7 +70,7 @@ awful.keyboard.append_global_keybindings([
 		[modkey],
 		"p",
 		() => {
-			require("menubar").show();
+			menubar.show();
 		},
 		{ description: "show the menubar", group: "launcher" },
 	),
@@ -103,7 +111,7 @@ awful.keyboard.append_global_keybindings([
 		"Tab",
 		() => {
 			awful.client.focus.history.previous();
-			if (client.focus) {
+			if (client.focus !== undefined) {
 				client.focus.raise();
 			}
 		},
@@ -131,8 +139,11 @@ awful.keyboard.append_global_keybindings([
 		() => {
 			const c = awful.client.restore();
 			// Focus restored client
-			if (c) {
-				c.activate({ raise: true, context: "key.unminimize" });
+			if (c !== undefined) {
+				c.activate({
+					context: "key.unminimize",
+					raise: true,
+				});
 			}
 		},
 		{ description: "restore minimized", group: "client" },
@@ -224,65 +235,80 @@ awful.keyboard.append_global_keybindings([
 		{ description: "select previous", group: "layout" },
 	),
 	awful.key({
-		modifiers: [modkey],
-		keygroup: awful.key.keygroup.NUMROW,
 		description: "only view tag",
 		group: "tag",
+		keygroup: awful.key.keygroup.NUMROW,
+		modifiers: [modkey],
 		on_press: (index) => {
-			const tag = awful.screen.focused().tags[index];
-			if (tag) {
+			const s = awful.screen.focused();
+			if (s === undefined) {
+				return;
+			}
+
+			const tag = s.tags[index];
+			if (tag !== undefined) {
 				tag.view_only();
 			}
 		},
 	}),
 	awful.key({
-		modifiers: [modkey, mod.ctrl],
-		keygroup: awful.key.keygroup.NUMROW,
 		description: "toggle tag",
 		group: "tag",
+		keygroup: awful.key.keygroup.NUMROW,
+		modifiers: [modkey, mod.ctrl],
 		on_press: (index) => {
-			const tag = awful.screen.focused().tags[index];
-			if (tag) {
+			const s = awful.screen.focused();
+			if (s === undefined) {
+				return;
+			}
+
+			const tag = s.tags[index];
+			if (tag !== undefined) {
 				awful.tag.viewtoggle(tag);
 			}
 		},
 	}),
 	awful.key({
-		modifiers: [modkey, mod.shift],
-		keygroup: awful.key.keygroup.NUMROW,
 		description: "move focused client to tag",
 		group: "tag",
+		keygroup: awful.key.keygroup.NUMROW,
+		modifiers: [modkey, mod.shift],
 		on_press: (index) => {
-			if (client.focus) {
+			if (client.focus !== undefined) {
 				const tag = client.focus.screen.tags[index];
-				if (tag) {
+				if (tag !== undefined) {
 					client.focus.move_to_tag(tag);
 				}
 			}
 		},
 	}),
 	awful.key({
-		modifiers: [modkey, mod.ctrl, mod.shift],
-		keygroup: awful.key.keygroup.NUMROW,
 		description: "toggle focused client on tag",
 		group: "tag",
+		keygroup: awful.key.keygroup.NUMROW,
+		modifiers: [modkey, mod.ctrl, mod.shift],
 		on_press: (index) => {
-			if (client.focus) {
+			if (client.focus !== undefined) {
 				const tag = client.focus.screen.tags[index];
-				if (tag) {
+				if (tag !== undefined) {
 					client.focus.toggle_tag(tag);
 				}
 			}
 		},
 	}),
 	awful.key({
-		modifiers: [modkey],
-		keygroup: awful.key.keygroup.NUMPAD,
 		description: "select layout directly",
 		group: "layout",
+		keygroup: awful.key.keygroup.NUMPAD,
+		modifiers: [modkey],
 		on_press: (index: number) => {
-			const t = awful.screen.focused().selected_tag;
-			if (t) {
+			const s = awful.screen.focused();
+			if (s === undefined) {
+				return;
+			}
+
+			const t = s.selected_tag;
+			if (t?.layouts !== undefined) {
 				t.layout = t.layouts[index] || t.layout;
 			}
 		},

@@ -2,25 +2,25 @@
 
 declare enum RatioLayoutInnerFillStrategy {
 	/** Honor the ratio and do not redistribute the space. */
-	Default = "default",
+	DEFAULT = "default",
 
 	/** Distribute the space among remaining widgets. */
-	Justify = "justify",
+	JUSTIFY = "justify",
 
 	/** Squash remaining widgets and leave equal space on both side. */
-	Center = "center",
+	CENTER = "center",
 
 	/** Add equal spacing between all widgets. */
-	InnerSpacing = "inner_spacing",
+	INNER_SPACING = "inner_spacing",
 
 	/** Add equal spacing between all widgets and on the outside. */
-	Spacing = "spacing",
+	SPACING = "spacing",
 
 	/** Squash remaining widgets and leave empty space on the left. */
-	Left = "left",
+	LEFT = "left",
 
 	/** Squash remaining widgets and leave empty space on the right. */
-	Right = "right",
+	RIGHT = "right",
 }
 
 interface WiboxLayoutRatioWidget extends WiboxLayoutFlexWidget {

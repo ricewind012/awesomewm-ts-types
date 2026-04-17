@@ -1,3 +1,4 @@
+/** @noSelf */
 export default function make_widget<T extends BaseWidget>(
 	type: T | string,
 	props?: object,

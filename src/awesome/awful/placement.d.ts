@@ -2,33 +2,33 @@ declare enum DrawableNextToAnchor {
 	/**
 	 * The closest to the origin (0, 0)
 	 */
-	Front = "front",
+	FRONT = "front",
 
 	/**
 	 * Centered aligned with the parent
 	 */
-	Middle = "middle",
+	MIDDLE = "middle",
 
 	/**
 	 * The opposite side compared to `front`
 	 */
-	Back = "back",
+	BACK = "back",
 }
 
 declare enum DrawableNextToMode {
 	/**
 	 * Next to this geometry, `args.geometry` has to be set.
 	 */
-	Geometry = "geometry",
+	GEOMETRY = "geometry",
 
 	/**
 	 * Next to the mouse
 	 */
-	Cursor = "cursor",
+	CURSOR = "cursor",
 
-	CursorInside = "cursor_inside",
+	CURSOR_INSIDE = "cursor_inside",
 
-	GeometryInside = "geometry_inside",
+	GEOMETRY_INSIDE = "geometry_inside",
 }
 
 // TODO: honor_workarea is used elsewhere

@@ -98,7 +98,10 @@ declare module "mousegrabber" {
 	 * @param cursor The name of an X cursor to use while grabbing  or `nil` to
 	 * not change the cursor.
 	 */
-	export function run(func: (coords: table) => boolean, cursor?: Cursor): void;
+	export function run(
+		func: (coords: table | undefined) => boolean,
+		cursor?: Cursor,
+	): void;
 
 	/**
 	 * Stop grabbing the mouse pointer.

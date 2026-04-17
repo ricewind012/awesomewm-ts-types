@@ -429,7 +429,7 @@ interface AwesomeScreen extends SignalObject<AwesomeScreenSignalMap> {
 	/**
 	 * Take a screenshot of the physical screen.
 	 */
-	readonly content: awesome_raw_surface;
+	readonly content: cairo_surface;
 
 	/**
 	 * The screen padding.
@@ -540,7 +540,7 @@ interface AwesomeScreen extends SignalObject<AwesomeScreenSignalMap> {
 	inch_minimum_size: number;
 }
 
-interface AwesomeGlobalScreen {
+interface AwesomeGlobalScreen extends SignalObject<AwesomeScreenSignalMap> {
 	/**
 	 * Add a fake screen.
 	 *

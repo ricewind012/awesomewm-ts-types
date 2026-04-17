@@ -1,11 +1,70 @@
 /// <reference types="../client.d.ts" />
 /// <reference types="./button.d.ts" />
-/// <reference types="./shared.d.ts" />
 
 /**
  * @noSelf
  */
-interface AwfulKeyboard extends AwfulInputHandler {
+interface AwfulKeyboard {
+	/**
+	 * Add an
+	 * [awful.button](https://awesomewm.org/apidoc/input_handling/awful.button.html#)
+	 * based keybinding to the global set. A **global** keybinding is one
+	 * which is always present, even when there is no focused client. If your
+	 * intent is too add a keybinding which acts on the focused client do
+	 * **not** use this.
+	 *
+	 * @param button The button object.
+	 */
+	append_global_keybinding(button: AwfulButtonInstance): void;
+
+	/**
+	 * Add multiple
+	 * [awful.button](https://awesomewm.org/apidoc/input_handling/awful.button.html#)
+	 * based keybindings to the global set. A **global** keybinding is one
+	 * which is always present, even when there is no focused client. If your
+	 * intent is too add a keybinding which acts on the focused client do
+	 * **not** use this
+	 *
+	 * @param buttons A table of `awful.button` objects. Optionally, it can have
+	 * a `group` entry. If set, the `group` property will be set on all
+	 * `awful.buttons` objects.
+	 */
+	append_global_keybindings(buttons: AwfulButtonInstance[]): void;
+
+	/**
+	 * Remove a keybinding from the global set.
+	 *
+	 * @param button The button object.
+	 */
+	remove_global_keybinding(button: AwfulButtonInstance): void;
+
+	/**
+	 * Add an
+	 * [awful.button](https://awesomewm.org/apidoc/input_handling/awful.button.html#)
+	 * to the default client buttons.
+	 *
+	 * @param button The button.
+	 */
+	append_client_keybinding(button: AwfulButtonInstance): void;
+
+	/**
+	 * Add a
+	 * [awful.button](https://awesomewm.org/apidoc/input_handling/awful.button.html#)
+	 * s to the default client buttons.
+	 *
+	 * @param buttons A table containing awful.button objects.
+	 */
+	append_client_keybindings(buttons: AwfulButtonInstance[]): void;
+
+	/**
+	 * Remove a keybinding from the default client buttons.
+	 *
+	 * @param button The button.
+	 *
+	 * @returns True if the button was removed and false if it wasn't found.
+	 */
+	remove_client_keybinding(button: AwfulButtonInstance): boolean;
+
 	/**
 	 * Execute a key combination.
 	 *

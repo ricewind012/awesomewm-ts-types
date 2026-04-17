@@ -13,7 +13,7 @@ interface BeautifulThemeAssets {
 	 *
 	 * @returns Image with the square.
 	 */
-	taglist_squares_sel(size: number, fg: awesome_color): awesome_image;
+	taglist_squares_sel(size: number, fg: string): awesome_image;
 
 	/**
 	 * Generate unselected taglist square.
@@ -23,7 +23,7 @@ interface BeautifulThemeAssets {
 	 *
 	 * @returns Image with the square.
 	 */
-	taglist_squares_unsel(size: number, fg: awesome_color): awesome_image;
+	taglist_squares_unsel(size: number, fg: string): awesome_image;
 
 	/**
 	 * Put Awesome WM name onto cairo surface.
@@ -37,9 +37,9 @@ interface BeautifulThemeAssets {
 	gen_awesome_name(
 		cr: any,
 		height: number,
-		bg: awesome_color,
-		fg: awesome_color,
-		alt_fg: awesome_color,
+		bg: string,
+		fg: string,
+		alt_fg: string,
 	): void;
 
 	/**
@@ -55,8 +55,8 @@ interface BeautifulThemeAssets {
 		cr: any,
 		width: number,
 		height: number,
-		bg: awesome_color,
-		fg: awesome_color,
+		bg: string,
+		fg: string,
 	): void;
 
 	/**
@@ -68,7 +68,7 @@ interface BeautifulThemeAssets {
 	 *
 	 * @returns Image with the logo.
 	 */
-	awesome_icon(size: awesome_color, bg: awesome_color, fg: awesome_color): void;
+	awesome_icon(size: string, bg: string, fg: string): awesome_image;
 
 	/**
 	 * Generate Awesome WM wallpaper.
@@ -81,9 +81,9 @@ interface BeautifulThemeAssets {
 	 * @returns Wallpaper image.
 	 */
 	wallpaper(
-		bg: awesome_color,
-		fg: awesome_color,
-		alt_fg: awesome_color,
+		bg: string,
+		fg: string,
+		alt_fg: string,
 		s: AwesomeScreen,
 	): awesome_image;
 
@@ -100,10 +100,10 @@ interface BeautifulThemeAssets {
 	 */
 	recolor_titlebar(
 		theme: Theme,
-		color: awesome_color,
+		color: string,
 		state: "normal" | "focus",
-		postfix: "hover" | "press" | undefined,
-		toggle_state: "active" | "inactive" | undefined,
+		postfix?: "hover" | "press",
+		toggle_state?: "active" | "inactive",
 	): Theme;
 
 	/**
@@ -114,5 +114,5 @@ interface BeautifulThemeAssets {
 	 *
 	 * @returns Beautiful theme table with the images recolored.
 	 */
-	recolor_layout(theme: Theme, color: awesome_color): Theme;
+	recolor_layout(theme: Theme, color: string): Theme;
 }

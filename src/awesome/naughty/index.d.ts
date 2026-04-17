@@ -124,25 +124,25 @@ interface NotificationProperties {
 	 * @default `beautiful.notification_border_color` or
 	 * `beautiful.border_color_active` or `'#535d6c'`
 	 */
-	border_color?: gears.color;
+	border_color?: cairo_solid_pattern;
 
 	/**
 	 * Widget shape.
 	 * @default `beautiful.notification_shape`
 	 */
-	shape?: gears.shape;
+	shape?: shape | ((cr: any, width: number, height: number) => void);
 
 	/**
 	 * Widget opacity.
 	 * @default `beautiful.notification_opacity`
 	 */
-	opacity?: gears.opacity;
+	opacity?: number;
 
 	/**
 	 * Widget margin.
 	 * @default `beautiful.notification_margin`
 	 */
-	margin?: gears.margin;
+	margin?: AwesomeClientStrut | number;
 
 	/**
 	 * Function to run on left click. The notification object will be passed to
@@ -486,7 +486,11 @@ type NaughtySignalMap = SignalMap & {
 	 * either "new" or "removed".
 	 * @param context Why is the signal sent.
 	 */
-	"request::screen": (this: void, notification: table, context: string) => void;
+	"request::screen": (
+		this: void,
+		notification: NaughtyNotification,
+		context: string,
+	) => void;
 };
 
 /**

@@ -12,47 +12,47 @@ interface Theme {
 	/**
 	 * The default background color.
 	 */
-	bg_normal: awesome_color;
+	bg_normal: string;
 
 	/**
 	 * The default focused element background color.
 	 */
-	bg_focus: awesome_color;
+	bg_focus: string;
 
 	/**
 	 * The default urgent element background color.
 	 */
-	bg_urgent: awesome_color;
+	bg_urgent: string;
 
 	/**
 	 * The default minimized element background color.
 	 */
-	bg_minimize: awesome_color;
+	bg_minimize: string;
 
 	/**
 	 * The default focused element foreground (text) color.
 	 */
-	fg_normal: awesome_color;
+	fg_normal: string;
 
 	/**
 	 * The default focused element foreground (text) color.
 	 */
-	fg_focus: awesome_color;
+	fg_focus: string;
 
 	/**
 	 * The default urgent element foreground (text) color.
 	 */
-	fg_urgent: awesome_color;
+	fg_urgent: string;
 
 	/**
 	 * The default minimized element foreground (text) color.
 	 */
-	fg_minimize: awesome_color;
+	fg_minimize: string;
 
 	/**
 	 * The wallpaper path.
 	 */
-	wallpaper: string | gears.surface;
+	wallpaper: string | cairo_image_surface;
 
 	/**
 	 * The icon theme name.
@@ -62,7 +62,7 @@ interface Theme {
 	/**
 	 * The Awesome icon path.
 	 */
-	awesome_icon: string | gears.surface;
+	awesome_icon: string | cairo_image_surface;
 }
 
 /**

@@ -41,10 +41,31 @@ interface AwfulTag {
 	 * @returns A table with all created tags.
 	 */
 	(
+		// TODO: for some reason ignores noSelf
+		this: void,
 		names: string[],
-		screen: AwesomeScreen | number | undefined,
-		layout: any[],
+		screen: AwesomeScreen | string | number | undefined,
+		layout: AwesomeLayout | AwesomeLayout[],
 	): AwesomeTag[];
+
+	/**
+	 * Add a tag.
+	 *
+	 * @param name The tag name.
+	 * @param props The tags initial properties.
+	 */
+	add(
+		name: string,
+		props?: {
+			icon: string;
+			layout: AwesomeLayout;
+			master_fill_policy: "expand" | "master_width_factor";
+			gap_single_client: boolean;
+			gap: number;
+			screen: AwesomeScreen;
+			selected: boolean;
+		},
+	): AwesomeTag;
 
 	/**
 	 * Find a suitable fallback tag.
@@ -246,7 +267,7 @@ interface AwfulTag {
 		 * special index toggling between last two selected sets of tags. Number
 		 * (eg 1) will go back to the given index in history.
 		 */
-		restore(screen: AwesomeScreen, idx: number): void;
+		restore(screen: AwesomeScreen, idx?: number): void;
 
 		/**
 		 * Update the tag history.

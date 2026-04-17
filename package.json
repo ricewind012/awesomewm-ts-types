@@ -10,7 +10,7 @@
 		"typescript-tstl-plugin": "^0.3.2"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^2.4.10",
+		"@biomejs/biome": "2.4.6",
 		"@types/awesomewm": "file:src",
 		"lua-types": "^2.14.1"
 	}

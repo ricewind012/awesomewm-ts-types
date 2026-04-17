@@ -20,14 +20,10 @@ interface AwfulCompletion {
 	 * @param shell The shell to use for completion. Supports "bash" and "zsh".
 	 * Default value is based on `$SHELL`.
 	 *
-	 * @returns string
-	 *         The new command.
-	 *
-	 *            number
-	 *         The new cursor position.
-	 *
-	 *            table
-	 *         The table with all matches.
+	 * @returns
+	 * - `string` The new command.
+	 * - `number` The new cursor position.
+	 * - `table` The table with all matches.
 	 */
 	shell(
 		command: string,
@@ -46,14 +42,10 @@ interface AwfulCompletion {
 	 * @param ncomp The number of yet requested completion using current text.
 	 * @param keywords The keywords table used for completion.
 	 *
-	 * @returns string
-	 *         The new match.
-	 *
-	 *            number
-	 *         The new cursor position.
-	 *
-	 *            table
-	 *         The table of all matches.
+	 * @returns
+	 * - `string` The new match.
+	 * - `number` The new cursor position.
+	 * - `table` The table of all matches.
 	 */
 	generic(
 		text: string,

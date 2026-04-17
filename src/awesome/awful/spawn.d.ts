@@ -46,6 +46,8 @@ interface AwfulSpawn {
 	 * false, or a `callback` is provided] tuple or error message.
 	 */
 	(
+		// TODO: for some reason ignores noSelf
+		this: void,
 		cmd: string | table,
 		// TODO see in https://awesomewm.org/apidoc/core_components/client.html#placement
 		sn_rules?: table | boolean,
@@ -235,9 +237,9 @@ interface AwfulSpawn {
 	 */
 	raise_or_spawn(
 		cmd: string | table,
-		rules: table,
+		rules?: table,
 		matcher?: (...args: unknown[]) => void,
 		unique_id?: string,
 		callback?: (...args: unknown[]) => void,
-	): table;
+	): AwesomeClient | undefined;
 }

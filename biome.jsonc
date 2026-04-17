@@ -1,0 +1,84 @@
+{
+	"$schema": "https://biomejs.dev/schemas/2.4.6/schema.json",
+	"assist": {
+		"actions": {
+			"source": {
+				"organizeImports": {
+					"level": "on",
+					"options": {
+						"groups": [
+							":PACKAGE:",
+							":BLANK_LINE:",
+							":ALIAS:",
+							":BLANK_LINE:",
+							":PATH:"
+						]
+					}
+				}
+				//,"useSortedKeys": "on"
+			}
+		},
+		"enabled": true
+	},
+	"files": {
+		"includes": ["**", "!dist", "!package.json"]
+	},
+	"javascript": {
+		"jsxRuntime": "reactClassic"
+	},
+	"linter": {
+		"rules": {
+			"style": {
+				//"useEnumInitializers": "off",
+				"useNamingConvention": {
+					"level": "on",
+					"options": {
+						"conventions": [
+							{
+								"formats": ["PascalCase"],
+								"selector": {
+									"kind": "typeAlias"
+								}
+							},
+							{
+								"formats": ["PascalCase"],
+								"selector": {
+									"kind": "enum"
+								}
+							},
+							{
+								"formats": ["CONSTANT_CASE"],
+								"selector": {
+									"kind": "enumMember"
+								}
+							},
+							{
+								"formats": ["snake_case"],
+								"selector": {
+									"kind": "classMethod"
+								}
+							},
+							{
+								"formats": ["snake_case"],
+								"selector": {
+									"kind": "function"
+								}
+							},
+							{
+								"formats": ["snake_case", "CONSTANT_CASE"],
+								"selector": {
+									"kind": "variable"
+								}
+							},
+							{
+								"match": ".*"
+							}
+						],
+						"strictCase": false
+					}
+				},
+				"useShorthandFunctionType": "off"
+			}
+		}
+	}
+}

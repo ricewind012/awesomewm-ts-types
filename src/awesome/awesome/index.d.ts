@@ -1,3 +1,37 @@
+declare enum UnixSignal {
+	SIGHUP = 1,
+	SIGINT = 2,
+	SIGQUIT = 3,
+	SIGILL = 4,
+	SIGTRAP = 5,
+	SIGABRT = 6,
+	SIGBUS = 7,
+	SIGFPE = 8,
+	SIGKILL = 9,
+	SIGUSR1 = 10,
+	SIGSEGV = 11,
+	SIGUSR2 = 12,
+	SIGPIPE = 13,
+	SIGALRM = 14,
+	SIGTERM = 15,
+	SIGSTKFLT = 16,
+	SIGCHLD = 17,
+	SIGCONT = 18,
+	SIGSTOP = 19,
+	SIGTSTP = 20,
+	SIGTTIN = 21,
+	SIGTTOU = 22,
+	SIGURG = 23,
+	SIGXCPU = 24,
+	SIGXFSZ = 25,
+	SIGVTALRM = 26,
+	SIGPROF = 27,
+	SIGWINCH = 28,
+	SIGPOLL = 29,
+	SIGPWR = 30,
+	SIGSYS = 31,
+}
+
 type AwesomeGlobalSignalMap = SignalMap & {
 	/**
 	 * A call into the Lua code aborted with an error.
@@ -186,7 +220,7 @@ interface AwesomeGlobal extends SignalObject<AwesomeGlobalSignalMap> {
 	 * @param name The file name.
 	 * @returns a [cairo surface as light user datum, the error message] tuple.
 	 */
-	load_image(name: string): LuaMultiReturn<[any, string | undefined]>;
+	load_image(name: string): LuaMultiReturn<[LuaUserdata, string | undefined]>;
 
 	/**
 	 *
@@ -194,7 +228,7 @@ interface AwesomeGlobal extends SignalObject<AwesomeGlobalSignalMap> {
 	 * @param path The pixbuf origin path
 	 * @returns A cairo surface as light user datum.
 	 */
-	pixbuf_to_surface(pixbuf: any, path: any): any;
+	pixbuf_to_surface(pixbuf: LuaUserdata, path: any): LuaUserdata;
 
 	/**
 	 * Quit awesome.
@@ -246,19 +280,30 @@ interface AwesomeGlobal extends SignalObject<AwesomeGlobalSignalMap> {
 	 * the signal number causing process termination.
 	 * @param cmd2 The environment to use for the spawned program. Without this
 	 * the spawned process `INHERIT`s awesome's environment.
-	 * @returns a [process ID if everything is OK, startup-notification ID, if
-	 * `use_sn` is true, stdin if `stdin` is true, stdout if `stdout` is true,
-	 * stderr if `stderr` is true] tuple or an error string if an error occured.
+	 * @returns
+	 * - `number` process ID if everything is OK
+	 * - `string` startup-notification ID, if `use_sn` is true
+	 * - `number` stdin if `stdin` is true
+	 * - `number` stdout if `stdout` is true
+	 * - `number` stderr if `stderr` is true
+	 *
+	 * ...or an error string if an error occused.
 	 */
-	spawn(
-		cmd: table,
-		use_sn: boolean,
-		stdin: boolean | string,
-		stdout: boolean | string,
-		stderr: boolean | string,
-		exit_callback: (...args: unknown[]) => void,
-		cmd2: table,
-	): LuaMultiReturn<[number, string, number, number, number]> | string;
+	spawn<T extends boolean = true>(
+		cmd: string,
+		use_sn?: T,
+		stdin?: boolean | string,
+		stdout?: boolean | string,
+		stderr?: boolean | string,
+		exit_callback?: (...args: unknown[]) => void,
+		cmd2?: string,
+	):
+		| LuaMultiReturn<
+				T extends true
+					? [number, string, number, number, number]
+					: [number, undefined, undefined, undefined, undefined]
+		  >
+		| string;
 
 	/**
 	 * Synchronize with the X11 server. This is needed in the test suite to
@@ -353,7 +398,7 @@ interface AwesomeGlobal extends SignalObject<AwesomeGlobalSignalMap> {
 	/**
 	 * Table mapping between signal numbers and signal identifiers.
 	 */
-	unix_signal: table;
+	unix_signal: typeof UnixSignal;
 
 	/**
 	 * The AwesomeWM release name.

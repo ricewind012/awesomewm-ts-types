@@ -4,7 +4,7 @@ import * as beautiful from "beautiful";
 import { apps } from "../../config/apps";
 
 /// Menu
-const awesome_menu = [
+const awesome_menu: MenuItem[] = [
 	[
 		"hotkeys",
 		() => awful.hotkeys_popup.show_help(undefined, awful.screen.focused()),

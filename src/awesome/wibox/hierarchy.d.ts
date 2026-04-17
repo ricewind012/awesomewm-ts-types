@@ -1,4 +1,4 @@
-interface WiboxHierarchy {
+interface WidgetHierarchy {
 	/**
 	 * Update a widget hierarchy with some new state.
 	 *

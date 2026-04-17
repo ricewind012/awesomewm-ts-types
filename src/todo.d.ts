@@ -1,9 +1,9 @@
-type awesome_color = any;
 type awesome_image = any;
-type gears_color = any;
+// cairo.SolidPattern
+type cairo_solid_pattern = any;
 type shape = any;
 type Gio = any;
+type lgi = any;
 type widget = any;
 type template = any;
 type cairo = any;
-type lgi = any;

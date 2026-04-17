@@ -9,7 +9,7 @@ declare enum WiboxLayoutAlignExpandMode {
 	 * The widget in slot two is then given the remaining space. This is the
 	 * default behaviour.
 	 */
-	Inside = "inside",
+	INSIDE = "inside",
 
 	/**
 	 * The widget in slot two is set to its minimal required size and placed in
@@ -17,13 +17,13 @@ declare enum WiboxLayoutAlignExpandMode {
 	 * then given the remaining space on either side. If the center widget
 	 * requires all available space, the outer widgets are not drawn at all.
 	 */
-	Outside = "outside",
+	OUTSIDE = "outside",
 
 	/**
 	 * All widgets are given their minimal required size or the remaining space,
 	 * whichever is smaller. The center widget gets priority.
 	 */
-	None = "none",
+	NONE = "none",
 }
 
 interface WiboxLayoutAlignWidget

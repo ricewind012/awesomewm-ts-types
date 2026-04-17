@@ -44,7 +44,7 @@ interface GearsTable {
 	 *
 	 * @returns A packed table with only numeric keys.
 	 */
-	from_sparse(t: table): table;
+	from_sparse<T extends {}>(t: T): T;
 
 	/**
 	 * Check if a table has an item and return its key.
@@ -133,7 +133,7 @@ interface GearsTable {
 	 *
 	 * @returns A reversed table.
 	 */
-	reverse<T>(t: T[]): T[];
+	reverse<T extends any[]>(t: T[]): T[];
 
 	/**
 	 * Clone a table.

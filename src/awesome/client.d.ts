@@ -456,7 +456,7 @@ interface AwesomeClient
 	 * @param index The index in the list of icons to get.
 	 *
 	 * @returns A lightuserdata for a cairo surface. This reference must be
-	 *  destroyed!
+	 * destroyed!
 	 */
 	get_icon(index: number): cairo_surface;
 
@@ -476,14 +476,14 @@ interface AwesomeClient
 	 *
 	 * @param key The key.
 	 */
-	append_keybinding(key: awful_key): void;
+	append_keybinding(key: AwfulKeyInstance): void;
 
 	/**
 	 * Remove a keybinding.
 	 *
 	 * @param key The key.
 	 */
-	remove_keybinding(key: awful_key): void;
+	remove_keybinding(key: AwfulKeyInstance): void;
 
 	/**
 	 * Append a mousebinding.
@@ -694,12 +694,12 @@ interface AwesomeClient
 	/**
 	 * The client icon as a surface.
 	 */
-	icon: awesome_image;
+	icon: LuaUserdata;
 
 	/**
 	 * The available sizes of client icons.
 	 */
-	readonly icon_sizes: table;
+	readonly icon_sizes: number[][];
 
 	/**
 	 * Client screen.
@@ -729,7 +729,7 @@ interface AwesomeClient
 	/**
 	 * The client border color.
 	 */
-	border_color: awesome_color | undefined;
+	border_color: string | undefined;
 
 	/**
 	 * Set to true when the client ask for attention.
@@ -739,7 +739,7 @@ interface AwesomeClient
 	/**
 	 * A cairo surface for the client window content.
 	 */
-	readonly content: awesome_raw_curface;
+	readonly content: cairo_surface;
 
 	/**
 	 * The client opacity.
@@ -865,12 +865,12 @@ interface AwesomeClient
 	/**
 	 * Get or set mouse buttons bindings for a client.
 	 */
-	buttons: table;
+	buttons: any[];
 
 	/**
 	 * Get or set keys bindings for a client.
 	 */
-	keys: table;
+	keys: any[];
 
 	/**
 	 * If a client is marked or not.

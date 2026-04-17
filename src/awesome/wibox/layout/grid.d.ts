@@ -6,14 +6,14 @@ declare enum GridLayoutOrientation {
 	 * first; if no empty cell is found up to `forced_num_rows`, the next column
 	 * is filled, creating it if it does not exist.
 	 */
-	Horizontal = "horizontal",
+	HORIZONTAL = "horizontal",
 
 	/**
 	 * The grid can be extended vertically. The current row is filled first; if
 	 * no empty cell is found up to `forced_num_cols`, the next row is filled,
 	 * creating it if it does not exist.
 	 */
-	Vertical = "vertical",
+	VERTICAL = "vertical",
 }
 
 interface GridLayoutBorderOption {
@@ -32,7 +32,7 @@ interface AddGridBorderArgs {
 	 * be user for index 1 and row_count + 1, otherwise, `border_color.inner`
 	 * will be used.
 	 */
-	color?: gears_color;
+	color?: cairo_solid_pattern;
 
 	/**
 	 * The dash pattern used for the line. By default, it is a solid line.
@@ -115,7 +115,7 @@ interface WiboxLayoutGridWidget
 		col: number,
 		row_span?: number,
 		col_span?: number,
-	): table;
+	): any[] | undefined;
 
 	/**
 	 * Insert column at index.
@@ -306,7 +306,7 @@ interface WiboxLayoutGridWidget
 	/**
 	 * The border color for the table outer border.
 	 */
-	border_color: gears_color | GridLayoutBorderOption;
+	border_color: cairo_solid_pattern | GridLayoutBorderOption;
 
 	/**
 	 * Force the number of rows of the layout.

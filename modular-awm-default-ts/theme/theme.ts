@@ -11,14 +11,14 @@ const dpi = xresources.apply_dpi;
 const taglist_square_size = dpi(4);
 const themes_path = gfs.get_themes_dir();
 
-export const theme: object = {
+export const theme: Record<string, string | number | undefined> = {
 	font: "sans 8",
 
 	bg_normal: "#222222",
 	bg_focus: "#535d6c",
 	bg_urgent: "#ff0000",
 	bg_minimize: "#444444",
-	bg_systray: theme.bg_normal,
+	bg_systray: "#222222",
 
 	fg_normal: "#aaaaaa",
 	fg_focus: "#ffffff",
@@ -41,17 +41,7 @@ export const theme: object = {
 	// prompt_[fg|bg|fg_cursor|bg_cursor|font]
 	// hotkeys_[bg|fg|border_width|border_color|shape|opacity|modifiers_fg|label_bg|label_fg|group_margin|font|description_font]
 	// Example:
-	//theme.taglist_bg_focus: "#ff0000",
-
-	// Generate taglist squares:
-	taglist_squares_sel: theme_assets.taglist_squares_sel(
-		taglist_square_size,
-		theme.fg_normal,
-	),
-	taglist_squares_unsel: theme_assets.taglist_squares_unsel(
-		taglist_square_size,
-		theme.fg_normal,
-	),
+	//taglist_bg_focus: "#ff0000",
 
 	// Variables set for theming notifications:
 	// notification_font
@@ -118,17 +108,27 @@ export const theme: object = {
 	layout_cornersw: `${themes_path}default/layouts/cornersww.png`,
 	layout_cornerse: `${themes_path}default/layouts/cornersew.png`,
 
-	// Generate Awesome icon:
-	awesome_icon: theme_assets.awesome_icon(
-		theme.menu_height,
-		theme.bg_focus,
-		theme.fg_focus,
-	),
-
 	// Define the icon theme for application icons. If not set then the icons
 	// from /usr/share/icons and /usr/share/icons/hicolor will be used.
 	icon_theme: undefined,
 };
+
+// Generate taglist squares:
+theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
+	taglist_square_size,
+	theme.fg_normal,
+);
+theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
+	taglist_square_size,
+	theme.fg_normal,
+);
+
+// Generate Awesome icon:
+theme.awesome_icon = theme_assets.awesome_icon(
+	theme.menu_height,
+	theme.bg_focus,
+	theme.fg_focus,
+);
 
 // Set different colors for urgent notifications.
 notification.connect_signal("request::rules", () => {

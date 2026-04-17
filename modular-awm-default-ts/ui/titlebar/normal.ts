@@ -2,6 +2,7 @@ import * as awful from "awful";
 import * as wibox from "wibox";
 
 /// The titlebar to be used on normal clients.
+/** @noSelf */
 export default (c: AwesomeClient) => {
 	// Buttons for the titlebar.
 	const buttons = [

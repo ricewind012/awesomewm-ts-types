@@ -19,3 +19,5 @@
 /// <reference types="./awesome/ruled" />
 /// <reference types="./awesome/selection" />
 /// <reference types="./awesome/wibox" />
+
+/// <reference types="./lgi" />
