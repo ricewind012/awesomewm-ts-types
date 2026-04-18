@@ -35,5 +35,6 @@ interface WiboxLayoutManualWidget extends WiboxLayoutBaseWidget {
  * @noSelf
  */
 interface WiboxLayoutManual {
-	(...args: BaseWidget[]): WiboxLayoutManualWidget;
+	// https://github.com/TypeScriptToLua/TypeScriptToLua/issues/1661
+	(this: void, ...args: BaseWidget[]): WiboxLayoutManualWidget;
 }

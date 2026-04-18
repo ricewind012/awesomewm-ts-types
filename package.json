@@ -2,7 +2,7 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"build": "tstl modular-awm-default-ts"
+		"build": "tstl"
 	},
 	"dependencies": {
 		"typescript": "5.9.3",

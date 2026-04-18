@@ -69,7 +69,7 @@ interface Timer
 }
 
 /**
- * lass to execute code at specific intervals.
+ * Class to execute code at specific intervals.
  * @noSelf
  */
 interface GearsTimer {
@@ -83,33 +83,37 @@ interface GearsTimer {
 	 * Specifying a function `func` as `args.callback` is equivalent to calling
 	 * `:connect_signal(func)` on the timer object.
 	 */
-	(args: {
-		/**
-		 * Timeout in seconds (e.g. 1.5).
-		 */
-		timeout: number;
+	(
+		// https://github.com/TypeScriptToLua/TypeScriptToLua/issues/1661
+		this: void,
+		args: {
+			/**
+			 * Timeout in seconds (e.g. 1.5).
+			 */
+			timeout: number;
 
-		/**
-		 * Immediately start the timer countdown.
-		 */
-		autostart?: boolean;
+			/**
+			 * Immediately start the timer countdown.
+			 */
+			autostart?: boolean;
 
-		/**
-		 * Immediately call the callback function.
-		 */
-		call_now?: boolean;
+			/**
+			 * Immediately call the callback function.
+			 */
+			call_now?: boolean;
 
-		/**
-		 * Callback function to connect to the "timeout" signal.
-		 */
-		callback?: () => void;
+			/**
+			 * Callback function to connect to the "timeout" signal.
+			 */
+			callback?: () => void;
 
-		/**
-		 * Run only once then stop.
-		 * @default false
-		 */
-		single_shot?: boolean;
-	}): Timer;
+			/**
+			 * Run only once then stop.
+			 * @default false
+			 */
+			single_shot?: boolean;
+		},
+	): Timer;
 
 	/**
 	 * Create a simple timer for calling the `callback` function continuously.

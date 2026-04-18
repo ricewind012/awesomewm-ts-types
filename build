@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+npx tstl
+sed -i 's/require("modular-awm-default-ts./require("/g' dist/**/*.lua

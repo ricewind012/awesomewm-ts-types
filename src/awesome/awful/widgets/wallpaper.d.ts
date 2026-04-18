@@ -161,7 +161,7 @@ interface WallpaperInstance extends WallpaperInstanceOptions {
  */
 interface AwfulWallpaper {
 	(
-		// TODO: for some reason ignores noSelf
+		// https://github.com/TypeScriptToLua/TypeScriptToLua/issues/1661
 		this: void,
 		args: Partial<WallpaperInstanceOptions>,
 	): WallpaperInstance;

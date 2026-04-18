@@ -19,7 +19,7 @@ interface UserPrefs {
 
 export const user: UserPrefs = {
 	mod: "Mod4",
-	tags: Array.from(Array(9), (_, i) => tostring(i + 1)),
+	tags: ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
 	layouts: [
 		awful.layout.suit.floating,
 		awful.layout.suit.tile,

@@ -391,7 +391,8 @@ interface WiboxLayoutGrid {
 	 * A grid layout sets widgets in a grids of custom number of rows and
 	 * columns.
 	 */
-	(orientation?: "x" | "y"): WiboxLayoutGridWidget;
+	// https://github.com/TypeScriptToLua/TypeScriptToLua/issues/1661
+	(this: void, orientation?: "x" | "y"): WiboxLayoutGridWidget;
 
 	/**
 	 * Returns a new horizontal grid layout.

@@ -2,50 +2,7 @@
 
 everything is copy pasted from awesomewm docs
 
-## how
-https://github.com/jf908/ldoc-to-tsdoc
+As an example, [modularized example rc.lua](https://github.com/sewergweller/modular-awm-default) is included in [this](./modular-awm-default-ts) directory. The differences are:
 
-## todo
-
-### Types
-
-- test the types (actually use them LOL)
-
-#### awesome
-- [x] awesome
-- [ ] awful
-  - [ ] button
-  - [x] client
-  - [x] completion
-  - [x] hotkeys_popup
-  - [ ] layout
-  - [ ] permissions
-  - [ ] placement
-  - [x] prompt
-  - [ ] rules
-  - [x] spawn
-  - [x] util
-  - [ ] etc. (TODO)
-- [x] beautiful
-- [ ] client
-- [x] dbus
-- [x] gears (TODO: color/shape)
-- [x] menubar
-- [x] mousegrabber
-- [ ] naughty
-  - [ ] container
-  - [ ] notification
-  - [ ] layout
-  - [ ] list
-  - [ ] widget
-- [ ] ruled
-- [x] selection
-
-Globals:
-- [ ] awesome
-- [ ] client
-- [ ] screen
-
-#### cairo
-
-#### lgi
+- no deprecated APIs usage;
+- adapted to TS(TL) so it compiles without warnings/errors.

@@ -64,7 +64,7 @@ interface AwfulScreen {
 	 *
 	 * @returns The preferred screen.
 	 */
-	preferred(c: AwesomeClient): AwesomeScreen;
+	preferred(c?: AwesomeClient): AwesomeScreen;
 
 	/**
 	 * Get the focused screen.

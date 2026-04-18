@@ -1,7 +1,6 @@
 /// <reference types="lua-types/jit" />
 
 /// <reference types="./jsx.d.ts" />
-/// <reference types="./lua.d.ts" />
 
 /// <reference types="./awesome/client" />
 /// <reference types="./awesome/global" />

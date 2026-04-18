@@ -41,7 +41,7 @@ interface AwfulTag {
 	 * @returns A table with all created tags.
 	 */
 	(
-		// TODO: for some reason ignores noSelf
+		// https://github.com/TypeScriptToLua/TypeScriptToLua/issues/1661
 		this: void,
 		names: string[],
 		screen: AwesomeScreen | string | number | undefined,

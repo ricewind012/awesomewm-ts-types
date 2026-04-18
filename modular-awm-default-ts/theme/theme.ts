@@ -11,7 +11,7 @@ const dpi = xresources.apply_dpi;
 const taglist_square_size = dpi(4);
 const themes_path = gfs.get_themes_dir();
 
-export const theme: Record<string, string | number | undefined> = {
+export const theme: Partial<Theme> = {
 	font: "sans 8",
 
 	bg_normal: "#222222",

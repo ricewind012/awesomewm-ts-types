@@ -41,7 +41,7 @@ interface AwfulTitlebar {
 	 * @returns The newly created titlebar object.
 	 */
 	(
-		// TODO: for some reason this ignores noSelf
+		// https://github.com/TypeScriptToLua/TypeScriptToLua/issues/1661
 		this: void,
 		c: AwesomeClient,
 		args?: {

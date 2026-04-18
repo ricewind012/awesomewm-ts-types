@@ -76,7 +76,7 @@ interface PlacementCommonArgs {
 	/**
 	 * The offset(s) to apply to the new geometry.
 	 */
-	offset: table | number;
+	offset: { x: number; y: number } | number;
 
 	/**
 	 * Keep a single history of each type of placement. It can be restored using
@@ -104,11 +104,9 @@ interface AwfulPlacement {
 	 * @param d A drawable
 	 * @param args The arguments
 	 *
-	 * @returns table
-	 *         The new geometry
-	 *
-	 *            string
-	 *         The corner name.
+	 * @returns
+	 * - `Rectangle` The new geometry
+	 * - `string` The corner name
 	 */
 	closest_corner(
 		d?: Drawable,
@@ -118,7 +116,7 @@ interface AwfulPlacement {
 			 */
 			include_sides?: boolean;
 		},
-	): LuaMultiReturn<[table, string]>;
+	): LuaMultiReturn<[Rectangle, string]>;
 
 	/**
 	 * Place the client so no part of it will be outside the screen (workarea).

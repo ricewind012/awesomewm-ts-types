@@ -1,7 +1,56 @@
 /// <reference types="../client.d.ts" />
 /// <reference types="../screen.d.ts" />
 
-interface NaughtyAction {}
+import type { WiboxSharedProps } from "wibox";
+
+import type { AwfulPopupInstance } from "../awful/widgets/popup";
+
+interface NaughtyNotificationPopupBox extends AwfulPopupInstance {}
+
+type NaughtyActionSignalMap = SignalMap & {
+	/**
+	 * When a notification is invoked.
+	 *
+	 * Note that it is possible to call `:invoke()` without a `notification`
+	 * object. It is possible the notification parameter will be `nil`.
+	 *
+	 * @param action The action.
+	 * @param notification The notification, if known.
+	 */
+	invoked: (action: NaughtyAction, notification: NaughtyNotification) => void;
+};
+
+interface NaughtyAction extends SignalObject<NaughtyActionSignalMap> {
+	/**
+	 * Execute this action.
+	 *
+	 * This only emits the `invoked` signal.
+	 *
+	 * @param notif A notification object on which the action was invoked. If a
+	 * notification is shared by many object (like a "mute" or "snooze" action
+	 * added to all notification), calling `:invoke()` without adding the
+	 * `notif` context will cause unexpected results.
+	 */
+	invoke(notif?: NaughtyNotification): void;
+
+	// TODO: I'm so confused on how this siht is documented, am I supposed to
+	// use this in the constructor or is this returned ???
+
+	/**
+	 * The action position (index).
+	 */
+	position: number;
+
+	/**
+	 * The action icon.
+	 */
+	icon: awesome_image | string | undefined;
+
+	/**
+	 * If the action should hide the label and only display the icon.
+	 */
+	icon_only: boolean;
+}
 
 interface NaughtyNotification {}
 
@@ -35,7 +84,11 @@ interface NotificationProperties {
 	 * Target screen for the notification.
 	 * @default focused
 	 */
-	screen?: AwesomeScreen | number | string;
+	screen?:
+		| ((c?: AwesomeClient) => AwesomeScreen)
+		| AwesomeScreen
+		| number
+		| string;
 
 	/**
 	 * Corner of the workarea displaying the popups.
@@ -560,6 +613,17 @@ declare module "naughty" {
 	export function get_by_id(id: number): NaughtyNotification | undefined;
 
 	/**
+	 * Create a new action.
+	 */
+	export function action(args: {
+		name: string;
+		position: string;
+		icon: string;
+		notification: NaughtyNotification;
+		selected: boolean;
+	}): NaughtyAction;
+
+	/**
 	 * Create a notification.
 	 */
 	export function notification(
@@ -645,6 +709,16 @@ declare module "naughty" {
 		 * List of formats that will be checked by `getIcon()`.
 		 */
 		icon_formats?: string[];
+	};
+
+	export const layout: {
+		box(
+			this: void,
+			args: WiboxSharedProps & {
+				notification: NaughtyNotification;
+				widget_template?: template;
+			},
+		): NaughtyNotificationPopupBox;
 	};
 
 	/**

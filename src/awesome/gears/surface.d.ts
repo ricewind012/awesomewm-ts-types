@@ -9,7 +9,8 @@ interface GearsSurface {
 	 *
 	 * @param surface The surface to load or `nil`.
 	 */
-	(surface: any): any | undefined;
+	// https://github.com/TypeScriptToLua/TypeScriptToLua/issues/1661
+	(this: void, surface: any): any | undefined;
 
 	/**
 	 * Try to convert the argument into an lgi cairo surface. This is usually

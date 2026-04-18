@@ -46,7 +46,7 @@ interface AwfulSpawn {
 	 * false, or a `callback` is provided] tuple or error message.
 	 */
 	(
-		// TODO: for some reason ignores noSelf
+		// https://github.com/TypeScriptToLua/TypeScriptToLua/issues/1661
 		this: void,
 		cmd: string | table,
 		// TODO see in https://awesomewm.org/apidoc/core_components/client.html#placement

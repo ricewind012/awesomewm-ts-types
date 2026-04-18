@@ -30,7 +30,7 @@ interface AwfulButton {
 	 * Create a new button to use as binding.
 	 */
 	<T = never>(
-		// TODO: for some reason ignores noSelf
+		// https://github.com/TypeScriptToLua/TypeScriptToLua/issues/1661
 		this: void,
 		mod: ButtonModifier[] | undefined,
 		button: MouseButtonName,

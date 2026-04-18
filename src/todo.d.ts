@@ -7,3 +7,10 @@ type lgi = any;
 type widget = any;
 type template = any;
 type cairo = any;
+type table = object;
+
+/** @noResolution */
+declare module "awful/autofocus" {}
+
+/** @noResolution */
+declare module "awful/hotkeys_popup/keys" {}

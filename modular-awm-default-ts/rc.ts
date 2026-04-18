@@ -2,10 +2,6 @@
 // Notification library.
 import * as naughty from "naughty";
 
-// If LuaRocks is installed, make sure that packages installed through it are
-// found (e.g. lgi). If LuaRocks is not installed, do nothing.
-pcall(require, "luarocks.loader");
-
 // Variables that you assign to things like "screen" must also be declared here
 // to satisfy TypeScript.
 declare global {
@@ -14,6 +10,10 @@ declare global {
 		mywibox: any;
 	}
 }
+
+// If LuaRocks is installed, make sure that packages installed through it are
+// found (e.g. lgi). If LuaRocks is not installed, do nothing.
+pcall(require, "luarocks.loader");
 
 /// Error handling.
 // Check if awesome encountered an error during startup and fell back to
@@ -46,3 +46,5 @@ import "./binds";
 
 // Load all client rules.
 import "./config/rules";
+
+print("does this even work lol");

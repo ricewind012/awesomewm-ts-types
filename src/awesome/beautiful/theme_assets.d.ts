@@ -68,7 +68,7 @@ interface BeautifulThemeAssets {
 	 *
 	 * @returns Image with the logo.
 	 */
-	awesome_icon(size: string, bg: string, fg: string): awesome_image;
+	awesome_icon(size: number, bg: string, fg: string): awesome_image;
 
 	/**
 	 * Generate Awesome WM wallpaper.

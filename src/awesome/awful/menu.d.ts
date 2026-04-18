@@ -99,7 +99,8 @@ interface AwfulMenu {
 	 * @param parent Specify the parent menu if we want to open a submenu, this
 	 * value should never be set by the user.
 	 */
-	(args: MenuCreationOptions, parent?: MenuInstance): MenuInstance;
+	// https://github.com/TypeScriptToLua/TypeScriptToLua/issues/1661
+	(this: void, args: MenuCreationOptions, parent?: MenuInstance): MenuInstance;
 
 	/**
 	 * Build a popup menu with running clients and show it.

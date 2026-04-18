@@ -18,9 +18,13 @@
 	},
 	"include": ["modular-awm-default-ts"],
 	"tstl": {
-		// TODO: what does this do lol
 		"buildMode": "default",
-		"luaTarget": "JIT",
+		// TODO: dogshit
+		"luaLibImport": "inline",
+		"luaTarget": "5.3",
+		"noResolvePaths": ["*"],
+		//"luaBundle": "rc.lua",
+		//"luaBundleEntry": "./modular-awm-default-ts/rc_real.ts",
 		"noHeader": true
 	}
 }

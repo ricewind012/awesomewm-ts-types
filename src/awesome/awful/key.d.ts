@@ -82,7 +82,7 @@ interface AwfulKey {
 	 */
 	// OH MY GOD https://github.com/awesomeWM/awesome/blob/master/lib/awful/key.lua#L282
 	<T = never>(
-		// TODO: for some reason ignores noSelf
+		// https://github.com/TypeScriptToLua/TypeScriptToLua/issues/1661
 		this: void,
 		mod: ButtonModifier[] | undefined,
 		_key: string,
@@ -91,7 +91,7 @@ interface AwfulKey {
 		data?: Partial<AwfulKeyData>,
 	): AwfulKeyInstance;
 	<T = never>(
-		// TODO: for some reason ignores noSelf
+		// https://github.com/TypeScriptToLua/TypeScriptToLua/issues/1661
 		this: void,
 		mod: ButtonModifier[] | undefined,
 		_key: string,
@@ -99,7 +99,7 @@ interface AwfulKey {
 		data?: Partial<AwfulKeyData>,
 	): AwfulKeyInstance;
 	<T = never>(
-		// TODO: for some reason ignores noSelf
+		// https://github.com/TypeScriptToLua/TypeScriptToLua/issues/1661
 		this: void,
 		args: Partial<AwfulKeyData> & {
 			key?: string;

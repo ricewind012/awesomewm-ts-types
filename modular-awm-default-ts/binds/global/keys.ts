@@ -11,18 +11,14 @@ const { modkey } = mod;
 /// Global key bindings
 awful.keyboard.append_global_keybindings([
 	// General Awesome keys.
-	awful.key([modkey], "s", awful.hotkeys_popup.show_help, {
+	awful.key([modkey], "s", /*awful.hotkeys_popup.show_help*/ print, {
 		description: "show help",
 		group: "awesome",
 	}),
-	awful.key(
-		[modkey],
-		"w",
-		() => {
-			menu.main.show();
-		},
-		{ description: "show main menu", group: "awesome" },
-	),
+	awful.key([modkey], "w", menu.main.show, {
+		description: "show main menu",
+		group: "awesome",
+	}),
 	awful.key([modkey, mod.ctrl], "r", awesome.restart, {
 		description: "reload awesome",
 		group: "awesome",
@@ -66,14 +62,10 @@ awful.keyboard.append_global_keybindings([
 		},
 		{ description: "run prompt", group: "launcher" },
 	),
-	awful.key(
-		[modkey],
-		"p",
-		() => {
-			menubar.show();
-		},
-		{ description: "show the menubar", group: "launcher" },
-	),
+	awful.key([modkey], "p", menubar.show, {
+		description: "show the menubar",
+		group: "launcher",
+	}),
 
 	// Tags related keybindings.
 	awful.key([modkey], "Left", awful.tag.viewprev, {

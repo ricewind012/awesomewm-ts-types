@@ -4,6 +4,7 @@ import * as gears from "gears";
 import * as naughty from "naughty";
 import * as ruled from "ruled";
 import * as wibox from "wibox";
+
 import make_widget from "./jsx";
 
 const awesome_dir = gears.filesystem.get_configuration_dir();
@@ -113,13 +114,13 @@ client.connect_signal("request::titlebars", (c) => {
 
 client.connect_signal("request::default_mousebindings", () => {
 	awful.mouse.append_client_mousebindings([
-		awful.button(["Mod4"], awful.button.names.LEFT, (c) => {
+		awful.button<AwesomeClient>(["Mod4"], awful.button.names.LEFT, (c) => {
 			c.activate({
 				context: "mouse_click",
 				action: "mouse_move",
 			});
 		}),
-		awful.button(["Mod4"], awful.button.names.RIGHT, (c) => {
+		awful.button<AwesomeClient>(["Mod4"], awful.button.names.RIGHT, (c) => {
 			c.activate({
 				context: "mouse_click",
 				action: "mouse_resize",

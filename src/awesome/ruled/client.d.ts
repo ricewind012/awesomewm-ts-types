@@ -15,6 +15,7 @@ interface RuledClientProperties {
 	placement: {
 		[placement in keyof AwfulPlacement]: AwfulPlacement[placement];
 	};
+	raise: boolean;
 	switch_to_tags: boolean;
 	tag: AwesomeTag | string;
 	titlebars_enabled: boolean;

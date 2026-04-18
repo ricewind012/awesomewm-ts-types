@@ -7,8 +7,7 @@ client.connect_signal("request::titlebars", (c) => {
 	// TODO(ts): where
 	if (c.requests_no_titlebars) return;
 
-	// TODO(ts): what
-	titlebar.normal(c);
+	titlebar(c);
 });
 
 // Enable sloppy focus, so that focus follows mouse.

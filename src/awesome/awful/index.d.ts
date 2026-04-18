@@ -30,6 +30,7 @@ declare module "awful" {
 	export const menu: AwfulMenu;
 	export const mouse: AwfulMouse;
 	export const placement: AwfulPlacement;
+	export const popup: AwfulPopup;
 	export const prompt: AwfulPrompt;
 	export const screen: AwfulScreen;
 	export const spawn: AwfulSpawn;
