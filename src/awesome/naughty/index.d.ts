@@ -1,556 +1,556 @@
-/// <reference types="../client.d.ts" />
-/// <reference types="../screen.d.ts" />
-
-import type { WiboxSharedProps } from "wibox";
-
-import type { AwfulPopupInstance } from "../awful/widgets/popup";
-
-interface NaughtyNotificationPopupBox extends AwfulPopupInstance {}
-
-type NaughtyActionSignalMap = SignalMap & {
-	/**
-	 * When a notification is invoked.
-	 *
-	 * Note that it is possible to call `:invoke()` without a `notification`
-	 * object. It is possible the notification parameter will be `nil`.
-	 *
-	 * @param action The action.
-	 * @param notification The notification, if known.
-	 */
-	invoked: (action: NaughtyAction, notification: NaughtyNotification) => void;
-};
-
-interface NaughtyAction extends SignalObject<NaughtyActionSignalMap> {
-	/**
-	 * Execute this action.
-	 *
-	 * This only emits the `invoked` signal.
-	 *
-	 * @param notif A notification object on which the action was invoked. If a
-	 * notification is shared by many object (like a "mute" or "snooze" action
-	 * added to all notification), calling `:invoke()` without adding the
-	 * `notif` context will cause unexpected results.
-	 */
-	invoke(notif?: NaughtyNotification): void;
-
-	// TODO: I'm so confused on how this siht is documented, am I supposed to
-	// use this in the constructor or is this returned ???
-
-	/**
-	 * The action position (index).
-	 */
-	position: number;
-
-	/**
-	 * The action icon.
-	 */
-	icon: awesome_image | string | undefined;
-
-	/**
-	 * If the action should hide the label and only display the icon.
-	 */
-	icon_only: boolean;
-}
-
-interface NaughtyNotification {}
-
-interface NotificationProperties {
-	/**
-	 * Text of the notification.
-	 * @default ""
-	 */
-	text?: string;
-
-	/**
-	 * Title of the notification.
-	 */
-	title?: string;
-
-	/**
-	 * Time in seconds after which popup expires. Set 0 for no timeout.
-	 * @default 5
-	 */
-	timeout?: number;
-
-	/**
-	 * Delay in seconds after which hovered popup disappears.
-	 */
-	hover_timeout?: number;
-
-	// Not mentioned in docs, but is in rc.lua
-	message?: string;
-
-	/**
-	 * Target screen for the notification.
-	 * @default focused
-	 */
-	screen?:
-		| ((c?: AwesomeClient) => AwesomeScreen)
-		| AwesomeScreen
-		| number
-		| string;
-
-	/**
-	 * Corner of the workarea displaying the popups.
-	 * @default "top_right"
-	 */
-	position?:
-		| "top_left"
-		| "top_right"
-		| "bottom_left"
-		| "bottom_right"
-		| "top_middle"
-		| "bottom_middle"
-		| "middle";
-
-	/**
-	 * Boolean forcing popups to display on top.
-	 * @default true
-	 */
-	ontop?: boolean;
-
-	/**
-	 * Popup height.
-	 * @default `beautiful.notification_height` or auto
-	 */
-	height?: number;
-
-	/**
-	 * Popup width.
-	 * @default `beautiful.notification_width` or auto
-	 */
-	width?: number;
-
-	/**
-	 * Notification font.
-	 * @default `beautiful.notification_font` or `beautiful.font` or
-	 * `awesome.font`
-	 */
-	font?: string | lgi.Pango.FontDescription;
-
-	/**
-	 * "All in one" way to access the default image or icon.
-	 *
-	 * A notification can provide a combination of an icon, a static image, or
-	 * if enabled, a looping animation. Add to that the ability to import the
-	 * icon information from the client or from a `.desktop` file, there is
-	 * multiple conflicting sources of "icons".
-	 *
-	 * On the other hand, the vast majority of notifications don't multiple or
-	 * ambiguous sources of icons. This property will pick the first of the
-	 * following:
-	 *
-	 * - The [image](https://awesomewm.org/apidoc/core_components/naughty.notification.html#image)
-	 * - The [app_icon](https://awesomewm.org/apidoc/core_components/naughty.notification.html#app_icon)
-	 * - The [icon](https://awesomewm.org/apidoc/core_components/naughty.notification.html#icon) from a client with `normal` type.
-	 * - The [icon](https://awesomewm.org/apidoc/core_components/naughty.notification.html#icon) of a client with `dialog` type.
-	 */
-	icon?: awesome_image;
-
-	/**
-	 * Desired icon size in px.
-	 */
-	icon_size?: number;
-
-	/**
-	 * Foreground color.
-	 * @default `beautiful.notification_fg` or `beautiful.fg_focus` or
-	 * `'#ffffff'`
-	 */
-	fg?: string;
-
-	/**
-	 * Background color.
-	 * @default `beautiful.notification_fg` or `beautiful.bg_focus` or
-	 * `'#535d6c'`
-	 */
-	bg?: string;
-
-	/**
-	 * Border width.
-	 * @default `beautiful.notification_border_width` or 1
-	 */
-	border_width?: number;
-
-	/**
-	 * Border color.
-	 * @default `beautiful.notification_border_color` or
-	 * `beautiful.border_color_active` or `'#535d6c'`
-	 */
-	border_color?: cairo_solid_pattern;
-
-	/**
-	 * Widget shape.
-	 * @default `beautiful.notification_shape`
-	 */
-	shape?: shape | ((cr: any, width: number, height: number) => void);
-
-	/**
-	 * Widget opacity.
-	 * @default `beautiful.notification_opacity`
-	 */
-	opacity?: number;
-
-	/**
-	 * Widget margin.
-	 * @default `beautiful.notification_margin`
-	 */
-	margin?: AwesomeClientStrut | number;
-
-	/**
-	 * Function to run on left click. The notification object will be passed to
-	 * it as an argument. You need to call e.g.
-	 * `notification.die(naughty.notification_closed_reason.dismissedByUser)`
-	 * from there to dismiss the notification yourself.
-	 */
-	run?: (notification: NaughtyNotification) => void;
-
-	/**
-	 * Function to run when notification is destroyed.
-	 */
-	destroy?: () => void;
-
-	/**
-	 * Table with any of the above parameters. Note: Any parameters specified
-	 * directly in args will override ones defined in the preset.
-	 */
-	preset?: NotificationPreset;
-
-	/**
-	 * Function that will be called with all arguments. The notification will
-	 * only be displayed if the function returns true. Note: this function is
-	 * only relevant to notifications sent via dbus.
-	 */
-	callback?: (
-		legacy_data: table,
-		appname: string,
-		replaces_id: number,
-		app_icon: string,
-		title: string,
-		message: string,
-		actions: table,
-		hints: table,
-		expire: number,
-	) => boolean;
-
-	/**
-	 * A list of {@link naughty.action}.
-	 */
-	actions?: table;
-
-	/**
-	 * If set to true this notification will be shown even if notifications are
-	 * suspended via {@link naughty.suspend}.
-	 * @default false
-	 */
-	ignore_suspend?: boolean;
-
-	// TODO: these weren't mentioned in "args", but they're in whatever's
-	// returned from naughty.notification
-
-	/**
-	 * The icon provided in the app_icon field of the DBus notification.
-	 *
-	 * This should always be either the URI (path) to an icon or a valid XDG
-	 * icon name to be fetched from the theme.
-	 */
-	app_icon?: string;
-
-	/**
-	 * The application name specified by the notification.
-	 *
-	 * This can be anything. It is usually less relevant than the
-	 * {@link clients} property, but can sometime be specified for remote or
-	 * headless notifications. In these case, it helps to triage and detect the
-	 * notification from the rules.
-	 */
-	app_name?: string;
-
-	/**
-	 * If the timeout needs to be reset when a property changes.
-	 *
-	 * By default it falls back to `naughty.auto_reset_timeout`, which itself is
-	 * true by default.
-	 */
-	auto_reset_timeout?: boolean;
-
-	/**
-	 * The notification category.
-	 *
-	 * The category should be named using the x-vendor.class.name naming scheme
-	 * or use one of [the default
-	 * categories](https://awesomewm.org/apidoc/core_components/naughty.notification.html#category).
-	 */
-	category?: string;
-
-	/**
-	 * A list of clients associated with this notification.
-	 *
-	 * When used with DBus notifications, this returns all clients sharing the
-	 * PID of the notification sender. Note that this is highly unreliable.
-	 * Applications that use a different process to send the notification or
-	 * applications (and scripts) calling the `notify-send` command wont have
-	 * any client.
-	 */
-	clients?: AwesomeClient[];
-
-	/**
-	 * Ignore this notification, do not display.
-	 *
-	 * Note that this property has to be set in a {@link naughty.preset} or in a
-	 * `request::preset` handler.
-	 */
-	ignore?: boolean;
-
-	/**
-	 * The notification image.
-	 *
-	 * This is usually provided as a
-	 * [gears.surface](https://awesomewm.org/apidoc/libraries/gears.surface.html#)
-	 * object. The image is used instead of the
-	 * [app_icon](https://awesomewm.org/apidoc/core_components/naughty.notification.html#app_icon)
-	 * by notification assets which are auto-generated or stored elsewhere than
-	 * the filesystem (databases, web, Android phones, etc).
-	 */
-	image?: unknown;
-
-	/**
-	 * The notification (animated) images.
-	 *
-	 * Note that calling this without first setting
-	 * [naughty.image_animations_enabled](https://awesomewm.org/apidoc/libraries/naughty.html#image_animations_enabled)
-	 * to true will throw an exception.
-	 *
-	 * Also note that there is zero support for this anywhere else in `naughty`
-	 * and very, very few applications support this.
-	 *
-	 * This exists purely to comply with the specification.
-	 */
-	images?: table;
-
-	/**
-	 * If the notification is expired.
-	 */
-	is_expired?: boolean;
-
-	/**
-	 * The maximum popup width.
-	 *
-	 * Some notifications have overlong message, cap them to this width. Note
-	 * that this is ignored by {@link naughty.list.notifications} because it
-	 * delegate this decision to the layout.
-	 */
-	max_width?: number;
-
-	/**
-	 * True if the notification should be kept when an action is pressed.
-	 *
-	 * By default, invoking an action will destroy the notification. Some
-	 * actions, like the "Snooze" action of alarm clock, will cause the
-	 * notification to be updated with a date further in the future.
-	 * @default false
-	 */
-	resident?: boolean;
-
-	/**
-	 * Tell if the notification is currently suspended (read only).
-	 *
-	 * This is always equal to {@link naughty.suspended}.
-	 */
-	readonly suspended?: boolean;
-
-	/**
-	 * The notification urgency level.
-	 * @default "normal"
-	 */
-	urgency?: "low" | "normal" | "critical";
-
-	/**
-	 * The widget template used to represent the notification.
-	 *
-	 * Some notifications, such as chat messages or music applications are
-	 * better off with a specialized notification widget.
-	 */
-	widget_template?: template;
-}
-
-interface NotificationPreset {
-	bg?: string;
-	fg?: string;
-	timeout?: number;
-}
-
-type NaughtySignalMap = SignalMap & {
-	/**
-	 * Emitted when an error occurred and requires attention.
-	 *
-	 * @param message The error message.
-	 * @param startup If the error occurred during the initial loading of rc.lua
-	 * (and thus caused the fallback to kick in).
-	 */
-	"request::display_error": (
-		this: void,
-		message: string,
-		startup: boolean,
-	) => void;
-
-	/**
-	 * Emitted when a notification is created.
-	 *
-	 * @param notification The `naughty.notification` object.
-	 */
-	added: (this: void, notification: NaughtyNotification) => void;
-
-	/**
-	 * Emitted when a notification is destroyed.
-	 *
-	 * @param notification The `naughty.notification` object.
-	 */
-	destroyed: (this: void, notification: NaughtyNotification) => void;
-
-	/**
-	 * Emitted when a notification has to be displayed.
-	 *
-	 * To add a handler, use:
-	 * ```lua
-	 * naughty.connect_signal("request::display", function(notification, args)
-	 *     -- do something
-	 * end)
-	 * ```
-	 *
-	 * @param notification The `naughty.notification` object.
-	 * @param context Why is the signal sent.
-	 * @param args Any arguments passed to the
-	 * [naughty.notify](https://awesomewm.org/apidoc/libraries/naughty.html#notify)
-	 * function, including, but not limited to, all
-	 * [naughty.notification](https://awesomewm.org/apidoc/core_components/naughty.notification.html#)
-	 * properties.
-	 */
-	"request::display": (
-		this: void,
-		notification: NaughtyNotification,
-		context: string,
-		args: table,
-	) => void;
-
-	/**
-	 * Emitted when a notification needs pre-display configuration.
-	 *
-	 * @param notification The `naughty.notification` object.
-	 */
-	"request::preset": () => void;
-
-	/**
-	 * Emitted when an action requires an icon it doesn't know.
-	 *
-	 * The implementation should look in the icon theme for an action icon or
-	 * provide something natively.
-	 *
-	 * If an icon is found, the handler must set the `request::icon` property on the
-	 * `action` object to a path or a
-	 * [gears.surface](https://awesomewm.org/apidoc/libraries/gears.surface.html#).
-	 *
-	 * There is no implementation by default. To use the XDG-icon, the common
-	 * implementation will be:
-	 * ```lua
-	 * naughty.connect_signal("request::action_icon", function(a, context, hints)
-	 *      a.icon = menubar.utils.lookup_icon(hints.id)
-	 * end)
-	 * ```
-	 *
-	 * @param action The action.
-	 * @param context The context.
-	 * @param hints
-	 */
-	"request::action_icon": (
-		this: void,
-		action: NaughtyAction,
-		context: string,
-		hints: table,
-	) => void;
-
-	/**
-	 * Emitted when a notification icon could not be loaded.
-	 *
-	 * When an icon is passed in some "encoded" formats, such as XDG icon names
-	 * or network URLs, AwesomeWM will not attempt to load it. If you wish to
-	 * see the icon displayed, you must provide an handler. It is highly
-	 * recommended for handler to only set `n.icon` when they *found* the icon.
-	 * That way multiple handlers can be attached for multiple protocols.
-	 *
-	 * The `context` argument is the origin of the icon to decode. If an handler
-	 * only supports one if them, it should check the `context` and return if it
-	 * doesn't handle it.
-	 *
-	 * For example, an implementation which uses the `app_icon` to perform an
-	 * XDG icon lookup will look like:
-	 * ```lua
-	 * naughty.connect_signal("request::icon", function(n, context, hints)
-	 *     if context ~= "app_icon" then return end
-	 *
-	 *     local path = menubar.utils.lookup_icon(hints.app_icon) or
-	 *         menubar.utils.lookup_icon(hints.app_icon:lower())
-	 *
-	 *     if path then
-	 *         n.icon = path
-	 *     end
-	 * end)
-	 * ```
-	 *
-	 * The images context has no handler. It is part of the specification to
-	 * handle animations. This is not supported by default.
-	 *
-	 * @param n The notification.
-	 * @param context The source of the icon to look for.
-	 * @param hints The hints.
-	 */
-	"request::icon": (
-		this: void,
-		n: NaughtyNotification,
-		context:
-			| "app_icon"
-			| "clients"
-			| "path"
-			| "image"
-			| "images"
-			| "dbus_clear",
-		hints: {
-			/**
-			 * The name of the icon to look for.
-			 */
-			app_icon: string;
-
-			/**
-			 * The path of the icon.
-			 */
-			path: string;
-
-			/**
-			 * The path or pixmap of the icon.
-			 */
-			image: string;
-		},
-	) => void;
-
-	/**
-	 * Emitted when the screen is not defined or being removed.
-	 *
-	 * @param notification The naughty.notification object. This is currently
-	 * either "new" or "removed".
-	 * @param context Why is the signal sent.
-	 */
-	"request::screen": (
-		this: void,
-		notification: NaughtyNotification,
-		context: string,
-	) => void;
-};
-
 /**
  * @noResolution
  * @noSelf
  */
 declare module "naughty" {
+	import type { WiboxSharedProps } from "wibox";
+
+	import type { AwfulPopupInstance } from "~/awesome/awful/widgets/popup";
+	import type { AwesomeClient, AwesomeClientStrut } from "~/awesome/client";
+	import type { AwesomeScreen } from "~/awesome/screen";
+	import type { SignalMap, SignalObject } from "~/awesome/shared";
+
+	interface NaughtyNotificationPopupBox extends AwfulPopupInstance {}
+
+	type NaughtyActionSignalMap = SignalMap & {
+		/**
+		 * When a notification is invoked.
+		 *
+		 * Note that it is possible to call `:invokse()` without a `notification`
+		 * object. It is possible the notification parameter will be `nil`.
+		 *
+		 * @param action The action.
+		 * @param notification The notification, if known.
+		 */
+		invoked: (action: NaughtyAction, notification: NaughtyNotification) => void;
+	};
+
+	interface NaughtyAction extends SignalObject<NaughtyActionSignalMap> {
+		/**
+		 * Execute this action.
+		 *
+		 * This only emits the `invoked` signal.
+		 *
+		 * @param notif A notification object on which the action was invoked. If a
+		 * notification is shared by many object (like a "mute" or "snooze" action
+		 * added to all notification), calling `:invoke()` without adding the
+		 * `notif` context will cause unexpected results.
+		 */
+		invoke(notif?: NaughtyNotification): void;
+
+		// TODO: I'm so confused on how this siht is documented, am I supposed to
+		// use this in the constructor or is this returned ???
+
+		/**
+		 * The action position (index).
+		 */
+		position: number;
+
+		/**
+		 * The action icon.
+		 */
+		icon: awesome_image | string | undefined;
+
+		/**
+		 * If the action should hide the label and only display the icon.
+		 */
+		icon_only: boolean;
+	}
+
+	interface NaughtyNotification {}
+
+	export interface NotificationProperties {
+		/**
+		 * Text of the notification.
+		 * @default ""
+		 */
+		text?: string;
+
+		/**
+		 * Title of the notification.
+		 */
+		title?: string;
+
+		/**
+		 * Time in seconds after which popup expires. Set 0 for no timeout.
+		 * @default 5
+		 */
+		timeout?: number;
+
+		/**
+		 * Delay in seconds after which hovered popup disappears.
+		 */
+		hover_timeout?: number;
+
+		// Not mentioned in docs, but is in rc.lua
+		message?: string;
+
+		/**
+		 * Target screen for the notification.
+		 * @default focused
+		 */
+		screen?:
+			| ((c?: AwesomeClient) => AwesomeScreen)
+			| AwesomeScreen
+			| number
+			| string;
+
+		/**
+		 * Corner of the workarea displaying the popups.
+		 * @default "top_right"
+		 */
+		position?:
+			| "top_left"
+			| "top_right"
+			| "bottom_left"
+			| "bottom_right"
+			| "top_middle"
+			| "bottom_middle"
+			| "middle";
+
+		/**
+		 * Boolean forcing popups to display on top.
+		 * @default true
+		 */
+		ontop?: boolean;
+
+		/**
+		 * Popup height.
+		 * @default `beautiful.notification_height` or auto
+		 */
+		height?: number;
+
+		/**
+		 * Popup width.
+		 * @default `beautiful.notification_width` or auto
+		 */
+		width?: number;
+
+		/**
+		 * Notification font.
+		 * @default `beautiful.notification_font` or `beautiful.font` or
+		 * `awesome.font`
+		 */
+		font?: string | lgi.Pango.FontDescription;
+
+		/**
+		 * "All in one" way to access the default image or icon.
+		 *
+		 * A notification can provide a combination of an icon, a static image, or
+		 * if enabled, a looping animation. Add to that the ability to import the
+		 * icon information from the client or from a `.desktop` file, there is
+		 * multiple conflicting sources of "icons".
+		 *
+		 * On the other hand, the vast majority of notifications don't multiple or
+		 * ambiguous sources of icons. This property will pick the first of the
+		 * following:
+		 *
+		 * - The [image](https://awesomewm.org/apidoc/core_components/naughty.notification.html#image)
+		 * - The [app_icon](https://awesomewm.org/apidoc/core_components/naughty.notification.html#app_icon)
+		 * - The [icon](https://awesomewm.org/apidoc/core_components/naughty.notification.html#icon) from a client with `normal` type.
+		 * - The [icon](https://awesomewm.org/apidoc/core_components/naughty.notification.html#icon) of a client with `dialog` type.
+		 */
+		icon?: awesome_image;
+
+		/**
+		 * Desired icon size in px.
+		 */
+		icon_size?: number;
+
+		/**
+		 * Foreground color.
+		 * @default `beautiful.notification_fg` or `beautiful.fg_focus` or
+		 * `'#ffffff'`
+		 */
+		fg?: string;
+
+		/**
+		 * Background color.
+		 * @default `beautiful.notification_fg` or `beautiful.bg_focus` or
+		 * `'#535d6c'`
+		 */
+		bg?: string;
+
+		/**
+		 * Border width.
+		 * @default `beautiful.notification_border_width` or 1
+		 */
+		border_width?: number;
+
+		/**
+		 * Border color.
+		 * @default `beautiful.notification_border_color` or
+		 * `beautiful.border_color_active` or `'#535d6c'`
+		 */
+		border_color?: cairo_solid_pattern;
+
+		/**
+		 * Widget shape.
+		 * @default `beautiful.notification_shape`
+		 */
+		shape?: shape | ((cr: any, width: number, height: number) => void);
+
+		/**
+		 * Widget opacity.
+		 * @default `beautiful.notification_opacity`
+		 */
+		opacity?: number;
+
+		/**
+		 * Widget margin.
+		 * @default `beautiful.notification_margin`
+		 */
+		margin?: AwesomeClientStrut | number;
+
+		/**
+		 * Function to run on left click. The notification object will be passed to
+		 * it as an argument. You need to call e.g.
+		 * `notification.die(naughty.notification_closed_reason.dismissedByUser)`
+		 * from there to dismiss the notification yourself.
+		 */
+		run?: (notification: NaughtyNotification) => void;
+
+		/**
+		 * Function to run when notification is destroyed.
+		 */
+		destroy?: () => void;
+
+		/**
+		 * Table with any of the above parameters. Note: Any parameters specified
+		 * directly in args will override ones defined in the preset.
+		 */
+		preset?: NotificationPreset;
+
+		/**
+		 * Function that will be called with all arguments. The notification will
+		 * only be displayed if the function returns true. Note: this function is
+		 * only relevant to notifications sent via dbus.
+		 */
+		callback?: (
+			legacy_data: table,
+			appname: string,
+			replaces_id: number,
+			app_icon: string,
+			title: string,
+			message: string,
+			actions: table,
+			hints: table,
+			expire: number,
+		) => boolean;
+
+		/**
+		 * A list of {@link naughty.action}.
+		 */
+		actions?: table;
+
+		/**
+		 * If set to true this notification will be shown even if notifications are
+		 * suspended via {@link naughty.suspend}.
+		 * @default false
+		 */
+		ignore_suspend?: boolean;
+
+		// TODO: these weren't mentioned in "args", but they're in whatever's
+		// returned from naughty.notification
+
+		/**
+		 * The icon provided in the app_icon field of the DBus notification.
+		 *
+		 * This should always be either the URI (path) to an icon or a valid XDG
+		 * icon name to be fetched from the theme.
+		 */
+		app_icon?: string;
+
+		/**
+		 * The application name specified by the notification.
+		 *
+		 * This can be anything. It is usually less relevant than the
+		 * {@link clients} property, but can sometime be specified for remote or
+		 * headless notifications. In these case, it helps to triage and detect the
+		 * notification from the rules.
+		 */
+		app_name?: string;
+
+		/**
+		 * If the timeout needs to be reset when a property changes.
+		 *
+		 * By default it falls back to `naughty.auto_reset_timeout`, which itself is
+		 * true by default.
+		 */
+		auto_reset_timeout?: boolean;
+
+		/**
+		 * The notification category.
+		 *
+		 * The category should be named using the x-vendor.class.name naming scheme
+		 * or use one of [the default
+		 * categories](https://awesomewm.org/apidoc/core_components/naughty.notification.html#category).
+		 */
+		category?: string;
+
+		/**
+		 * A list of clients associated with this notification.
+		 *
+		 * When used with DBus notifications, this returns all clients sharing the
+		 * PID of the notification sender. Note that this is highly unreliable.
+		 * Applications that use a different process to send the notification or
+		 * applications (and scripts) calling the `notify-send` command wont have
+		 * any client.
+		 */
+		clients?: AwesomeClient[];
+
+		/**
+		 * Ignore this notification, do not display.
+		 *
+		 * Note that this property has to be set in a {@link naughty.preset} or in a
+		 * `request::preset` handler.
+		 */
+		ignore?: boolean;
+
+		/**
+		 * The notification image.
+		 *
+		 * This is usually provided as a
+		 * [gears.surface](https://awesomewm.org/apidoc/libraries/gears.surface.html#)
+		 * object. The image is used instead of the
+		 * [app_icon](https://awesomewm.org/apidoc/core_components/naughty.notification.html#app_icon)
+		 * by notification assets which are auto-generated or stored elsewhere than
+		 * the filesystem (databases, web, Android phones, etc).
+		 */
+		image?: unknown;
+
+		/**
+		 * The notification (animated) images.
+		 *
+		 * Note that calling this without first setting
+		 * [naughty.image_animations_enabled](https://awesomewm.org/apidoc/libraries/naughty.html#image_animations_enabled)
+		 * to true will throw an exception.
+		 *
+		 * Also note that there is zero support for this anywhere else in `naughty`
+		 * and very, very few applications support this.
+		 *
+		 * This exists purely to comply with the specification.
+		 */
+		images?: table;
+
+		/**
+		 * If the notification is expired.
+		 */
+		is_expired?: boolean;
+
+		/**
+		 * The maximum popup width.
+		 *
+		 * Some notifications have overlong message, cap them to this width. Note
+		 * that this is ignored by {@link naughty.list.notifications} because it
+		 * delegate this decision to the layout.
+		 */
+		max_width?: number;
+
+		/**
+		 * True if the notification should be kept when an action is pressed.
+		 *
+		 * By default, invoking an action will destroy the notification. Some
+		 * actions, like the "Snooze" action of alarm clock, will cause the
+		 * notification to be updated with a date further in the future.
+		 * @default false
+		 */
+		resident?: boolean;
+
+		/**
+		 * Tell if the notification is currently suspended (read only).
+		 *
+		 * This is always equal to {@link naughty.suspended}.
+		 */
+		readonly suspended?: boolean;
+
+		/**
+		 * The notification urgency level.
+		 * @default "normal"
+		 */
+		urgency?: "low" | "normal" | "critical";
+
+		/**
+		 * The widget template used to represent the notification.
+		 *
+		 * Some notifications, such as chat messages or music applications are
+		 * better off with a specialized notification widget.
+		 */
+		widget_template?: template;
+	}
+
+	interface NotificationPreset {
+		bg?: string;
+		fg?: string;
+		timeout?: number;
+	}
+
+	type NaughtySignalMap = SignalMap & {
+		/**
+		 * Emitted when an error occurred and requires attention.
+		 *
+		 * @param message The error message.
+		 * @param startup If the error occurred during the initial loading of rc.lua
+		 * (and thus caused the fallback to kick in).
+		 */
+		"request::display_error": (
+			this: void,
+			message: string,
+			startup: boolean,
+		) => void;
+
+		/**
+		 * Emitted when a notification is created.
+		 *
+		 * @param notification The `naughty.notification` object.
+		 */
+		added: (this: void, notification: NaughtyNotification) => void;
+
+		/**
+		 * Emitted when a notification is destroyed.
+		 *
+		 * @param notification The `naughty.notification` object.
+		 */
+		destroyed: (this: void, notification: NaughtyNotification) => void;
+
+		/**
+		 * Emitted when a notification has to be displayed.
+		 *
+		 * To add a handler, use:
+		 * ```lua
+		 * naughty.connect_signal("request::display", function(notification, args)
+		 *     -- do something
+		 * end)
+		 * ```
+		 *
+		 * @param notification The `naughty.notification` object.
+		 * @param context Why is the signal sent.
+		 * @param args Any arguments passed to the
+		 * [naughty.notify](https://awesomewm.org/apidoc/libraries/naughty.html#notify)
+		 * function, including, but not limited to, all
+		 * [naughty.notification](https://awesomewm.org/apidoc/core_components/naughty.notification.html#)
+		 * properties.
+		 */
+		"request::display": (
+			this: void,
+			notification: NaughtyNotification,
+			context: string,
+			args: table,
+		) => void;
+
+		/**
+		 * Emitted when a notification needs pre-display configuration.
+		 *
+		 * @param notification The `naughty.notification` object.
+		 */
+		"request::preset": () => void;
+
+		/**
+		 * Emitted when an action requires an icon it doesn't know.
+		 *
+		 * The implementation should look in the icon theme for an action icon or
+		 * provide something natively.
+		 *
+		 * If an icon is found, the handler must set the `request::icon` property on the
+		 * `action` object to a path or a
+		 * [gears.surface](https://awesomewm.org/apidoc/libraries/gears.surface.html#).
+		 *
+		 * There is no implementation by default. To use the XDG-icon, the common
+		 * implementation will be:
+		 * ```lua
+		 * naughty.connect_signal("request::action_icon", function(a, context, hints)
+		 *      a.icon = menubar.utils.lookup_icon(hints.id)
+		 * end)
+		 * ```
+		 *
+		 * @param action The action.
+		 * @param context The context.
+		 * @param hints
+		 */
+		"request::action_icon": (
+			this: void,
+			action: NaughtyAction,
+			context: string,
+			hints: table,
+		) => void;
+
+		/**
+		 * Emitted when a notification icon could not be loaded.
+		 *
+		 * When an icon is passed in some "encoded" formats, such as XDG icon names
+		 * or network URLs, AwesomeWM will not attempt to load it. If you wish to
+		 * see the icon displayed, you must provide an handler. It is highly
+		 * recommended for handler to only set `n.icon` when they *found* the icon.
+		 * That way multiple handlers can be attached for multiple protocols.
+		 *
+		 * The `context` argument is the origin of the icon to decode. If an handler
+		 * only supports one if them, it should check the `context` and return if it
+		 * doesn't handle it.
+		 *
+		 * For example, an implementation which uses the `app_icon` to perform an
+		 * XDG icon lookup will look like:
+		 * ```lua
+		 * naughty.connect_signal("request::icon", function(n, context, hints)
+		 *     if context ~= "app_icon" then return end
+		 *
+		 *     local path = menubar.utils.lookup_icon(hints.app_icon) or
+		 *         menubar.utils.lookup_icon(hints.app_icon:lower())
+		 *
+		 *     if path then
+		 *         n.icon = path
+		 *     end
+		 * end)
+		 * ```
+		 *
+		 * The images context has no handler. It is part of the specification to
+		 * handle animations. This is not supported by default.
+		 *
+		 * @param n The notification.
+		 * @param context The source of the icon to look for.
+		 * @param hints The hints.
+		 */
+		"request::icon": (
+			this: void,
+			n: NaughtyNotification,
+			context:
+				| "app_icon"
+				| "clients"
+				| "path"
+				| "image"
+				| "images"
+				| "dbus_clear",
+			hints: {
+				/**
+				 * The name of the icon to look for.
+				 */
+				app_icon: string;
+
+				/**
+				 * The path of the icon.
+				 */
+				path: string;
+
+				/**
+				 * The path or pixmap of the icon.
+				 */
+				image: string;
+			},
+		) => void;
+
+		/**
+		 * Emitted when the screen is not defined or being removed.
+		 *
+		 * @param notification The naughty.notification object. This is currently
+		 * either "new" or "removed".
+		 * @param context Why is the signal sent.
+		 */
+		"request::screen": (
+			this: void,
+			notification: NaughtyNotification,
+			context: string,
+		) => void;
+	};
+
 	/**
 	 * Connect a global signal on the module.
 	 *

@@ -1,7 +1,7 @@
 /**
  * Menu generation module for menubar
  */
-interface MenubarMenuGen {
+export interface MenubarMenuGen {
 	/**
 	 * Generate an array of all visible menu entries.
 	 * @param callback Will be fired when all menu entries were parsed with the

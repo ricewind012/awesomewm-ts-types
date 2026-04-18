@@ -1,7 +1,7 @@
 /**
  * @noSelf
  */
-interface GearsSurface {
+export interface GearsSurface {
 	/**
 	 * Try to convert the argument into an lgi cairo surface. This is usually
 	 * needed for loading images by file name. Errors are handled via

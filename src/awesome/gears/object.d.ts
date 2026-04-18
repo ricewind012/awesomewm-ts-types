@@ -1,4 +1,4 @@
-/// <reference types="../shared.d.ts" />
+import type { SignalMap, SignalObject } from "~/awesome/shared";
 
 /**
  * The object oriented programming base class used by various Awesome widgets
@@ -8,7 +8,7 @@
  * It provides basic observer pattern, signaling and dynamic properties.
  * @noSelf
  */
-interface GearsObject {
+export interface GearsObject {
 	<M extends SignalMap, C extends {}>(args: {
 		/**
 		 * Automatically call getters and setters

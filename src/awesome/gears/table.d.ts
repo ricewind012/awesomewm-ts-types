@@ -2,7 +2,7 @@
  * Various functions to work with tables.
  * @noSelf
  */
-interface GearsTable {
+export interface GearsTable {
 	/**
 	 * Join all tables given as arguments. This will iterate over all tables and
 	 * insert their entries into a new table.

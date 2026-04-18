@@ -6,7 +6,7 @@
  *
  * @noSelf
  */
-interface AwfulUtil {
+export interface AwfulUtil {
 	/**
 	 * Eval Lua code.
 	 *

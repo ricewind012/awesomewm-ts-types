@@ -2,7 +2,7 @@
  * Various string manipulation and introspection fuctions.
  * @noSelf
  */
-interface GearsString {
+export interface GearsString {
 	/**
 	 * Escape a string from XML char. Useful to set raw text in textbox.
 	 *

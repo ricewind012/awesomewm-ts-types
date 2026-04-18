@@ -7,7 +7,7 @@ interface ColorPattern<T extends string> {
 /**
  * @noSelf
  */
-interface GearsColor {
+export interface GearsColor {
 	(): cairo_solid_pattern;
 
 	/**

@@ -1,9 +1,13 @@
-/// <reference types="../shared.d.ts" />
+import type { AwesomeClient } from "~/awesome/client";
+import type { AwesomeScreen } from "~/awesome/screen";
+import type { Direction } from "~/awesome/shared";
+import type { AwesomeTag } from "~/awesome/tag";
+import type { NonFunctionKeys } from "~/utils";
 
 /**
  * @noSelf
  */
-interface AwfulClient {
+export interface AwfulClient {
 	/**
 	 * Get a client by its relative index to another client. If no client is passed,
 	 * the focused client will be used.

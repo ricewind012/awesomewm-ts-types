@@ -1,25 +1,26 @@
-/// <reference types="./button.d.ts" />
-/// <reference types="./client.d.ts" />
-/// <reference types="./completion.d.ts" />
-/// <reference types="./key.d.ts" />
-/// <reference types="./keyboard.d.ts" />
-/// <reference types="./layout.d.ts" />
-/// <reference types="./menu.d.ts" />
-/// <reference types="./mouse.d.ts" />
-// TODO
-//// <reference types="./permissions.d.ts" />
-/// <reference types="./placement.d.ts" />
-/// <reference types="./prompt.d.ts" />
-/// <reference types="./screen.d.ts" />
-/// <reference types="./spawn.d.ts" />
-/// <reference types="./tag.d.ts" />
-/// <reference types="./widgets" />
-/// <reference types="./util.d.ts" />
-
 /**
  * @noResolution
  */
 declare module "awful" {
+	import type { AwfulButton } from "~/awesome/awful/button";
+	import type { AwfulClient } from "~/awesome/awful/client";
+	import type { AwfulCompletion } from "~/awesome/awful/completion";
+	import type { AwfulKey } from "~/awesome/awful/key";
+	import type { AwfulKeyboard } from "~/awesome/awful/keyboard";
+	import type { AwfulLayout } from "~/awesome/awful/layout";
+	import type { AwfulMenu, MenuItem } from "~/awesome/awful/menu";
+	import type { AwfulMouse } from "~/awesome/awful/mouse";
+	import type { AwfulPlacement } from "~/awesome/awful/placement";
+	import type { AwfulPrompt } from "~/awesome/awful/prompt";
+	import type { AwfulScreen } from "~/awesome/awful/screen";
+	import type { AwfulSpawn } from "~/awesome/awful/spawn";
+	import type { AwfulTag } from "~/awesome/awful/tag";
+	import type { AwfulUtil } from "~/awesome/awful/util";
+	import type { AwfulHotkeysPopup } from "~/awesome/awful/widgets/hotkeys_popup";
+	import type { AwfulPopup } from "~/awesome/awful/widgets/popup";
+	import type { AwfulTitlebar } from "~/awesome/awful/widgets/titlebar";
+	import type { AwfulWallpaper } from "~/awesome/awful/widgets/wallpaper";
+
 	export const button: AwfulButton;
 	export const client: AwfulClient;
 	export const completion: AwfulCompletion;
@@ -38,4 +39,6 @@ declare module "awful" {
 	export const titlebar: AwfulTitlebar;
 	export const util: AwfulUtil;
 	export const wallpaper: AwfulWallpaper;
+
+	export type { MenuItem };
 }

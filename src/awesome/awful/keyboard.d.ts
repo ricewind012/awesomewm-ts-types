@@ -1,10 +1,7 @@
-/// <reference types="../client.d.ts" />
-/// <reference types="./button.d.ts" />
-
 /**
  * @noSelf
  */
-interface AwfulKeyboard {
+export interface AwfulKeyboard {
 	/**
 	 * Add an
 	 * [awful.button](https://awesomewm.org/apidoc/input_handling/awful.button.html#)

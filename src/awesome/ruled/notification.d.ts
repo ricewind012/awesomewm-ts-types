@@ -1,3 +1,6 @@
+import type { AwesomeClient } from "~/awesome/client";
+import type { NaughtyNotification } from "~/awesome/naughty/index";
+
 /**
  * @noSelf
  */

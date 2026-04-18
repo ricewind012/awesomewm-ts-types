@@ -1,13 +1,16 @@
-//// <reference types="./container" />
-/// <reference types="./hierarchy.d.ts" />
-/// <reference types="./layout" />
-/// <reference types="./widget" />
-
 /**
  * @noResolution
+ * @noSelf
  */
 declare module "wibox" {
-	interface Wibox {
+	import type { AwesomeScreen } from "~/awesome/screen";
+	import type { Rectangle } from "~/awesome/shared";
+
+	import type { WiboxHierarchy } from "~/awesome/wibox/hierarchy";
+	import type { WiboxLayout } from "~/awesome/wibox/layout/index";
+	import type { WiboxWidgetBase } from "~/awesome/wibox/widget/base";
+
+	export interface Wibox {
 		/**
 		 * Get or set wibox geometry. That's the same as accessing or setting
 		 * the x, y, width or height properties of a wibox.
@@ -86,7 +89,7 @@ declare module "wibox" {
 		buttons: AwfulButtonInstance[];
 	}
 
-	interface WiboxSharedProps {
+	export interface WiboxSharedProps {
 		/**
 		 * Border width.
 		 */

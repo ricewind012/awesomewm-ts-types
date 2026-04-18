@@ -11,7 +11,7 @@
  * @param func The function to call.
  * @param args Arguments to the function.
  */
-type GearsProtectedCall = <
+export type GearsProtectedCall = <
 	ReturnValue extends {},
 	T extends (...args: unknown[]) => ReturnValue,
 >(

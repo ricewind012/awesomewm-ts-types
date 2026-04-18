@@ -9,7 +9,7 @@ interface GearsCacheObject<T extends GearsCacheCallback> {
  * Cache object with data that can be garbage-collected.
  * @noSelf
  */
-interface GearsCache {
+export interface GearsCache {
 	/**
 	 * Create a new cache object. A cache keeps some data that can be
 	 * garbage-collected at any time, but might be useful to keep.

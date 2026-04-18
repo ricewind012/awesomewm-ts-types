@@ -1,10 +1,10 @@
-/// <reference types="../shared.d.ts" />
+import type { Direction, Rectangle } from "~/awesome/shared";
 
 /**
  * Helper functions used to compute geometries.
  * @noSelf
  */
-interface GearsGeometry {
+export interface GearsGeometry {
 	rectangle: {
 		/**
 		 * Get the square distance between a rectangle and a point.

@@ -1,3 +1,8 @@
+import type { NaughtyAction, NotificationProperties } from "naughty";
+
+import type { AwesomeClient } from "~/awesome/client";
+import type { AwesomeTag } from "~/awesome/tag";
+
 interface RuledClientRuleRule {
 	class?: string | string[];
 	instance?: string | string[];
@@ -87,7 +92,7 @@ interface RuledClientRule {
 /**
  * @noSelf
  */
-interface RuledClient {
+export interface RuledClient {
 	/**
 	 * Add a new rule to the default set.
 	 *

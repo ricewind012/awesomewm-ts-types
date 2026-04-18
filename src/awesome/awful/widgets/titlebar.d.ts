@@ -1,5 +1,5 @@
-/// <reference types="../../wibox/widget/base.d.ts" />
-/// <reference types="../../client.d.ts" />
+import type { AwesomeClient } from "~/awesome/client";
+import type { BaseWidget } from "~/awesome/wibox/widget/base";
 
 type TitlebarPosition = "top" | "left" | "right" | "bottom";
 
@@ -24,7 +24,7 @@ interface WiboxDrawable {
 /**
  * @noSelf
  */
-interface AwfulTitlebar {
+export interface AwfulTitlebar {
 	/**
 	 * Create a new titlebar for the given client.
 	 *

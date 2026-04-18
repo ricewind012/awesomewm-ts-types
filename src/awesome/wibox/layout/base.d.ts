@@ -1,6 +1,6 @@
-/// <reference types="../widget/base.d.ts" />
+import type { BaseWidget } from "~/awesome/wibox/widget/base";
 
-interface WiboxLayoutBaseWidget extends BaseWidget {
+export interface WiboxLayoutBaseWidget extends BaseWidget {
 	/**
 	 * Add some widgets to the given layout.
 	 *

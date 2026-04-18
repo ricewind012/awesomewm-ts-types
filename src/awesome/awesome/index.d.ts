@@ -1,3 +1,5 @@
+import type { SignalMap, SignalObject } from "~/awesome/shared";
+
 declare enum UnixSignal {
 	SIGHUP = 1,
 	SIGINT = 2,
@@ -200,7 +202,7 @@ type AwesomeGlobalSignalMap = SignalMap & {
 	"spawn::timeout": (this: void, arg: table) => void;
 };
 
-interface AwesomeGlobal extends SignalObject<AwesomeGlobalSignalMap> {
+export interface AwesomeGlobal extends SignalObject<AwesomeGlobalSignalMap> {
 	/**
 	 * Execute another application, probably a window manager, to replace awesome.
 	 * @param cmd The command line to execute.

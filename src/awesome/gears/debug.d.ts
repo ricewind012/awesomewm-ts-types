@@ -2,7 +2,7 @@
  * Utility functions to make development easier.
  * @noSelf
  */
-interface GearsDebug {
+export interface GearsDebug {
 	/**
 	 * Inspect the value in data.
 	 *

@@ -2,7 +2,7 @@
  * Various math related functions.
  * @noSelf
  */
-interface GearsMath {
+export interface GearsMath {
 	/**
 	 * Return all subsets of a specific set. This function, giving a set, will
 	 * return all subset it.

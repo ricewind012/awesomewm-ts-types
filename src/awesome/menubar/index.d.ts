@@ -1,13 +1,14 @@
-/// <reference types="../screen.d.ts" />
-/// <reference types="./menu_gen.d.ts" />
-/// <reference types="./utils.d.ts" />
-
 /**
  * Menubar module, which aims to provide a freedesktop menu alternative.
  * @noResolution
  * @noSelf
  */
 declare module "menubar" {
+	import type { MenubarMenuGen } from "~/awesome/menubar/menu_gen";
+	import type { MenubarUtils } from "~/awesome/menubar/utils";
+	import type { AwesomeScreen } from "~/awesome/screen";
+	import type { Rectangle } from "~/awesome/shared";
+
 	/**
 	 * Refresh menubar's cache by reloading .desktop files.
 	 * @param scr Screen.

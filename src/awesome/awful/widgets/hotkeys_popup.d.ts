@@ -1,12 +1,12 @@
-/// <reference types="../client.d.ts" />
-/// <reference types="../screen.d.ts" />
+import type { AwesomeClient } from "~/awesome/client";
+import type { AwesomeScreen } from "~/awesome/screen";
 
 /**
  * Popup widget which shows current hotkeys and their descriptions.
  *
  * @noSelf
  */
-interface AwfulHotkeysPopup {
+export interface AwfulHotkeysPopup {
 	/**
 	 * This is the same as `awful.hotkeys_popup.widget.show_help`.
 	 *

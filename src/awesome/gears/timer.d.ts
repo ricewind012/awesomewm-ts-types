@@ -1,4 +1,4 @@
-/// <reference types="../shared.d.ts" />
+import type { SignalMap, SignalObject } from "~/awesome/shared";
 
 type TimerSignalMap = SignalMap & {
 	/**
@@ -72,7 +72,7 @@ interface Timer
  * Class to execute code at specific intervals.
  * @noSelf
  */
-interface GearsTimer {
+export interface GearsTimer {
 	/**
 	 * Create a new timer object.
 	 *

@@ -1,4 +1,5 @@
-/// <reference types="./flex.d.ts" />
+import type { WiboxLayoutFlexWidget } from "~/awesome/wibox/layout/flex";
+import type { BaseWidget } from "~/awesome/wibox/widget/base";
 
 declare enum RatioLayoutInnerFillStrategy {
 	/** Honor the ratio and do not redistribute the space. */
@@ -109,7 +110,7 @@ interface WiboxLayoutRatioWidget extends WiboxLayoutFlexWidget {
 /**
  * @noSelf
  */
-interface WiboxLayoutRatio {
+export interface WiboxLayoutRatio {
 	/**
 	 * Returns a new horizontal ratio layout. A ratio layout shares the
 	 * available space. equally among all widgets. Widgets can be added via

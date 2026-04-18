@@ -1,11 +1,11 @@
-/// <reference types="../client.d.ts" />
-/// <reference types="../screen.d.ts" />
-/// <reference types="../shared.d.ts" />
+import type { AwesomeClient } from "~/awesome/client";
+import type { AwesomeScreen, AwesomeScreenViewport } from "~/awesome/screen";
+import type { Direction } from "~/awesome/shared";
 
 /**
  * @noSelf
  */
-interface AwfulScreen {
+export interface AwfulScreen {
 	/**
 	 * Return the screen index corresponding to the given (pixel) coordinates.
 	 *

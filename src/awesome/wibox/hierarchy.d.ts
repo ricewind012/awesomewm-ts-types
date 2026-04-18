@@ -1,3 +1,5 @@
+import type { BaseWidget } from "./widget/base";
+
 interface WidgetHierarchy {
 	/**
 	 * Update a widget hierarchy with some new state.
@@ -108,7 +110,7 @@ interface WidgetHierarchy {
 /**
  * @noSelf
  */
-interface WiboxHierarchy {
+export interface WiboxHierarchy {
 	/**
 	 * Create a new widget hierarchy that has no parent.
 	 *

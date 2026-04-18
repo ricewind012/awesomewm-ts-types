@@ -3,7 +3,7 @@
  *
  * @noSelf
  */
-interface AwfulPrompt {
+export interface AwfulPrompt {
 	/**
 	 * Run a prompt in a box.
 	 *

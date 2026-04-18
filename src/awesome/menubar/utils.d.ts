@@ -3,7 +3,7 @@ type DesktopFileEntry = Record<string, boolean | string | string[]>;
 /**
  * Utility functions for the `menubar` module.
  */
-interface MenubarUtils {
+export interface MenubarUtils {
 	/**
 	 * Remove CR newline from the end of the string.
 	 * @param s The string to trim

@@ -1,5 +1,11 @@
 import type { Wibox, WiboxSharedProps } from "wibox";
 
+import type { Rectangle } from "~/awesome/shared";
+import type { BaseWidget } from "~/awesome/wibox/widget/base";
+
+import type { MouseButtonName } from "../button";
+import type { DrawableNextToAnchor, PlacementCommonArgs } from "../placement";
+
 type PopupPosition = "left" | "right" | "top" | "bottom";
 
 interface AwfulPopupInstance extends Wibox {
@@ -36,7 +42,7 @@ interface AwfulPopupInstance extends Wibox {
  *
  * @noSelf
  */
-interface AwfulPopup {
+export interface AwfulPopup {
 	/**
 	 * Create a new popup build around a passed in widget.
 	 */

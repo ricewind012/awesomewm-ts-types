@@ -1,3 +1,4 @@
+import type { AwesomeClient } from "awesomewm/awesome/client";
 import * as awful from "awful";
 import * as wibox from "wibox";
 

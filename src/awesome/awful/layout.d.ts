@@ -1,4 +1,7 @@
-/// <reference types="../client" />
+import type { AwesomeClient } from "~/awesome/client";
+import type { AwesomeScreen } from "~/awesome/screen";
+import type { Rectangle } from "~/awesome/shared";
+import type { AwesomeTag } from "~/awesome/tag";
 
 // This has additional parameters depending on the layout.
 interface AwesomeLayout {
@@ -7,11 +10,11 @@ interface AwesomeLayout {
 }
 
 interface AwesomeLayoutParams {
-	workarea: AwesomeClientGeometry;
+	workarea: Rectangle;
 	geometry: Rectangle;
 	clients: AwesomeClient[];
 	screen: number;
-	padding: AwesomeClientStrut | number;
+	padding: AwesomeClient | number;
 	useless_gap: number;
 	geometries: never;
 }
@@ -19,7 +22,7 @@ interface AwesomeLayoutParams {
 /**
  * @noSelf
  */
-interface AwfulLayout {
+export interface AwfulLayout {
 	/**
 	 * Return the tag layout index (from {@link layouts}).
 	 *

@@ -1,3 +1,7 @@
+import type { AwesomeScreen } from "~/awesome/screen";
+import type { Rectangle } from "~/awesome/shared";
+import type { BaseWidget } from "~/awesome/wibox/widget/base";
+
 interface WallpaperInstanceOptions {
 	/**
 	 * The wallpaper widget.
@@ -159,7 +163,7 @@ interface WallpaperInstance extends WallpaperInstanceOptions {
 /**
  * @noSelf
  */
-interface AwfulWallpaper {
+export interface AwfulWallpaper {
 	(
 		// https://github.com/TypeScriptToLua/TypeScriptToLua/issues/1661
 		this: void,

@@ -5,7 +5,7 @@
  * I/O operations, it is better to use `lgi.Gio` async functions.
  * @noSelf
  */
-interface GearsFilesystem {
+export interface GearsFilesystem {
 	/**
 	 * Create a directory, including all missing parent directories.
 	 *

@@ -1,4 +1,4 @@
-interface GearsMatrixInstance {
+export interface GearsMatrixInstance {
 	/**
 	 * Translate this matrix
 	 *

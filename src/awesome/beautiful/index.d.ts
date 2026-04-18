@@ -1,8 +1,3 @@
-/// <reference types="./gtk.d.ts" />
-/// <reference types="./theme_assets.d.ts" />
-/// <reference types="./xresources.d.ts" />
-/// <reference types="../../todo.d.ts" />
-
 interface Theme {
 	/**
 	 * The default font.
@@ -70,6 +65,10 @@ interface Theme {
  * @noSelf
  */
 declare module "beautiful" {
+	import type { BeautifulGtk } from "~/awesome/beautiful/gtk";
+	import type { BeautifulThemeAssets } from "~/awesome/beautiful/theme_assets";
+	import type { BeautifulXresources } from "~/awesome/beautiful/xresources";
+
 	/**
 	 * Get the current theme.
 	 * @returns The current theme table.

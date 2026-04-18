@@ -1,4 +1,12 @@
-/// <reference types="./shared.d.ts" />
+import type { AwesomeClient } from "~/awesome/client";
+import type {
+	Direction,
+	Drawable,
+	Rectangle,
+	SignalMap,
+	SignalObject,
+} from "~/awesome/shared";
+import type { AwesomeTag } from "~/awesome/tag";
 
 interface AwesomeScreenOutput {
 	/**
@@ -22,7 +30,7 @@ interface AwesomeScreenOutput {
 	viewport_id: string;
 }
 
-interface AwesomeScreenViewport {
+export interface AwesomeScreenViewport {
 	geometry: Rectangle;
 
 	/**
@@ -247,7 +255,7 @@ type AwesomeScreenSignalMap = SignalMap & {
 	"tag::history::update": () => void;
 };
 
-interface AwesomeScreen extends SignalObject<AwesomeScreenSignalMap> {
+export interface AwesomeScreen extends SignalObject<AwesomeScreenSignalMap> {
 	/**
 	 * Remove a screen.
 	 */
@@ -313,7 +321,7 @@ interface AwesomeScreen extends SignalObject<AwesomeScreenSignalMap> {
 		/**
 		 * Apply some margins on the output.
 		 */
-		margins?: number | AwesomeClientGeometry;
+		margins?: number | Rectangle;
 
 		/**
 		 * Use this tag's screen.
@@ -330,7 +338,7 @@ interface AwesomeScreen extends SignalObject<AwesomeScreenSignalMap> {
 		 * {@link honor_workarea}.
 		 */
 		bounding_rect?: Rectangle;
-	}): AwesomeClientGeometry;
+	}): Rectangle;
 
 	/**
 	 * Get the list of visible clients for the screen.
@@ -376,7 +384,7 @@ interface AwesomeScreen extends SignalObject<AwesomeScreenSignalMap> {
 	/**
 	 * The screen coordinates.
 	 */
-	readonly geometry: AwesomeClientGeometry;
+	readonly geometry: Rectangle;
 
 	/**
 	 * The internal screen number.
@@ -415,7 +423,7 @@ interface AwesomeScreen extends SignalObject<AwesomeScreenSignalMap> {
 	 *
 	 * It can be modified be altering the `wibox` or `client` struts.
 	 */
-	readonly workarea: AwesomeClientGeometry;
+	readonly workarea: Rectangle;
 
 	/**
 	 * The area where clients can be tiled.
@@ -424,7 +432,7 @@ interface AwesomeScreen extends SignalObject<AwesomeScreenSignalMap> {
 	 * {@link padding} property, `wibox.struts` and {@link AwesomeClient.struts}
 	 * to modify this area.
 	 */
-	readonly tiling_area: AwesomeClientGeometry;
+	readonly tiling_area: Rectangle;
 
 	/**
 	 * Take a screenshot of the physical screen.
@@ -436,7 +444,7 @@ interface AwesomeScreen extends SignalObject<AwesomeScreenSignalMap> {
 	 *
 	 * This adds a "buffer" section on each side of the screen.
 	 */
-	padding: AwesomeClientGeometry | number;
+	padding: Rectangle | number;
 
 	/**
 	 * A list of outputs for this screen with their size in mm.
@@ -540,7 +548,8 @@ interface AwesomeScreen extends SignalObject<AwesomeScreenSignalMap> {
 	inch_minimum_size: number;
 }
 
-interface AwesomeGlobalScreen extends SignalObject<AwesomeScreenSignalMap> {
+export interface AwesomeGlobalScreen
+	extends SignalObject<AwesomeScreenSignalMap> {
 	/**
 	 * Add a fake screen.
 	 *

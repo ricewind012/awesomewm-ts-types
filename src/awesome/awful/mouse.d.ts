@@ -1,5 +1,6 @@
-/// <reference types="../client.d.ts" />
-/// <reference types="./button.d.ts" />
+import type { AwesomeClient } from "~/awesome/client";
+import type { AwesomeScreen } from "~/awesome/screen";
+import type { Rectangle } from "~/awesome/shared";
 
 type ClientCorner =
 	| "auto"
@@ -29,7 +30,7 @@ declare enum MouseResizeMode {
  *
  * @noSelf
  */
-interface AwfulMouse {
+export interface AwfulMouse {
 	/**
 	 * Add an
 	 * [awful.button](https://awesomewm.org/apidoc/input_handling/awful.button.html#)
@@ -280,7 +281,7 @@ interface AwfulMouse {
 /**
  * @noSelf
  */
-interface AwesomeGlobalMouse {
+export interface AwesomeGlobalMouse {
 	/**
 	 * Get the client or any object which is under the pointer.
 	 *

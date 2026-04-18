@@ -1,3 +1,5 @@
+import type { AwesomeClient } from "~/awesome/client";
+
 type EasyAsyncCallback = (
 	/**
 	 * Output on stdout.
@@ -33,7 +35,7 @@ type ExitReason = "exit" | "signal";
  *
  * @noSelf
  */
-interface AwfulSpawn {
+export interface AwfulSpawn {
 	/**
 	 * Spawn a program, and optionally apply properties and/or run a callback.
 	 *

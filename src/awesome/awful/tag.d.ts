@@ -1,7 +1,10 @@
+import type { AwesomeScreen } from "~/awesome/screen";
+import type { AwesomeTag, AwesomeTagSignalMap } from "~/awesome/tag";
+
 /**
  * @noSelf
  */
-interface AwfulTag {
+export interface AwfulTag {
 	/**
 	 * Create a set of tags and attach it to a screen.
 	 *

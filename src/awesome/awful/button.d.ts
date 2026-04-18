@@ -1,5 +1,3 @@
-/// <reference types="../client" />
-
 declare enum MouseButtonName {
 	LEFT,
 	MIDDLE,
@@ -25,7 +23,7 @@ interface AwfulButtonInstance {
 /**
  * @noSelf
  */
-interface AwfulButton {
+export interface AwfulButton {
 	/**
 	 * Create a new button to use as binding.
 	 */

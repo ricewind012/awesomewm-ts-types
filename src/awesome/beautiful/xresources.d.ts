@@ -1,10 +1,10 @@
-/// <reference types="../screen.d.ts" />
+import type { AwesomeScreen } from "~/awesome/screen";
 
 /**
  * Library for getting xrdb data.
  * @noSelf
  */
-interface BeautifulXresources {
+export interface BeautifulXresources {
 	/**
 	 * Get current base colorscheme from xrdb.
 	 * @returns Color table.

@@ -1,23 +1,22 @@
-/// <reference types="./cache.d.ts" />
-/// <reference types="./color.d.ts" />
-/// <reference types="./debug.d.ts" />
-/// <reference types="./filesystem.d.ts" />
-/// <reference types="./geometry.d.ts" />
-/// <reference types="./object.d.ts" />
-/// <reference types="./protected_call.d.ts" />
-/// <reference types="./math.d.ts" />
-/// <reference types="./matrix.d.ts" />
-//// <reference types="./sort.d.ts" />
-/// <reference types="./string.d.ts" />
-/// <reference types="./surface.d.ts" />
-/// <reference types="./table.d.ts" />
-/// <reference types="./timer.d.ts" />
-/// <reference types="./wallpaper.d.ts" />
-
 /**
  * @noResolution
  */
 declare module "gears" {
+	import type { GearsCache } from "~/awesome/gears/cache";
+	import type { GearsColor } from "~/awesome/gears/color";
+	import type { GearsDebug } from "~/awesome/gears/debug";
+	import type { GearsFilesystem } from "~/awesome/gears/filesystem";
+	import type { GearsGeometry } from "~/awesome/gears/geometry";
+	import type { GearsMath } from "~/awesome/gears/math";
+	import type { GearsMatrix } from "~/awesome/gears/matrix";
+	import type { GearsObject } from "~/awesome/gears/object";
+	import type { GearsProtectedCall } from "~/awesome/gears/protected_call";
+	import type { GearsString } from "~/awesome/gears/string";
+	import type { GearsSurface } from "~/awesome/gears/surface";
+	import type { GearsTable } from "~/awesome/gears/table";
+	import type { GearsTimer } from "~/awesome/gears/timer";
+	import type { GearsWallpaper } from "~/awesome/gears/wallpaper";
+
 	export const cache: GearsCache;
 	export const color: GearsColor;
 	export const debug: GearsDebug;

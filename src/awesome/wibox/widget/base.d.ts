@@ -1,4 +1,4 @@
-/// <reference types="../../awful/button.d.ts" />
+import type { Drawable, SignalMap, SignalObject } from "~/awesome/shared";
 
 interface FindWidgetsResult {
 	/**
@@ -141,7 +141,7 @@ type BaseWidgetSignalMap = SignalMap & {
 	) => void;
 };
 
-interface BaseWidget extends SignalObject<BaseWidgetSignalMap> {
+export interface BaseWidget extends SignalObject<BaseWidgetSignalMap> {
 	/**
 	 * Add a new `awful.button` to this widget.
 	 *
@@ -235,7 +235,7 @@ interface BaseWidget extends SignalObject<BaseWidgetSignalMap> {
 /**
  * @noSelf
  */
-interface WiboxWidgetBase {
+export interface WiboxWidgetBase {
 	/**
 	 * Create a widget from a declarative description.
 	 *

@@ -1,3 +1,13 @@
+import type { AwesomeClient } from "~/awesome/client";
+import type { AwesomeScreen } from "~/awesome/screen";
+import type {
+	AwesomeMouse,
+	Direction,
+	Drawable,
+	Rectangle,
+} from "~/awesome/shared";
+import type { AwesomeTag } from "~/awesome/tag";
+
 declare enum DrawableNextToAnchor {
 	/**
 	 * The closest to the origin (0, 0)
@@ -96,7 +106,7 @@ interface PlacementCommonArgs {
 /**
  * @noSelf
  */
-interface AwfulPlacement {
+export interface AwfulPlacement {
 	/**
 	 * Move a drawable to the closest corner of the parent geometry (such as the
 	 * screen).

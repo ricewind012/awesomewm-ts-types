@@ -1,4 +1,5 @@
-/// <reference types="./shared.d.ts" />
+import type { AwesomeClient } from "./client";
+import type { SignalMap, SignalObject } from "./shared";
 
 type AwesomeTagSignalMap = SignalMap & {
 	/**
@@ -82,7 +83,7 @@ type AwesomeTagSignalMap = SignalMap & {
 	"removal-pending": () => void;
 };
 
-interface AwesomeTag extends SignalObject<AwesomeTagSignalMap> {
+export interface AwesomeTag extends SignalObject<AwesomeTagSignalMap> {
 	/**
 	 * Get or set the clients attached to this tag.
 	 *
@@ -251,4 +252,4 @@ interface AwesomeTag extends SignalObject<AwesomeTagSignalMap> {
 	column_count: number;
 }
 
-interface AwesomeGlobalTag extends SignalObject<AwesomeTagSignalMap> {}
+export interface AwesomeGlobalTag extends SignalObject<AwesomeTagSignalMap> {}

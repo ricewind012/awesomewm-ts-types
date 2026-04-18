@@ -76,7 +76,7 @@ interface AwfulKeyInstance extends AwfulButtonInstance {
 /**
  * @noSelf
  */
-interface AwfulKey {
+export interface AwfulKey {
 	/**
 	 * Create a new key binding.
 	 */

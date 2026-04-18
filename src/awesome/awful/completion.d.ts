@@ -1,7 +1,7 @@
 /**
  * @noSelf
  */
-interface AwfulCompletion {
+export interface AwfulCompletion {
 	/**
 	 * Enable programmable bash completion in `awful.completion.bash` at the price
 	 * of a slight overhead.

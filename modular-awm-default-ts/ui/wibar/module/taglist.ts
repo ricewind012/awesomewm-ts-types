@@ -1,3 +1,4 @@
+import type { AwesomeTag } from "awesomewm/awesome/tag";
 import * as awful from "awful";
 
 import { mod } from "../../../binds/mod";

@@ -1,4 +1,4 @@
-/// <reference types="../screen.d.ts" />
+import type { AwesomeScreen } from "~/awesome/screen";
 
 /**
  * Functions for setting the wallpaper.
@@ -6,7 +6,7 @@
  * @deprecated Please use {@link awful.wallpaper}.
  * @noSelf
  */
-interface GearsWallpaper {
+export interface GearsWallpaper {
 	/**
 	 * Prepare the needed state for setting a wallpaper. This function returns a
 	 * cairo context through which a wallpaper can be drawn. The context is only

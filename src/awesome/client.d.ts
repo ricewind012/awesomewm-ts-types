@@ -1,7 +1,5 @@
-/// <reference types="../todo.d.ts" />
-/// <reference types="../utils.d.ts" />
-/// <reference types="./screen.d.ts" />
-/// <reference types="./shared.d.ts" />
+import type { AwesomeScreen } from "~/awesome/screen";
+import type { Rectangle, SignalMap, SignalObject } from "~/awesome/shared";
 
 type AwesomeClientSignalMap = SignalMap & {
 	/**
@@ -323,14 +321,7 @@ type AwesomeClientSignalMap = SignalMap & {
 	unmarked: never;
 };
 
-interface AwesomeClientGeometry {
-	x: number;
-	y: number;
-	width: number;
-	height: number;
-}
-
-interface AwesomeClientStrut {
+export interface AwesomeClientStrut {
 	left: number;
 	right: number;
 	top: number;
@@ -340,7 +331,7 @@ interface AwesomeClientStrut {
 /**
  * @see https://awesomewm.org/apidoc/core_components/client.html
  */
-interface AwesomeClient
+export interface AwesomeClient
 	extends Omit<SignalObject<AwesomeClientSignalMap>, "disconnect_signal"> {
 	/**
 	 * Return client struts (reserved space at the edge of the screen).
@@ -412,7 +403,7 @@ interface AwesomeClient
 	 *
 	 * @returns A table with client geometry and coordinates.
 	 */
-	geometry(geo?: AwesomeClientGeometry): AwesomeClientGeometry;
+	geometry(geo?: Rectangle): Rectangle;
 
 	/**
 	 * Apply size hints to a size.
@@ -938,7 +929,8 @@ interface AwesomeClient
 	readonly active: boolean;
 }
 
-interface AwesomeGlobalClient extends SignalObject<AwesomeClientSignalMap> {
+export interface AwesomeGlobalClient
+	extends SignalObject<AwesomeClientSignalMap> {
 	/**
 	 * Get the number of instances.
 	 * @returns The number of client objects alive.

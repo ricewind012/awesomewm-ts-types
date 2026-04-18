@@ -1,4 +1,7 @@
-type MenuItem =
+import type { Theme } from "~/awesome/beautiful/index";
+import type { AwesomeClient } from "~/awesome/client";
+
+export type MenuItem =
 	| [string, MenuItem[] | string | (() => void)]
 	| [
 			string,
@@ -91,7 +94,7 @@ interface MenuCreationOptions {
 /**
  * @noSelf
  */
-interface AwfulMenu {
+export interface AwfulMenu {
 	/**
 	 * Create a menu popup.
 	 *

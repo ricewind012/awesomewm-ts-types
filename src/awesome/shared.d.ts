@@ -1,20 +1,21 @@
-/// <reference types="./client.d.ts" />
+import type { AwesomeClient } from "./client";
+import type { BaseWidget } from "./wibox/widget/base";
 
-type Direction = "up" | "down" | "left" | "right";
+export type Direction = "up" | "down" | "left" | "right";
 
-type AwesomeMouse = any;
-type Drawable = AwesomeClient | AwesomeMouse | BaseWidget;
+export type AwesomeMouse = any;
+export type Drawable = AwesomeClient | AwesomeMouse | BaseWidget;
 
-interface Rectangle {
+export interface Rectangle {
 	x: number;
 	y: number;
 	width: number;
 	height: number;
 }
 
-type SignalMap = Record<string, (...args: unknown[]) => void>;
+export type SignalMap = Record<string, (...args: unknown[]) => void>;
 
-interface SignalObject<M extends SignalMap> {
+export interface SignalObject<M extends SignalMap> {
 	/**
 	 * Add a signal.
 	 * @param name A string with the event name.

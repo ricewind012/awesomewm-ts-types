@@ -1,4 +1,5 @@
-/// <reference types="./base.d.ts" />
+import type { WiboxLayoutBaseWidget } from "~/awesome/wibox/layout/base";
+import type { BaseWidget } from "~/awesome/wibox/widget/base";
 
 interface WiboxLayoutFixedWidget extends WiboxLayoutBaseWidget {
 	/**
@@ -32,7 +33,7 @@ interface WiboxLayoutFixedWidget extends WiboxLayoutBaseWidget {
 /**
  * @noSelf
  */
-interface WiboxLayoutFixed {
+export interface WiboxLayoutFixed {
 	/**
 	 * Returns a new horizontal fixed layout.
 	 */

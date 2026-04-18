@@ -1,4 +1,5 @@
-/// <reference types="./base.d.ts" />
+import type { WiboxLayoutBaseWidget } from "~/awesome/wibox/layout/base";
+import type { BaseWidget } from "~/awesome/wibox/widget/base";
 
 /**
  * How to use unused space.
@@ -59,7 +60,7 @@ interface WiboxLayoutAlignWidget
 /**
  * @noSelf
  */
-interface WiboxLayoutAlign {
+export interface WiboxLayoutAlign {
 	/**
 	 * Returns a new horizontal align layout.
 	 *

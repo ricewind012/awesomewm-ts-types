@@ -1,10 +1,9 @@
-/// <reference types="../screen.d.ts" />
-/// <reference types="../../todo.d.ts" />
+import type { AwesomeScreen } from "~/awesome/screen";
 
 /**
  * @noSelf
  */
-interface BeautifulThemeAssets {
+export interface BeautifulThemeAssets {
 	/**
 	 * Generate selected taglist square.
 	 *

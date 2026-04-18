@@ -1,7 +1,7 @@
 /**
  * @noSelf
  */
-interface BeautifulGtk {
+export interface BeautifulGtk {
 	/**
 	 * Get GTK+3 theme variables from GtkStyleCotext.
 	 */

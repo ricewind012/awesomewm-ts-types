@@ -1,4 +1,6 @@
-/// <reference types="./base.d.ts" />
+import type { Rectangle } from "~/awesome/shared";
+import type { WiboxLayoutBaseWidget } from "~/awesome/wibox/layout/base";
+import type { BaseWidget } from "~/awesome/wibox/widget/base";
 
 type NewGeometryPoint = (
 	geo: Rectangle,
@@ -34,7 +36,7 @@ interface WiboxLayoutManualWidget extends WiboxLayoutBaseWidget {
 /**
  * @noSelf
  */
-interface WiboxLayoutManual {
+export interface WiboxLayoutManual {
 	// https://github.com/TypeScriptToLua/TypeScriptToLua/issues/1661
 	(this: void, ...args: BaseWidget[]): WiboxLayoutManualWidget;
 }

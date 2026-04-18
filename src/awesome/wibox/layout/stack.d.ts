@@ -1,4 +1,5 @@
-/// <reference types="./fixed.d.ts" />
+import type { WiboxLayoutFixedWidget } from "~/awesome/wibox/layout/fixed";
+import type { BaseWidget } from "~/awesome/wibox/widget/base";
 
 interface WiboxLayoutStackWidget
 	extends Omit<WiboxLayoutFixedWidget, "max_widget_size"> {
@@ -42,6 +43,6 @@ interface WiboxLayoutStackWidget
 /**
  * @noSelf
  */
-interface WiboxLayoutStack {
+export interface WiboxLayoutStack {
 	(): WiboxLayoutStackWidget;
 }
