@@ -1,9 +1,7 @@
+/// <reference types="../awful/widgets/popup" />
 /// <reference types="../client.d.ts" />
 /// <reference types="../screen.d.ts" />
-
-import type { WiboxSharedProps } from "wibox";
-
-import type { AwfulPopupInstance } from "../awful/widgets/popup";
+/// <reference types="../wibox" />
 
 interface NaughtyNotificationPopupBox extends AwfulPopupInstance {}
 
@@ -52,7 +50,88 @@ interface NaughtyAction extends SignalObject<NaughtyActionSignalMap> {
 	icon_only: boolean;
 }
 
-interface NaughtyNotification {}
+/**
+ * The reason why a notification is to be closed.
+ *
+ * See [the
+ * specification](https://specifications.freedesktop.org/notification-spec/latest/protocol.html#id-1.10.4.2.4)
+ * for more details.
+ */
+declare enum NotificationClosedReason {
+	/**
+	 * The notification expired.
+	 */
+	EXPIRED,
+
+	/**
+	 * The notification was dismissed by the user.
+	 */
+	DISMISSED_BY_USER,
+
+	/**
+	 * The notification was closed by a call to the `CloseNotification` D-Bus
+	 * message command.
+	 */
+	DISMISSED_BY_COMMAND,
+
+	/**
+	 * Undefined/reserved reasons.
+	 */
+	UNDEFINED,
+}
+
+type NaughtyNotificationSignalMap = SignalMap & {
+	/**
+	 * Emitted when the notification is destroyed.
+	 *
+	 * @param reason Why it was destroyed
+	 * @param keep_visible If it was kept visible.
+	 */
+	destroyed: (reason: number, keep_visible: boolean) => void;
+};
+
+interface NaughtyNotification
+	extends SignalObject<NaughtyNotificationSignalMap> {
+	/**
+	 * Destroy notification by notification object.
+	 *
+	 * @param reason One of the reasons from notification_closed_reason
+	 * @param keep_visible If true, keep the notification visible
+	 *
+	 * @returns True if the popup was successfully destroyed, false otherwise.
+	 */
+	destroy(reason: string, keep_visible?: boolean): boolean;
+
+	/**
+	 * Set new notification timeout.
+	 *
+	 * @param new_timeout Time in seconds after which notification disappears.
+	 */
+	reset_timeout(new_timeout: number): void;
+
+	/**
+	 * Add more actions to the notification.
+	 *
+	 * @param new_actions
+	 */
+	append_actions(new_actions: table): void;
+
+	/**
+	 * Grant a permission for a notification.
+	 *
+	 * @param permission The permission name (just the name, no request::).
+	 * @param context The reason why this permission is requested.
+	 */
+	grant(permission: string, context: string): void;
+
+	/**
+	 * Deny a permission for a notification
+	 *
+	 * @param permission The permission name (just the name, no request::).
+	 * @param context The reason why this permission is requested.
+	 */
+	deny(permission: string, context: string): void;
+}
 
 interface NotificationProperties {
 	/**
@@ -578,7 +657,7 @@ declare module "naughty" {
 	 */
 	export function destroy_all_notifications(
 		screens: table,
-		reason: notification_closed_reason,
+		reason: NotificationClosedReason,
 	): true | undefined;
 
 	/**
@@ -714,7 +793,7 @@ declare module "naughty" {
 	export const layout: {
 		box(
 			this: void,
-			args: WiboxSharedProps & {
+			args: Partial<WiboxSharedProps> & {
 				notification: NaughtyNotification;
 				widget_template?: template;
 			},
@@ -723,17 +802,6 @@ declare module "naughty" {
 
 	/**
 	 * The reason why a notification is to be closed.
-	 *
-	 * See [the
-	 * specification](https://specifications.freedesktop.org/notification-spec/latest/protocol.html#id-1.10.4.2.4)
-	 * for more details.
 	 */
-	export enum notification_closed_reason {
-		too_many_on_screen = -2,
-		silent = -1,
-		expired = 1,
-		dismissed_by_user = 2,
-		dismissed_by_command = 3,
-		undefined = 4,
-	}
+	export const notification_closed_reason: typeof NotificationClosedReason;
 }

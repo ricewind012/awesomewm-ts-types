@@ -6,6 +6,7 @@ import * as naughty from "naughty";
 // to satisfy TypeScript.
 declare global {
 	interface AwesomeScreen {
+		bar: any;
 		mypromptbox: any;
 		mywibox: any;
 	}

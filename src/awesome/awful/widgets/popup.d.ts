@@ -1,4 +1,4 @@
-import type { Wibox, WiboxSharedProps } from "wibox";
+/// <reference types="../../wibox" />
 
 type PopupPosition = "left" | "right" | "top" | "bottom";
 

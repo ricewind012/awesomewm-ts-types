@@ -580,5 +580,5 @@ interface AwesomeGlobalScreen extends SignalObject<AwesomeScreenSignalMap> {
 	 * If `screen` objects are created automatically when new viewports are
 	 * detected.
 	 */
-	automatic_factory: any;
+	automatic_factory: boolean;
 }

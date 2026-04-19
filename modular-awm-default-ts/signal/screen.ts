@@ -10,7 +10,8 @@ screen.connect_signal("request::desktop_decoration", (s) => {
 	// Create all tags and attach the layouts to each of them.
 	awful.tag(user.tags, s, awful.layout.layouts[1]);
 	// Attach a wibar to each screen.
-	s.bar = wibar(s);
+	// TODO(ts): apparently this signal returns a screen, but not context?
+	(s as unknown as AwesomeScreen).bar = wibar(s as unknown as AwesomeScreen);
 });
 
 /// Wallpaper.

@@ -57,7 +57,7 @@ interface GearsMatrixInstance {
 	 *
 	 * @returns The multiplication result.
 	 */
-	multiply(other: GearsMatrixInstance | cairo.Matrix): any;
+	multiply(other: GearsMatrixInstance | cairo_matrix): any;
 
 	/**
 	 * Check if two matrices are equal.
@@ -68,7 +68,7 @@ interface GearsMatrixInstance {
 	 *
 	 * @returns True if this and the other matrix are equal.
 	 */
-	equals(other: GearsMatrixInstance | cairo.Matrix): boolean;
+	equals(other: GearsMatrixInstance | cairo_matrix): boolean;
 
 	/**
 	 * Get a string representation of this matrix
@@ -139,7 +139,7 @@ interface GearsMatrixInstance {
 	 *
 	 * @returns A cairo matrix describing the same transformation.
 	 */
-	to_cairo_matrix(): cairo.Matrix;
+	to_cairo_matrix(): cairo_matrix;
 
 	/**
 	 * Convert to a cairo matrix
@@ -148,7 +148,7 @@ interface GearsMatrixInstance {
 	 *
 	 * @returns A matrix instance describing the same transformation.
 	 */
-	from_cairo_matrix(mat: cairo.Matrix): GearsMatrixInstance;
+	from_cairo_matrix(mat: cairo_matrix): GearsMatrixInstance;
 }
 
 /**

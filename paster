@@ -1,0 +1,10 @@
+import type { AwesomeClient } from "~/awesome/client";
+import type {
+	Direction,
+	Drawable,
+	Rectangle,
+	SignalMap,
+	SignalObject,
+} from "~/awesome/shared";
+import type { AwesomeScreen } from "~/awesome/screen";
+import type { AwesomeTag } from "~/awesome/tag";
