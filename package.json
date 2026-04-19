@@ -5,13 +5,13 @@
 		"build": "tstl"
 	},
 	"dependencies": {
+		"lua-types": "^2.14.1",
 		"typescript": "5.9.3",
 		"typescript-to-lua": "^1.34.0",
 		"typescript-tstl-plugin": "^0.3.2"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.4.12",
-		"@types/awesomewm": "file:src",
-		"lua-types": "^2.14.1"
+		"@types/awesomewm": "file:src"
 	}
 }

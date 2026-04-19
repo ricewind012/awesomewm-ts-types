@@ -3,7 +3,36 @@
 /// <reference types="./screen.d.ts" />
 /// <reference types="./shared.d.ts" />
 
-type AwesomeClientSignalMap = SignalMap & {
+type AwesomeClientSignal =
+	| "scanning"
+	| "scanned"
+	| "focus"
+	| "list"
+	| "swapped"
+	| "request::manage"
+	| "request::unmanage"
+	| "button::press"
+	| "button::release"
+	| "mouse::enter"
+	| "mouse::leave"
+	| "mouse::move"
+	| "request::activate"
+	| "request::autoactivate"
+	| "request::geometry"
+	| "request::tag"
+	| "request::urgent"
+	| "request::default_mousebindings"
+	| "request::default_keybindings"
+	| "tagged"
+	| "unfocus"
+	| "untagged"
+	| "raised"
+	| "lowered"
+	| "property::floating_geometry"
+	| "request::titlebars"
+	| "request::border";
+
+interface AwesomeClientSignalMap extends SignalMap<AwesomeClientSignal> {
 	/**
 	 * Emitted when AwesomeWM is about to scan for existing clients.
 	 *
@@ -321,7 +350,7 @@ type AwesomeClientSignalMap = SignalMap & {
 	 * @deprecated
 	 */
 	unmarked: never;
-};
+}
 
 interface AwesomeClientGeometry {
 	x: number;
@@ -341,7 +370,10 @@ interface AwesomeClientStrut {
  * @see https://awesomewm.org/apidoc/core_components/client.html
  */
 interface AwesomeClient
-	extends Omit<SignalObject<AwesomeClientSignalMap>, "disconnect_signal"> {
+	extends Omit<
+		SignalObject<AwesomeClientSignal, AwesomeClientSignalMap>,
+		"disconnect_signal"
+	> {
 	/**
 	 * Return client struts (reserved space at the edge of the screen).
 	 *
@@ -938,7 +970,8 @@ interface AwesomeClient
 	readonly active: boolean;
 }
 
-interface AwesomeGlobalClient extends SignalObject<AwesomeClientSignalMap> {
+interface AwesomeGlobalClient
+	extends SignalObject<AwesomeClientSignal, AwesomeClientSignalMap> {
 	/**
 	 * Get the number of instances.
 	 * @returns The number of client objects alive.

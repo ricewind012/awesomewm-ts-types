@@ -5,7 +5,9 @@
 
 interface NaughtyNotificationPopupBox extends AwfulPopupInstance {}
 
-type NaughtyActionSignalMap = SignalMap & {
+type NaughtyActionSignals = "invoked";
+
+interface NaughtyActionSignalMap extends SignalMap<NaughtyActionSignals> {
 	/**
 	 * When a notification is invoked.
 	 *
@@ -16,9 +18,10 @@ type NaughtyActionSignalMap = SignalMap & {
 	 * @param notification The notification, if known.
 	 */
 	invoked: (action: NaughtyAction, notification: NaughtyNotification) => void;
-};
+}
 
-interface NaughtyAction extends SignalObject<NaughtyActionSignalMap> {
+interface NaughtyAction
+	extends SignalObject<NaughtyActionSignals, NaughtyActionSignalMap> {
 	/**
 	 * Execute this action.
 	 *
@@ -80,7 +83,10 @@ declare enum NotificationClosedReason {
 	UNDEFINED,
 }
 
-type NaughtyNotificationSignalMap = SignalMap & {
+type NaughtyNotificationSignals = "destroyed";
+
+interface NaughtyNotificationSignalMap
+	extends SignalMap<NaughtyNotificationSignals> {
 	/**
 	 * Emitted when the notification is destroyed.
 	 *
@@ -88,10 +94,13 @@ type NaughtyNotificationSignalMap = SignalMap & {
 	 * @param keep_visible If it was kept visible.
 	 */
 	destroyed: (reason: number, keep_visible: boolean) => void;
-};
+}
 
 interface NaughtyNotification
-	extends SignalObject<NaughtyNotificationSignalMap> {
+	extends SignalObject<
+		NaughtyNotificationSignals,
+		NaughtyNotificationSignalMap
+	> {
 	/**
 	 * Destroy notification by notification object.
 	 *
@@ -459,7 +468,17 @@ interface NotificationPreset {
 	timeout?: number;
 }
 
-type NaughtySignalMap = SignalMap & {
+type NaughtySignals =
+	| "request::display_error"
+	| "added"
+	| "destroyed"
+	| "request::display"
+	| "request::preset"
+	| "request::action_icon"
+	| "request::icon"
+	| "request::screen";
+
+interface NaughtySignalMap extends SignalMap<NaughtySignals> {
 	/**
 	 * Emitted when an error occurred and requires attention.
 	 *
@@ -623,7 +642,7 @@ type NaughtySignalMap = SignalMap & {
 		notification: NaughtyNotification,
 		context: string,
 	) => void;
-};
+}
 
 /**
  * @noResolution

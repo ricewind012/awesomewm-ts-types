@@ -51,7 +51,15 @@ interface FindWidgetsResult {
 	widget_height: number;
 }
 
-type BaseWidgetSignalMap = SignalMap & {
+type BaseWidgetSignal =
+	| "widget::layout_changed"
+	| "widget::redraw_needed"
+	| "button::press"
+	| "button::release"
+	| "mouse::enter"
+	| "mouse::leave";
+
+interface BaseWidgetSignalMap extends SignalMap<BaseWidgetSignal> {
 	/**
 	 * When the layout (size) change. This signal is emitted when the previous
 	 * results of `:layout()` and `:fit()` are no longer valid. Unless this
@@ -139,9 +147,10 @@ type BaseWidgetSignalMap = SignalMap & {
 		self: BaseWidget,
 		find_widgets_result: FindWidgetsResult,
 	) => void;
-};
+}
 
-interface BaseWidget extends SignalObject<BaseWidgetSignalMap> {
+interface BaseWidget
+	extends SignalObject<BaseWidgetSignal, BaseWidgetSignalMap> {
 	/**
 	 * Add a new `awful.button` to this widget.
 	 *

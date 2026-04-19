@@ -9,7 +9,7 @@
  * @noSelf
  */
 interface GearsObject {
-	<M extends SignalMap, C extends {}>(args: {
+	<S extends string, M extends SignalMap<S>, C extends {}>(args: {
 		/**
 		 * Automatically call getters and setters
 		 */
@@ -21,7 +21,7 @@ interface GearsObject {
 		enable_auto_signals?: boolean;
 
 		class?: C;
-	}): SignalObject<M> & C;
+	}): SignalObject<S, M> & C;
 
 	/**
 	 * Helper function to get the module name out of {@link debug.getinfo}.

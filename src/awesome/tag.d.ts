@@ -1,6 +1,18 @@
 /// <reference types="./shared.d.ts" />
 
-type AwesomeTagSignalMap = SignalMap & {
+type AwesomeTagSignal =
+	| "request::select"
+	| "request::default_layouts"
+	| "request::layouts"
+	| "tagged"
+	| "untagged"
+	| "cleared"
+	| "property::urgent"
+	| "property::urgent_count"
+	| "request::screen"
+	| "removal-pending";
+
+interface AwesomeTagSignalMap extends SignalMap<AwesomeTagSignal> {
 	/**
 	 * Emitted when a tag requests to be selected.
 	 *
@@ -80,9 +92,10 @@ type AwesomeTagSignalMap = SignalMap & {
 	 * salvage the tag.
 	 */
 	"removal-pending": () => void;
-};
+}
 
-interface AwesomeTag extends SignalObject<AwesomeTagSignalMap> {
+interface AwesomeTag
+	extends SignalObject<AwesomeTagSignal, AwesomeTagSignalMap> {
 	/**
 	 * Get or set the clients attached to this tag.
 	 *
@@ -251,4 +264,5 @@ interface AwesomeTag extends SignalObject<AwesomeTagSignalMap> {
 	column_count: number;
 }
 
-interface AwesomeGlobalTag extends SignalObject<AwesomeTagSignalMap> {}
+interface AwesomeGlobalTag
+	extends SignalObject<AwesomeTagSignal, AwesomeTagSignalMap> {}

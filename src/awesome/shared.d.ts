@@ -12,9 +12,9 @@ interface Rectangle {
 	height: number;
 }
 
-type SignalMap = Record<string, (...args: unknown[]) => void>;
+type SignalMap<S extends string> = Record<S, (...args: any[]) => void>;
 
-interface SignalObject<M extends SignalMap> {
+interface SignalObject<S extends string, M extends SignalMap<S>> {
 	/**
 	 * Add a signal.
 	 * @param name A string with the event name.

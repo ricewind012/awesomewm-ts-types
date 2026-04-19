@@ -1,60 +1,22 @@
 /// <reference types="./shared.d.ts" />
 
-interface AwesomeScreenOutput {
-	/**
-	 * The screen physical width.
-	 */
-	mm_width: number;
+type AwesomeScreenSignal =
+	| "scanning"
+	| "scanned"
+	| "primary_changed"
+	| "added"
+	| "removed"
+	| "list"
+	| "swapped"
+	| "property::viewports"
+	| "request::desktop_decoration"
+	| "request::wallpaper"
+	| "request::create"
+	| "request::remove"
+	| "request::resize"
+	| "tag::history::update";
 
-	/**
-	 * The screen physical height.
-	 */
-	mm_height: number;
-
-	/**
-	 * The output name.
-	 */
-	name: string;
-
-	/**
-	 * The identifier of the viewport this output corresponds to.
-	 */
-	viewport_id: string;
-}
-
-interface AwesomeScreenViewport {
-	geometry: Rectangle;
-
-	/**
-	 * An identifier for this viewport (by pixel resolution). It will not change
-	 * when outputs are modified, but will change when the resolution changes.
-	 * Note that if it fully disappear, the next time an viewport with the same
-	 * resolution appears, it will have a different `id`.
-	 */
-	id?: number;
-
-	/**
-	 * All outputs sharing this viewport.
-	 */
-	outputs: table;
-
-	/**
-	 * The DPI of the most dense output.
-	 */
-	maximum_dpi: number;
-
-	/**
-	 * The DPI of the most least output.
-	 */
-	minimum_dpi: number;
-
-	/**
-	 * The optimal DPI.
-	 */
-	preferred_dpi: number;
-}
-
-type AwesomeScreenSignalMap = SignalMap & {
+interface AwesomeScreenSignalMap extends SignalMap<AwesomeScreenSignal> {
 	/**
 	 * AwesomeWM is done scanning for screens.
 	 *
@@ -245,9 +207,64 @@ type AwesomeScreenSignalMap = SignalMap & {
 	 * When the tag history changed.
 	 */
 	"tag::history::update": () => void;
-};
+}
 
-interface AwesomeScreen extends SignalObject<AwesomeScreenSignalMap> {
+interface AwesomeScreenOutput {
+	/**
+	 * The screen physical width.
+	 */
+	mm_width: number;
+
+	/**
+	 * The screen physical height.
+	 */
+	mm_height: number;
+
+	/**
+	 * The output name.
+	 */
+	name: string;
+
+	/**
+	 * The identifier of the viewport this output corresponds to.
+	 */
+	viewport_id: string;
+}
+
+interface AwesomeScreenViewport {
+	geometry: Rectangle;
+
+	/**
+	 * An identifier for this viewport (by pixel resolution). It will not change
+	 * when outputs are modified, but will change when the resolution changes.
+	 * Note that if it fully disappear, the next time an viewport with the same
+	 * resolution appears, it will have a different `id`.
+	 */
+	id?: number;
+
+	/**
+	 * All outputs sharing this viewport.
+	 */
+	outputs: table;
+
+	/**
+	 * The DPI of the most dense output.
+	 */
+	maximum_dpi: number;
+
+	/**
+	 * The DPI of the most least output.
+	 */
+	minimum_dpi: number;
+
+	/**
+	 * The optimal DPI.
+	 */
+	preferred_dpi: number;
+}
+
+interface AwesomeScreen
+	extends SignalObject<AwesomeScreenSignal, AwesomeScreenSignalMap> {
 	/**
 	 * Remove a screen.
 	 */
@@ -540,7 +557,8 @@ interface AwesomeScreen extends SignalObject<AwesomeScreenSignalMap> {
 	inch_minimum_size: number;
 }
 
-interface AwesomeGlobalScreen extends SignalObject<AwesomeScreenSignalMap> {
+interface AwesomeGlobalScreen
+	extends SignalObject<AwesomeScreenSignal, AwesomeScreenSignalMap> {
 	/**
 	 * Add a fake screen.
 	 *

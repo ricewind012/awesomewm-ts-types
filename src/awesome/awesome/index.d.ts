@@ -32,7 +32,26 @@ declare enum UnixSignal {
 	SIGSYS = 31,
 }
 
-type AwesomeGlobalSignalMap = SignalMap & {
+type AwesomeGlobalSignal =
+	| "debug::error"
+	| "debug::deprecation"
+	| "debug::index::miss"
+	| "debug::newindex::miss"
+	| "systray::update"
+	| "wallpaper_changed"
+	| "xkb::map_changed"
+	| "xkb::group_changed."
+	| "refresh"
+	| "startup"
+	| "exit"
+	| "screen::change"
+	| "spawn::canceled"
+	| "spawn::change"
+	| "spawn::completed"
+	| "spawn::initiated"
+	| "spawn::timeout";
+
+interface AwesomeGlobalSignalMap extends SignalMap<AwesomeGlobalSignal> {
 	/**
 	 * A call into the Lua code aborted with an error.
 	 *
@@ -198,9 +217,10 @@ type AwesomeGlobalSignalMap = SignalMap & {
 	 * @param arg Table which only got the "id" key set
 	 */
 	"spawn::timeout": (this: void, arg: table) => void;
-};
+}
 
-interface AwesomeGlobal extends SignalObject<AwesomeGlobalSignalMap> {
+interface AwesomeGlobal
+	extends SignalObject<AwesomeGlobalSignal, AwesomeGlobalSignalMap> {
 	/**
 	 * Execute another application, probably a window manager, to replace awesome.
 	 * @param cmd The command line to execute.
