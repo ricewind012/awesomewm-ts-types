@@ -12,12 +12,12 @@ interface WiboxContainerRadialProgressBarProps {
 	/**
 	 * The border background color.
 	 */
-	border_color: string | undefined;
+	border_color: AwesomeColor | undefined;
 
 	/**
 	 * The border foreground color.
 	 */
-	color: string | undefined;
+	color: AwesomeColor | undefined;
 
 	/**
 	 * The border width.

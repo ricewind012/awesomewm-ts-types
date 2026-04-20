@@ -2,19 +2,12 @@ interface WiboxContainerMarginProps {
 	/**
 	 * Set all the margins to val.
 	 */
-	margins:
-		| number
-		| {
-				left: number;
-				right: number;
-				top: number;
-				bottom: number;
-		  };
+	margins: AwesomeClientStrut | number;
 
 	/**
 	 * Set the margins color to create a border.
 	 */
-	color: string | undefined;
+	color: AwesomeColor | undefined;
 
 	/**
 	 * Draw the margin even if the content size is 0x0.

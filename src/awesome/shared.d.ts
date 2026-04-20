@@ -1,24 +1,36 @@
 /// <reference types="./client.d.ts" />
 
+/**
+ * - `string` A hexadecimal color code, such as "#ff0000" for red.
+ * - `string` A color name, such as "red".
+ * - `table` A gradient table.
+ * - `cairo_solid_pattern` Any valid [Cairo
+ *   pattern](https://cairographics.org/manual/cairo-cairo-pattern-t.html).
+ * - `cairo_solid_pattern` A texture build from an image by
+ *   `gears.color.create_png_pattern`.
+ */
+type AwesomeColor = string | table | cairo_solid_pattern;
+
+// bruh
+type BaseCorner = "left" | "right" | "top" | "bottom";
 type ClientCorner =
+	| BaseCorner
 	| "auto"
 	| "top_left"
 	| "top_right"
 	| "bottom_left"
-	| "bottom_right"
-	| "left"
-	| "right"
-	| "top"
-	| "bottom";
-
+	| "bottom_right";
 type Direction = "up" | "down" | "left" | "right";
 
 type AwesomeMouse = any;
 type Drawable = AwesomeClient | AwesomeMouse | BaseWidget;
 
-interface Rectangle {
+interface Coords {
 	x: number;
 	y: number;
+}
+
+interface Rectangle extends Coords {
 	width: number;
 	height: number;
 }

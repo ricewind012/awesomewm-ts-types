@@ -110,7 +110,7 @@ export const theme: Partial<Theme> = {
 
 	// Define the icon theme for application icons. If not set then the icons
 	// from /usr/share/icons and /usr/share/icons/hicolor will be used.
-	icon_theme: undefined,
+	icon_theme: "",
 };
 
 // Generate taglist squares:
@@ -125,7 +125,7 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 
 // Generate Awesome icon:
 theme.awesome_icon = theme_assets.awesome_icon(
-	theme.menu_height,
+	theme.menu_height as number,
 	theme.bg_focus,
 	theme.fg_focus,
 );

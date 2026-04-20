@@ -1,24 +1,16 @@
 /// <reference types="../../wibox/widget/base.d.ts" />
 /// <reference types="../../client.d.ts" />
 
-type TitlebarPosition = "top" | "left" | "right" | "bottom";
-
-interface stuff
-	extends Partial<
-		Pick<
-			BaseWidget,
-			"buttons" | "forced_height" | "forced_width" | "opacity" | "visible"
-		>
-	> {
-	layout: any;
-	children?: stuff[];
-}
-
 interface WiboxDrawable {
 	/**
 	 * Set a declarative widget hierarchy description.
 	 */
-	setup(widget: stuff): void;
+	setup(widget: BaseWidget): void;
+
+	/**
+	 * Set a declarative widget hierarchy description.
+	 */
+	widget: BaseWidget;
 }
 
 /**
@@ -46,7 +38,7 @@ interface AwfulTitlebar {
 		c: AwesomeClient,
 		args?: {
 			size?: number;
-			position?: TitlebarPosition;
+			position?: BaseCorner;
 			bg_normal?: string;
 			bg_focus?: string;
 			bg_urgent?: string;
@@ -163,7 +155,7 @@ interface AwfulTitlebar {
 	 * @param c The client whose titlebar is to be modified.
 	 * @param position The position of the titlebar.
 	 */
-	show(c: AwesomeClient, position?: TitlebarPosition): void;
+	show(c: AwesomeClient, position?: BaseCorner): void;
 
 	/**
 	 * Hide the client's titlebar.
@@ -171,7 +163,7 @@ interface AwfulTitlebar {
 	 * @param c The client whose titlebar is to be modified.
 	 * @param position The position of the titlebar.
 	 */
-	hide(c: AwesomeClient, position?: TitlebarPosition): void;
+	hide(c: AwesomeClient, position?: BaseCorner): void;
 
 	/**
 	 * Show/hide the client's titlebar.
@@ -179,7 +171,7 @@ interface AwfulTitlebar {
 	 * @param c The client whose titlebar is to be modified.
 	 * @param position The position of the titlebar.
 	 */
-	toggle(c: AwesomeClient, position?: TitlebarPosition): void;
+	toggle(c: AwesomeClient, position?: BaseCorner): void;
 
 	/**
 	 * Show tooltips when hover on titlebar buttons.

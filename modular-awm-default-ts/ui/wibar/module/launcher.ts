@@ -7,7 +7,7 @@ import { menu } from "../../menu";
 /** @noSelf */
 export default () => {
 	return awful.widget.launcher({
-		image: beautiful.awesome_icon,
+		image: beautiful.get().awesome_icon,
 		menu: menu.main,
 	});
 };

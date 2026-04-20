@@ -22,7 +22,7 @@ const awesome_menu: MenuItem[] = [
 export const menu = {
 	main: awful.menu({
 		items: [
-			["awesome", awesome_menu, beautiful.awesome_icon],
+			["awesome", awesome_menu, beautiful.get().awesome_icon],
 			["open terminal", apps.terminal],
 		],
 	}),

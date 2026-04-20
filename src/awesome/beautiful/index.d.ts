@@ -1,69 +1,8 @@
 /// <reference types="./gtk.d.ts" />
+/// <reference types="./theme.d.ts" />
 /// <reference types="./theme_assets.d.ts" />
 /// <reference types="./xresources.d.ts" />
 /// <reference types="../../todo.d.ts" />
-
-interface Theme {
-	/**
-	 * The default font.
-	 */
-	font: string;
-
-	/**
-	 * The default background color.
-	 */
-	bg_normal: string;
-
-	/**
-	 * The default focused element background color.
-	 */
-	bg_focus: string;
-
-	/**
-	 * The default urgent element background color.
-	 */
-	bg_urgent: string;
-
-	/**
-	 * The default minimized element background color.
-	 */
-	bg_minimize: string;
-
-	/**
-	 * The default focused element foreground (text) color.
-	 */
-	fg_normal: string;
-
-	/**
-	 * The default focused element foreground (text) color.
-	 */
-	fg_focus: string;
-
-	/**
-	 * The default urgent element foreground (text) color.
-	 */
-	fg_urgent: string;
-
-	/**
-	 * The default minimized element foreground (text) color.
-	 */
-	fg_minimize: string;
-
-	/**
-	 * The wallpaper path.
-	 */
-	wallpaper: string | cairo_image_surface;
-
-	/**
-	 * The icon theme name.
-	 */
-	icon_theme: string;
-
-	/**
-	 * The Awesome icon path.
-	 */
-	awesome_icon: string | cairo_image_surface;
-}
 
 /**
  * @noResolution

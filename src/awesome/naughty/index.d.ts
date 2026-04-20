@@ -752,14 +752,12 @@ declare module "naughty" {
 		 * over DBUS.
 		 */
 		presets: {
-			low: {
-				timeout?: number;
-			};
+			low: NotificationPreset;
 			/**
 			 * The default preset for every notification without a preset that
 			 * will also be used for normal urgency level.
 			 */
-			normal: table;
+			normal: NotificationPreset;
 			ok: NotificationPreset;
 			critical: NotificationPreset;
 			info: NotificationPreset;
@@ -768,8 +766,7 @@ declare module "naughty" {
 
 		/**
 		 * Default values for the params to `naughty.notification{}`. These can
-		 * optionally be overridden by specifying a preset. See
-		 * `config.defaults`.
+		 * optionally be overridden by specifying a preset.
 		 */
 		defaults: {
 			/** @default 5 */

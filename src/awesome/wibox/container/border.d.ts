@@ -1,32 +1,3 @@
-type ImageFitPolicy = "fit" | "repeat" | "reflect" | "pad";
-
-declare enum ImageScalingQuality {
-	/**
-	 * A high-performance filter
-	 */
-	FAST = "fast",
-
-	/**
-	 * A reasonable-performance filter
-	 */
-	GOOD = "good",
-
-	/**
-	 * The highest-quality available
-	 */
-	BEST = "best",
-
-	/**
-	 * Nearest-neighbor filtering (blocky)
-	 */
-	NEAREST = "nearest",
-
-	/**
-	 * Linear interpolation in two dimensions
-	 */
-	BILINEAR = "bilinear",
-}
-
 type ImageSides<T> = {
 	[corner in ClientCorner]: T;
 };
@@ -111,11 +82,7 @@ interface WiboxContainerBorderProps {
 	/**
 	 * Merge the corners widgets into the side widgets.
 	 */
-	border_merging:
-		| {
-				[side in keyof AwesomeClientStrut]: boolean;
-		  }
-		| undefined;
+	border_merging: AwesomeClientStrut | undefined;
 
 	/**
 	 * When {@link border_widgets} is used, allow the border to grow due to

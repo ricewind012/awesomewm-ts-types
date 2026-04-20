@@ -3,6 +3,68 @@
 /// <reference types="./layout" />
 /// <reference types="./widget" />
 
+declare enum ImageFitPolicy {
+	/**
+	 * Honor the `resize` variable and preserve the aspect ratio.
+	 */
+	AUTO = "auto",
+
+	/**
+	 * Do not resize at all.
+	 */
+	NONE = "none",
+
+	/**
+	 * Resize to the widget width.
+	 */
+	FIT = "fit",
+
+	/**
+	 * Repeat the image side by side.
+	 */
+	REPEAT = "repeat",
+
+	/**
+	 * Like {@link REPEAT}, but alternate the reflection.
+	 */
+	REFLECT = "reflect",
+
+	/**
+	 * Take the last column of pixels and repeat them.
+	 */
+	PAD = "pad",
+}
+
+declare enum ImageScalingQuality {
+	/**
+	 * A high-performance filter
+	 */
+	FAST = "fast",
+
+	/**
+	 * A reasonable-performance filter
+	 */
+	GOOD = "good",
+
+	/**
+	 * The highest-quality available
+	 */
+	BEST = "best",
+
+	/**
+	 * Nearest-neighbor filtering (blocky)
+	 */
+	NEAREST = "nearest",
+
+	/**
+	 * Linear interpolation in two dimensions
+	 */
+	BILINEAR = "bilinear",
+}
+
+type HorizontalAlignment = "left" | "center" | "right";
+type VerticalAlignment = "top" | "center" | "bottom";
+
 interface Wibox {
 	/**
 	 * Get or set wibox geometry. That's the same as accessing or setting
@@ -35,7 +97,7 @@ interface Wibox {
 	 *
 	 * @param args An array containing the widgets disposition
 	 */
-	setup(args: any): any;
+	setup(args: BaseWidget[]): void;
 
 	/**
 	 * Find a widget by a point. The wibox must have drawn itself at least once for this to work.
@@ -91,7 +153,7 @@ interface WiboxSharedProps {
 	/**
 	 * Border color.
 	 */
-	border_color: string;
+	border_color: AwesomeColor;
 
 	/**
 	 * On top of other windows.
@@ -101,7 +163,7 @@ interface WiboxSharedProps {
 	/**
 	 * The mouse cursor.
 	 */
-	cursor: string;
+	cursor: Cursor;
 
 	/**
 	 * Visibility.
@@ -166,7 +228,7 @@ interface WiboxSharedProps {
 	/**
 	 * The background.
 	 */
-	bg: string;
+	bg: AwesomeColor;
 
 	/**
 	 * The background image of the drawable.
@@ -176,7 +238,7 @@ interface WiboxSharedProps {
 	/**
 	 * The foreground (text) color.
 	 */
-	fg: string;
+	fg: AwesomeColor;
 
 	/**
 	 * The shape.
@@ -193,11 +255,11 @@ interface WiboxSharedProps {
  * @noResolution
  */
 declare module "wibox" {
+	// TODO: Partial<T> in container/layout/widget widgets is me not being able
+	// to confirm which ones are required.
 	export const container: WiboxContainer;
 	export const hierarchy: WiboxHierarchy;
 	export const layout: WiboxLayout;
 	export const wibox: (args?: WiboxSharedProps) => Wibox;
-	export const widget: {
-		base: WiboxWidgetBase;
-	};
+	export const widget: WiboxWidget;
 }

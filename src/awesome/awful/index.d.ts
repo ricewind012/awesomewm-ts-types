@@ -13,8 +13,8 @@
 /// <reference types="./screen.d.ts" />
 /// <reference types="./spawn.d.ts" />
 /// <reference types="./tag.d.ts" />
-/// <reference types="./widgets" />
 /// <reference types="./util.d.ts" />
+/// <reference types="./widgets" />
 
 /**
  * @noResolution
@@ -38,4 +38,5 @@ declare module "awful" {
 	export const titlebar: AwfulTitlebar;
 	export const util: AwfulUtil;
 	export const wallpaper: AwfulWallpaper;
+	export const wibar: AwfulWibar;
 }

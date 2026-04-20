@@ -9,7 +9,12 @@ export default function make_widget(
 		children.length === 0
 			? undefined
 			: children
-					.map((e, i) => ({ [i]: e }))
+					.map((e, i) => ({ [i + 1]: e }))
 					.reduce((a, b) => Object.assign(a, b));
-	return gears.table.join({ widget }, props, child_widgets);
+	const what = type(widget) === "table" ? "widget" : "layout";
+	if (child_widgets) {
+		print(`child_widgets: ${Object.keys(child_widgets).join(" ")}`);
+	}
+
+	return gears.table.join({ [what]: widget }, props, child_widgets);
 }

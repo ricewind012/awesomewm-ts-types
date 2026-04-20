@@ -22,9 +22,9 @@
 		// TODO: dogshit
 		"luaLibImport": "inline",
 		"luaTarget": "5.3",
-		"noResolvePaths": ["*"],
 		//"luaBundle": "rc.lua",
 		//"luaBundleEntry": "./modular-awm-default-ts/rc_real.ts",
-		"noHeader": true
+		"noHeader": true,
+		"noResolvePaths": ["*"]
 	}
 }

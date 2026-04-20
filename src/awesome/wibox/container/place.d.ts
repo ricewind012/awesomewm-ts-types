@@ -2,12 +2,12 @@ interface WiboxContainerPlaceProps {
 	/**
 	 * The vertical alignment.
 	 */
-	valign: "top" | "center" | "bottom";
+	valign: VerticalAlignment;
 
 	/**
 	 * The horizontal alignment.
 	 */
-	halign: "left" | "center" | "right";
+	halign: HorizontalAlignment;
 
 	/**
 	 * Fill the vertical space.

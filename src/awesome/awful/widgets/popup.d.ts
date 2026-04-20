@@ -1,6 +1,65 @@
 /// <reference types="../../wibox" />
 
-type PopupPosition = "left" | "right" | "top" | "bottom";
+interface AwfulPopupProps extends WiboxSharedProps {
+	/**
+	 * Set the preferred popup position relative to its parent.
+	 */
+	preferred_positions: BaseCorner | BaseCorner[];
+
+	/**
+	 * Set the preferred popup anchors relative to the parent.
+	 */
+	preferred_anchors: BaseCorner | BaseCorner[];
+
+	/**
+	 * The current position relative to the parent object.
+	 */
+	readonly current_position: BaseCorner;
+
+	/**
+	 * Get the current anchor relative to the parent object.
+	 */
+	readonly current_anchor: DrawableNextToAnchor;
+
+	/**
+	 * Hide the popup when right clicked.
+	 */
+	hide_on_right_click: boolean;
+
+	/**
+	 * The popup minimum width.
+	 */
+	minimum_width: number;
+
+	/**
+	 * The popup minimum height.
+	 */
+	minimum_height: number;
+
+	/**
+	 * The popup maximum width.
+	 */
+	maximum_width: number;
+
+	/**
+	 * The popup maximum height.
+	 */
+	maximum_height: number;
+
+	/**
+	 * The distance between the popup and its parent (if any).
+	 */
+	offset: Coords | number;
+
+	/**
+	 * Set the placement function.
+	 */
+	placement:
+		| ((obj: table, args: table) => Rectangle)
+		| Partial<PlacementCommonArgs>
+		| string
+		| boolean;
+}
 
 interface AwfulPopupInstance extends Wibox {
 	/**
@@ -43,65 +102,6 @@ interface AwfulPopup {
 	(
 		// https://github.com/TypeScriptToLua/TypeScriptToLua/issues/1661
 		this: void,
-		args: WiboxSharedProps & {
-			/**
-			 * Set the preferred popup position relative to its parent.
-			 */
-			preferred_positions: PopupPosition | PopupPosition[];
-
-			/**
-			 * Set the preferred popup anchors relative to the parent.
-			 */
-			preferred_anchors: PopupPosition | PopupPosition[];
-
-			/**
-			 * The current position relative to the parent object.
-			 */
-			readonly current_position: PopupPosition;
-
-			/**
-			 * Get the current anchor relative to the parent object.
-			 */
-			readonly current_anchor: DrawableNextToAnchor;
-
-			/**
-			 * Hide the popup when right clicked.
-			 */
-			hide_on_right_click: boolean;
-
-			/**
-			 * The popup minimum width.
-			 */
-			minimum_width: number;
-
-			/**
-			 * The popup minimum height.
-			 */
-			minimum_height: number;
-
-			/**
-			 * The popup maximum width.
-			 */
-			maximum_width: number;
-
-			/**
-			 * The popup maximum height.
-			 */
-			maximum_height: number;
-
-			/**
-			 * The distance between the popup and its parent (if any).
-			 */
-			offset: { x: number; y: number } | number;
-
-			/**
-			 * Set the placement function.
-			 */
-			placement:
-				| ((obj: table, args: table) => Rectangle)
-				| Partial<PlacementCommonArgs>
-				| string
-				| boolean;
-		},
+		args: AwfulPopupProps,
 	): AwfulPopupInstance;
 }

@@ -4,6 +4,7 @@ import * as wibox from "wibox";
 
 import { user } from "../config/user";
 import make_widget from "../jsx";
+import wibar from "../ui/wibar";
 
 /// Attach tags and widgets to all screens.
 screen.connect_signal("request::desktop_decoration", (s) => {
@@ -11,7 +12,7 @@ screen.connect_signal("request::desktop_decoration", (s) => {
 	awful.tag(user.tags, s, awful.layout.layouts[1]);
 	// Attach a wibar to each screen.
 	// TODO(ts): apparently this signal returns a screen, but not context?
-	//(s as unknown as AwesomeScreen).bar = wibar(s as unknown as AwesomeScreen);
+	(s as unknown as AwesomeScreen).bar = wibar(s as unknown as AwesomeScreen);
 });
 
 /// Wallpaper.
@@ -26,7 +27,7 @@ screen.connect_signal("request::wallpaper", (s) => {
 		widget: (
 			<wibox.container.tile halign="center" valign="center" tiled={false}>
 				<wibox.widget.imagebox
-					image={beautiful.wallpaper}
+					image={beautiful.get().wallpaper}
 					upscale={true}
 					downscale={true}
 				/>

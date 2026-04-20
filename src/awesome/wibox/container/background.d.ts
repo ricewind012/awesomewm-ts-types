@@ -24,12 +24,12 @@ interface WiboxContainerBackgroundProps {
 	/**
 	 * The background color/pattern/gradient to use.
 	 */
-	bg: string;
+	bg: AwesomeColor;
 
 	/**
 	 * The foreground (text) color/pattern/gradient to use.
 	 */
-	fg: string;
+	fg: AwesomeColor;
 
 	/**
 	 * The background shape.
@@ -44,7 +44,7 @@ interface WiboxContainerBackgroundProps {
 	/**
 	 * Set the color for the border.
 	 */
-	border_color: string;
+	border_color: AwesomeColor;
 
 	/**
 	 * How the border width affects the contained widget.
