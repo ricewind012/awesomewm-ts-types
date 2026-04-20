@@ -1,5 +1,16 @@
 /// <reference types="./client.d.ts" />
 
+type ClientCorner =
+	| "auto"
+	| "top_left"
+	| "top_right"
+	| "bottom_left"
+	| "bottom_right"
+	| "left"
+	| "right"
+	| "top"
+	| "bottom";
+
 type Direction = "up" | "down" | "left" | "right";
 
 type AwesomeMouse = any;

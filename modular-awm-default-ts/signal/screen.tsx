@@ -3,7 +3,7 @@ import * as beautiful from "beautiful";
 import * as wibox from "wibox";
 
 import { user } from "../config/user";
-import wibar from "../ui/wibar";
+import make_widget from "../jsx";
 
 /// Attach tags and widgets to all screens.
 screen.connect_signal("request::desktop_decoration", (s) => {
@@ -11,7 +11,7 @@ screen.connect_signal("request::desktop_decoration", (s) => {
 	awful.tag(user.tags, s, awful.layout.layouts[1]);
 	// Attach a wibar to each screen.
 	// TODO(ts): apparently this signal returns a screen, but not context?
-	(s as unknown as AwesomeScreen).bar = wibar(s as unknown as AwesomeScreen);
+	//(s as unknown as AwesomeScreen).bar = wibar(s as unknown as AwesomeScreen);
 });
 
 /// Wallpaper.
@@ -23,18 +23,15 @@ screen.connect_signal("request::desktop_decoration", (s) => {
 screen.connect_signal("request::wallpaper", (s) => {
 	awful.wallpaper({
 		screen: s,
-		widget: {
-			widget: wibox.container.tile,
-			valign: "center",
-			halign: "center",
-			tiled: false,
-			1: {
-				widget: wibox.widget.imagebox,
-				image: beautiful.wallpaper,
-				upscale: true,
-				downscale: true,
-			},
-		},
+		widget: (
+			<wibox.container.tile halign="center" valign="center" tiled={false}>
+				<wibox.widget.imagebox
+					image={beautiful.wallpaper}
+					upscale={true}
+					downscale={true}
+				/>
+			</wibox.container.tile>
+		),
 	});
 });
 // An example of what's mentioned above. For more information, see:

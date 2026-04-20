@@ -12,7 +12,7 @@ interface GearsDebug {
 	 *
 	 * @returns A string that contains the expanded value of data.
 	 */
-	dump_return(data: any, tag: string, depth?: number): string;
+	dump_return(data: any, tag?: string, depth?: number): string;
 
 	/**
 	 * Print the table (or any other value) to the console.
@@ -21,7 +21,7 @@ interface GearsDebug {
 	 * @param tag The name of the table.
 	 * @param depth Depth of recursion.
 	 */
-	dump(data: any, tag: string, depth?: number): void;
+	dump(data: any, tag?: string, depth?: number): void;
 
 	/**
 	 * Print an warning message

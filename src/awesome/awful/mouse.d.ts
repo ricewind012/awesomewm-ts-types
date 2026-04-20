@@ -1,17 +1,6 @@
 /// <reference types="../client.d.ts" />
 /// <reference types="./button.d.ts" />
 
-type ClientCorner =
-	| "auto"
-	| "top_left"
-	| "top_right"
-	| "bottom_left"
-	| "bottom_right"
-	| "left"
-	| "right"
-	| "top"
-	| "bottom";
-
 declare enum MouseResizeMode {
 	/**
 	 * Resize the layout everytime the mouse moves.

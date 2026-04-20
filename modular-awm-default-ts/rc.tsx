@@ -47,5 +47,3 @@ import "./binds";
 
 // Load all client rules.
 import "./config/rules";
-
-print("does this even work lol");

@@ -11,19 +11,20 @@ const { modkey } = mod;
 /// Global key bindings
 awful.keyboard.append_global_keybindings([
 	// General Awesome keys.
-	awful.key([modkey], "s", /*awful.hotkeys_popup.show_help*/ print, {
+	// TODO(ts): yup what is this shit and why is it undefined
+	awful.key([modkey], "s", () => awful.hotkeys_popup.show_help(), {
 		description: "show help",
 		group: "awesome",
 	}),
-	awful.key([modkey], "w", menu.main.show, {
+	awful.key([modkey], "w", () => menu.main.show(), {
 		description: "show main menu",
 		group: "awesome",
 	}),
-	awful.key([modkey, mod.ctrl], "r", awesome.restart, {
+	awful.key([modkey, mod.ctrl], "r", () => awesome.restart(), {
 		description: "reload awesome",
 		group: "awesome",
 	}),
-	awful.key([modkey, mod.shift], "q", awesome.quit, {
+	awful.key([modkey, mod.shift], "q", () => awesome.quit(), {
 		description: "quit awesome",
 		group: "awesome",
 	}),
@@ -43,14 +44,10 @@ awful.keyboard.append_global_keybindings([
 		},
 		{ description: "lua execute prompt", group: "awesome" },
 	),
-	awful.key(
-		[modkey],
-		"Return",
-		() => {
-			awful.spawn(apps.terminal);
-		},
-		{ description: "open a terminal", group: "launcher" },
-	),
+	awful.key([modkey], "Return", () => awful.spawn(apps.terminal), {
+		description: "open a terminal",
+		group: "launcher",
+	}),
 	awful.key(
 		[modkey],
 		"r",
@@ -82,22 +79,14 @@ awful.keyboard.append_global_keybindings([
 	}),
 
 	// Focus related keybindings.
-	awful.key(
-		[modkey],
-		"j",
-		() => {
-			awful.client.focus.byidx(1);
-		},
-		{ description: "focus next by index", group: "client" },
-	),
-	awful.key(
-		[modkey],
-		"k",
-		() => {
-			awful.client.focus.byidx(-1);
-		},
-		{ description: "focus previous by index", group: "client" },
-	),
+	awful.key([modkey], "j", () => awful.client.focus.byidx(1), {
+		description: "focus next by index",
+		group: "client",
+	}),
+	awful.key([modkey], "k", () => awful.client.focus.byidx(-1), {
+		description: "focus previous by index",
+		group: "client",
+	}),
 	awful.key(
 		[modkey],
 		"Tab",
@@ -109,22 +98,14 @@ awful.keyboard.append_global_keybindings([
 		},
 		{ description: "go back", group: "client" },
 	),
-	awful.key(
-		[modkey, mod.ctrl],
-		"j",
-		() => {
-			awful.screen.focus_relative(1);
-		},
-		{ description: "focus the next screen", group: "screen" },
-	),
-	awful.key(
-		[modkey, mod.ctrl],
-		"k",
-		() => {
-			awful.screen.focus_relative(-1);
-		},
-		{ description: "focus the previous screen", group: "screen" },
-	),
+	awful.key([modkey, mod.ctrl], "j", () => awful.screen.focus_relative(1), {
+		description: "focus the next screen",
+		group: "screen",
+	}),
+	awful.key([modkey, mod.ctrl], "k", () => awful.screen.focus_relative(-1), {
+		description: "focus the previous screen",
+		group: "screen",
+	}),
 	awful.key(
 		[modkey, mod.ctrl],
 		"n",
@@ -142,90 +123,58 @@ awful.keyboard.append_global_keybindings([
 	),
 
 	// Layout related keybindings.
-	awful.key(
-		[modkey, mod.shift],
-		"j",
-		() => {
-			awful.client.swap.byidx(1);
-		},
-		{ description: "swap with next client by index", group: "client" },
-	),
-	awful.key(
-		[modkey, mod.shift],
-		"k",
-		() => {
-			awful.client.swap.byidx(-1);
-		},
-		{ description: "swap with previous client by index", group: "client" },
-	),
+	awful.key([modkey, mod.shift], "j", () => awful.client.swap.byidx(1), {
+		description: "swap with next client by index",
+		group: "client",
+	}),
+	awful.key([modkey, mod.shift], "k", () => awful.client.swap.byidx(-1), {
+		description: "swap with previous client by index",
+		group: "client",
+	}),
 	awful.key([modkey], "u", awful.client.urgent.jumpto, {
 		description: "jump to urgent client",
 		group: "client",
 	}),
-	awful.key(
-		[modkey],
-		"l",
-		() => {
-			awful.tag.incmwfact(0.05);
-		},
-		{ description: "increase master width factor", group: "layout" },
-	),
-	awful.key(
-		[modkey],
-		"h",
-		() => {
-			awful.tag.incmwfact(-0.05);
-		},
-		{ description: "decrease master width factor", group: "layout" },
-	),
+	awful.key([modkey], "l", () => awful.tag.incmwfact(0.05), {
+		description: "increase master width factor",
+		group: "layout",
+	}),
+	awful.key([modkey], "h", () => awful.tag.incmwfact(-0.05), {
+		description: "decrease master width factor",
+		group: "layout",
+	}),
 	awful.key(
 		[modkey, mod.shift],
 		"h",
-		() => {
-			awful.tag.incnmaster(1, undefined, true);
-		},
+		() => awful.tag.incnmaster(1, undefined, true),
 		{ description: "increase the number of master clients", group: "layout" },
 	),
 	awful.key(
 		[modkey, mod.shift],
 		"l",
-		() => {
-			awful.tag.incnmaster(-1, undefined, true);
-		},
+		() => awful.tag.incnmaster(-1, undefined, true),
 		{ description: "decrease the number of master clients", group: "layout" },
 	),
 	awful.key(
 		[modkey, mod.ctrl],
 		"h",
-		() => {
-			awful.tag.incncol(1, undefined, true);
-		},
+		() => awful.tag.incncol(1, undefined, true),
 		{ description: "increase the number of columns", group: "layout" },
 	),
 	awful.key(
 		[modkey, mod.ctrl],
 		"l",
-		() => {
-			awful.tag.incncol(-1, undefined, true);
-		},
+		() => awful.tag.incncol(-1, undefined, true),
 		{ description: "decrease the number of columns", group: "layout" },
 	),
-	awful.key(
-		[modkey],
-		"space",
-		() => {
-			awful.layout.inc(1);
-		},
-		{ description: "select next", group: "layout" },
-	),
-	awful.key(
-		[modkey, mod.shift],
-		"space",
-		() => {
-			awful.layout.inc(-1);
-		},
-		{ description: "select previous", group: "layout" },
-	),
+	awful.key([modkey], "space", () => awful.layout.inc(1), {
+		description: "select next",
+		group: "layout",
+	}),
+	awful.key([modkey, mod.shift], "space", () => awful.layout.inc(-1), {
+		description: "select previous",
+		group: "layout",
+	}),
 	awful.key({
 		description: "only view tag",
 		group: "tag",

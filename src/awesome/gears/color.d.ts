@@ -1,14 +1,17 @@
-interface ColorPattern<T extends string> {
+type ColorPatternType = "linear" | "radial";
+
+interface ColorPattern<T extends ColorPatternType> {
 	type: T;
-	from: [number, number, number];
-	to: [number, number, number];
+	from: number[];
+	to: number[];
+	stops?: [number, string][];
 }
 
 /**
  * @noSelf
  */
 interface GearsColor {
-	(): cairo_solid_pattern;
+	(pattern: ColorPattern<ColorPatternType>): cairo_solid_pattern;
 
 	/**
 	 * Parse a HTML-color. This function can parse colors like `#rrggbb` and

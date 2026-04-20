@@ -12,6 +12,7 @@ ruled.client.connect_signal("request::rules", () => {
 			focus: awful.client.focus.filter,
 			raise: true,
 			screen: awful.screen.preferred,
+			// @ts-expect-error: TODO(ts)
 			placement: awful.placement.no_overlap + awful.placement.no_offscreen,
 		},
 	});

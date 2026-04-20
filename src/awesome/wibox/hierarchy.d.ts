@@ -125,11 +125,11 @@ interface WiboxHierarchy {
 	 */
 	new (
 		context: any,
-		widget: any,
+		widget: BaseWidget,
 		width: number,
 		height: number,
-		redraw_callback: any,
-		layout_callback: any,
+		redraw_callback: (...args: unknown[]) => any,
+		layout_callback: (...args: unknown[]) => any,
 		callback_arg: any,
 	): WidgetHierarchy;
 

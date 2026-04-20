@@ -1,4 +1,4 @@
-//// <reference types="./container" />
+/// <reference types="./container" />
 /// <reference types="./hierarchy.d.ts" />
 /// <reference types="./layout" />
 /// <reference types="./widget" />
@@ -13,10 +13,10 @@ interface Wibox {
 	 *
 	 * @returns A table with wibox coordinates and geometry.
 	 */
-	geometry(geo?: Rectangle): table;
+	geometry(geo?: Rectangle): Rectangle;
 
 	/**
-	 * Get or set wibox struts.Struts are the area which should be reserved
+	 * Get or set wibox struts. Struts are the area which should be reserved
 	 * on each side of the screen for this wibox. This is used to make bars
 	 * and docked displays. Note that
 	 * [awful.wibar](https://awesomewm.org/apidoc/popups_and_bars/awful.wibar.html#)
@@ -26,7 +26,7 @@ interface Wibox {
 	 *
 	 * @param struts A table with new strut, or nothing.
 	 */
-	struts(struts: table): any;
+	struts(struts: AwesomeClientStrut[]): AwesomeClientStrut;
 
 	/**
 	 * Set a declarative widget hierarchy description. See [The declarative
@@ -146,7 +146,7 @@ interface WiboxSharedProps {
 	/**
 	 * The widget that the wibox displays.
 	 */
-	widget: widget;
+	widget: BaseWidget;
 
 	/**
 	 * The wibox’s bounding shape as a (native) cairo surface.
@@ -193,6 +193,7 @@ interface WiboxSharedProps {
  * @noResolution
  */
 declare module "wibox" {
+	export const container: WiboxContainer;
 	export const hierarchy: WiboxHierarchy;
 	export const layout: WiboxLayout;
 	export const wibox: (args?: WiboxSharedProps) => Wibox;

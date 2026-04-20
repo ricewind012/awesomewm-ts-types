@@ -22,7 +22,7 @@ export default (c: AwesomeClient) => {
 
 	// Draws the client titlebar at the default position (top) and size.
 	const titlebar = awful.titlebar(c);
-	const widget = wibox.widget({
+	awful.titlebar(c).widget = wibox.widget({
 		layout: wibox.layout.align.horizontal,
 		// Left
 		1: {

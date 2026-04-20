@@ -149,8 +149,56 @@ interface BaseWidgetSignalMap extends SignalMap<BaseWidgetSignal> {
 	) => void;
 }
 
+interface BaseWidgetProps {
+	/**
+	 * Get or set the children elements.
+	 */
+	children: BaseWidget[];
+
+	/**
+	 * Get all direct and indirect children widgets. This will scan all
+	 * containers recursively to find widgets.
+	 *
+	 * Warning: This method it prone to stack overflow if there is a loop in the
+	 * widgets hierarchy. A hierarchy loop is when a widget, or any of its
+	 * children, contain (directly or indirectly) itself.
+	 */
+	all_children: BaseWidget[];
+
+	/**
+	 * Force a widget height.
+	 */
+	forced_height: number | undefined;
+
+	/**
+	 * Force a widget width.
+	 */
+	forced_width: number | undefined;
+
+	/**
+	 * The widget opacity (transparency, value is from 0 to 1).
+	 */
+	opacity: number;
+
+	/**
+	 * The widget visibility.
+	 */
+	visible: boolean;
+
+	/**
+	 * The widget buttons.
+	 */
+	buttons: AwfulButtonInstance[];
+
+	/**
+	 * The widget to be placed.
+	 */
+	widget: BaseWidget;
+}
+
 interface BaseWidget
-	extends SignalObject<BaseWidgetSignal, BaseWidgetSignalMap> {
+	extends BaseWidgetProps,
+		SignalObject<BaseWidgetSignal, BaseWidgetSignalMap> {
 	/**
 	 * Add a new `awful.button` to this widget.
 	 *
@@ -199,46 +247,6 @@ interface BaseWidget
 		recursive?: boolean,
 		...widgets: BaseWidget[]
 	): LuaMultiReturn<[number, T, table]>;
-
-	/**
-	 * Get or set the children elements.
-	 */
-	children: BaseWidget[];
-
-	/**
-	 * Get all direct and indirect children widgets. This will scan all
-	 * containers recursively to find widgets.
-	 *
-	 * Warning: This method it prone to stack overflow if there is a loop in the
-	 * widgets hierarchy. A hierarchy loop is when a widget, or any of its
-	 * children, contain (directly or indirectly) itself.
-	 */
-	all_children: BaseWidget[];
-
-	/**
-	 * Force a widget height.
-	 */
-	forced_height: number | undefined;
-
-	/**
-	 * Force a widget width.
-	 */
-	forced_width: number | undefined;
-
-	/**
-	 * The widget opacity (transparency, value is from 0 to 1).
-	 */
-	opacity: number;
-
-	/**
-	 * The widget visibility.
-	 */
-	visible: boolean;
-
-	/**
-	 * The widget buttons.
-	 */
-	buttons: AwfulButtonInstance[];
 }
 
 /**

@@ -200,7 +200,7 @@ interface AwfulTag {
 	 *
 	 * @param screen The screen.
 	 */
-	viewnext(screen: AwesomeScreen): void;
+	viewnext(screen?: AwesomeScreen): void;
 
 	/**
 	 * View previous tag. This is the same a `tag.viewidx(-1)` .
@@ -222,7 +222,7 @@ interface AwfulTag {
 	 *
 	 * @param screen The screen.
 	 */
-	viewprev(screen: AwesomeScreen): void;
+	viewprev(screen?: AwesomeScreen): void;
 
 	/**
 	 * View only a set of tags. If `maximum` is set, there will be a limit on
@@ -267,13 +267,13 @@ interface AwfulTag {
 		 * special index toggling between last two selected sets of tags. Number
 		 * (eg 1) will go back to the given index in history.
 		 */
-		restore(screen: AwesomeScreen, idx?: number): void;
+		restore(screen?: AwesomeScreen, idx?: number): void;
 
 		/**
 		 * Update the tag history.
 		 *
 		 * @param obj Screen object.
 		 */
-		update(obj: AwesomeScreen): void;
+		update(obj?: AwesomeScreen): void;
 	};
 }

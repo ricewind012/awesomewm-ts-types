@@ -19,4 +19,3 @@
 /// <reference types="./awesome/selection" />
 /// <reference types="./awesome/wibox" />
 
-/// <reference types="./lgi" />
