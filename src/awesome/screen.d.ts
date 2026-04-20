@@ -330,7 +330,7 @@ interface AwesomeScreen
 		/**
 		 * Apply some margins on the output.
 		 */
-		margins?: number | AwesomeClientGeometry;
+		margins?: number | Rectangle;
 
 		/**
 		 * Use this tag's screen.
@@ -347,7 +347,7 @@ interface AwesomeScreen
 		 * {@link honor_workarea}.
 		 */
 		bounding_rect?: Rectangle;
-	}): AwesomeClientGeometry;
+	}): Rectangle;
 
 	/**
 	 * Get the list of visible clients for the screen.
@@ -393,7 +393,7 @@ interface AwesomeScreen
 	/**
 	 * The screen coordinates.
 	 */
-	readonly geometry: AwesomeClientGeometry;
+	readonly geometry: Rectangle;
 
 	/**
 	 * The internal screen number.
@@ -432,7 +432,7 @@ interface AwesomeScreen
 	 *
 	 * It can be modified be altering the `wibox` or `client` struts.
 	 */
-	readonly workarea: AwesomeClientGeometry;
+	readonly workarea: Rectangle;
 
 	/**
 	 * The area where clients can be tiled.
@@ -441,7 +441,7 @@ interface AwesomeScreen
 	 * {@link padding} property, `wibox.struts` and {@link AwesomeClient.struts}
 	 * to modify this area.
 	 */
-	readonly tiling_area: AwesomeClientGeometry;
+	readonly tiling_area: Rectangle;
 
 	/**
 	 * Take a screenshot of the physical screen.
@@ -453,7 +453,7 @@ interface AwesomeScreen
 	 *
 	 * This adds a "buffer" section on each side of the screen.
 	 */
-	padding: AwesomeClientGeometry | number;
+	padding: Rectangle | number;
 
 	/**
 	 * A list of outputs for this screen with their size in mm.

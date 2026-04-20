@@ -289,9 +289,9 @@ interface AwesomeGlobalMouse {
 	 * pressed).
 	 */
 	coords(
-		coords_table?: { x?: number; y?: number },
+		coords_table?: Coords,
 		silent?: boolean,
-	): { x: number; y: number; buttons: [MouseButtonName, boolean] };
+	): Coords & { buttons: [MouseButtonName, boolean] };
 
 	/**
 	 * The screen under the cursor
@@ -313,7 +313,7 @@ interface AwesomeGlobalMouse {
 	/**
 	 * Get the wibox currently under the mouse cursor.
 	 */
-	current_wibox: wibox | undefined;
+	current_wibox: Wibox | undefined;
 
 	/**
 	 * Get the widgets currently under the mouse cursor.

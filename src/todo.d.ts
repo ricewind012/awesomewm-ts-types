@@ -12,6 +12,16 @@ type template = any;
 type cairo = any;
 type table = object;
 
+declare namespace Gio {
+	export type InputStream = any;
+}
+
+declare namespace lgi {
+	namespace Pango {
+		export type FontDescription = any;
+	}
+}
+
 /** @noResolution */
 declare module "awful/autofocus" {}
 

@@ -5,9 +5,9 @@
 
 interface NaughtyNotificationPopupBox extends AwfulPopupInstance {}
 
-type NaughtyActionSignals = "invoked";
+type NaughtyActionSignal = "invoked";
 
-interface NaughtyActionSignalMap extends SignalMap<NaughtyActionSignals> {
+interface NaughtyActionSignalMap extends SignalMap<NaughtyActionSignal> {
 	/**
 	 * When a notification is invoked.
 	 *
@@ -17,11 +17,15 @@ interface NaughtyActionSignalMap extends SignalMap<NaughtyActionSignals> {
 	 * @param action The action.
 	 * @param notification The notification, if known.
 	 */
-	invoked: (action: NaughtyAction, notification: NaughtyNotification) => void;
+	invoked: (
+		this: void,
+		action: NaughtyAction,
+		notification: NaughtyNotification,
+	) => void;
 }
 
 interface NaughtyAction
-	extends SignalObject<NaughtyActionSignals, NaughtyActionSignalMap> {
+	extends SignalObject<NaughtyActionSignal, NaughtyActionSignalMap> {
 	/**
 	 * Execute this action.
 	 *
@@ -83,22 +87,22 @@ declare enum NotificationClosedReason {
 	UNDEFINED,
 }
 
-type NaughtyNotificationSignals = "destroyed";
+type NaughtyNotificationSignal = "destroyed";
 
 interface NaughtyNotificationSignalMap
-	extends SignalMap<NaughtyNotificationSignals> {
+	extends SignalMap<NaughtyNotificationSignal> {
 	/**
 	 * Emitted when the notification is destroyed.
 	 *
 	 * @param reason Why it was destroyed
 	 * @param keep_visible If it was kept visible.
 	 */
-	destroyed: (reason: number, keep_visible: boolean) => void;
+	destroyed: (this: void, reason: number, keep_visible: boolean) => void;
 }
 
 interface NaughtyNotification
 	extends SignalObject<
-		NaughtyNotificationSignals,
+		NaughtyNotificationSignal,
 		NaughtyNotificationSignalMap
 	> {
 	/**
@@ -468,7 +472,7 @@ interface NotificationPreset {
 	timeout?: number;
 }
 
-type NaughtySignals =
+type NaughtySignal =
 	| "request::display_error"
 	| "added"
 	| "destroyed"
@@ -478,7 +482,7 @@ type NaughtySignals =
 	| "request::icon"
 	| "request::screen";
 
-interface NaughtySignalMap extends SignalMap<NaughtySignals> {
+interface NaughtySignalMap extends SignalMap<NaughtySignal> {
 	/**
 	 * Emitted when an error occurred and requires attention.
 	 *

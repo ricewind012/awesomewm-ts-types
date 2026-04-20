@@ -352,13 +352,6 @@ interface AwesomeClientSignalMap extends SignalMap<AwesomeClientSignal> {
 	unmarked: never;
 }
 
-interface AwesomeClientGeometry {
-	x: number;
-	y: number;
-	width: number;
-	height: number;
-}
-
 interface AwesomeClientStrut {
 	left: number;
 	right: number;
@@ -366,6 +359,7 @@ interface AwesomeClientStrut {
 	bottom: number;
 }
 
+// TODO: extend Rectangle ?
 /**
  * @see https://awesomewm.org/apidoc/core_components/client.html
  */
@@ -444,7 +438,7 @@ interface AwesomeClient
 	 *
 	 * @returns A table with client geometry and coordinates.
 	 */
-	geometry(geo?: AwesomeClientGeometry): AwesomeClientGeometry;
+	geometry(geo?: Rectangle): Rectangle;
 
 	/**
 	 * Apply size hints to a size.
@@ -956,6 +950,10 @@ interface AwesomeClient
 
 	/**
 	 * If the client requests not to be decorated with a titlebar.
+	 *
+	 * The motif wm hints allow a client to request not to be decorated by the
+	 * WM in various ways. This property uses the motif `MWM_DECOR_TITLE` hint
+	 * and interprets it as the client (not) wanting a titlebar.
 	 */
 	requests_no_titlebar: boolean;
 

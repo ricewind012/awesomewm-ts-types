@@ -9,5 +9,7 @@ declare namespace JSX {
 		[el in keyof WiboxLayout]: WiboxLayout[el];
 	} & {
 		[el in keyof WiboxContainer]: WiboxContainer[el];
+	} & {
+		[el in keyof WiboxWidget]: WiboxWidget[el];
 	};
 }

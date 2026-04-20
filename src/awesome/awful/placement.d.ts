@@ -76,7 +76,7 @@ interface PlacementCommonArgs {
 	/**
 	 * The offset(s) to apply to the new geometry.
 	 */
-	offset: { x: number; y: number } | number;
+	offset: Coords | number;
 
 	/**
 	 * Keep a single history of each type of placement. It can be restored using

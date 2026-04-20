@@ -42,7 +42,7 @@ interface WiboxWidgetImageBoxProps {
 	/**
 	 * Set the SVG DPI (dot per inch).
 	 */
-	dpi: number | { x: number; y: number };
+	dpi: Coords | number;
 
 	/**
 	 * Use the object DPI when rendering the SVG.

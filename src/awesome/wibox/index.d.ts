@@ -148,12 +148,12 @@ interface WiboxSharedProps {
 	/**
 	 * Border width.
 	 */
-	border_width: number;
+	border_width?: number;
 
 	/**
 	 * Border color.
 	 */
-	border_color: AwesomeColor;
+	border_color?: AwesomeColor;
 
 	/**
 	 * On top of other windows.
@@ -163,12 +163,12 @@ interface WiboxSharedProps {
 	/**
 	 * The mouse cursor.
 	 */
-	cursor: Cursor;
+	cursor?: Cursor;
 
 	/**
 	 * Visibility.
 	 */
-	visible: boolean;
+	visible?: boolean;
 
 	/**
 	 * The opacity, between 0 and 1.
@@ -178,32 +178,32 @@ interface WiboxSharedProps {
 	/**
 	 * The window type (desktop, normal, dock, …).
 	 */
-	type: string;
+	type?: "desktop" | "normal" | "dock" | string;
 
 	/**
 	 * The x coordinates.
 	 */
-	x: number;
+	x?: number;
 
 	/**
 	 * The y coordinates.
 	 */
-	y: number;
+	y?: number;
 
 	/**
 	 * The width.
 	 */
-	width: number;
+	width?: number;
 
 	/**
 	 * The height.
 	 */
-	height: number;
+	height?: number;
 
 	/**
 	 * The wibox screen.
 	 */
-	screen: AwesomeScreen;
+	screen?: AwesomeScreen;
 
 	/**
 	 * The widget that the wibox displays.
@@ -213,37 +213,37 @@ interface WiboxSharedProps {
 	/**
 	 * The wibox’s bounding shape as a (native) cairo surface.
 	 */
-	shape_bounding: cairo_surface;
+	shape_bounding?: cairo_surface;
 
 	/**
 	 * The wibox’s clip shape as a (native) cairo surface.
 	 */
-	shape_clip: cairo_surface;
+	shape_clip?: cairo_surface;
 
 	/**
 	 * The wibox’s input shape as a (native) cairo surface.
 	 */
-	shape_input: cairo_surface;
+	shape_input?: cairo_surface;
 
 	/**
 	 * The background.
 	 */
-	bg: AwesomeColor;
+	bg?: AwesomeColor;
 
 	/**
 	 * The background image of the drawable.
 	 */
-	bgimage: cairo_surface;
+	bgimage?: cairo_surface;
 
 	/**
 	 * The foreground (text) color.
 	 */
-	fg: AwesomeColor;
+	fg?: AwesomeColor;
 
 	/**
 	 * The shape.
 	 */
-	shape: ((cr: any, width: number, height: number) => void) | shape;
+	shape?: ((cr: any, width: number, height: number) => void) | shape;
 
 	/**
 	 * If the inputs are forward to the element below.

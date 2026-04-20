@@ -56,11 +56,7 @@ interface GearsWallpaper {
 	 * case all screens are set.
 	 * @param offset This can be set to a table with entries x and y.
 	 */
-	tiled(
-		surf: string | table,
-		s: AwesomeScreen,
-		offset: { x: number; y: number },
-	): void;
+	tiled(surf: string | table, s: AwesomeScreen, offset: Coords): void;
 
 	/**
 	 * Set a maximized wallpaper.
@@ -76,7 +72,7 @@ interface GearsWallpaper {
 		surf: string | table,
 		s: AwesomeScreen,
 		ignore_aspect: boolean,
-		offset: { x: number; y: number },
+		offset: Coords,
 	): void;
 
 	/**

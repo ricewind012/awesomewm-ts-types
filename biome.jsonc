@@ -29,7 +29,6 @@
 	"linter": {
 		"rules": {
 			"style": {
-				//"useEnumInitializers": "off",
 				"useNamingConvention": {
 					"level": "on",
 					"options": {

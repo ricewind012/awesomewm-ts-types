@@ -9,7 +9,7 @@ export default (s: AwesomeScreen | string) => {
 		buttons: [
 			// Left-clicking a client indicator minimizes it if it's unminimized, or unminimizes
 			// it if it's minimized.
-			awful.button<AwesomeClient>(undefined, awful.button.names.LEFT, (c) => {
+			awful.button(undefined, awful.button.names.LEFT, (c: AwesomeClient) => {
 				c.activate({ context: "tasklist", action: "toggle_minimization" });
 			}),
 

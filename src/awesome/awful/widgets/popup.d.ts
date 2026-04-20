@@ -4,57 +4,57 @@ interface AwfulPopupProps extends WiboxSharedProps {
 	/**
 	 * Set the preferred popup position relative to its parent.
 	 */
-	preferred_positions: BaseCorner | BaseCorner[];
+	preferred_positions?: BaseCorner | BaseCorner[];
 
 	/**
 	 * Set the preferred popup anchors relative to the parent.
 	 */
-	preferred_anchors: BaseCorner | BaseCorner[];
+	preferred_anchors?: BaseCorner | BaseCorner[];
 
 	/**
 	 * The current position relative to the parent object.
 	 */
-	readonly current_position: BaseCorner;
+	readonly current_position?: BaseCorner;
 
 	/**
 	 * Get the current anchor relative to the parent object.
 	 */
-	readonly current_anchor: DrawableNextToAnchor;
+	readonly current_anchor?: DrawableNextToAnchor;
 
 	/**
 	 * Hide the popup when right clicked.
 	 */
-	hide_on_right_click: boolean;
+	hide_on_right_click?: boolean;
 
 	/**
 	 * The popup minimum width.
 	 */
-	minimum_width: number;
+	minimum_width?: number;
 
 	/**
 	 * The popup minimum height.
 	 */
-	minimum_height: number;
+	minimum_height?: number;
 
 	/**
 	 * The popup maximum width.
 	 */
-	maximum_width: number;
+	maximum_width?: number;
 
 	/**
 	 * The popup maximum height.
 	 */
-	maximum_height: number;
+	maximum_height?: number;
 
 	/**
 	 * The distance between the popup and its parent (if any).
 	 */
-	offset: Coords | number;
+	offset?: Coords | number;
 
 	/**
 	 * Set the placement function.
 	 */
-	placement:
+	placement?:
 		| ((obj: table, args: table) => Rectangle)
 		| Partial<PlacementCommonArgs>
 		| string

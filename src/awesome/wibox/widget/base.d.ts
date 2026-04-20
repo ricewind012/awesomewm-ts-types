@@ -1,5 +1,6 @@
 /// <reference types="../../awful/button.d.ts" />
 
+// TODO: extend Rectangle ?
 interface FindWidgetsResult {
 	/**
 	 * The drawable containing the widget.

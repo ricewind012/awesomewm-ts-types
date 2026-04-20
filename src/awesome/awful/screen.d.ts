@@ -177,10 +177,7 @@ interface AwfulScreen {
 	 *
 	 * @deprecated Use {@link AwesomeScreen.padding}
 	 */
-	padding(
-		s: AwesomeScreen,
-		padding: AwesomeClientGeometry | number | undefined,
-	): AwesomeClientGeometry;
+	padding(s: AwesomeScreen, padding: Rectangle | number | undefined): Rectangle;
 
 	/**
 	 * The default arguments for `awful.screen.focused`.

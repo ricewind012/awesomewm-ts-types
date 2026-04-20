@@ -10,7 +10,7 @@ interface GearsSurface {
 	 * @param surface The surface to load or `nil`.
 	 */
 	// https://github.com/TypeScriptToLua/TypeScriptToLua/issues/1661
-	(this: void, surface: any): any | undefined;
+	(this: void, surface: cairo_surface | undefined): cairo_surface | undefined;
 
 	/**
 	 * Try to convert the argument into an lgi cairo surface. This is usually
@@ -24,10 +24,10 @@ interface GearsSurface {
 	 * - The loaded surface, or the replacement default
 	 * - An error message, or nil on success.
 	 */
-	load_uncached_silently(
-		surface: any,
-		def: any,
-	): LuaMultiReturn<[any, string | undefined]>;
+	load_uncached_silently<T>(
+		surface: cairo_surface | undefined,
+		def: T,
+	): LuaMultiReturn<[T, string | undefined]>;
 
 	/**
 	 * Try to convert the argument into an lgi cairo surface. This is usually
@@ -42,10 +42,10 @@ interface GearsSurface {
 	 * - The loaded surface, or the replacement default, or `nil` if called with `nil`.
 	 * - An error message, or `nil` on success.
 	 */
-	load_silently(
-		surface: any,
-		def: any,
-	): LuaMultiReturn<[any, string | undefined]>;
+	load_silently<T>(
+		surface: cairo_surface | undefined,
+		def: T,
+	): LuaMultiReturn<[T, string | undefined]>;
 
 	/**
 	 * Try to convert the argument into an lgi cairo surface. This is usually
@@ -54,14 +54,14 @@ interface GearsSurface {
 	 *
 	 * @param surface The surface to load or `nil`.
 	 */
-	load_uncached(surface: any): any | undefined;
+	load_uncached(surface: cairo_surface | undefined): cairo_surface | undefined;
 
 	/**
 	 * Get the size of a cairo surface
 	 *
 	 * @param surf The surface you are interested in
 	 */
-	get_size(surf: any): any;
+	get_size(surf: cairo_surface): any;
 
 	/**
 	 * Create a copy of a cairo surface modified to avoid unintended
@@ -73,7 +73,7 @@ interface GearsSurface {
 	 *
 	 * @param s Source surface.
 	 */
-	duplicate_surface(s: any): any;
+	duplicate_surface(s: cairo_surface): cairo_surface;
 
 	/**
 	 * Create a surface from a
@@ -92,8 +92,8 @@ interface GearsSurface {
 		width: number,
 		height: number,
 		shape: shape,
-		shape_color?: cairo_solid_pattern,
-		bg_color?: cairo_solid_pattern,
+		shape_color?: AwesomeColor,
+		bg_color?: AwesomeColor,
 	): any;
 
 	/**
@@ -144,6 +144,6 @@ interface GearsSurface {
 		/**
 		 * The surface to crop
 		 */
-		surface?: any;
-	}): any;
+		surface?: cairo_surface;
+	}): cairo_surface;
 }

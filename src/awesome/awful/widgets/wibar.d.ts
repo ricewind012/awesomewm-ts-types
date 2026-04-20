@@ -22,7 +22,7 @@ interface AwfulWibarProps extends AwfulPopupProps {
 	/**
 	 * The wibox position.
 	 */
-	position: string;
+	position: BaseCorner;
 }
 
 interface AwfulWibarInstance extends AwfulPopupInstance {

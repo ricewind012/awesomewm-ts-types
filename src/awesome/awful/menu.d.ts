@@ -3,14 +3,11 @@ type MenuItem =
 	| [
 			string,
 			MenuItem[] | string | (() => void),
-			string | gears_surface | undefined,
+			string | cairo_surface | undefined,
 	  ];
 
 interface MenuInstanceOptions {
-	coords: {
-		x: number;
-		y: number;
-	};
+	coords: Coords;
 }
 
 interface MenuInstance {
@@ -85,7 +82,22 @@ interface MenuCreationOptions {
 	 */
 	items: MenuItem[];
 
-	theme?: Partial<Theme>;
+	// TODO: XD
+	// https://github.com/awesomeWM/awesome/blob/master/lib/awful/menu.lua#L115
+	theme?: Partial<Theme> &
+		Partial<{
+			border: any;
+			border_width: any;
+			fg_focus: any;
+			bg_focus: any;
+			fg_normal: any;
+			bg_normal: any;
+			submenu_icon: any;
+			submenu: any;
+			height: any;
+			width: any;
+			font: any;
+		}>;
 }
 
 /**
@@ -111,7 +123,7 @@ interface AwfulMenu {
 	 * the client should be included in the menu.
 	 */
 	clients(
-		args?: MenuCreationOptions,
+		args?: Omit<MenuCreationOptions, "items">,
 		item_args?: table,
 		filter?: (c: AwesomeClient) => boolean,
 	): MenuInstance;
@@ -127,7 +139,7 @@ interface AwfulMenu {
 	 * the client should be included in the menu.
 	 */
 	client_list(
-		args?: MenuCreationOptions,
+		args?: Omit<MenuCreationOptions, "items">,
 		item_args?: table,
 		filter?: (c: AwesomeClient) => boolean,
 	): MenuInstance;
