@@ -7,7 +7,7 @@ interface AwfulWibarProps extends AwfulPopupProps {
 	/**
 	 * How to align non-stretched wibars.
 	 */
-	align?: BaseCorner | "centered";
+	align?: Position | "centered";
 
 	/**
 	 * Margins on each side of the wibar.
@@ -22,7 +22,7 @@ interface AwfulWibarProps extends AwfulPopupProps {
 	/**
 	 * The wibox position.
 	 */
-	position: BaseCorner;
+	position: Position;
 }
 
 interface AwfulWibarInstance extends AwfulPopupInstance {

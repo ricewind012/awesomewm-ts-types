@@ -38,7 +38,7 @@ interface AwfulTitlebar {
 		c: AwesomeClient,
 		args?: {
 			size?: number;
-			position?: BaseCorner;
+			position?: Position;
 			bg_normal?: string;
 			bg_focus?: string;
 			bg_urgent?: string;
@@ -155,7 +155,7 @@ interface AwfulTitlebar {
 	 * @param c The client whose titlebar is to be modified.
 	 * @param position The position of the titlebar.
 	 */
-	show(c: AwesomeClient, position?: BaseCorner): void;
+	show(c: AwesomeClient, position?: Position): void;
 
 	/**
 	 * Hide the client's titlebar.
@@ -163,7 +163,7 @@ interface AwfulTitlebar {
 	 * @param c The client whose titlebar is to be modified.
 	 * @param position The position of the titlebar.
 	 */
-	hide(c: AwesomeClient, position?: BaseCorner): void;
+	hide(c: AwesomeClient, position?: Position): void;
 
 	/**
 	 * Show/hide the client's titlebar.
@@ -171,7 +171,7 @@ interface AwfulTitlebar {
 	 * @param c The client whose titlebar is to be modified.
 	 * @param position The position of the titlebar.
 	 */
-	toggle(c: AwesomeClient, position?: BaseCorner): void;
+	toggle(c: AwesomeClient, position?: Position): void;
 
 	/**
 	 * Show tooltips when hover on titlebar buttons.

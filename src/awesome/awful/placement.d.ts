@@ -183,7 +183,7 @@ interface AwfulPlacement {
 		d: Drawable,
 		args?: Partial<PlacementCommonArgs> & {
 			position?:
-				| Omit<BaseCorner, "auto">
+				| Omit<Position, "auto">
 				| "centered"
 				| "center_vertical"
 				| "center_horizontal";

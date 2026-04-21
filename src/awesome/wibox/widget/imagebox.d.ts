@@ -1,4 +1,4 @@
-interface WiboxWidgetImageBoxProps {
+interface WiboxWidgetImageBoxProps extends BaseWidgetProps {
 	/**
 	 * The image rendered by the imagebox.
 	 */
@@ -7,77 +7,77 @@ interface WiboxWidgetImageBoxProps {
 	/**
 	 * Return the source image width.
 	 */
-	source_width: number;
+	source_width?: number;
 
 	/**
 	 * Return the source image height.
 	 */
-	source_height: number;
+	source_height?: number;
 
 	/**
 	 * Set a clip shape for this imagebox.
 	 */
-	clip_shape: shape | ((cr: any, width: number, height: number) => void);
+	clip_shape?: shape | ((cr: any, width: number, height: number) => void);
 
 	/**
 	 * Should the image be resized to fit into the available space?
 	 */
-	resize: boolean;
+	resize?: boolean;
 
 	/**
 	 * Allow the image to be upscaled (made bigger).
 	 */
-	upscale: boolean;
+	upscale?: boolean;
 
 	/**
 	 * Allow the image to be downscaled (made smaller).
 	 */
-	downscale: boolean;
+	downscale?: boolean;
 
 	/**
 	 * Set the SVG CSS stylesheet.
 	 */
-	stylesheet: string;
+	stylesheet?: string;
 
 	/**
 	 * Set the SVG DPI (dot per inch).
 	 */
-	dpi: Coords | number;
+	dpi?: Coords | number;
 
 	/**
 	 * Use the object DPI when rendering the SVG.
 	 */
-	auto_dpi: boolean;
+	auto_dpi?: boolean;
 
 	/**
 	 * Set the horizontal fit policy.
 	 */
-	horizontal_fit_policy: ImageFitPolicy;
+	horizontal_fit_policy?: ImageFitPolicy;
 
 	/**
 	 * Set the vertical fit policy.
 	 */
-	vertical_fit_policy: ImageFitPolicy;
+	vertical_fit_policy?: ImageFitPolicy;
 
 	/**
 	 * The vertical alignment.
 	 */
-	valign: VerticalAlignment;
+	valign?: VerticalAlignment;
 
 	/**
 	 * The horizontal alignment.
 	 */
-	halign: HorizontalAlignment;
+	halign?: HorizontalAlignment;
 
 	/**
 	 * The maximum scaling factor.
 	 */
-	max_scaling_factor: number;
+	max_scaling_factor?: number;
 
 	/**
 	 * Set the scaling aligorithm.
 	 */
-	scaling_quality: ImageScalingQuality;
+	scaling_quality?: ImageScalingQuality;
 }
 
 interface WiboxWidgetImageBox extends BaseWidget {}
@@ -86,5 +86,5 @@ interface WiboxWidgetImageBox extends BaseWidget {}
  * @noSelf
  */
 interface WiboxWidgetImageBoxConstructor {
-	(props: Partial<WiboxWidgetImageBoxProps>): WiboxWidgetImageBox;
+	(props: WiboxWidgetImageBoxProps): WiboxWidgetImageBox;
 }

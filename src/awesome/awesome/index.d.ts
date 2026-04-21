@@ -336,7 +336,7 @@ interface AwesomeGlobal
 	 * @returns A string describing the current layout settings, e.g.:
 	 * 'pc+us+de:2+inet(evdev)+group(altshifttoggle)+ctrl(nocaps)'
 	 */
-	xkb_get_group_names(): string;
+	xkb_get_group_names(): string[];
 
 	/**
 	 * Get current layout number.

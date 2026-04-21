@@ -8,7 +8,7 @@ declare global {
 	interface AwesomeScreen {
 		bar: any;
 		mypromptbox: any;
-		mywibox: any;
+		mywibox: AwfulWibarInstance;
 	}
 }
 

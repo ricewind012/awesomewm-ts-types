@@ -1327,7 +1327,7 @@ interface Theme {
 
 	// #region awful.widget.calendar_popup
 	/** The generic calendar style table. */
-	calendar_style: cell_properties;
+	calendar_style: any;
 	// #endregion
 
 	// #region menubar

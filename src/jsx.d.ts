@@ -2,9 +2,11 @@
 /// <reference types="./awesome/wibox/container" />
 /// <reference types="./awesome/wibox/layout" />
 
+// https://www.typescriptlang.org/docs/handbook/jsx.html
 declare namespace JSX {
-	interface Element extends BaseWidget {}
-
+	type Element = BaseWidget;
+	//type ElementChildrenAttribute = Partial<BaseWidgetProps>;
+	type ElementType = (props: object) => BaseWidget;
 	type IntrinsicElements = {
 		[el in keyof WiboxLayout]: WiboxLayout[el];
 	} & {

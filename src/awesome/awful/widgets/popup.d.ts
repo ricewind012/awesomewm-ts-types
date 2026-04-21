@@ -4,17 +4,17 @@ interface AwfulPopupProps extends WiboxSharedProps {
 	/**
 	 * Set the preferred popup position relative to its parent.
 	 */
-	preferred_positions?: BaseCorner | BaseCorner[];
+	preferred_positions?: Position | Position[];
 
 	/**
 	 * Set the preferred popup anchors relative to the parent.
 	 */
-	preferred_anchors?: BaseCorner | BaseCorner[];
+	preferred_anchors?: Position | Position[];
 
 	/**
 	 * The current position relative to the parent object.
 	 */
-	readonly current_position?: BaseCorner;
+	readonly current_position?: Position;
 
 	/**
 	 * Get the current anchor relative to the parent object.

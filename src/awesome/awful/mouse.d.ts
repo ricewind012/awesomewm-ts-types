@@ -119,8 +119,8 @@ interface AwfulMouse {
 		 */
 		corner(
 			c?: AwesomeClient,
-			corner?: ClientCorner,
-		): LuaMultiReturn<[ClientCorner, number, number]>;
+			corner?: ClientPosition,
+		): LuaMultiReturn<[ClientPosition, number, number]>;
 
 		/**
 		 * Resize a client.
@@ -131,7 +131,11 @@ interface AwfulMouse {
 		 *
 		 * @returns The corner (| side) name
 		 */
-		resize(c: AwesomeClient, corner?: ClientCorner, args?: table): ClientCorner;
+		resize(
+			c: AwesomeClient,
+			corner?: ClientPosition,
+			args?: table,
+		): ClientPosition;
 	};
 
 	drag_to_tag: {

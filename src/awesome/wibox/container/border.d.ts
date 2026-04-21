@@ -1,5 +1,5 @@
 type ImageSides<T> = {
-	[corner in ClientCorner]: T;
+	[corner in ClientPosition]: T;
 };
 
 interface WiboxContainerBorderProps {

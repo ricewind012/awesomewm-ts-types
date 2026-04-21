@@ -92,9 +92,9 @@ type Cursor =
 	| "xterm";
 
 // bruh
-type BaseCorner = "left" | "right" | "top" | "bottom";
-type ClientCorner =
-	| BaseCorner
+type Position = "left" | "right" | "top" | "bottom";
+type ClientPosition =
+	| Position
 	| "auto"
 	| "top_left"
 	| "top_right"

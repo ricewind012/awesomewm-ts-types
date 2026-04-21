@@ -39,7 +39,7 @@ export default (c: AwesomeClient) => {
 			</wibox.layout.fixed.horizontal>
 
 			{/* Middle */}
-			<wibox.layout.flex.horizontal buttons={buttons}>
+			<wibox.layout.flex.horizontal buttons={buttons} halign="center">
 				{awful.titlebar.widget.titlewidget(c)}
 			</wibox.layout.flex.horizontal>
 
