@@ -5,11 +5,6 @@ type cairo_matrix = any;
 type cairo_solid_pattern = any;
 type cairo_surface = any;
 type shape = any;
-type Gio = any;
-type lgi = any;
-type widget = any;
-type template = any;
-type cairo = any;
 type table = object;
 
 declare namespace Gio {

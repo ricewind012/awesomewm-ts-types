@@ -5,8 +5,8 @@
 // https://www.typescriptlang.org/docs/handbook/jsx.html
 declare namespace JSX {
 	type Element = BaseWidget;
-	//type ElementChildrenAttribute = Partial<BaseWidgetProps>;
-	type ElementType = (props: object) => BaseWidget;
+	// biome-ignore lint/suspicious/noExplicitAny: IDK how
+	type ElementType = BaseWidget | ((props?: any) => BaseWidget);
 	type IntrinsicElements = {
 		[el in keyof WiboxLayout]: WiboxLayout[el];
 	} & {

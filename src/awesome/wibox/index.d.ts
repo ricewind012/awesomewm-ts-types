@@ -108,14 +108,14 @@ interface Wibox {
 	 * @returns A sorted table of widgets positions. The first element is
 	 * the biggest container while the last is the topmost widget.
 	 */
-	find_widgets(x: number, y: number): Rectangle & { widget: widget };
+	find_widgets(x: number, y: number): Rectangle & { widget: BaseWidget };
 
 	/**
 	 * Create a widget that reflects the current state of this wibox.
 	 *
 	 * @returns A new widget.
 	 */
-	to_widget(): widget;
+	to_widget(): BaseWidget;
 
 	/**
 	 * Save a screenshot of the wibox to `path`.

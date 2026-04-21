@@ -2,24 +2,25 @@ import * as awful from "awful";
 import * as wibox from "wibox";
 
 import make_widget from "../../jsx";
-import * as module from "./module";
+import { Launcher, LayoutBox, TagList, TaskList } from "./module";
 
 /** @noSelf */
 export default (s: AwesomeScreen) => {
 	// Create a promptbox.
 	s.mypromptbox = <awful.widget.prompt />;
 
-	const wibox_widget = (
+	// Create the wibox
+	const widget = (
 		<wibox.layout.align.horizontal>
 			{/* Left */}
 			<wibox.layout.fixed.horizontal>
-				{module.launcher()}
-				{module.taglist(s)}
+				<Launcher />
+				<TagList s={s} />
 				{s.mypromptbox}
 			</wibox.layout.fixed.horizontal>
 
 			{/* Middle */}
-			{module.tasklist(s)}
+			<TaskList s={s} />
 
 			{/* Right */}
 			<wibox.layout.fixed.horizontal>
@@ -28,18 +29,9 @@ export default (s: AwesomeScreen) => {
 				<wibox.widget.systray />
 				{/* Create a textclock widget. */}
 				<wibox.widget.textclock />
-				{module.layoutbox(s)}
+				<LayoutBox s={s} />
 			</wibox.layout.fixed.horizontal>
 		</wibox.layout.align.horizontal>
 	);
-	s.mywibox = <awful.wibar position="top" screen={s} widget={wibox_widget} />;
-
-	if (_VERSION) return;
-
-	// Create the wibox
-	s.mywibox = awful.wibar({
-		position: "top",
-		screen: s,
-		widget: wibox_widget,
-	});
+	s.mywibox = <awful.wibar position="top" screen={s} widget={widget} />;
 };

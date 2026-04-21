@@ -120,7 +120,7 @@ interface AwfulPrompt {
 			/**
 			 * The textbox to use for the prompt.
 			 */
-			textbox?: widget;
+			textbox?: BaseWidget;
 
 			selectall?: boolean;
 			text?: string;

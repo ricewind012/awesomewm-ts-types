@@ -44,7 +44,7 @@ interface WallpaperInstanceOptions {
 	/**
 	 * The foreground color.
 	 *
-	 * This will be used by the {@link widget} (if any).
+	 * This will be used by the {@link BaseWidget} (if any).
 	 */
 	fg: cairo_solid_pattern;
 

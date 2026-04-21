@@ -1,6 +1,6 @@
-import launcher from "./launcher";
-import layoutbox from "./layoutbox";
-import taglist from "./taglist";
-import tasklist from "./tasklist";
+import { Launcher } from "./launcher";
+import { LayoutBox } from "./layoutbox";
+import { TagList } from "./taglist";
+import { TaskList } from "./tasklist";
 
-export { launcher, layoutbox, taglist, tasklist };
+export { Launcher, LayoutBox, TagList, TaskList };

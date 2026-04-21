@@ -463,7 +463,7 @@ interface NotificationProperties {
 	 * Some notifications, such as chat messages or music applications are
 	 * better off with a specialized notification widget.
 	 */
-	widget_template?: template;
+	widget_template?: BaseWidget;
 }
 
 interface NotificationPreset {
@@ -815,7 +815,7 @@ declare module "naughty" {
 			this: void,
 			args: Partial<WiboxSharedProps> & {
 				notification: NaughtyNotification;
-				widget_template?: template;
+				widget_template?: BaseWidget;
 			},
 		): NaughtyNotificationPopupBox;
 	};
