@@ -1,0 +1,17 @@
+{
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"build": "tstl"
+	},
+	"dependencies": {
+		"lua-types": "^2.14.1",
+		"typescript": "6.0.2",
+		"typescript-to-lua": "1.36.0",
+		"typescript-tstl-plugin": "^0.3.2"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.4.12",
+		"@types/awesomewm": "file:../src"
+	}
+}

@@ -1,0 +1,22 @@
+{
+	"$schema": "https://raw.githubusercontent.com/TypeScriptToLua/TypeScriptToLua/master/tsconfig-schema.json",
+	"compilerOptions": {
+		"jsx": "react",
+		"jsxFactory": "make_widget",
+		"lib": ["ESNext"],
+		"outDir": "dist",
+		// Disabled because of the following error, which is a bug(?) but it
+		// compiles anyway:
+		// "Unable to convert function with no 'this' parameter to function
+		// 'func' with 'this'."
+		//"plugins": [{ "name": "typescript-tstl-plugin" }],
+		"rootDir": "./src",
+		"types": ["@types/awesomewm", "lua-types/jit"]
+	},
+	"include": ["./src"],
+	"tstl": {
+		"buildMode": "default",
+		"luaTarget": "5.3",
+		"noHeader": true
+	}
+}

@@ -1,7 +1,0 @@
-#!/bin/sh
-
-# TODO Lol
-npx tstl
-find dist -type f | while read -r file; do
-    sed -i 's/require("modular-awm-default-ts./require("/g' "$file"
-done
