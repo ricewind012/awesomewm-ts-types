@@ -58,7 +58,7 @@
 								}
 							},
 							{
-								"formats": ["snake_case"],
+								"formats": ["PascalCase", "snake_case"],
 								"selector": {
 									"kind": "function"
 								}

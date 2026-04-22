@@ -1,4 +1,4 @@
-interface AwfulWidgetLayoutBoxProps extends Partial<BaseWidgetProps> {
+interface AwfulWidgetLayoutBoxProps extends BaseWidgetProps {
 	/**
 	 * The screen number that the layout will be represented for.
 	 */

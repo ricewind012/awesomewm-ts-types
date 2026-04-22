@@ -154,7 +154,7 @@ interface BaseWidgetProps {
 	/**
 	 * Get or set the children elements.
 	 */
-	children: BaseWidget[];
+	children?: BaseWidget[];
 
 	/**
 	 * Get all direct and indirect children widgets. This will scan all
@@ -164,41 +164,41 @@ interface BaseWidgetProps {
 	 * widgets hierarchy. A hierarchy loop is when a widget, or any of its
 	 * children, contain (directly or indirectly) itself.
 	 */
-	all_children: BaseWidget[];
+	all_children?: BaseWidget[];
 
 	/**
 	 * Force a widget height.
 	 */
-	forced_height: number | undefined;
+	forced_height?: number;
 
 	/**
 	 * Force a widget width.
 	 */
-	forced_width: number | undefined;
+	forced_width?: number;
 
 	/**
 	 * The widget opacity (transparency, value is from 0 to 1).
 	 */
-	opacity: number;
+	opacity?: number;
 
 	/**
 	 * The widget visibility.
 	 */
-	visible: boolean;
+	visible?: boolean;
 
 	/**
 	 * The widget buttons.
 	 */
-	buttons: AwfulButtonInstance[];
+	buttons?: AwfulButtonInstance[];
 
 	/**
 	 * The widget to be placed.
 	 */
-	widget: BaseWidget;
+	widget?: BaseWidget;
 }
 
 interface BaseWidget
-	extends BaseWidgetProps,
+	extends Required<BaseWidgetProps>,
 		SignalObject<BaseWidgetSignal, BaseWidgetSignalMap> {
 	/**
 	 * Add a new `awful.button` to this widget.

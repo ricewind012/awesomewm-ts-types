@@ -116,29 +116,25 @@ interface AwfulLayout {
 	layouts: AwesomeLayout[];
 
 	suit: {
-		corner: {
+		corner: AwesomeLayout & {
 			nw: AwesomeLayout;
 			ne: AwesomeLayout;
 			sw: AwesomeLayout;
 			se: AwesomeLayout;
 		};
-		fair: {
-			(...args: unknown[]): AwesomeLayout;
+		fair: AwesomeLayout & {
 			horizontal: AwesomeLayout;
 		};
 		floating: AwesomeLayout;
 		magnifier: AwesomeLayout;
-		max: {
-			(...args: unknown[]): AwesomeLayout;
+		max: AwesomeLayout & {
 			fullscreen: AwesomeLayout;
 		};
-		spiral: {
-			(...args: unknown[]): AwesomeLayout;
+		spiral: AwesomeLayout & {
 			dwindle: AwesomeLayout;
 			name: AwesomeLayout;
 		};
-		tile: {
-			(...args: unknown[]): AwesomeLayout;
+		tile: AwesomeLayout & {
 			right: AwesomeLayout;
 			left: AwesomeLayout;
 			bottom: AwesomeLayout;

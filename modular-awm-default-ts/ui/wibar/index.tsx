@@ -4,8 +4,13 @@ import * as wibox from "wibox";
 import make_widget from "../../jsx";
 import { Launcher, LayoutBox, TagList, TaskList } from "./module";
 
-/** @noSelf */
-export default (s: AwesomeScreen) => {
+interface WibarProps {
+	s: AwesomeScreen;
+}
+
+export function Wibar(this: void, props: WibarProps) {
+	const { s } = props;
+
 	// Create a promptbox.
 	s.mypromptbox = <awful.widget.prompt />;
 
@@ -33,5 +38,6 @@ export default (s: AwesomeScreen) => {
 			</wibox.layout.fixed.horizontal>
 		</wibox.layout.align.horizontal>
 	);
-	s.mywibox = <awful.wibar position="top" screen={s} widget={widget} />;
-};
+
+	return <awful.wibar position="top" screen={s} widget={widget} />;
+}

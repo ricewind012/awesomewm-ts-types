@@ -2,6 +2,10 @@ import * as awful from "awful";
 import * as gears from "gears";
 
 const AWFUL_WIDGETS = [
+	awful.hotkeys_popup,
+	awful.popup,
+	awful.titlebar,
+	awful.wallpaper,
 	awful.wibar,
 	awful.widget.button,
 	awful.widget.clienticon,
@@ -12,24 +16,30 @@ const AWFUL_WIDGETS = [
 	awful.widget.prompt,
 	awful.widget.taglist,
 	awful.widget.tasklist,
-	awful.widget.watch,
-];
+	// Doesn't use an args table
+	//awful.widget.watch,
+] as unknown as BaseWidget[];
 
+// TODO (maybe) : widget?.set_widget(children)
 export default function make_widget(
-	widget: JSX.ElementType,
+	widget: BaseWidget,
 	props: object,
 	...children: BaseWidget[]
 ) {
-	// awful.widget.*, they most likely have no children anyway
+	// awful.widget.*
 	const widget_type = type(widget);
 	const is_awful_widget = AWFUL_WIDGETS.some((e) => widget === e);
 	if (is_awful_widget) {
-		return (widget as (this: void, props: object) => BaseWidget)(props);
+		return (widget as unknown as (this: void, props: object) => BaseWidget)(
+			props,
+		);
 	}
 
 	// Function components
 	if (widget_type === "function") {
-		widget = (widget as (this: void, props: object) => BaseWidget)(props);
+		widget = (widget as unknown as (this: void, props: object) => BaseWidget)(
+			props,
+		);
 	}
 
 	// Normal widgets

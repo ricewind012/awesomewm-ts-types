@@ -1,6 +1,4 @@
-interface AwfulWidgetButtonProps extends WiboxWidgetImageBoxProps {
-	buttons: AwfulButtonInstance[];
-}
+interface AwfulWidgetButtonProps extends WiboxWidgetImageBoxProps {}
 
 interface AwfulWidgetButton extends WiboxWidgetImageBox {}
 

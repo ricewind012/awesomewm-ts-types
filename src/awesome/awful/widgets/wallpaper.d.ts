@@ -97,7 +97,7 @@ interface WallpaperInstanceOptions {
 		| ((wp: WallpaperInstance) => Rectangle);
 }
 
-interface WallpaperInstance extends WallpaperInstanceOptions {
+interface WallpaperInstance extends WiboxDrawable {
 	/**
 	 * Add another screen (enable panning).
 	 *

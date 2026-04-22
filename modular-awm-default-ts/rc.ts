@@ -7,7 +7,8 @@ import * as naughty from "naughty";
 declare global {
 	interface AwesomeScreen {
 		bar: BaseWidget;
-		mypromptbox: AwfulWidgetPrompt;
+		mypromptbox: BaseWidget;
+		mywallpaper: BaseWidget;
 		mywibox: BaseWidget;
 	}
 }

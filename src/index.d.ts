@@ -1,6 +1,6 @@
 /// <reference types="lua-types/jit" />
 
-/// <reference types="./jsx.d.ts" />
+/// <reference types="./jsx" />
 
 /// <reference types="./awesome/client" />
 /// <reference types="./awesome/global" />
@@ -15,6 +15,7 @@
 /// <reference types="./awesome/menubar" />
 /// <reference types="./awesome/mousegrabber" />
 /// <reference types="./awesome/naughty" />
+/// <reference types="./awesome/root" />
 /// <reference types="./awesome/ruled" />
 /// <reference types="./awesome/selection" />
 /// <reference types="./awesome/wibox" />

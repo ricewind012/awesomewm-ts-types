@@ -1,4 +1,4 @@
-interface AwfulWidgetKeyboardLayoutProps extends Partial<BaseWidgetProps> {
+interface AwfulWidgetKeyboardLayoutProps extends BaseWidgetProps {
 	country_codes?: string[];
 }
 

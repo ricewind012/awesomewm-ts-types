@@ -4,15 +4,16 @@ import * as wibox from "wibox";
 
 import { user } from "../config/user";
 import make_widget from "../jsx";
-import wibar from "../ui/wibar";
+import { Wibar } from "../ui/wibar";
 
 /// Attach tags and widgets to all screens.
 screen.connect_signal("request::desktop_decoration", (s) => {
+	// TODO(ts): apparently this signal returns a screen, but not context?
+	const scr = s as unknown as AwesomeScreen;
 	// Create all tags and attach the layouts to each of them.
 	awful.tag(user.tags, s, awful.layout.layouts[1]);
 	// Attach a wibar to each screen.
-	// TODO(ts): apparently this signal returns a screen, but not context?
-	(s as unknown as AwesomeScreen).bar = wibar(s as unknown as AwesomeScreen);
+	scr.bar = <Wibar s={scr} />;
 });
 
 /// Wallpaper.
@@ -22,18 +23,18 @@ screen.connect_signal("request::desktop_decoration", (s) => {
 // may want to use the deprecated `gears.wallpaper` instead. This is
 // the most common case of just wanting to set an image as wallpaper.
 screen.connect_signal("request::wallpaper", (s) => {
-	awful.wallpaper({
-		screen: s,
-		widget: (
-			<wibox.container.tile halign="center" valign="center" tiled={false}>
-				<wibox.widget.imagebox
-					image={beautiful.get().wallpaper}
-					upscale={true}
-					downscale={true}
-				/>
-			</wibox.container.tile>
-		),
-	});
+	// TODO(ts): apparently this signal returns a screen, but not context?
+	const scr = s as unknown as AwesomeScreen;
+	const widget = (
+		<wibox.container.tile halign="center" valign="center" tiled={false}>
+			<wibox.widget.imagebox
+				image={beautiful.get().wallpaper}
+				upscale={true}
+				downscale={true}
+			/>
+		</wibox.container.tile>
+	);
+	scr.mywallpaper = <awful.wallpaper screen={scr} widget={widget} />;
 });
 // An example of what's mentioned above. For more information, see:
 // https://awesomewm.org/apidoc/utility_libraries/gears.wallpaper.html

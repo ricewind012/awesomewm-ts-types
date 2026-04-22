@@ -65,7 +65,26 @@ declare enum ImageScalingQuality {
 type HorizontalAlignment = "left" | "center" | "right";
 type VerticalAlignment = "top" | "center" | "bottom";
 
-interface Wibox {
+interface WiboxDrawable {
+	/**
+	 * Redraw a wibox. You should never have to call this explicitely
+	 * because it is automatically called when needed.
+	 *
+	 * @param wibox
+	 */
+	draw(wibox: Wibox): void;
+
+	/**
+	 * Set a declarative widget hierarchy description. See [The declarative
+	 * layout
+	 * system](https://awesomewm.org/apidoc/documentation/03-declarative-layout.md.html)
+	 *
+	 * @param args An array containing the widgets disposition
+	 */
+	setup(args: BaseWidget[]): void;
+}
+
+interface Wibox extends WiboxDrawable {
 	/**
 	 * Get or set wibox geometry. That's the same as accessing or setting
 	 * the x, y, width or height properties of a wibox.
@@ -91,16 +110,8 @@ interface Wibox {
 	struts(struts: AwesomeClientStrut[]): AwesomeClientStrut;
 
 	/**
-	 * Set a declarative widget hierarchy description. See [The declarative
-	 * layout
-	 * system](https://awesomewm.org/apidoc/documentation/03-declarative-layout.md.html)
-	 *
-	 * @param args An array containing the widgets disposition
-	 */
-	setup(args: BaseWidget[]): void;
-
-	/**
-	 * Find a widget by a point. The wibox must have drawn itself at least once for this to work.
+	 * Find a widget by a point. The wibox must have drawn itself at least once
+	 * for this to work.
 	 *
 	 * @param x X coordinate of the point
 	 * @param y Y coordinate of the point
@@ -124,14 +135,6 @@ interface Wibox {
 	 * @param context A widget context.
 	 */
 	save_to_svg(path: string, context?: table): void;
-
-	/**
-	 * Redraw a wibox. You should never have to call this explicitely
-	 * because it is automatically called when needed.
-	 *
-	 * @param wibox
-	 */
-	draw(wibox: Wibox): void;
 
 	/**
 	 * The X window id.
