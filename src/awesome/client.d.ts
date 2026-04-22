@@ -39,7 +39,7 @@ interface AwesomeClientSignalMap extends SignalMap<AwesomeClientSignal> {
 	 * Connect to this signal when code needs to be executed after screens are
 	 * initialized, but before clients are added.
 	 */
-	scanning: () => void;
+	scanning: (this: void) => void;
 
 	/**
 	 * Emitted when AwesomeWM is done scanning for clients.
@@ -47,18 +47,18 @@ interface AwesomeClientSignalMap extends SignalMap<AwesomeClientSignal> {
 	 * This is emitted before the `startup` signal and after the `scanning`
 	 * signal.
 	 */
-	scanned: () => void;
+	scanned: (this: void) => void;
 
 	/**
 	 * Emitted when a client gains focus.
 	 */
-	focus: () => void;
+	focus: (this: void) => void;
 
 	/**
 	 * Emitted before `request::manage`, after `request::unmanage`, and when
 	 * clients swap.
 	 */
-	list: () => void;
+	list: (this: void) => void;
 
 	/**
 	 * Emitted when 2 clients are swapped
@@ -116,12 +116,12 @@ interface AwesomeClientSignalMap extends SignalMap<AwesomeClientSignal> {
 	/**
 	 * Emitted when a mouse button is pressed in a client.
 	 */
-	"button::press": () => void;
+	"button::press": (this: void) => void;
 
 	/**
 	 * Emitted when a mouse button is released in a client.
 	 */
-	"button::release": () => void;
+	"button::release": (this: void) => void;
 
 	/**
 	 * Emitted when the mouse enters a client.
@@ -131,12 +131,12 @@ interface AwesomeClientSignalMap extends SignalMap<AwesomeClientSignal> {
 	/**
 	 * Emitted when the mouse leaves a client.
 	 */
-	"mouse::leave": () => void;
+	"mouse::leave": (this: void) => void;
 
 	/**
 	 * Emitted when the mouse moves within a client.
 	 */
-	"mouse::move": () => void;
+	"mouse::move": (this: void) => void;
 
 	// TODO
 	/**
@@ -271,7 +271,7 @@ interface AwesomeClientSignalMap extends SignalMap<AwesomeClientSignal> {
 	/**
 	 * Emitted when a client gets unfocused.
 	 */
-	unfocus: () => void;
+	unfocus: (this: void) => void;
 
 	/**
 	 * Emitted when a client gets untagged.
@@ -281,17 +281,17 @@ interface AwesomeClientSignalMap extends SignalMap<AwesomeClientSignal> {
 	/**
 	 * Emitted when the client is raised within its layer.
 	 */
-	raised: () => void;
+	raised: (this: void) => void;
 
 	/**
 	 * Emitted when the client is lowered within its layer.
 	 */
-	lowered: () => void;
+	lowered: (this: void) => void;
 
 	/**
 	 * The last geometry when client was floating.
 	 */
-	"property::floating_geometry": () => void;
+	"property::floating_geometry": (this: void) => void;
 
 	/**
 	 * Emitted when a client need to get a titlebar.

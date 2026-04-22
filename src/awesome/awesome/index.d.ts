@@ -114,7 +114,7 @@ interface AwesomeGlobalSignalMap extends SignalMap<AwesomeGlobalSignal> {
 	 *
 	 * This signal is used in [wibox.widget.systray](TODO).
 	 */
-	"systray::update": () => void;
+	"systray::update": (this: void) => void;
 
 	/**
 	 * The wallpaper has changed.
@@ -122,7 +122,7 @@ interface AwesomeGlobalSignalMap extends SignalMap<AwesomeGlobalSignal> {
 	 * This signal is used for pseudo-transparency in {@link wibox.drawable} if
 	 * no composite manager is running.
 	 */
-	wallpaper_changed: () => void;
+	wallpaper_changed: (this: void) => void;
 
 	/**
 	 * Keyboard map has changed.
@@ -131,7 +131,7 @@ interface AwesomeGlobalSignalMap extends SignalMap<AwesomeGlobalSignal> {
 	 * [awful.widget.keyboardlayout](https://awesomewm.org/apidoc/widgets/awful.widget.keyboardlayout.html#)
 	 * to redraw the layout.
 	 */
-	"xkb::map_changed": () => void;
+	"xkb::map_changed": (this: void) => void;
 
 	/**
 	 * Keyboard group has changed.
@@ -150,14 +150,14 @@ interface AwesomeGlobalSignalMap extends SignalMap<AwesomeGlobalSignal> {
 	 * This signal is emitted as a kind of idle signal in the event loop. One
 	 * example usage is in {@link gears.timer} to executed delayed calls.
 	 */
-	refresh: () => void;
+	refresh: (this: void) => void;
 
 	/**
 	 * AwesomeWM is about to enter the event loop.
 	 *
 	 * This means all initialization has been done.
 	 */
-	startup: () => void;
+	startup: (this: void) => void;
 
 	/**
 	 * AwesomeWM is exiting / about to restart.

@@ -3,9 +3,14 @@ import * as wibox from "wibox";
 
 import make_widget from "../../jsx";
 
+interface NormalTitlebarProps {
+	c: AwesomeClient;
+}
+
 /// The titlebar to be used on normal clients.
-/** @noSelf */
-export default (c: AwesomeClient) => {
+export function NormalTitlebar(props: NormalTitlebarProps) {
+	const { c } = props;
+
 	// Buttons for the titlebar.
 	const buttons = [
 		awful.button(undefined, awful.button.names.LEFT, () => {
@@ -31,7 +36,7 @@ export default (c: AwesomeClient) => {
 				halign: "center",
 			},
 	*/
-	awful.titlebar(c).widget = (
+	const widget = (
 		<wibox.layout.align.horizontal>
 			{/* Left */}
 			<wibox.layout.fixed.horizontal buttons={buttons}>
@@ -53,4 +58,6 @@ export default (c: AwesomeClient) => {
 			</wibox.layout.fixed.horizontal>
 		</wibox.layout.align.horizontal>
 	);
-};
+	awful.titlebar(c).widget = widget;
+	return widget;
+}

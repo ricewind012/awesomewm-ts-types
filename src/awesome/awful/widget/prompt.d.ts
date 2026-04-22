@@ -8,10 +8,11 @@ interface AwfulWidgetPromptShared {
 interface AwfulWidgetPromptProps
 	extends AwfulWidgetPromptShared,
 		AwfulPromptSharedProps,
-		Partial<WiboxContainerBackgroundProps> {}
+		WiboxContainerBackgroundProps {}
 
 interface AwfulWidgetPrompt
-	extends AwfulWidgetPromptShared,
+	extends AwfulPrompt,
+		AwfulWidgetPromptShared,
 		WiboxContainerBackground {}
 
 /**

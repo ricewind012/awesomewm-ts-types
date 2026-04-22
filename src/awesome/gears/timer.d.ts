@@ -44,23 +44,6 @@ interface Timer
 	again(): void;
 
 	/**
-	 * Connect to a signal weakly.
-	 *
-	 * This allows the callback function to be garbage collected and
-	 * automatically disconnects the signal when that happens.
-	 *
-	 * **Warning**: Only use this function if you really, really, really know
-	 * what you are doing.
-	 *
-	 * @param name A string with the event name.
-	 * @param func The function to call.
-	 */
-	weak_connect_signal<K extends keyof TimerSignalMap>(
-		name: K,
-		func: TimerSignalMap[K],
-	): void;
-
-	/**
 	 * The timer is started.
 	 *
 	 * For this to be `true` by default, pass `autostart` to the constructor.

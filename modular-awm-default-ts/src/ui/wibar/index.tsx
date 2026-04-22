@@ -8,7 +8,7 @@ interface WibarProps {
 	s: AwesomeScreen;
 }
 
-export function Wibar(this: void, props: WibarProps) {
+export function Wibar(props: WibarProps) {
 	const { s } = props;
 
 	// Create a promptbox.

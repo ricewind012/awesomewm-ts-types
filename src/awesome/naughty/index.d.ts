@@ -540,7 +540,7 @@ interface NaughtySignalMap extends SignalMap<NaughtySignal> {
 	 *
 	 * @param notification The `naughty.notification` object.
 	 */
-	"request::preset": () => void;
+	"request::preset": (this: void) => void;
 
 	/**
 	 * Emitted when an action requires an icon it doesn't know.
@@ -670,20 +670,6 @@ declare module "naughty" {
 	): void;
 
 	/**
-	 * Destroy all notifications on given screens.
-	 *
-	 * @param screens Table of screens on which notifications should be
-	 * destroyed. If nil, destroy notifications on all screens.
-	 * @param reason Reason for closing notifications.
-	 * @returns True if all notifications were successfully destroyed, nil
-	 * otherwise.
-	 */
-	export function destroy_all_notifications(
-		screens: table,
-		reason: NotificationClosedReason,
-	): true | undefined;
-
-	/**
 	 * Disconnect a signal from a source.
 	 *
 	 * @param name The name of the signal
@@ -705,6 +691,20 @@ declare module "naughty" {
 		name: K,
 		...args: Parameters<NaughtySignalMap[K]>
 	): void;
+
+	/**
+	 * Destroy all notifications on given screens.
+	 *
+	 * @param screens Table of screens on which notifications should be
+	 * destroyed. If nil, destroy notifications on all screens.
+	 * @param reason Reason for closing notifications.
+	 * @returns True if all notifications were successfully destroyed, nil
+	 * otherwise.
+	 */
+	export function destroy_all_notifications(
+		screens: table,
+		reason: NotificationClosedReason,
+	): true | undefined;
 
 	/**
 	 * Get notification by ID.

@@ -30,7 +30,7 @@ interface AwesomeScreenSignalMap extends SignalMap<AwesomeScreenSignal> {
 	 * Be careful when using this, when done incorrectly, no screens will be
 	 * created. Using Awesome with zero screens is **not** supported.
 	 */
-	scanning: () => void;
+	scanning: (this: void) => void;
 
 	/**
 	 * AwesomeWM is done scanning for screens.
@@ -43,27 +43,27 @@ interface AwesomeScreenSignalMap extends SignalMap<AwesomeScreenSignal> {
 	 * Note that if no screens exist at this point, the fallback code will be
 	 * triggered and the default (detected) screens will be added.
 	 */
-	scanned: () => void;
+	scanned: (this: void) => void;
 
 	/**
 	 *
 	 */
-	primary_changed: () => void;
+	primary_changed: (this: void) => void;
 
 	/**
 	 * This signal is emitted when a new screen is added to the current setup.
 	 */
-	added: () => void;
+	added: (this: void) => void;
 
 	/**
 	 * This signal is emitted when a screen is removed from the setup.
 	 */
-	removed: () => void;
+	removed: (this: void) => void;
 
 	/**
 	 * This signal is emitted when the list of available screens changes.
 	 */
-	list: () => void;
+	list: (this: void) => void;
 
 	/**
 	 * When 2 screens are swapped
@@ -206,7 +206,7 @@ interface AwesomeScreenSignalMap extends SignalMap<AwesomeScreenSignal> {
 	/**
 	 * When the tag history changed.
 	 */
-	"tag::history::update": () => void;
+	"tag::history::update": (this: void) => void;
 }
 
 interface AwesomeScreenOutput {

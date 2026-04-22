@@ -55,7 +55,7 @@ interface AwesomeTagSignalMap extends SignalMap<AwesomeTagSignal> {
 	/**
 	 * Emitted when all clients are removed from the tag.
 	 */
-	cleared: () => void;
+	cleared: (this: void) => void;
 
 	/**
 	 * Emitted when the number of urgent clients on this tag changes.
@@ -91,7 +91,7 @@ interface AwesomeTagSignalMap extends SignalMap<AwesomeTagSignal> {
 	 * are sent to a fallback tag. Connect to `request::screen` if you wish to
 	 * salvage the tag.
 	 */
-	"removal-pending": () => void;
+	"removal-pending": (this: void) => void;
 }
 
 interface AwesomeTag

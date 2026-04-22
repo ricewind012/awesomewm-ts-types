@@ -116,7 +116,7 @@ interface AwfulPrompt {
 	 * @param args A table with optional arguments
 	 */
 	run(
-		args: AwfulPromptSharedProps & {
+		args?: AwfulPromptSharedProps & {
 			/**
 			 * The textbox to use for the prompt.
 			 */

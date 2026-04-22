@@ -1,4 +1,3 @@
-// awesome_mode: api-level=4:screen=on
 // Notification library.
 import * as naughty from "naughty";
 
@@ -7,7 +6,7 @@ import * as naughty from "naughty";
 declare global {
 	interface AwesomeScreen {
 		bar: BaseWidget;
-		mypromptbox: BaseWidget;
+		mypromptbox: AwfulWidgetPrompt;
 		mywallpaper: BaseWidget;
 		mywibox: BaseWidget;
 	}

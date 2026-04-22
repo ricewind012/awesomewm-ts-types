@@ -123,25 +123,21 @@ interface SignalObject<S extends string, M extends SignalMap<S>> {
 	 * @param name A string with the event name.
 	 * @param func The function to call.
 	 */
-	connect_signal<K extends keyof M>(this: void, name: K, func: M[K]): void;
+	connect_signal<K extends keyof M>(name: K, func: M[K]): void;
 
 	/**
 	 * Remove a signal.
 	 * @param name A string with the event name.
 	 * @param func The function to call.
 	 */
-	disconnect_signal<K extends keyof M>(this: void, name: K, func: M[K]): void;
+	disconnect_signal<K extends keyof M>(name: K, func: M[K]): void;
 
 	/**
 	 * Emit a signal.
 	 * @param name A string with the event name.
 	 * @param args The signal arguments.
 	 */
-	emit_signal<K extends keyof M>(
-		this: void,
-		name: K,
-		...args: Parameters<M[K]>
-	): void;
+	emit_signal<K extends keyof M>(name: K, ...args: Parameters<M[K]>): void;
 
 	/**
 	 * Connect to a signal weakly.
@@ -155,5 +151,5 @@ interface SignalObject<S extends string, M extends SignalMap<S>> {
 	 * @param name A string with the event name.
 	 * @param func The function to call.
 	 */
-	weak_connect_signal<K extends keyof M>(this: void, name: K, func: M[K]): void;
+	weak_connect_signal<K extends keyof M>(name: K, func: M[K]): void;
 }

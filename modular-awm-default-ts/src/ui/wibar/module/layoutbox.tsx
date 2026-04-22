@@ -6,7 +6,7 @@ interface LayoutBoxProps {
 	s: AwesomeScreen;
 }
 
-export function LayoutBox(this: void, props: LayoutBoxProps) {
+export function LayoutBox(props: LayoutBoxProps) {
 	const { s } = props;
 
 	// Create an imagebox widget which will contain an icon indicating which layout we're using.

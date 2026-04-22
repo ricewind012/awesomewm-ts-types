@@ -30,16 +30,12 @@ export default function make_widget(
 	const widget_type = type(widget);
 	const is_awful_widget = AWFUL_WIDGETS.some((e) => widget === e);
 	if (is_awful_widget) {
-		return (widget as unknown as (this: void, props: object) => BaseWidget)(
-			props,
-		);
+		return (widget as unknown as (props: object) => BaseWidget)(props);
 	}
 
 	// Function components
 	if (widget_type === "function") {
-		widget = (widget as unknown as (this: void, props: object) => BaseWidget)(
-			props,
-		);
+		widget = (widget as unknown as (props: object) => BaseWidget)(props);
 	}
 
 	// Normal widgets

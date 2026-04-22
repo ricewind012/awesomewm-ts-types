@@ -9,7 +9,7 @@ interface TagListProps {
 	s: AwesomeScreen;
 }
 
-export function TagList(this: void, props: TagListProps) {
+export function TagList(props: TagListProps) {
 	const { s } = props;
 
 	// Create a taglist widget

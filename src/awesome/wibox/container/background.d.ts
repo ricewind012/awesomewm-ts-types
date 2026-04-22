@@ -14,42 +14,42 @@ interface WiboxContainerBackgroundProps {
 	/**
 	 * Stretch the background gradient horizontally.
 	 */
-	stretch_horizontally: boolean;
+	stretch_horizontally?: boolean;
 
 	/**
 	 * Stretch the background gradient vertically.
 	 */
-	stretch_vertically: boolean;
+	stretch_vertically?: boolean;
 
 	/**
 	 * The background color/pattern/gradient to use.
 	 */
-	bg: AwesomeColor;
+	bg?: AwesomeColor;
 
 	/**
 	 * The foreground (text) color/pattern/gradient to use.
 	 */
-	fg: AwesomeColor;
+	fg?: AwesomeColor;
 
 	/**
 	 * The background shape.
 	 */
-	shape: shape;
+	shape?: shape;
 
 	/**
 	 * Add a border of a specific width.
 	 */
-	border_width: number;
+	border_width?: number;
 
 	/**
 	 * Set the color for the border.
 	 */
-	border_color: AwesomeColor;
+	border_color?: AwesomeColor;
 
 	/**
 	 * How the border width affects the contained widget.
 	 */
-	border_strategy: BackgroundBorderStrategy;
+	border_strategy?: BackgroundBorderStrategy;
 }
 
 interface WiboxContainerBackground extends BaseWidget {
@@ -67,5 +67,5 @@ interface WiboxContainerBackground extends BaseWidget {
  * @noSelf
  */
 interface WiboxContainerBackgroundConstructor {
-	(props: Partial<WiboxContainerBackgroundProps>): WiboxContainerBackground;
+	(props: WiboxContainerBackgroundProps): WiboxContainerBackground;
 }

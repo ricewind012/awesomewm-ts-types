@@ -6,7 +6,7 @@ interface TaskListProps {
 	s: AwesomeScreen | string;
 }
 
-export function TaskList(this: void, props: TaskListProps) {
+export function TaskList(props: TaskListProps) {
 	const { s } = props;
 
 	return (

@@ -4,12 +4,8 @@ interface SignalObject<M extends SignalMap> {
 	connect_signal<K extends keyof M>(this: void, name: K, func: M[K]): void;
 }
 
-/**
- * @noSelf
- */
 type SignalCallbackMap = SignalMap & {
 	signal1: () => void;
-
 	signal2: (text: string) => void;
 };
 
