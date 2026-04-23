@@ -1,5 +1,6 @@
 /**
  * @noResolution
+ * @noSelf
  */
 declare module "dbus" {
 	/**

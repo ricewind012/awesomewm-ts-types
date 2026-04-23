@@ -1,12 +1,10 @@
-/// <reference types="./base.d.ts" />
-
-interface WiboxLayoutFlexWidget extends WiboxLayoutBaseWidget {
+interface WiboxLayoutFlexProps extends BaseWidgetProps {
 	/**
 	 * Set the maximum size the widgets in this layout will take.
 	 *
 	 * That is, maximum width for horizontal and maximum height for vertical.
 	 */
-	max_widget_size: number | undefined;
+	max_widget_size?: number | undefined;
 
 	/**
 	 * A widget to insert as a separator between child widgets.
@@ -18,15 +16,17 @@ interface WiboxLayoutFlexWidget extends WiboxLayoutBaseWidget {
 	 * By default no widget is used and any {@link spacing} is applied as an
 	 * empty offset.
 	 */
-	spacing_widget: BaseWidget;
+	spacing_widget?: BaseWidget;
 
 	/**
 	 * The amount of space inserted between the child widgets.
 	 *
 	 * If a {@link spacing_widget} is defined, this value is used for its size.
 	 */
-	spacing: number;
+	spacing?: number;
 }
+
+interface WiboxLayoutFlexWidget extends WiboxLayoutBaseWidget {}
 
 /**
  * @noSelf
@@ -35,18 +35,10 @@ interface WiboxLayoutFlex {
 	/**
 	 * Returns a new horizontal flex layout.
 	 */
-	horizontal(
-		left?: BaseWidget,
-		middle?: BaseWidget,
-		right?: BaseWidget,
-	): WiboxLayoutFlexWidget;
+	horizontal(props: WiboxLayoutFlexProps): WiboxLayoutFlexWidget;
 
 	/**
 	 * Returns a new vertical flex layout.
 	 */
-	vertical(
-		top?: BaseWidget,
-		center?: BaseWidget,
-		bottom?: BaseWidget,
-	): WiboxLayoutFlexWidget;
+	vertical(props: WiboxLayoutFlexProps): WiboxLayoutFlexWidget;
 }

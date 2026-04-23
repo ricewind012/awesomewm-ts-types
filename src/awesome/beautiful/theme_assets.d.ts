@@ -1,6 +1,3 @@
-/// <reference types="../screen.d.ts" />
-/// <reference types="../../todo.d.ts" />
-
 /**
  * @noSelf
  */

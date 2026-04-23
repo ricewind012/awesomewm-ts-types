@@ -1,5 +1,3 @@
-/// <reference types="../shared.d.ts" />
-
 /**
  * Helper functions used to compute geometries.
  * @noSelf

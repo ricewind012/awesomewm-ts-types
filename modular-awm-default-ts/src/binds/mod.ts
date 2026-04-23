@@ -1,4 +1,4 @@
-import { user } from "../config/user";
+import { user } from "~/config/user";
 
 interface ClientModifiers {
 	alt: ButtonModifier;

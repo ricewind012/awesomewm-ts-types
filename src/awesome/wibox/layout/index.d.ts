@@ -1,3 +1,5 @@
+/// <reference types="./base.d.ts" />
+
 /// <reference types="./align.d.ts" />
 /// <reference types="./fixed.d.ts" />
 /// <reference types="./flex.d.ts" />

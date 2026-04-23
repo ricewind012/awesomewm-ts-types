@@ -1,5 +1,3 @@
-/// <reference types="./flex.d.ts" />
-
 declare enum RatioLayoutInnerFillStrategy {
 	/** Honor the ratio and do not redistribute the space. */
 	DEFAULT = "default",
@@ -21,6 +19,13 @@ declare enum RatioLayoutInnerFillStrategy {
 
 	/** Squash remaining widgets and leave empty space on the right. */
 	RIGHT = "right",
+}
+
+interface WiboxLayoutRatioProps extends WiboxLayoutFlexProps {
+	/**
+	 * Set how the space of invisible or `0x0` sized widget is redistributed.
+	 */
+	inner_fill_strategy: RatioLayoutInnerFillStrategy;
 }
 
 interface WiboxLayoutRatioWidget extends WiboxLayoutFlexWidget {
@@ -99,11 +104,6 @@ interface WiboxLayoutRatioWidget extends WiboxLayoutFlexWidget {
 		itself: number,
 		after: number,
 	): void;
-
-	/**
-	 * Set how the space of invisible or `0x0` sized widget is redistributed.
-	 */
-	inner_fill_strategy: RatioLayoutInnerFillStrategy;
 }
 
 /**
@@ -115,14 +115,14 @@ interface WiboxLayoutRatio {
 	 * available space. equally among all widgets. Widgets can be added via
 	 * `:add(widget)`.
 	 */
-	horizontal(...args: BaseWidget[]): WiboxLayoutRatioWidget;
+	horizontal(props: WiboxLayoutRatioProps): WiboxLayoutRatioWidget;
 
 	/**
 	 * Returns a new vertical ratio layout. A ratio layout shares the available
 	 * space. equally among all widgets. Widgets can be added via
 	 * `:add(widget)`.
 	 */
-	vertical(...args: BaseWidget[]): WiboxLayoutRatioWidget;
+	vertical(props: WiboxLayoutRatioProps): WiboxLayoutRatioWidget;
 
 	/**
 	 * Update all widgets to match a set of a ratio.

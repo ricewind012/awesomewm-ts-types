@@ -1,5 +1,3 @@
-/// <reference types="../client" />
-
 // This has additional parameters depending on the layout.
 interface AwesomeLayout {
 	name: string;

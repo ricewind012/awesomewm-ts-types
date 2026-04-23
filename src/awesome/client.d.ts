@@ -1,8 +1,3 @@
-/// <reference types="../todo.d.ts" />
-/// <reference types="../utils.d.ts" />
-/// <reference types="./screen.d.ts" />
-/// <reference types="./shared.d.ts" />
-
 type AwesomeClientSignal =
 	| "scanning"
 	| "scanned"
@@ -330,26 +325,6 @@ interface AwesomeClientSignalMap extends SignalMap<AwesomeClientSignal> {
 		context: "added" | "active" | "inactive" | "urgent" | "floating",
 		hints: table,
 	) => void;
-
-	/**
-	 * @deprecated Use `request::manage`
-	 */
-	manage: never;
-
-	/**
-	 * @deprecated Use `request::unmanage`
-	 */
-	unmanage: never;
-
-	/**
-	 * @deprecated
-	 */
-	marked: never;
-
-	/**
-	 * @deprecated
-	 */
-	unmarked: never;
 }
 
 interface AwesomeClientStrut {
@@ -359,15 +334,15 @@ interface AwesomeClientStrut {
 	bottom: number;
 }
 
-// TODO: extend Rectangle ?
 /**
  * @see https://awesomewm.org/apidoc/core_components/client.html
  */
 interface AwesomeClient
-	extends Omit<
-		SignalObject<AwesomeClientSignal, AwesomeClientSignalMap>,
-		"disconnect_signal"
-	> {
+	extends Rectangle,
+		Omit<
+			SignalObject<AwesomeClientSignal, AwesomeClientSignalMap>,
+			"disconnect_signal"
+		> {
 	/**
 	 * Return client struts (reserved space at the edge of the screen).
 	 *
@@ -924,26 +899,6 @@ interface AwesomeClient
 	floating: boolean;
 
 	/**
-	 * The x coordinates.
-	 */
-	x: number;
-
-	/**
-	 * The y coordinates.
-	 */
-	y: number;
-
-	/**
-	 * The width of the client.
-	 */
-	width: number;
-
-	/**
-	 * The height of the client.
-	 */
-	height: number;
-
-	/**
 	 * If the client is dockable.
 	 */
 	dockable: boolean;
@@ -969,7 +924,7 @@ interface AwesomeClient
 }
 
 interface AwesomeGlobalClient
-	extends SignalObject<AwesomeClientSignal, AwesomeClientSignalMap> {
+	extends SignalObjectNoSelf<AwesomeClientSignal, AwesomeClientSignalMap> {
 	/**
 	 * Get the number of instances.
 	 * @returns The number of client objects alive.

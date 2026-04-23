@@ -2,9 +2,9 @@ import * as awful from "awful";
 import * as gears from "gears";
 import * as menubar from "menubar";
 
-import { apps } from "../../config/apps";
-import { menu } from "../../ui/menu";
-import { mod } from "../mod";
+import { mod } from "~/binds/mod";
+import { apps } from "~/config/apps";
+import { menu } from "~/ui/menu";
 
 const { modkey } = mod;
 

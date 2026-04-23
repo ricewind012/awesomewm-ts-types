@@ -1,7 +1,7 @@
 import * as awful from "awful";
 import * as wibox from "wibox";
 
-import make_widget from "../../jsx";
+import make_widget from "~/jsx";
 
 interface NormalTitlebarProps {
 	c: AwesomeClient;
@@ -44,7 +44,7 @@ export function NormalTitlebar(props: NormalTitlebarProps) {
 			</wibox.layout.fixed.horizontal>
 
 			{/* Middle */}
-			<wibox.layout.flex.horizontal buttons={buttons} halign="center">
+			<wibox.layout.flex.horizontal buttons={buttons}>
 				{awful.titlebar.widget.titlewidget(c)}
 			</wibox.layout.flex.horizontal>
 

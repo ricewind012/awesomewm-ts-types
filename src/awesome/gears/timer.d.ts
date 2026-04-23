@@ -1,5 +1,3 @@
-/// <reference types="../shared.d.ts" />
-
 type TimerSignal = "start" | "stop" | "timeout";
 
 interface TimerSignalMap extends SignalMap<TimerSignal> {

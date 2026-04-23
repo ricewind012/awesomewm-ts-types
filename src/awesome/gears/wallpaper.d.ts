@@ -1,5 +1,3 @@
-/// <reference types="../screen.d.ts" />
-
 /**
  * Functions for setting the wallpaper.
  *

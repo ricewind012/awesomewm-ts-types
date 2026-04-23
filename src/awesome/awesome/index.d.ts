@@ -219,8 +219,11 @@ interface AwesomeGlobalSignalMap extends SignalMap<AwesomeGlobalSignal> {
 	"spawn::timeout": (this: void, arg: table) => void;
 }
 
+/**
+ * @noSelf
+ */
 interface AwesomeGlobal
-	extends SignalObject<AwesomeGlobalSignal, AwesomeGlobalSignalMap> {
+	extends SignalObjectNoSelf<AwesomeGlobalSignal, AwesomeGlobalSignalMap> {
 	/**
 	 * Execute another application, probably a window manager, to replace awesome.
 	 * @param cmd The command line to execute.

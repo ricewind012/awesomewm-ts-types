@@ -1,6 +1,6 @@
 import * as awful from "awful";
 
-import { menu } from "../../ui/menu";
+import { menu } from "~/ui/menu";
 
 /// Global mouse bindings
 awful.mouse.append_global_mousebindings([

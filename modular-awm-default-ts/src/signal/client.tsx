@@ -1,5 +1,5 @@
-import make_widget from "../jsx";
-import { NormalTitlebar } from "../ui/titlebar";
+import make_widget from "~/jsx";
+import { NormalTitlebar } from "~/ui/titlebar";
 
 // Add a titlebar if titlebars_enabled is set to true for the client in `config/rules.ts`.
 client.connect_signal("request::titlebars", (c) => {
@@ -7,7 +7,6 @@ client.connect_signal("request::titlebars", (c) => {
 	// If a client expressly says not to draw titlebars on it, just don't.
 	if (c.requests_no_titlebar) return;
 
-	// yeah fr
 	<NormalTitlebar c={c} />;
 });
 

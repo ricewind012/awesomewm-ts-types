@@ -1,5 +1,3 @@
-/// <reference types="../screen.d.ts" />
-
 /**
  * Library for getting xrdb data.
  * @noSelf

@@ -1,6 +1,3 @@
-/// <reference types="../client.d.ts" />
-/// <reference types="./button.d.ts" />
-
 declare enum MouseResizeMode {
 	/**
 	 * Resize the layout everytime the mouse moves.

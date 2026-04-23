@@ -1,6 +1,3 @@
-/// <reference types="../client.d.ts" />
-/// <reference types="../screen.d.ts" />
-
 /**
  * Popup widget which shows current hotkeys and their descriptions.
  *

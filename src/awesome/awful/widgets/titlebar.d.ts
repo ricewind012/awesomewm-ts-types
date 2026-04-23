@@ -1,6 +1,3 @@
-/// <reference types="../../wibox/widget/base.d.ts" />
-/// <reference types="../../client.d.ts" />
-
 interface WiboxDrawable {
 	/**
 	 * Set a declarative widget hierarchy description.

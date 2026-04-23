@@ -2,9 +2,9 @@ import * as awful from "awful";
 import * as beautiful from "beautiful";
 import * as wibox from "wibox";
 
-import { user } from "../config/user";
-import make_widget from "../jsx";
-import { Wibar } from "../ui/wibar";
+import { user } from "~/config/user";
+import make_widget from "~/jsx";
+import { Wibar } from "~/ui/wibar";
 
 /// Attach tags and widgets to all screens.
 screen.connect_signal("request::desktop_decoration", (s) => {

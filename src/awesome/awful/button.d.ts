@@ -1,5 +1,3 @@
-/// <reference types="../client" />
-
 declare enum MouseButtonName {
 	LEFT,
 	MIDDLE,

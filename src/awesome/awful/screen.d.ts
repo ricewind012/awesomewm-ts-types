@@ -1,7 +1,3 @@
-/// <reference types="../client.d.ts" />
-/// <reference types="../screen.d.ts" />
-/// <reference types="../shared.d.ts" />
-
 /**
  * @noSelf
  */

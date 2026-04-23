@@ -1,7 +1,7 @@
 import * as awful from "awful";
 import * as beautiful from "beautiful";
 
-import { apps } from "../../config/apps";
+import { apps } from "~/config/apps";
 
 /// Menu
 const awesome_menu: MenuItem[] = [

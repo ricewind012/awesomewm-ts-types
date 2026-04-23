@@ -1,5 +1,3 @@
-/// <reference types="../../wibox" />
-
 interface AwfulPopupProps extends WiboxSharedProps {
 	/**
 	 * Set the preferred popup position relative to its parent.

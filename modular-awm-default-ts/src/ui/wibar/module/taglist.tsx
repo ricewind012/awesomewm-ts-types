@@ -1,7 +1,7 @@
 import * as awful from "awful";
 
-import { mod } from "../../../binds/mod";
-import make_widget from "../../../jsx";
+import { mod } from "~/binds/mod";
+import make_widget from "~/jsx";
 
 const { modkey } = mod;
 

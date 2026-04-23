@@ -1,5 +1,3 @@
-/// <reference types="./base.d.ts" />
-
 declare enum GridLayoutOrientation {
 	/**
 	 * The grid can be extended horizontally. The current column is filled
@@ -49,6 +47,152 @@ interface AddGridBorderArgs {
 	 * How the dashes ends are drawn.
 	 */
 	caps?: "butt" | "round" | "square";
+}
+
+interface WiboxLayoutGridProps extends BaseWidgetProps {
+	/**
+	 * Set the preferred orientation of the grid layout.
+	 *
+	 * When calling {@link get_next_empty}, empty cells are browsed differently.
+	 */
+	orientation?: GridLayoutOrientation;
+
+	/**
+	 * Allow to superpose widgets in the same cell. If false, check before
+	 * adding a new widget if it will superpose with another widget and prevent
+	 * from adding it.
+	 */
+	superpose?: boolean;
+
+	/**
+	 * Set the minimum size for the columns.
+	 */
+	minimum_column_width?: number;
+
+	/**
+	 * Set the minimum size for the rows.
+	 */
+	minimum_row_height?: number;
+
+	/**
+	 * The spacing between rows and columns.
+	 *
+	 * Get the value {@link horizontal_spacing} or {@link vertical_spacing}
+	 * defined by the preferred orientation.
+	 */
+	spacing?: number | GridLayoutOrientationOption;
+
+	/**
+	 * Controls if the columns/rows are expanded to use all the available space.
+	 */
+	expand?: boolean | GridLayoutOrientationOption;
+
+	/**
+	 * Controls if the columns/rows all have the same size or if the size
+	 * depends on the content. Set both {@link horizontal_homogeneous} and
+	 * {@link vertical_homogeneous} to the same value. Get the value
+	 * {@link horizontal_homogeneous} or {@link vertical_homogeneous} defined by
+	 * the preferred orientation.
+	 */
+	homogeneous?: boolean | GridLayoutOrientationOption;
+
+	/**
+	 * The number of rows.
+	 *
+	 * Unless manually set, the value will be automatically determined base on
+	 * the {@link orientation}.
+	 */
+	row_count?: number;
+
+	/**
+	 * The number of columns.
+	 *
+	 * Unless manually set, the value will be automatically determined base on
+	 * the {@link orientation}.
+	 */
+	column_count?: number;
+
+	/**
+	 * The border width.
+	 */
+	border_width?: number | GridLayoutBorderOption;
+
+	/**
+	 * The border color for the table outer border.
+	 */
+	border_color?: cairo_solid_pattern | GridLayoutBorderOption;
+
+	/**
+	 * Force the number of rows of the layout.
+	 *
+	 * @deprecated Use {@link row_count}
+	 */
+	forced_num_rows?: number | undefined;
+
+	/**
+	 * Force the number of columns of the layout.
+	 *
+	 * @deprecated Use {@link column_count}
+	 */
+	forced_num_cols?: number | undefined;
+
+	/**
+	 * Set the minimum size for the columns.
+	 *
+	 * @deprecated Use {@link minimum_column_width}
+	 */
+	min_cols_size?: number;
+
+	/**
+	 * Set the minimum size for the rows.
+	 *
+	 * @deprecated Use {@link minimum_row_height}
+	 */
+	min_rows_size?: number;
+
+	/**
+	 * The spacing between columns.
+	 *
+	 * @deprecated Use {@link spacing}
+	 */
+	horizontal_spacing?: number;
+
+	/**
+	 * The spacing between rows.
+	 *
+	 * @deprecated Use {@link spacing}
+	 */
+	vertical_spacing?: number;
+
+	/**
+	 * Controls if the columns are expanded to use all the available width.
+	 *
+	 * @deprecated Use {@link expand}
+	 */
+	horizontal_expand?: boolean;
+
+	/**
+	 * Controls if the rows are expanded to use all the available height.
+	 *
+	 * @deprecated Use {@link expand}
+	 */
+	vertical_expand?: boolean;
+
+	/**
+	 * Controls if the columns all have the same width or if the width of each
+	 * column depends on the content.
+	 *
+	 * @deprecated Use {@link homogeneous}
+	 */
+	horizontal_homogeneous?: boolean;
+
+	/**
+	 * Controls if the rows all have the same height or if the height of each
+	 * row depends on the content.
+	 *
+	 * @deprecated Use {@link homogeneous}
+	 */
+	vertical_homogeneous?: boolean;
 }
 
 interface WiboxLayoutGridWidget
@@ -125,7 +269,7 @@ interface WiboxLayoutGridWidget
 	 *
 	 * @returns The index of the inserted column
 	 */
-	insert_column(index: number | undefined): number;
+	insert_column(index?: number): number;
 
 	/**
 	 * Extend column at index.
@@ -235,150 +379,6 @@ interface WiboxLayoutGridWidget
 		row_span?: number,
 		col_span?: number,
 	): boolean;
-
-	/**
-	 * Set the preferred orientation of the grid layout.
-	 *
-	 * When calling {@link get_next_empty}, empty cells are browsed differently.
-	 */
-	orientation: GridLayoutOrientation;
-
-	/**
-	 * Allow to superpose widgets in the same cell. If false, check before
-	 * adding a new widget if it will superpose with another widget and prevent
-	 * from adding it.
-	 */
-	superpose: boolean;
-
-	/**
-	 * Set the minimum size for the columns.
-	 */
-	minimum_column_width: number;
-
-	/**
-	 * Set the minimum size for the rows.
-	 */
-	minimum_row_height: number;
-
-	/**
-	 * The spacing between rows and columns.
-	 *
-	 * Get the value {@link horizontal_spacing} or {@link vertical_spacing}
-	 * defined by the preferred orientation.
-	 */
-	spacing: number | GridLayoutOrientationOption;
-
-	/**
-	 * Controls if the columns/rows are expanded to use all the available space.
-	 */
-	expand: boolean | GridLayoutOrientationOption;
-
-	/**
-	 * Controls if the columns/rows all have the same size or if the size
-	 * depends on the content. Set both {@link horizontal_homogeneous} and
-	 * {@link vertical_homogeneous} to the same value. Get the value
-	 * {@link horizontal_homogeneous} or {@link vertical_homogeneous} defined by
-	 * the preferred orientation.
-	 */
-	homogeneous: boolean | GridLayoutOrientationOption;
-
-	/**
-	 * The number of rows.
-	 *
-	 * Unless manually set, the value will be automatically determined base on
-	 * the {@link orientation}.
-	 */
-	row_count: number;
-
-	/**
-	 * The number of columns.
-	 *
-	 * Unless manually set, the value will be automatically determined base on
-	 * the {@link orientation}.
-	 */
-	column_count: number;
-
-	/**
-	 * The border width.
-	 */
-	border_width: number | GridLayoutBorderOption;
-
-	/**
-	 * The border color for the table outer border.
-	 */
-	border_color: cairo_solid_pattern | GridLayoutBorderOption;
-
-	/**
-	 * Force the number of rows of the layout.
-	 *
-	 * @deprecated Use {@link row_count}
-	 */
-	forced_num_rows: number | undefined;
-
-	/**
-	 * Force the number of columns of the layout.
-	 *
-	 * @deprecated Use {@link column_count}
-	 */
-	forced_num_cols: number | undefined;
-
-	/**
-	 * Set the minimum size for the columns.
-	 *
-	 * @deprecated Use {@link minimum_column_width}
-	 */
-	min_cols_size: number;
-
-	/**
-	 * Set the minimum size for the rows.
-	 *
-	 * @deprecated Use {@link minimum_row_height}
-	 */
-	min_rows_size: number;
-
-	/**
-	 * The spacing between columns.
-	 *
-	 * @deprecated Use {@link spacing}
-	 */
-	horizontal_spacing: number;
-
-	/**
-	 * The spacing between rows.
-	 *
-	 * @deprecated Use {@link spacing}
-	 */
-	vertical_spacing: number;
-
-	/**
-	 * Controls if the columns are expanded to use all the available width.
-	 *
-	 * @deprecated Use {@link expand}
-	 */
-	horizontal_expand: boolean;
-
-	/**
-	 * Controls if the rows are expanded to use all the available height.
-	 *
-	 * @deprecated Use {@link expand}
-	 */
-	vertical_expand: boolean;
-
-	/**
-	 * Controls if the columns all have the same width or if the width of each
-	 * column depends on the content.
-	 *
-	 * @deprecated Use {@link homogeneous}
-	 */
-	horizontal_homogeneous: boolean;
-
-	/**
-	 * Controls if the rows all have the same height or if the height of each
-	 * row depends on the content.
-	 *
-	 * @deprecated Use {@link homogeneous}
-	 */
-	vertical_homogeneous: boolean;
 }
 
 /**
@@ -386,29 +386,12 @@ interface WiboxLayoutGridWidget
  */
 interface WiboxLayoutGrid {
 	/**
-	 * Return a new grid layout.
-	 *
-	 * A grid layout sets widgets in a grids of custom number of rows and
-	 * columns.
-	 */
-	// https://github.com/TypeScriptToLua/TypeScriptToLua/issues/1661
-	(this: void, orientation?: "x" | "y"): WiboxLayoutGridWidget;
-
-	/**
 	 * Returns a new horizontal grid layout.
 	 */
-	horizontal(
-		left?: BaseWidget,
-		middle?: BaseWidget,
-		right?: BaseWidget,
-	): WiboxLayoutGridWidget;
+	horizontal(props: WiboxLayoutGridProps): WiboxLayoutGridWidget;
 
 	/**
 	 * Returns a new vertical grid layout.
 	 */
-	vertical(
-		top?: BaseWidget,
-		center?: BaseWidget,
-		bottom?: BaseWidget,
-	): WiboxLayoutGridWidget;
+	vertical(props: WiboxLayoutGridProps): WiboxLayoutGridWidget;
 }

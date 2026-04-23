@@ -1,5 +1,3 @@
-/// <reference types="../widget/base.d.ts" />
-
 interface WiboxLayoutBaseWidget extends BaseWidget {
 	/**
 	 * Add some widgets to the given layout.

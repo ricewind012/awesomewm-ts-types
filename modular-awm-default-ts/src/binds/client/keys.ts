@@ -1,6 +1,6 @@
 import * as awful from "awful";
 
-import { mod } from "../mod";
+import { mod } from "~/binds/mod";
 
 const { modkey } = mod;
 

@@ -1,7 +1,8 @@
 import * as awful from "awful";
 import * as wibox from "wibox";
 
-import make_widget from "../../jsx";
+import make_widget from "~/jsx";
+
 import { Launcher, LayoutBox, TagList, TaskList } from "./module";
 
 interface WibarProps {
@@ -12,7 +13,7 @@ export function Wibar(props: WibarProps) {
 	const { s } = props;
 
 	// Create a promptbox.
-	s.mypromptbox = <awful.widget.prompt />;
+	s.mypromptbox = awful.widget.prompt({});
 
 	// Create the wibox
 	const widget = (

@@ -1,6 +1,4 @@
-/// <reference types="./base.d.ts" />
-
-interface WiboxLayoutFixedWidget extends WiboxLayoutBaseWidget {
+interface WiboxLayoutFixedProps extends BaseWidgetProps {
 	/**
 	 * A widget to insert as a separator between child widgets.
 	 *
@@ -11,7 +9,7 @@ interface WiboxLayoutFixedWidget extends WiboxLayoutBaseWidget {
 	 * By default no widget is used and any {@link spacing} is applied as an
 	 * empty offset.
 	 */
-	spacing_widget: BaseWidget;
+	spacing_widget?: BaseWidget;
 
 	/**
 	 * Set the layout's `fill_space` property. If this property is true, the
@@ -19,15 +17,17 @@ interface WiboxLayoutFixedWidget extends WiboxLayoutBaseWidget {
 	 * last widget won't be handled specially and there can be space left
 	 * unused.
 	 */
-	fill_space: boolean;
+	fill_space?: boolean;
 
 	/**
 	 * The amount of space inserted between the child widgets.
 	 *
 	 * If a {@link spacing_widget} is defined, this value is used for its size.
 	 */
-	spacing: number;
+	spacing?: number;
 }
+
+interface WiboxLayoutFixedWidget extends WiboxLayoutBaseWidget {}
 
 /**
  * @noSelf
@@ -36,18 +36,10 @@ interface WiboxLayoutFixed {
 	/**
 	 * Returns a new horizontal fixed layout.
 	 */
-	horizontal(
-		left?: BaseWidget,
-		middle?: BaseWidget,
-		right?: BaseWidget,
-	): WiboxLayoutFixedWidget;
+	horizontal(props: WiboxLayoutFixedProps): WiboxLayoutFixedWidget;
 
 	/**
 	 * Returns a new vertical fixed layout.
 	 */
-	vertical(
-		top?: BaseWidget,
-		center?: BaseWidget,
-		bottom?: BaseWidget,
-	): WiboxLayoutFixedWidget;
+	vertical(props: WiboxLayoutFixedProps): WiboxLayoutFixedWidget;
 }

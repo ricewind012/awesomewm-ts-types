@@ -1,5 +1,3 @@
-/// <reference types="./base.d.ts" />
-
 type NewGeometryPoint = (
 	geo: Rectangle,
 	args: { parent: Rectangle },
@@ -35,6 +33,5 @@ interface WiboxLayoutManualWidget extends WiboxLayoutBaseWidget {
  * @noSelf
  */
 interface WiboxLayoutManual {
-	// https://github.com/TypeScriptToLua/TypeScriptToLua/issues/1661
-	(this: void, ...args: BaseWidget[]): WiboxLayoutManualWidget;
+	(props: BaseWidgetProps): WiboxLayoutManualWidget;
 }

@@ -11,6 +11,7 @@ declare global {
 		mywibox: BaseWidget;
 	}
 }
+print("HELP XD");
 
 // If LuaRocks is installed, make sure that packages installed through it are
 // found (e.g. lgi). If LuaRocks is not installed, do nothing.

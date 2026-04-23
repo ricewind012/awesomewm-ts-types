@@ -1,5 +1,3 @@
-/// <reference types="./shared.d.ts" />
-
 type AwesomeTagSignal =
 	| "request::select"
 	| "request::default_layouts"
@@ -264,5 +262,8 @@ interface AwesomeTag
 	column_count: number;
 }
 
+/**
+ * @noSelf
+ */
 interface AwesomeGlobalTag
-	extends SignalObject<AwesomeTagSignal, AwesomeTagSignalMap> {}
+	extends SignalObjectNoSelf<AwesomeTagSignal, AwesomeTagSignalMap> {}

@@ -2,7 +2,6 @@
 /// <reference types="./theme.d.ts" />
 /// <reference types="./theme_assets.d.ts" />
 /// <reference types="./xresources.d.ts" />
-/// <reference types="../../todo.d.ts" />
 
 /**
  * @noResolution

@@ -1,4 +1,3 @@
-/// <reference types="../screen.d.ts" />
 /// <reference types="./menu_gen.d.ts" />
 /// <reference types="./utils.d.ts" />
 

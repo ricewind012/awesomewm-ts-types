@@ -1,5 +1,3 @@
-/// <reference types="./base.d.ts" />
-
 /**
  * How to use unused space.
  */
@@ -26,6 +24,19 @@ declare enum WiboxLayoutAlignExpandMode {
 	NONE = "none",
 }
 
+interface WiboxLayoutAlignProps extends BaseWidgetProps {
+	/**
+	 * Get or set the children elements.
+	 */
+	children?: [BaseWidget, BaseWidget?, BaseWidget?];
+
+	/**
+	 * Set the expand mode, which determines how child widgets expand to take up
+	 * unused space.
+	 */
+	expand?: WiboxLayoutAlignExpandMode;
+}
+
 interface WiboxLayoutAlignWidget
 	extends Omit<WiboxLayoutBaseWidget, "remove" | "remove_widgets"> {
 	/**
@@ -48,12 +59,6 @@ interface WiboxLayoutAlignWidget
 	 * This is the widget that is at the right/bottom.
 	 */
 	third: BaseWidget | undefined;
-
-	/**
-	 * Set the expand mode, which determines how child widgets expand to take up
-	 * unused space.
-	 */
-	expand: WiboxLayoutAlignExpandMode;
 }
 
 /**
@@ -65,20 +70,12 @@ interface WiboxLayoutAlign {
 	 *
 	 * The three widget slots are aligned left, center and right.
 	 */
-	horizontal(
-		left?: BaseWidget,
-		middle?: BaseWidget,
-		right?: BaseWidget,
-	): WiboxLayoutAlignWidget;
+	horizontal(props: WiboxLayoutAlignProps): WiboxLayoutAlignWidget;
 
 	/**
 	 * Returns a new vertical align layout.
 	 *
 	 * The three widget slots are aligned top, center and bottom.
 	 */
-	vertical(
-		top?: BaseWidget,
-		center?: BaseWidget,
-		bottom?: BaseWidget,
-	): WiboxLayoutAlignWidget;
+	vertical(props: WiboxLayoutAlignProps): WiboxLayoutAlignWidget;
 }

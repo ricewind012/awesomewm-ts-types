@@ -1,5 +1,3 @@
-/// <reference types="../shared.d.ts" />
-
 /**
  * The object oriented programming base class used by various Awesome widgets
  * and components. It provide basic observer pattern, signaling and dynamic

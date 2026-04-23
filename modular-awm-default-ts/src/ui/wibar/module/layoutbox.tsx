@@ -1,6 +1,6 @@
 import * as awful from "awful";
 
-import make_widget from "../../../jsx";
+import make_widget from "~/jsx";
 
 interface LayoutBoxProps {
 	s: AwesomeScreen;

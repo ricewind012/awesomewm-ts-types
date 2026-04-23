@@ -1,5 +1,3 @@
-/// <reference types="./client.d.ts" />
-
 /**
  * - `string` A hexadecimal color code, such as "#ff0000" for red.
  * - `string` A color name, such as "red".
@@ -115,7 +113,10 @@ interface Rectangle extends Coords {
 	height: number;
 }
 
-type SignalMap<S extends string> = Record<S, (...args: any[]) => void>;
+type SignalMap<S extends string> = Record<
+	S,
+	(this: void, ...args: any[]) => void
+>;
 
 interface SignalObject<S extends string, M extends SignalMap<S>> {
 	/**
@@ -152,4 +153,46 @@ interface SignalObject<S extends string, M extends SignalMap<S>> {
 	 * @param func The function to call.
 	 */
 	weak_connect_signal<K extends keyof M>(name: K, func: M[K]): void;
+}
+
+// TODO: Bro...
+interface SignalObjectNoSelf<S extends string, M extends SignalMap<S>> {
+	/**
+	 * Add a signal.
+	 * @param name A string with the event name.
+	 * @param func The function to call.
+	 */
+	connect_signal<K extends keyof M>(this: void, name: K, func: M[K]): void;
+
+	/**
+	 * Remove a signal.
+	 * @param name A string with the event name.
+	 * @param func The function to call.
+	 */
+	disconnect_signal<K extends keyof M>(this: void, name: K, func: M[K]): void;
+
+	/**
+	 * Emit a signal.
+	 * @param name A string with the event name.
+	 * @param args The signal arguments.
+	 */
+	emit_signal<K extends keyof M>(
+		this: void,
+		name: K,
+		...args: Parameters<M[K]>
+	): void;
+
+	/**
+	 * Connect to a signal weakly.
+	 *
+	 * This allows the callback function to be garbage collected and
+	 * automatically disconnects the signal when that happens.
+	 *
+	 * **Warning**: Only use this function if you really, really, really know
+	 * what you are doing.
+	 *
+	 * @param name A string with the event name.
+	 * @param func The function to call.
+	 */
+	weak_connect_signal<K extends keyof M>(this: void, name: K, func: M[K]): void;
 }

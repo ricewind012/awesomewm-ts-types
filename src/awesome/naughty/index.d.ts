@@ -1,8 +1,3 @@
-/// <reference types="../awful/widgets/popup" />
-/// <reference types="../client.d.ts" />
-/// <reference types="../screen.d.ts" />
-/// <reference types="../wibox" />
-
 interface NaughtyNotificationPopupBox extends AwfulPopupInstance {}
 
 type NaughtyActionSignal = "invoked";

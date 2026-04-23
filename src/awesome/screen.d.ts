@@ -1,5 +1,3 @@
-/// <reference types="./shared.d.ts" />
-
 type AwesomeScreenSignal =
 	| "scanning"
 	| "scanned"
@@ -557,8 +555,11 @@ interface AwesomeScreen
 	inch_minimum_size: number;
 }
 
+/**
+ * @noSelf
+ */
 interface AwesomeGlobalScreen
-	extends SignalObject<AwesomeScreenSignal, AwesomeScreenSignalMap> {
+	extends SignalObjectNoSelf<AwesomeScreenSignal, AwesomeScreenSignalMap> {
 	/**
 	 * Add a fake screen.
 	 *

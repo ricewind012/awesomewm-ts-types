@@ -1,6 +1,6 @@
 import * as awful from "awful";
 
-import { user } from "../config/user";
+import { user } from "~/config/user";
 
 /// Tag layouts.
 // Appends all layouts defined in `config/user.ts` to all tags.

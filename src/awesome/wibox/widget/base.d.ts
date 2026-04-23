@@ -1,5 +1,3 @@
-/// <reference types="../../awful/button.d.ts" />
-
 // TODO: extend Rectangle ?
 interface FindWidgetsResult {
 	/**
@@ -67,7 +65,7 @@ interface BaseWidgetSignalMap extends SignalMap<BaseWidgetSignal> {
 	 * signal is emitted, `:layout()` and `:fit()` must return the same result
 	 * when called with the same arguments.
 	 */
-	"widget::layout_changed": () => void;
+	"widget::layout_changed": (this: void) => void;
 
 	/**
 	 * When the widget content changed. This signal is emitted when the content
@@ -75,7 +73,7 @@ interface BaseWidgetSignalMap extends SignalMap<BaseWidgetSignal> {
 	 * Put differently, it is assumed that `:layout()` and `:fit()` would still
 	 * return the same results as before.
 	 */
-	"widget::redraw_needed": () => void;
+	"widget::redraw_needed": (this: void) => void;
 
 	/**
 	 * When a mouse button is pressed over the widget.
@@ -154,7 +152,7 @@ interface BaseWidgetProps {
 	/**
 	 * Get or set the children elements.
 	 */
-	children?: BaseWidget[];
+	children?: BaseWidget | BaseWidget[];
 
 	/**
 	 * Get all direct and indirect children widgets. This will scan all
