@@ -1,6 +1,10 @@
 import * as awful from "awful";
 import * as ruled from "ruled";
 
+// See https://typescripttolua.github.io/docs/advanced/language-extensions
+declare type PlacementCallback = (c: AwesomeClient, args?: object) => Geometry;
+declare const add: LuaAddition<PlacementCallback, PlacementCallback, number>;
+
 /// Rules.
 // Rules to apply to new clients.
 ruled.client.connect_signal("request::rules", () => {
@@ -9,8 +13,7 @@ ruled.client.connect_signal("request::rules", () => {
 		id: "global",
 		properties: {
 			focus: awful.client.focus.filter,
-			// @ts-expect-error: TODO(ts)
-			placement: awful.placement.no_overlap + awful.placement.no_offscreen,
+			placement: add(awful.placement.no_overlap, awful.placement.no_offscreen),
 			raise: true,
 			screen: awful.screen.preferred,
 		},

@@ -17,8 +17,14 @@ declare namespace lgi {
 	}
 }
 
-/** @noResolution */
+/**
+ * @deprecated
+ * @noResolution
+ */
 declare module "awful/autofocus" {}
 
-/** @noResolution */
+/**
+ * @deprecated
+ * @noResolution
+ */
 declare module "awful/hotkeys_popup/keys" {}

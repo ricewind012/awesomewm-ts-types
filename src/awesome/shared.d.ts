@@ -138,7 +138,10 @@ interface SignalObject<S extends string, M extends SignalMap<S>> {
 	 * @param name A string with the event name.
 	 * @param args The signal arguments.
 	 */
-	emit_signal<K extends keyof M>(name: K, ...args: Parameters<M[K]>): void;
+	emit_signal<K extends keyof M>(
+		name: K,
+		...args: Partial<Parameters<M[K]>>
+	): void;
 
 	/**
 	 * Connect to a signal weakly.
@@ -179,7 +182,7 @@ interface SignalObjectNoSelf<S extends string, M extends SignalMap<S>> {
 	emit_signal<K extends keyof M>(
 		this: void,
 		name: K,
-		...args: Parameters<M[K]>
+		...args: Partial<Parameters<M[K]>>
 	): void;
 
 	/**

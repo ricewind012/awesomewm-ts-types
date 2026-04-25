@@ -12,7 +12,11 @@
 		},
 		"plugins": [{ "name": "typescript-tstl-plugin" }],
 		"rootDir": "./src",
-		"types": ["@types/awesomewm", "lua-types/jit"]
+		"types": [
+			"@types/awesomewm",
+			"@typescript-to-lua/language-extensions",
+			"lua-types/jit"
+		]
 	},
 	"include": ["./src"],
 	"tstl": {

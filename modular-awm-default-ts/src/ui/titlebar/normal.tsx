@@ -7,7 +7,9 @@ interface NormalTitlebarProps {
 	c: AwesomeClient;
 }
 
-/// The titlebar to be used on normal clients.
+/**
+ * The titlebar to be used on normal clients.
+ */
 export function NormalTitlebar(props: NormalTitlebarProps) {
 	const { c } = props;
 

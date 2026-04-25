@@ -133,7 +133,6 @@ interface AwesomeClientSignalMap extends SignalMap<AwesomeClientSignal> {
 	 */
 	"mouse::move": (this: void) => void;
 
-	// TODO
 	/**
 	 * Emitted when a client should get activated (focused and/or raised).
 	 *

@@ -12,9 +12,11 @@ interface RuledClientProperties {
 	focus: (c: AwesomeClient) => AwesomeClient | undefined;
 	maximized_vertical: boolean;
 	maximized_horizontal: boolean;
-	placement: {
-		[placement in keyof AwfulPlacement]: AwfulPlacement[placement];
-	};
+	placement:
+		| {
+				[placement in keyof AwfulPlacement]: AwfulPlacement[placement];
+		  }
+		| number;
 	raise: boolean;
 	switch_to_tags: boolean;
 	tag: AwesomeTag | string;
