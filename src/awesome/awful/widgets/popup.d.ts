@@ -53,7 +53,7 @@ interface AwfulPopupProps extends WiboxSharedProps {
 	 * Set the placement function.
 	 */
 	placement?:
-		| ((obj: table, args: table) => Rectangle)
+		| ((obj: table, args: table) => Geometry)
 		| Partial<PlacementCommonArgs>
 		| string
 		| boolean;
@@ -70,7 +70,7 @@ interface AwfulPopupInstance extends Wibox {
 	 *
 	 * @returns The new geometry
 	 */
-	move_next_to(obj?: any): Rectangle;
+	move_next_to(obj?: any): Geometry;
 
 	/**
 	 * Bind the popup to a widget button press.

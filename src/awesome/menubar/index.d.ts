@@ -36,7 +36,7 @@ declare module "menubar" {
 	 * replaced via the screen's geometry. However, missing height is replaced
 	 * by the font size.
 	 */
-	export const geometry: Rectangle;
+	export const geometry: Geometry;
 
 	/**
 	 * Allows user to specify custom parameters for `prompt.run` function (like

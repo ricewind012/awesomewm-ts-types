@@ -82,6 +82,11 @@ interface WiboxDrawable {
 	 * @param args An array containing the widgets disposition
 	 */
 	setup(args: BaseWidget[]): void;
+
+	/**
+	 * Set a declarative widget hierarchy description.
+	 */
+	widget: BaseWidget;
 }
 
 interface Wibox extends WiboxDrawable {
@@ -94,7 +99,7 @@ interface Wibox extends WiboxDrawable {
 	 *
 	 * @returns A table with wibox coordinates and geometry.
 	 */
-	geometry(geo?: Rectangle): Rectangle;
+	geometry(geo?: Geometry): Geometry;
 
 	/**
 	 * Get or set wibox struts. Struts are the area which should be reserved
@@ -119,7 +124,7 @@ interface Wibox extends WiboxDrawable {
 	 * @returns A sorted table of widgets positions. The first element is
 	 * the biggest container while the last is the topmost widget.
 	 */
-	find_widgets(x: number, y: number): Rectangle & { widget: BaseWidget };
+	find_widgets(x: number, y: number): Geometry & { widget: BaseWidget };
 
 	/**
 	 * Create a widget that reflects the current state of this wibox.

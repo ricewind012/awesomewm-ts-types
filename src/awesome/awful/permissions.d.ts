@@ -147,7 +147,7 @@ interface AwfulPermissions {
 	wibox_geometry(
 		c: AwesomeClient,
 		context: string,
-		hints?: Partial<Rectangle>,
+		hints?: Partial<Geometry>,
 	): void;
 
 	/**
@@ -183,7 +183,7 @@ interface AwfulPermissions {
 	client_geometry_requests(
 		c: AwesomeClient,
 		context: string,
-		hints?: Partial<Rectangle>,
+		hints?: Partial<Geometry>,
 	): void;
 
 	/**

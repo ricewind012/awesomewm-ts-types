@@ -7,6 +7,7 @@ client.connect_signal("request::titlebars", (c) => {
 	// If a client expressly says not to draw titlebars on it, just don't.
 	if (c.requests_no_titlebar) return;
 
+	// yeah fr
 	<NormalTitlebar c={c} />;
 });
 

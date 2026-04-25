@@ -1,7 +1,4 @@
-type NewGeometryPoint = (
-	geo: Rectangle,
-	args: { parent: Rectangle },
-) => Rectangle;
+type NewGeometryPoint = (geo: Geometry, args: { parent: Geometry }) => Geometry;
 
 interface WiboxLayoutManualWidget extends WiboxLayoutBaseWidget {
 	/**
@@ -10,7 +7,7 @@ interface WiboxLayoutManualWidget extends WiboxLayoutBaseWidget {
 	 * @param widget The widget.
 	 * @param point A new point value.
 	 */
-	add_at(widget: BaseWidget, point: Rectangle | NewGeometryPoint): void;
+	add_at(widget: BaseWidget, point: Geometry | NewGeometryPoint): void;
 
 	/**
 	 * Move a widget (by index).
@@ -18,7 +15,7 @@ interface WiboxLayoutManualWidget extends WiboxLayoutBaseWidget {
 	 * @param index The widget index.
 	 * @param point A new point value.
 	 */
-	move(index: number, point: Rectangle | NewGeometryPoint): void;
+	move(index: number, point: Geometry | NewGeometryPoint): void;
 
 	/**
 	 * Move a widget.
@@ -26,7 +23,7 @@ interface WiboxLayoutManualWidget extends WiboxLayoutBaseWidget {
 	 * @param widget The widget.
 	 * @param point A new point value.
 	 */
-	move_widget(widget: BaseWidget, point: Rectangle | NewGeometryPoint): void;
+	move_widget(widget: BaseWidget, point: Geometry | NewGeometryPoint): void;
 }
 
 /**

@@ -1,15 +1,3 @@
-interface WiboxDrawable {
-	/**
-	 * Set a declarative widget hierarchy description.
-	 */
-	setup(widget: BaseWidget): void;
-
-	/**
-	 * Set a declarative widget hierarchy description.
-	 */
-	widget: BaseWidget;
-}
-
 /**
  * @noSelf
  */

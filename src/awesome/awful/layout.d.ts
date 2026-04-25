@@ -5,8 +5,8 @@ interface AwesomeLayout {
 }
 
 interface AwesomeLayoutParams {
-	workarea: Rectangle;
-	geometry: Rectangle;
+	workarea: Geometry;
+	geometry: Geometry;
 	clients: AwesomeClient[];
 	screen: number;
 	padding: AwesomeClientStrut | number;

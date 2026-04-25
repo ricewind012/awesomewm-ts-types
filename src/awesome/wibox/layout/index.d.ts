@@ -14,6 +14,6 @@ interface WiboxLayout {
 	flex: WiboxLayoutFlex;
 	grid: WiboxLayoutGrid;
 	manual: WiboxLayoutManual;
-	radio: WiboxLayoutRatio;
+	ratio: WiboxLayoutRatio;
 	stack: WiboxLayoutStack;
 }

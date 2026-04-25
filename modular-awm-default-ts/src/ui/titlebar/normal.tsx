@@ -29,7 +29,6 @@ export function NormalTitlebar(props: NormalTitlebarProps) {
 
 	// Draws the client titlebar at the default position (top) and size.
 	/* TODO(ts):
-
 			1: {
 				// Title
 				widget: awful.titlebar.widget.titlewidget(c),
@@ -45,7 +44,10 @@ export function NormalTitlebar(props: NormalTitlebarProps) {
 
 			{/* Middle */}
 			<wibox.layout.flex.horizontal buttons={buttons}>
-				{awful.titlebar.widget.titlewidget(c)}
+				{{
+					halign: "center",
+					widget: awful.titlebar.widget.titlewidget(c),
+				}}
 			</wibox.layout.flex.horizontal>
 
 			{/* Right */}

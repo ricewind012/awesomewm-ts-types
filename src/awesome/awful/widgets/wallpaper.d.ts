@@ -74,7 +74,7 @@ interface WallpaperInstanceOptions {
 	 * When {@link honor_workarea}, {@link honor_padding} or panning are used,
 	 * some section of the screen won't have a wallpaper.
 	 */
-	uncovered_areas: Rectangle;
+	uncovered_areas: Geometry;
 
 	/**
 	 * The color for the uncovered areas.
@@ -94,7 +94,7 @@ interface WallpaperInstanceOptions {
 		| "inner"
 		| "inner_horizontal"
 		| "inner_vertical"
-		| ((wp: WallpaperInstance) => Rectangle);
+		| ((wp: WallpaperInstance) => Geometry);
 }
 
 interface WallpaperInstance extends WiboxDrawable {

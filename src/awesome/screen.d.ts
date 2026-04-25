@@ -230,7 +230,7 @@ interface AwesomeScreenOutput {
 }
 
 interface AwesomeScreenViewport {
-	geometry: Rectangle;
+	geometry: Geometry;
 
 	/**
 	 * An identifier for this viewport (by pixel resolution). It will not change
@@ -328,7 +328,7 @@ interface AwesomeScreen
 		/**
 		 * Apply some margins on the output.
 		 */
-		margins?: number | Rectangle;
+		margins?: number | Geometry;
 
 		/**
 		 * Use this tag's screen.
@@ -344,8 +344,8 @@ interface AwesomeScreen
 		 * A bounding rectangle. This parameter is incompatible with
 		 * {@link honor_workarea}.
 		 */
-		bounding_rect?: Rectangle;
-	}): Rectangle;
+		bounding_rect?: Geometry;
+	}): Geometry;
 
 	/**
 	 * Get the list of visible clients for the screen.
@@ -391,7 +391,7 @@ interface AwesomeScreen
 	/**
 	 * The screen coordinates.
 	 */
-	readonly geometry: Rectangle;
+	readonly geometry: Geometry;
 
 	/**
 	 * The internal screen number.
@@ -430,7 +430,7 @@ interface AwesomeScreen
 	 *
 	 * It can be modified be altering the `wibox` or `client` struts.
 	 */
-	readonly workarea: Rectangle;
+	readonly workarea: Geometry;
 
 	/**
 	 * The area where clients can be tiled.
@@ -439,7 +439,7 @@ interface AwesomeScreen
 	 * {@link padding} property, `wibox.struts` and {@link AwesomeClient.struts}
 	 * to modify this area.
 	 */
-	readonly tiling_area: Rectangle;
+	readonly tiling_area: Geometry;
 
 	/**
 	 * Take a screenshot of the physical screen.
@@ -451,7 +451,7 @@ interface AwesomeScreen
 	 *
 	 * This adds a "buffer" section on each side of the screen.
 	 */
-	padding: Rectangle | number;
+	padding: Geometry | number;
 
 	/**
 	 * A list of outputs for this screen with their size in mm.

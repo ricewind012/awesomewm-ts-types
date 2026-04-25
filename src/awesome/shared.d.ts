@@ -108,7 +108,7 @@ interface Coords {
 	y: number;
 }
 
-interface Rectangle extends Coords {
+interface Geometry extends Coords {
 	width: number;
 	height: number;
 }

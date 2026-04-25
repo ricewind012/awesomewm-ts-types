@@ -63,7 +63,7 @@ interface PlacementCommonArgs {
 	 */
 	parent: Drawable | AwesomeMouse;
 
-	bounding_rect: Rectangle;
+	bounding_rect: Geometry;
 
 	/**
 	 * When the parent geometry (like the screen) changes, re-apply the
@@ -116,7 +116,7 @@ interface AwfulPlacement {
 			 */
 			include_sides?: boolean;
 		},
-	): LuaMultiReturn<[Rectangle, string]>;
+	): LuaMultiReturn<[Geometry, string]>;
 
 	/**
 	 * Place the client so no part of it will be outside the screen (workarea).
@@ -126,7 +126,7 @@ interface AwfulPlacement {
 	 *
 	 * @returns The new client geometry.
 	 */
-	no_offscreen(c: AwesomeClient, args?: { screen?: AwesomeScreen }): Rectangle;
+	no_offscreen(c: AwesomeClient, args?: { screen?: AwesomeScreen }): Geometry;
 
 	/**
 	 * Place the client where there's place available with minimum overlap.
@@ -136,7 +136,7 @@ interface AwfulPlacement {
 	 *
 	 * @returns The new geometry
 	 */
-	no_overlap(c: AwesomeClient, args?: Partial<PlacementCommonArgs>): Rectangle;
+	no_overlap(c: AwesomeClient, args?: Partial<PlacementCommonArgs>): Geometry;
 
 	/**
 	 * Place the client under the mouse.
@@ -146,7 +146,7 @@ interface AwfulPlacement {
 	 *
 	 * @returns The new geometry
 	 */
-	under_mouse(d: Drawable, args?: Partial<PlacementCommonArgs>): Rectangle;
+	under_mouse(d: Drawable, args?: Partial<PlacementCommonArgs>): Geometry;
 
 	/**
 	 * Place the client next to the mouse.
@@ -156,7 +156,7 @@ interface AwfulPlacement {
 	 *
 	 * @returns The new geometry
 	 */
-	next_to_mouse(d: Drawable, args?: Partial<PlacementCommonArgs>): Rectangle;
+	next_to_mouse(d: Drawable, args?: Partial<PlacementCommonArgs>): Geometry;
 
 	/**
 	 * Resize the drawable to the cursor.
@@ -169,7 +169,7 @@ interface AwfulPlacement {
 	resize_to_mouse(
 		d: Drawable,
 		args?: { axis: "horizontal" | "vertical" },
-	): Rectangle;
+	): Geometry;
 
 	/**
 	 * Move the drawable (client or wibox)
@@ -188,7 +188,7 @@ interface AwfulPlacement {
 				| "center_vertical"
 				| "center_horizontal";
 		},
-	): Rectangle;
+	): Geometry;
 
 	/**
 	 * Align a client to the top left of the parent area.
@@ -198,7 +198,7 @@ interface AwfulPlacement {
 	 *
 	 * @returns The new geometry
 	 */
-	top_left(d: Drawable, args?: Partial<PlacementCommonArgs>): Rectangle;
+	top_left(d: Drawable, args?: Partial<PlacementCommonArgs>): Geometry;
 
 	/**
 	 * Align a client to the top right of the parent area.
@@ -208,7 +208,7 @@ interface AwfulPlacement {
 	 *
 	 * @returns The new geometry
 	 */
-	top_right(d: Drawable, args?: Partial<PlacementCommonArgs>): Rectangle;
+	top_right(d: Drawable, args?: Partial<PlacementCommonArgs>): Geometry;
 
 	/**
 	 * Align a client to the bottom left of the parent area.
@@ -218,7 +218,7 @@ interface AwfulPlacement {
 	 *
 	 * @returns The new geometry
 	 */
-	bottom_left(d: Drawable, args?: Partial<PlacementCommonArgs>): Rectangle;
+	bottom_left(d: Drawable, args?: Partial<PlacementCommonArgs>): Geometry;
 
 	/**
 	 * Align a client to the bottom right of the parent area.
@@ -228,7 +228,7 @@ interface AwfulPlacement {
 	 *
 	 * @returns The new geometry
 	 */
-	bottom_right(d: Drawable, args?: Partial<PlacementCommonArgs>): Rectangle;
+	bottom_right(d: Drawable, args?: Partial<PlacementCommonArgs>): Geometry;
 
 	/**
 	 * Align a client to the left of the parent area.
@@ -238,7 +238,7 @@ interface AwfulPlacement {
 	 *
 	 * @returns The new geometry
 	 */
-	left(d: Drawable, args?: Partial<PlacementCommonArgs>): Rectangle;
+	left(d: Drawable, args?: Partial<PlacementCommonArgs>): Geometry;
 
 	/**
 	 * Align a client to the right of the parent area.
@@ -248,7 +248,7 @@ interface AwfulPlacement {
 	 *
 	 * @returns The new geometry
 	 */
-	right(d: Drawable, args?: Partial<PlacementCommonArgs>): Rectangle;
+	right(d: Drawable, args?: Partial<PlacementCommonArgs>): Geometry;
 
 	/**
 	 * Align a client to the top of the parent area.
@@ -258,7 +258,7 @@ interface AwfulPlacement {
 	 *
 	 * @returns The new geometry
 	 */
-	top(d: Drawable, args?: Partial<PlacementCommonArgs>): Rectangle;
+	top(d: Drawable, args?: Partial<PlacementCommonArgs>): Geometry;
 
 	/**
 	 * Align a client to the bottom of the parent area.
@@ -268,7 +268,7 @@ interface AwfulPlacement {
 	 *
 	 * @returns The new geometry
 	 */
-	bottom(d: Drawable, args?: Partial<PlacementCommonArgs>): Rectangle;
+	bottom(d: Drawable, args?: Partial<PlacementCommonArgs>): Geometry;
 
 	/**
 	 * Align a client to the center of the parent area.
@@ -278,7 +278,7 @@ interface AwfulPlacement {
 	 *
 	 * @returns The new geometry
 	 */
-	centered(d: Drawable, args?: Partial<PlacementCommonArgs>): Rectangle;
+	centered(d: Drawable, args?: Partial<PlacementCommonArgs>): Geometry;
 
 	/**
 	 * Align a client to the vertical center of the parent area.
@@ -288,7 +288,7 @@ interface AwfulPlacement {
 	 *
 	 * @returns The new geometry
 	 */
-	center_vertical(d: Drawable, args?: Partial<PlacementCommonArgs>): Rectangle;
+	center_vertical(d: Drawable, args?: Partial<PlacementCommonArgs>): Geometry;
 
 	/**
 	 * Align a client to the horizontal center left of the parent area.
@@ -298,10 +298,7 @@ interface AwfulPlacement {
 	 *
 	 * @returns The new geometry
 	 */
-	center_horizontal(
-		d: Drawable,
-		args?: Partial<PlacementCommonArgs>,
-	): Rectangle;
+	center_horizontal(d: Drawable, args?: Partial<PlacementCommonArgs>): Geometry;
 
 	/**
 	 * Stretch a drawable in a specific direction.
@@ -316,7 +313,7 @@ interface AwfulPlacement {
 		args?: Partial<PlacementCommonArgs> & {
 			direction?: Direction | Direction[];
 		},
-	): Rectangle;
+	): Geometry;
 
 	/**
 	 * Stretch the drawable to the left of the parent area.
@@ -326,7 +323,7 @@ interface AwfulPlacement {
 	 *
 	 * @returns The new geometry
 	 */
-	stretch_left(d: Drawable, args?: Partial<PlacementCommonArgs>): Rectangle;
+	stretch_left(d: Drawable, args?: Partial<PlacementCommonArgs>): Geometry;
 
 	/**
 	 * Stretch the drawable to the right of the parent area.
@@ -336,7 +333,7 @@ interface AwfulPlacement {
 	 *
 	 * @returns The new geometry
 	 */
-	stretch_right(d: Drawable, args?: Partial<PlacementCommonArgs>): Rectangle;
+	stretch_right(d: Drawable, args?: Partial<PlacementCommonArgs>): Geometry;
 
 	/**
 	 * Stretch the drawable to the top of the parent area.
@@ -346,7 +343,7 @@ interface AwfulPlacement {
 	 *
 	 * @returns The new geometry
 	 */
-	stretch_up(d: Drawable, args?: Partial<PlacementCommonArgs>): Rectangle;
+	stretch_up(d: Drawable, args?: Partial<PlacementCommonArgs>): Geometry;
 
 	/**
 	 * Stretch the drawable to the bottom of the parent area.
@@ -356,7 +353,7 @@ interface AwfulPlacement {
 	 *
 	 * @returns The new geometry
 	 */
-	stretch_down(d: Drawable, args?: Partial<PlacementCommonArgs>): Rectangle;
+	stretch_down(d: Drawable, args?: Partial<PlacementCommonArgs>): Geometry;
 
 	/**
 	 * Maximize a drawable horizontally, vertically or both.
@@ -375,7 +372,7 @@ interface AwfulPlacement {
 			 */
 			axis?: "horizontal" | "vertical";
 		},
-	): Rectangle;
+	): Geometry;
 
 	/**
 	 * Vetically maximize the drawable in the parent area.
@@ -388,7 +385,7 @@ interface AwfulPlacement {
 	maximize_vertically(
 		d: Drawable,
 		args?: Partial<PlacementCommonArgs>,
-	): Rectangle;
+	): Geometry;
 
 	/**
 	 * Horizontally maximize the drawable in the parent area.
@@ -401,7 +398,7 @@ interface AwfulPlacement {
 	maximize_horizontally(
 		d: Drawable,
 		args?: Partial<PlacementCommonArgs>,
-	): Rectangle;
+	): Geometry;
 
 	/**
 	 * Scale the drawable by either a relative or absolute percent.
@@ -428,7 +425,7 @@ interface AwfulPlacement {
 
 			direction?: Direction;
 		},
-	): Rectangle;
+	): Geometry;
 
 	/**
 	 * Move a drawable to a relative position next to another one.
@@ -471,7 +468,7 @@ interface AwfulPlacement {
 			 */
 			geometry?: string;
 		},
-	): LuaMultiReturn<[Rectangle, D, A]>;
+	): LuaMultiReturn<[Geometry, D, A]>;
 
 	/**
 	 * Restore the geometry.
@@ -491,5 +488,5 @@ interface AwfulPlacement {
 	 *
 	 * @returns The new geometry
 	 */
-	skip_fullscreen(d: Drawable, args?: Partial<PlacementCommonArgs>): Rectangle;
+	skip_fullscreen(d: Drawable, args?: Partial<PlacementCommonArgs>): Geometry;
 }

@@ -338,7 +338,7 @@ interface AwesomeClientStrut {
  * @see https://awesomewm.org/apidoc/core_components/client.html
  */
 interface AwesomeClient
-	extends Rectangle,
+	extends Geometry,
 		Omit<
 			SignalObject<AwesomeClientSignal, AwesomeClientSignalMap>,
 			"disconnect_signal"
@@ -413,7 +413,7 @@ interface AwesomeClient
 	 *
 	 * @returns A table with client geometry and coordinates.
 	 */
-	geometry(geo?: Rectangle): Rectangle;
+	geometry(geo?: Geometry): Geometry;
 
 	/**
 	 * Apply size hints to a size.

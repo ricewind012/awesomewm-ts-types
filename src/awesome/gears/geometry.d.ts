@@ -13,7 +13,7 @@ interface GearsGeometry {
 		 *
 		 * @returns The squared distance of the rectangle to the provided point.
 		 */
-		get_square_distance(geom: Rectangle, x: number, y: number): number;
+		get_square_distance(geom: Geometry, x: number, y: number): number;
 
 		/**
 		 * Return the closest rectangle from `list` for a given point.
@@ -25,7 +25,7 @@ interface GearsGeometry {
 		 * @returns The key from the closest geometry.
 		 */
 		get_closest_by_coord(
-			list: Rectangle[],
+			list: Geometry[],
 			x: number,
 			y: number,
 		): number | undefined;
@@ -43,7 +43,7 @@ interface GearsGeometry {
 		 * @returns The key from the closest geometry. In case no result is
 		 * found, `nil` is returned.
 		 */
-		get_by_coord(list: Rectangle[], x: number, y: number): number | undefined;
+		get_by_coord(list: Geometry[], x: number, y: number): number | undefined;
 
 		/**
 		 * Get the nearest rectangle in the given direction.
@@ -57,8 +57,8 @@ interface GearsGeometry {
 		 */
 		get_in_direction(
 			dir: Direction,
-			recttbl: Rectangle,
-			cur: Rectangle,
+			recttbl: Geometry,
+			cur: Geometry,
 		): number | undefined;
 
 		/**
@@ -69,7 +69,7 @@ interface GearsGeometry {
 		 *
 		 * @returns If the areas are identical.
 		 */
-		are_equal(a: Rectangle, b: Rectangle): boolean;
+		are_equal(a: Geometry, b: Geometry): boolean;
 
 		/**
 		 * Return if rectangle `a` is within rectangle `b`.
@@ -83,7 +83,7 @@ interface GearsGeometry {
 		 *
 		 * @returns If the areas are identical.
 		 */
-		is_inside(a: Rectangle, b: Rectangle): boolean;
+		is_inside(a: Geometry, b: Geometry): boolean;
 
 		/**
 		 * Check if an area intersect another area.
@@ -93,7 +93,7 @@ interface GearsGeometry {
 		 *
 		 * @returns True if they intersect, false otherwise.
 		 */
-		area_intersect_area(a: Rectangle, b: Rectangle): boolean;
+		area_intersect_area(a: Geometry, b: Geometry): boolean;
 
 		/**
 		 * Get the intersect area between `a` and `b`.
@@ -103,7 +103,7 @@ interface GearsGeometry {
 		 *
 		 * @returns The intersect area.
 		 */
-		get_intersection(a: Rectangle, b: Rectangle): table;
+		get_intersection(a: Geometry, b: Geometry): table;
 
 		/**
 		 * Remove an area from a list, splitting the space between several area
@@ -114,6 +114,6 @@ interface GearsGeometry {
 		 *
 		 * @returns The new area list.
 		 */
-		area_remove(areas: table, elem: Rectangle): table;
+		area_remove(areas: table, elem: Geometry): table;
 	};
 }

@@ -234,7 +234,7 @@ interface AwfulMouse {
 			y: number,
 			fixed_x: boolean,
 			fixed_y: boolean,
-		): Rectangle;
+		): Geometry;
 
 		/**
 		 * The default distance before snapping clients together.
@@ -329,12 +329,12 @@ interface AwesomeGlobalMouse {
 	/**
 	 * Get the current widget geometry.
 	 */
-	current_widget_geometry: Rectangle | undefined;
+	current_widget_geometry: Geometry | undefined;
 
 	/**
 	 * Get the current widget geometries.
 	 */
-	current_widget_geometries: Rectangle[] | undefined;
+	current_widget_geometries: Geometry[] | undefined;
 
 	/**
 	 * True if the left mouse button is pressed.
