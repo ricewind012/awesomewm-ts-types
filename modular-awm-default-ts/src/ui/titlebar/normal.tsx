@@ -15,26 +15,19 @@ export function NormalTitlebar(props: NormalTitlebarProps) {
 	const buttons = [
 		awful.button(undefined, awful.button.names.LEFT, () => {
 			c.activate({
-				context: "titlebar",
 				action: "mouse_move",
+				context: "titlebar",
 			});
 		}),
 		awful.button(undefined, awful.button.names.RIGHT, () => {
 			c.activate({
-				context: "titlebar",
 				action: "mouse_resize",
+				context: "titlebar",
 			});
 		}),
 	];
 
 	// Draws the client titlebar at the default position (top) and size.
-	/* TODO(ts):
-			1: {
-				// Title
-				widget: awful.titlebar.widget.titlewidget(c),
-				halign: "center",
-			},
-	*/
 	const widget = (
 		<wibox.layout.align.horizontal>
 			{/* Left */}
@@ -60,6 +53,7 @@ export function NormalTitlebar(props: NormalTitlebarProps) {
 			</wibox.layout.fixed.horizontal>
 		</wibox.layout.align.horizontal>
 	);
-	awful.titlebar(c).widget = widget;
-	return widget;
+	const titlebar = awful.titlebar(c);
+	titlebar.widget = widget;
+	return titlebar;
 }

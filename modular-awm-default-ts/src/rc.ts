@@ -22,9 +22,9 @@ pcall(require, "luarocks.loader");
 // another config (This code will only ever execute for the fallback config).
 naughty.connect_signal("request::display_error", (message, startup) => {
 	naughty.notification({
-		urgency: "critical",
-		title: `Oops, an error happened ${startup ? " during startup!" : "!"}`,
 		message,
+		title: `Oops, an error happened ${startup ? " during startup!" : "!"}`,
+		urgency: "critical",
 	});
 });
 

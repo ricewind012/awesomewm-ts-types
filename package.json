@@ -3,6 +3,9 @@
 	"description": "TypeScript definitions for AwesomeWM API.",
 	"version": "1.0.0",
 	"private": true,
+	"dependencies": {
+		"lua-types": "^2.14.1"
+	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://bruh.git"

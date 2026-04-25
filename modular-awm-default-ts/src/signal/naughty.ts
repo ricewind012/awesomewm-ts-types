@@ -8,11 +8,11 @@ import notification from "~/ui/notification";
 ruled.notification.connect_signal("request::rules", () => {
 	// All notifications will match this rule.
 	ruled.notification.append_rule({
-		rule: undefined,
 		properties: {
-			screen: awful.screen.preferred,
 			implicit_timeout: 5,
+			screen: awful.screen.preferred,
 		},
+		rule: undefined,
 	});
 });
 

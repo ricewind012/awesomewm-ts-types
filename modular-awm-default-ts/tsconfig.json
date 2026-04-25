@@ -2,14 +2,14 @@
 	"$schema": "https://raw.githubusercontent.com/TypeScriptToLua/TypeScriptToLua/master/tsconfig-schema.json",
 	"compilerOptions": {
 		"baseUrl": "./src",
+		"jsx": "react",
+		"jsxFactory": "make_widget",
+		"lib": ["ESNext"],
+		"noImplicitThis": true,
+		"outDir": "dist",
 		"paths": {
 			"~/*": ["./*"]
 		},
-		"jsx": "react",
-		"jsxFactory": "make_widget",
-		"noImplicitThis": true,
-		"lib": ["ESNext"],
-		"outDir": "dist",
 		"plugins": [{ "name": "typescript-tstl-plugin" }],
 		"rootDir": "./src",
 		"types": ["@types/awesomewm", "lua-types/jit"]

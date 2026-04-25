@@ -14,14 +14,14 @@
 							":PATH:"
 						]
 					}
-				}
-				//,"useSortedKeys": "on"
+				},
+				"useSortedKeys": "on"
 			}
 		},
 		"enabled": true
 	},
 	"files": {
-		"includes": ["**", "!dist", "!package.json"]
+		"includes": ["**", "!**/package.json"]
 	},
 	"javascript": {
 		"jsxRuntime": "reactClassic"

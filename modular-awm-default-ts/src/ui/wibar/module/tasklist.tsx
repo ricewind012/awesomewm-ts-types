@@ -18,8 +18,8 @@ export function TaskList(props: TaskListProps) {
 				// it if it's minimized.
 				awful.button(undefined, awful.button.names.LEFT, (c: AwesomeClient) => {
 					c.activate({
-						context: "tasklist",
 						action: "toggle_minimization",
+						context: "tasklist",
 					});
 				}),
 

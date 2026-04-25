@@ -26,3 +26,11 @@ function files(dir: string) {
 
 	return files[0][0] === "*" ? [] : files;
 }
+
+const awesome_dir = gears.filesystem.get_configuration_dir();
+if (awesome.startup) {
+	const cmd = `sh -c "while inotifywait -e modify ${awesome_dir}; do printf "\n"; done`;
+	awful.spawn.with_line_callback(cmd, {
+		stdout: () => awesome.restart(),
+	});
+}

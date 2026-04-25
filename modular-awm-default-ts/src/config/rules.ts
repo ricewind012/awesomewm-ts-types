@@ -7,21 +7,23 @@ ruled.client.connect_signal("request::rules", () => {
 	// All clients will match this rule.
 	ruled.client.append_rule({
 		id: "global",
-		rule: {},
 		properties: {
 			focus: awful.client.focus.filter,
-			raise: true,
-			screen: awful.screen.preferred,
 			// @ts-expect-error: TODO(ts)
 			placement: awful.placement.no_overlap + awful.placement.no_offscreen,
+			raise: true,
+			screen: awful.screen.preferred,
 		},
+		rule: {},
 	});
 
 	// Floating clients.
 	ruled.client.append_rule({
 		id: "floating",
+		properties: {
+			floating: true,
+		},
 		rule_any: {
-			instance: ["copyq", "pinentry"],
 			class: [
 				"Arandr",
 				"Blueman-manager",
@@ -33,6 +35,7 @@ ruled.client.connect_signal("request::rules", () => {
 				"veromix",
 				"xtightvncviewer",
 			],
+			instance: ["copyq", "pinentry"],
 			// Note that the name property shown in xprop might be set slightly after creation of the client
 			// and the name shown there might not match defined rules here.
 			name: ["EventTester"],
@@ -42,30 +45,27 @@ ruled.client.connect_signal("request::rules", () => {
 				"pop-up", // e.g. Google Chrome's (detached) Developer Tools.
 			],
 		},
-		properties: {
-			floating: true,
-		},
 	});
 
 	// Add titlebars to normal clients and dialogs.
 	ruled.client.append_rule({
 		id: "titlebars",
-		rule_any: {
-			type: ["normal", "dialog"],
-		},
 		properties: {
 			titlebars_enabled: true,
+		},
+		rule_any: {
+			type: ["normal", "dialog"],
 		},
 	});
 
 	// Set Firefox to always map on the tag named '2' on screen 1.
 	ruled.client.append_rule({
-		rule: {
-			class: ["Firefox"],
-		},
 		properties: {
 			screen: 1,
 			tag: "2",
+		},
+		rule: {
+			class: ["Firefox"],
 		},
 	});
 });

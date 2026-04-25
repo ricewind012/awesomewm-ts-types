@@ -1,6 +1,10 @@
 import * as awful from "awful";
 
 interface UserPrefs {
+	// Table of layouts to cover with awful.layout.inc, ORDER MATTERS, the first layout
+	// in the table is your DEFAULT LAYOUT.
+	layouts: AwesomeLayout[];
+
 	// Default modkey.
 	// Usually, Mod4 is the key with a logo between Control and Alt. If you do not like
 	// this or do not have such a key, I suggest you to remap Mod4 to another key using
@@ -11,15 +15,9 @@ interface UserPrefs {
 	// Each screen has its own tag table. You can just define one and append it to all
 	// screens (default behavior).
 	tags: string[];
-
-	// Table of layouts to cover with awful.layout.inc, ORDER MATTERS, the first layout
-	// in the table is your DEFAULT LAYOUT.
-	layouts: AwesomeLayout[];
 }
 
 export const user: UserPrefs = {
-	mod: "Mod4",
-	tags: ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
 	layouts: [
 		awful.layout.suit.floating,
 		awful.layout.suit.tile,
@@ -35,4 +33,6 @@ export const user: UserPrefs = {
 		awful.layout.suit.magnifier,
 		awful.layout.suit.corner.nw,
 	],
+	mod: "Mod4",
+	tags: ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
 };

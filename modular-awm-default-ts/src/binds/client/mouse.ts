@@ -14,14 +14,14 @@ client.connect_signal("request::default_mousebindings", () => {
 		}),
 		awful.button([modkey], awful.button.names.LEFT, (c: AwesomeClient) => {
 			c.activate({
-				context: "mouse_click",
 				action: "mouse_move",
+				context: "mouse_click",
 			});
 		}),
 		awful.button([modkey], awful.button.names.RIGHT, (c: AwesomeClient) => {
 			c.activate({
-				context: "mouse_click",
 				action: "mouse_resize",
+				context: "mouse_click",
 			});
 		}),
 	]);

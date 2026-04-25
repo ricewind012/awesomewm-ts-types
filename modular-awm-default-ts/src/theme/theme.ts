@@ -12,24 +12,45 @@ const taglist_square_size = dpi(4);
 const themes_path = gfs.get_themes_dir();
 
 export const theme: Partial<Theme> = {
-	font: "sans 8",
-
-	bg_normal: "#222222",
 	bg_focus: "#535d6c",
-	bg_urgent: "#ff0000",
 	bg_minimize: "#444444",
+	bg_normal: "#222222",
 	bg_systray: "#222222",
+	bg_urgent: "#ff0000",
 
-	fg_normal: "#aaaaaa",
-	fg_focus: "#ffffff",
-	fg_urgent: "#ffffff",
-	fg_minimize: "#ffffff",
-
-	useless_gap: dpi(0),
-	border_width: dpi(1),
-	border_color_normal: "#000000",
 	border_color_active: "#535d6c",
 	border_color_marked: "#91231c",
+	border_color_normal: "#000000",
+	border_width: dpi(1),
+
+	fg_focus: "#ffffff",
+	fg_minimize: "#ffffff",
+	fg_normal: "#aaaaaa",
+	fg_urgent: "#ffffff",
+
+	font: "sans 8",
+	icon_theme: "",
+
+	// Define the icon theme for application icons. If not set then the icons
+	// from /usr/share/icons and /usr/share/icons/hicolor will be used.
+	layout_cornerne: `${themes_path}/default/layouts/cornernew.png`,
+	layout_cornernw: `${themes_path}/default/layouts/cornernww.png`,
+	layout_cornerse: `${themes_path}/default/layouts/cornersew.png`,
+	layout_cornersw: `${themes_path}/default/layouts/cornersww.png`,
+	layout_dwindle: `${themes_path}/default/layouts/dwindlew.png`,
+
+	// You can use your own layout icons like this:
+	layout_fairh: `${themes_path}/default/layouts/fairhw.png`,
+	layout_fairv: `${themes_path}/default/layouts/fairvw.png`,
+	layout_floating: `${themes_path}/default/layouts/floatingw.png`,
+	layout_fullscreen: `${themes_path}/default/layouts/fullscreenw.png`,
+	layout_magnifier: `${themes_path}/default/layouts/magnifierw.png`,
+	layout_max: `${themes_path}/default/layouts/maxw.png`,
+	layout_spiral: `${themes_path}/default/layouts/spiralw.png`,
+	layout_tile: `${themes_path}/default/layouts/tilew.png`,
+	layout_tilebottom: `${themes_path}/default/layouts/tilebottomw.png`,
+	layout_tileleft: `${themes_path}/default/layouts/tileleftw.png`,
+	layout_tiletop: `${themes_path}/default/layouts/tiletopw.png`,
 
 	// There are other variable sets
 	// overriding the default one when
@@ -52,65 +73,43 @@ export const theme: Partial<Theme> = {
 	// Variables set for theming the menu:
 	// menu_[bg|fg]_[normal|focus]
 	// menu_[border_color|border_width]
-	menu_submenu_icon: `${themes_path}default/submenu.png`,
 	menu_height: dpi(15),
+	menu_submenu_icon: `${themes_path}/default/submenu.png`,
 	menu_width: dpi(100),
 
-	// You can add as many variables as
-	// you wish and access them by using
-	// beautiful.variable in your rc.lua
+	// You can add as many variables as you wish and access them by using
+	// beautiful.variable in your rc.ts
 	//bg_widget: "#cc0000",
 
 	// Define the image to load
-	titlebar_close_button_normal: `${themes_path}default/titlebar/close_normal.png`,
-	titlebar_close_button_focus: `${themes_path}default/titlebar/close_focus.png`,
+	titlebar_close_button_focus: `${themes_path}/default/titlebar/close_focus.png`,
+	titlebar_close_button_normal: `${themes_path}/default/titlebar/close_normal.png`,
 
-	titlebar_minimize_button_normal: `${themes_path}default/titlebar/minimize_normal.png`,
-	titlebar_minimize_button_focus: `${themes_path}default/titlebar/minimize_focus.png`,
+	titlebar_floating_button_focus_active: `${themes_path}/default/titlebar/floating_focus_active.png`,
+	titlebar_floating_button_focus_inactive: `${themes_path}/default/titlebar/floating_focus_inactive.png`,
+	titlebar_floating_button_normal_active: `${themes_path}/default/titlebar/floating_normal_active.png`,
+	titlebar_floating_button_normal_inactive: `${themes_path}/default/titlebar/floating_normal_inactive.png`,
 
-	titlebar_ontop_button_normal_inactive: `${themes_path}default/titlebar/ontop_normal_inactive.png`,
-	titlebar_ontop_button_focus_inactive: `${themes_path}default/titlebar/ontop_focus_inactive.png`,
-	titlebar_ontop_button_normal_active: `${themes_path}default/titlebar/ontop_normal_active.png`,
-	titlebar_ontop_button_focus_active: `${themes_path}default/titlebar/ontop_focus_active.png`,
+	titlebar_maximized_button_focus_active: `${themes_path}/default/titlebar/maximized_focus_active.png`,
+	titlebar_maximized_button_focus_inactive: `${themes_path}/default/titlebar/maximized_focus_inactive.png`,
+	titlebar_maximized_button_normal_active: `${themes_path}/default/titlebar/maximized_normal_active.png`,
+	titlebar_maximized_button_normal_inactive: `${themes_path}/default/titlebar/maximized_normal_inactive.png`,
 
-	titlebar_sticky_button_normal_inactive: `${themes_path}default/titlebar/sticky_normal_inactive.png`,
-	titlebar_sticky_button_focus_inactive: `${themes_path}default/titlebar/sticky_focus_inactive.png`,
-	titlebar_sticky_button_normal_active: `${themes_path}default/titlebar/sticky_normal_active.png`,
-	titlebar_sticky_button_focus_active: `${themes_path}default/titlebar/sticky_focus_active.png`,
+	titlebar_minimize_button_focus: `${themes_path}/default/titlebar/minimize_focus.png`,
+	titlebar_minimize_button_normal: `${themes_path}/default/titlebar/minimize_normal.png`,
 
-	titlebar_floating_button_normal_inactive: `${themes_path}default/titlebar/floating_normal_inactive.png`,
-	titlebar_floating_button_focus_inactive: `${themes_path}default/titlebar/floating_focus_inactive.png`,
-	titlebar_floating_button_normal_active: `${themes_path}default/titlebar/floating_normal_active.png`,
-	titlebar_floating_button_focus_active: `${themes_path}default/titlebar/floating_focus_active.png`,
+	titlebar_ontop_button_focus_active: `${themes_path}/default/titlebar/ontop_focus_active.png`,
+	titlebar_ontop_button_focus_inactive: `${themes_path}/default/titlebar/ontop_focus_inactive.png`,
+	titlebar_ontop_button_normal_active: `${themes_path}/default/titlebar/ontop_normal_active.png`,
+	titlebar_ontop_button_normal_inactive: `${themes_path}/default/titlebar/ontop_normal_inactive.png`,
 
-	titlebar_maximized_button_normal_inactive: `${themes_path}default/titlebar/maximized_normal_inactive.png`,
-	titlebar_maximized_button_focus_inactive: `${themes_path}default/titlebar/maximized_focus_inactive.png`,
-	titlebar_maximized_button_normal_active: `${themes_path}default/titlebar/maximized_normal_active.png`,
-	titlebar_maximized_button_focus_active: `${themes_path}default/titlebar/maximized_focus_active.png`,
+	titlebar_sticky_button_focus_active: `${themes_path}/default/titlebar/sticky_focus_active.png`,
+	titlebar_sticky_button_focus_inactive: `${themes_path}/default/titlebar/sticky_focus_inactive.png`,
+	titlebar_sticky_button_normal_active: `${themes_path}/default/titlebar/sticky_normal_active.png`,
+	titlebar_sticky_button_normal_inactive: `${themes_path}/default/titlebar/sticky_normal_inactive.png`,
 
-	wallpaper: `${themes_path}default/background.png`,
-
-	// You can use your own layout icons like this:
-	layout_fairh: `${themes_path}default/layouts/fairhw.png`,
-	layout_fairv: `${themes_path}default/layouts/fairvw.png`,
-	layout_floating: `${themes_path}default/layouts/floatingw.png`,
-	layout_magnifier: `${themes_path}default/layouts/magnifierw.png`,
-	layout_max: `${themes_path}default/layouts/maxw.png`,
-	layout_fullscreen: `${themes_path}default/layouts/fullscreenw.png`,
-	layout_tilebottom: `${themes_path}default/layouts/tilebottomw.png`,
-	layout_tileleft: `${themes_path}default/layouts/tileleftw.png`,
-	layout_tile: `${themes_path}default/layouts/tilew.png`,
-	layout_tiletop: `${themes_path}default/layouts/tiletopw.png`,
-	layout_spiral: `${themes_path}default/layouts/spiralw.png`,
-	layout_dwindle: `${themes_path}default/layouts/dwindlew.png`,
-	layout_cornernw: `${themes_path}default/layouts/cornernww.png`,
-	layout_cornerne: `${themes_path}default/layouts/cornernew.png`,
-	layout_cornersw: `${themes_path}default/layouts/cornersww.png`,
-	layout_cornerse: `${themes_path}default/layouts/cornersew.png`,
-
-	// Define the icon theme for application icons. If not set then the icons
-	// from /usr/share/icons and /usr/share/icons/hicolor will be used.
-	icon_theme: "",
+	useless_gap: dpi(0),
+	wallpaper: `${themes_path}/default/background.png`,
 };
 
 // Generate taglist squares:
@@ -125,7 +124,7 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 
 // Generate Awesome icon:
 theme.awesome_icon = theme_assets.awesome_icon(
-	theme.menu_height as number,
+	theme.menu_height,
 	theme.bg_focus,
 	theme.fg_focus,
 );
@@ -133,12 +132,12 @@ theme.awesome_icon = theme_assets.awesome_icon(
 // Set different colors for urgent notifications.
 notification.connect_signal("request::rules", () => {
 	notification.append_rule({
-		rule: {
-			urgency: "critical",
-		},
 		properties: {
 			bg: "#ff0000",
 			fg: "#ffffff",
+		},
+		rule: {
+			urgency: "critical",
 		},
 	});
 });
