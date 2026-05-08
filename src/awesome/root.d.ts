@@ -13,7 +13,7 @@ interface RootInputEventMap {
 	motion_notify: boolean;
 }
 
-declare module "root" {
+interface AwesomeGlobalRoot {
 	/**
 	 * Send fake keyboard or mouse events.
 	 *
@@ -76,7 +76,7 @@ declare module "root" {
 	 * @param x In case of a motion event, this is the X coordinate.
 	 * @param y In case of a motion event, this is the Y coordinate.
 	 */
-	export function fake_input<K extends RootInputEventType>(
+	fake_input<K extends RootInputEventType>(
 		event_type: K,
 		detail: RootInputEventMap[K],
 		x: K extends "motion_notify" ? number : never,
@@ -88,14 +88,14 @@ declare module "root" {
 	 *
 	 * @param cursor_name A X cursor name.
 	 */
-	export function cursor(cursor_name: Cursor): void;
+	cursor(cursor_name: Cursor): void;
 
 	/**
 	 * Get the drawins attached to a screen.
 	 *
 	 * @returns A table with all drawins.
 	 */
-	export function drawins(): any[];
+	drawins(): any[];
 
 	/**
 	 * Get the size of the root window.
@@ -104,7 +104,7 @@ declare module "root" {
 	 * - `number` Width of the root window.
 	 * - `number` height of the root window.
 	 */
-	export function size(): LuaMultiReturn<[number, number]>;
+	size(): LuaMultiReturn<[number, number]>;
 
 	/**
 	 * Get the physical size of the root window, in millimeter.
@@ -113,12 +113,12 @@ declare module "root" {
 	 * - `number` Width of the root window, in millimeters.
 	 * - `number` height of the root window, in millimeters.
 	 */
-	export function size_mm(): LuaMultiReturn<[number, number]>;
+	size_mm(): LuaMultiReturn<[number, number]>;
 
 	/**
 	 * Get the attached tags.
 	 *
 	 * @returns A table with all tags.
 	 */
-	export function tags(): AwesomeTag[];
+	tags(): AwesomeTag[];
 }
