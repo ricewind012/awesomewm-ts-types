@@ -96,8 +96,71 @@ interface AwesomeTagSignalMap extends SignalMap<AwesomeTagSignal> {
 	"removal-pending": (this: void, t: AwesomeTag) => void;
 }
 
+// These were actually tested :-)
+interface AwesomeTagSubscribableProps {
+	/**
+	 * Tag name.
+	 */
+	name: string;
+
+	/**
+	 * True if the tag is selected to be viewed.
+	 */
+	selected: boolean;
+
+	/**
+	 * True if the tag is active and can be used.
+	 */
+	activated: boolean;
+
+	/**
+	 * The tag master width factor.
+	 */
+	master_width_factor: number;
+
+	/**
+	 * The tag client layout.
+	 */
+	layout: AwesomeLayout;
+
+	/**
+	 * The (proposed) list of available layouts for this tag.
+	 */
+	layouts: AwesomeLayout[] | undefined;
+
+	/**
+	 * Define if the tag must be deleted when the last client is untagged.
+	 */
+	volatile: boolean;
+
+	/**
+	 * Enable gaps for a single client.
+	 */
+	gap_single_client: boolean;
+
+	/**
+	 * Set size fill policy for the master client(s).
+	 */
+	master_fill_policy: string;
+
+	/**
+	 * Set the number of master windows.
+	 */
+	master_count: number;
+
+	/**
+	 * Set the tag icon.
+	 */
+	icon: awesome_image | undefined;
+}
+
 interface AwesomeTag
-	extends SignalObject<AwesomeTagSignal, AwesomeTagSignalMap> {
+	extends AwesomeTagSubscribableProps,
+		SignalObjectWithSubscribableProps<
+			AwesomeTagSignal,
+			AwesomeTagSignalMap,
+			AwesomeTagSubscribableProps
+		> {
 	/**
 	 * Get or set the clients attached to this tag.
 	 *
@@ -190,19 +253,14 @@ interface AwesomeTag
 	view_only(): void;
 
 	/**
-	 * Tag name.
+	 * Set the number of columns.
 	 */
-	name: string;
+	column_count: number;
 
 	/**
-	 * True if the tag is selected to be viewed.
+	 * The gap (spacing, also called useless_gap) between clients.
 	 */
-	selected: boolean;
-
-	/**
-	 * True if the tag is active and can be used.
-	 */
-	activated: boolean;
+	gap: number;
 
 	/**
 	 * The tag index.
@@ -213,60 +271,15 @@ interface AwesomeTag
 	 * The tag screen.
 	 */
 	screen: AwesomeScreen;
-
-	/**
-	 * The tag master width factor.
-	 */
-	master_width_factor: number;
-
-	/**
-	 * The tag client layout.
-	 */
-	layout: AwesomeLayout;
-
-	/**
-	 * The (proposed) list of available layouts for this tag.
-	 */
-	layouts: AwesomeLayout[] | undefined;
-
-	/**
-	 * Define if the tag must be deleted when the last client is untagged.
-	 */
-	volatile: boolean;
-
-	/**
-	 * The gap (spacing, also called useless_gap) between clients.
-	 */
-	gap: number;
-
-	/**
-	 * Enable gaps for a single client.
-	 */
-	gap_single_client: boolean;
-
-	/**
-	 * Set size fill policy for the master client(s).
-	 */
-	master_fill_policy: string;
-
-	/**
-	 * Set the number of master windows.
-	 */
-	master_count: number;
-
-	/**
-	 * Set the tag icon.
-	 */
-	icon: awesome_image | undefined;
-
-	/**
-	 * Set the number of columns.
-	 */
-	column_count: number;
 }
 
 /**
  * @noSelf
  */
 interface AwesomeGlobalTag
-	extends SignalObjectNoSelf<AwesomeTagSignal, AwesomeTagSignalMap> {}
+	extends SignalObjectWithSubscribableProps<
+		AwesomeTagSignal,
+		AwesomeTagSignalMap,
+		AwesomeTagSubscribableProps,
+		true
+	> {}

@@ -199,3 +199,21 @@ interface SignalObjectNoSelf<S extends string, M extends SignalMap<S>> {
 	 */
 	weak_connect_signal<K extends keyof M>(this: void, name: K, func: M[K]): void;
 }
+
+// biome-ignore lint/suspicious/noExplicitAny: intentional
+type SubscribableProps<P extends Record<string, any>, T> = {
+	-readonly [K in keyof P as `property::${string & K}`]: (
+		this: void,
+		arg: T,
+	) => void;
+};
+
+type SignalObjectWithSubscribableProps<
+	S extends string,
+	M extends SignalMap<S>,
+	// biome-ignore lint/suspicious/noExplicitAny: intentional
+	P extends Record<string, any>,
+	NoSelf extends boolean = false,
+> = NoSelf extends true
+	? SignalObjectNoSelf<S & keyof P, M & P>
+	: SignalObject<S & keyof P, M & P>;

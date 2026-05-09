@@ -353,13 +353,304 @@ interface AwesomeClientStrut {
 	bottom: number;
 }
 
+interface AwesomeClientProperties {
+	/**
+	 * The X window id.
+	 */
+	readonly window: number;
+
+	/**
+	 * The client title.
+	 */
+	name: string;
+
+	/**
+	 * True if the client does not want to be in taskbar.
+	 */
+	skip_taskbar: boolean;
+
+	/**
+	 * The window type.
+	 */
+	readonly type: string;
+
+	/**
+	 * The client class.
+	 */
+	readonly class: string;
+
+	/**
+	 * The client instance.
+	 */
+	readonly instance: string;
+
+	/**
+	 * The client PID, if available.
+	 */
+	readonly pid: number;
+
+	/**
+	 * The window role, if available.
+	 */
+	readonly role: string;
+
+	/**
+	 * The machine the client is running on.
+	 */
+	readonly machine: string;
+
+	/**
+	 * The client name when iconified.
+	 */
+	readonly icon_name: string;
+
+	/**
+	 * The client icon as a surface.
+	 */
+	icon: LuaUserdata;
+
+	/**
+	 * The available sizes of client icons.
+	 */
+	readonly icon_sizes: number[][];
+
+	/**
+	 * Client screen.
+	 */
+	screen: AwesomeScreen;
+
+	/**
+	 * Define if the client must be hidden (Never mapped, invisible in taskbar).
+	 */
+	hidden: boolean;
+
+	/**
+	 * Define if the client must be iconified (Only visible in taskbar).
+	 */
+	minimized: boolean;
+
+	/**
+	 * Honor size hints, e.g.
+	 */
+	size_hints_honor: boolean;
+
+	/**
+	 * The client border width.
+	 */
+	border_width: number | undefined;
+
+	/**
+	 * The client border color.
+	 */
+	border_color: string | undefined;
+
+	/**
+	 * Set to true when the client ask for attention.
+	 */
+	urgent: boolean;
+
+	/**
+	 * A cairo surface for the client window content.
+	 */
+	readonly content: cairo_surface;
+
+	/**
+	 * The client opacity.
+	 */
+	opacity: number;
+
+	/**
+	 * The client is on top of every other windows.
+	 */
+	ontop: boolean;
+
+	/**
+	 * The client is above normal windows.
+	 */
+	above: boolean;
+
+	/**
+	 * The client is below normal windows.
+	 */
+	below: boolean;
+
+	/**
+	 * The client is fullscreen or not.
+	 */
+	fullscreen: boolean;
+
+	/**
+	 * The client is maximized (horizontally and vertically) or not.
+	 */
+	maximized: boolean;
+
+	/**
+	 * The client is maximized horizontally or not.
+	 */
+	maximized_horizontal: boolean;
+
+	/**
+	 * The client is maximized vertically or not.
+	 */
+	maximized_vertical: boolean;
+
+	/**
+	 * The client the window is transient for.
+	 */
+	readonly transient_for: AwesomeClient | undefined;
+
+	/**
+	 * Window identification unique to a group of windows.
+	 */
+	readonly group_window: number;
+
+	/**
+	 * Identification unique to windows spawned by the same command.
+	 */
+	readonly leader_window: number;
+
+	/**
+	 * A table with size hints of the client.
+	 */
+	readonly size_hints: table;
+
+	/**
+	 * The motif WM hints of the client.
+	 */
+	readonly motif_wm_hints: table;
+
+	/**
+	 * Set the client sticky (Available on all tags).
+	 */
+	sticky: boolean;
+
+	/**
+	 * Indicate if the client is modal.
+	 */
+	modal: boolean;
+
+	/**
+	 * True if the client can receive the input focus.
+	 */
+	focusable: boolean;
+
+	/**
+	 * The client's bounding shape as set by awesome as a (native) cairo surface.
+	 */
+	shape_bounding: awesome_image;
+
+	/**
+	 * The client's clip shape as set by awesome as a (native) cairo surface.
+	 */
+	shape_clip: awesome_image;
+
+	/**
+	 * The client's input shape as set by awesome as a (native) cairo surface.
+	 */
+	shape_input: awesome_image;
+
+	/**
+	 * The client's bounding shape as set by the program as a (native) cairo surface.
+	 */
+	readonly client_shape_bounding: awesome_image;
+
+	/**
+	 * The client's clip shape as set by the program as a (native) cairo surface.
+	 */
+	readonly client_shape_clip: awesome_image;
+
+	/**
+	 * The FreeDesktop StartId.
+	 */
+	startup_id: string;
+
+	/**
+	 * If the client that this object refers to is still managed by awesome.
+	 */
+	readonly valid: boolean;
+
+	/**
+	 * The first tag of the client.
+	 */
+	readonly first_tag: AwesomeTag | undefined;
+
+	/**
+	 * Get or set mouse buttons bindings for a client.
+	 */
+	buttons: any[];
+
+	/**
+	 * Get or set keys bindings for a client.
+	 */
+	keys: any[];
+
+	/**
+	 * If a client is marked or not.
+	 */
+	marked: boolean;
+
+	/**
+	 * Return if a client has a fixed size or not.
+	 */
+	readonly is_fixed: boolean;
+
+	/**
+	 * Is the client immobilized horizontally?
+	 */
+	readonly immobilized_horizontal: boolean;
+
+	/**
+	 * Is the client immobilized vertically?
+	 */
+	readonly immobilized_vertical: boolean;
+
+	/**
+	 * The client floating state.
+	 */
+	floating: boolean;
+
+	/**
+	 * If the client is dockable.
+	 */
+	dockable: boolean;
+
+	/**
+	 * If the client requests not to be decorated with a titlebar.
+	 *
+	 * The motif wm hints allow a client to request not to be decorated by the
+	 * WM in various ways. This property uses the motif `MWM_DECOR_TITLE` hint
+	 * and interprets it as the client (not) wanting a titlebar.
+	 */
+	requests_no_titlebar: boolean;
+
+	/**
+	 * Set the client shape.
+	 */
+	shape: shape;
+
+	/**
+	 * Return true if the client is active (has focus).
+	 */
+	readonly active: boolean;
+}
+
+type AwesomeClientSubscribableProps = SubscribableProps<
+	AwesomeClientProperties,
+	AwesomeClient
+>;
+
 /**
  * @see https://awesomewm.org/apidoc/core_components/client.html
  */
 interface AwesomeClient
-	extends Geometry,
+	extends AwesomeClientProperties,
+		Geometry,
 		Omit<
-			SignalObject<AwesomeClientSignal, AwesomeClientSignalMap>,
+			SignalObjectWithSubscribableProps<
+				AwesomeClientSignal,
+				AwesomeClientSignalMap,
+				AwesomeClientSubscribableProps
+			>,
 			"disconnect_signal"
 		> {
 	/**
@@ -660,292 +951,18 @@ interface AwesomeClient
 	 * @param context The reason why this permission is requested.
 	 */
 	deny(permission: string, context: string): void;
-
-	/**
-	 * The X window id.
-	 */
-	readonly window: number;
-
-	/**
-	 * The client title.
-	 */
-	name: string;
-
-	/**
-	 * True if the client does not want to be in taskbar.
-	 */
-	skip_taskbar: boolean;
-
-	/**
-	 * The window type.
-	 */
-	readonly type: string;
-
-	/**
-	 * The client class.
-	 */
-	readonly class: string;
-
-	/**
-	 * The client instance.
-	 */
-	readonly instance: string;
-
-	/**
-	 * The client PID, if available.
-	 */
-	readonly pid: number;
-
-	/**
-	 * The window role, if available.
-	 */
-	readonly role: string;
-
-	/**
-	 * The machine the client is running on.
-	 */
-	readonly machine: string;
-
-	/**
-	 * The client name when iconified.
-	 */
-	readonly icon_name: string;
-
-	/**
-	 * The client icon as a surface.
-	 */
-	icon: LuaUserdata;
-
-	/**
-	 * The available sizes of client icons.
-	 */
-	readonly icon_sizes: number[][];
-
-	/**
-	 * Client screen.
-	 */
-	screen: AwesomeScreen;
-
-	/**
-	 * Define if the client must be hidden (Never mapped, invisible in taskbar).
-	 */
-	hidden: boolean;
-
-	/**
-	 * Define if the client must be iconified (Only visible in taskbar).
-	 */
-	minimized: boolean;
-
-	/**
-	 * Honor size hints, e.g.
-	 */
-	size_hints_honor: boolean;
-
-	/**
-	 * The client border width.
-	 */
-	border_width: number | undefined;
-
-	/**
-	 * The client border color.
-	 */
-	border_color: string | undefined;
-
-	/**
-	 * Set to true when the client ask for attention.
-	 */
-	urgent: boolean;
-
-	/**
-	 * A cairo surface for the client window content.
-	 */
-	readonly content: cairo_surface;
-
-	/**
-	 * The client opacity.
-	 */
-	opacity: number;
-
-	/**
-	 * The client is on top of every other windows.
-	 */
-	ontop: boolean;
-
-	/**
-	 * The client is above normal windows.
-	 */
-	above: boolean;
-
-	/**
-	 * The client is below normal windows.
-	 */
-	below: boolean;
-
-	/**
-	 * The client is fullscreen or not.
-	 */
-	fullscreen: boolean;
-
-	/**
-	 * The client is maximized (horizontally and vertically) or not.
-	 */
-	maximized: boolean;
-
-	/**
-	 * The client is maximized horizontally or not.
-	 */
-	maximized_horizontal: boolean;
-
-	/**
-	 * The client is maximized vertically or not.
-	 */
-	maximized_vertical: boolean;
-
-	/**
-	 * The client the window is transient for.
-	 */
-	readonly transient_for: AwesomeClient | undefined;
-
-	/**
-	 * Window identification unique to a group of windows.
-	 */
-	readonly group_window: number;
-
-	/**
-	 * Identification unique to windows spawned by the same command.
-	 */
-	readonly leader_window: number;
-
-	/**
-	 * A table with size hints of the client.
-	 */
-	readonly size_hints: table;
-
-	/**
-	 * The motif WM hints of the client.
-	 */
-	readonly motif_wm_hints: table;
-
-	/**
-	 * Set the client sticky (Available on all tags).
-	 */
-	sticky: boolean;
-
-	/**
-	 * Indicate if the client is modal.
-	 */
-	modal: boolean;
-
-	/**
-	 * True if the client can receive the input focus.
-	 */
-	focusable: boolean;
-
-	/**
-	 * The client's bounding shape as set by awesome as a (native) cairo surface.
-	 */
-	shape_bounding: awesome_image;
-
-	/**
-	 * The client's clip shape as set by awesome as a (native) cairo surface.
-	 */
-	shape_clip: awesome_image;
-
-	/**
-	 * The client's input shape as set by awesome as a (native) cairo surface.
-	 */
-	shape_input: awesome_image;
-
-	/**
-	 * The client's bounding shape as set by the program as a (native) cairo surface.
-	 */
-	readonly client_shape_bounding: awesome_image;
-
-	/**
-	 * The client's clip shape as set by the program as a (native) cairo surface.
-	 */
-	readonly client_shape_clip: awesome_image;
-
-	/**
-	 * The FreeDesktop StartId.
-	 */
-	startup_id: string;
-
-	/**
-	 * If the client that this object refers to is still managed by awesome.
-	 */
-	readonly valid: boolean;
-
-	/**
-	 * The first tag of the client.
-	 */
-	readonly first_tag: AwesomeTag | undefined;
-
-	/**
-	 * Get or set mouse buttons bindings for a client.
-	 */
-	buttons: any[];
-
-	/**
-	 * Get or set keys bindings for a client.
-	 */
-	keys: any[];
-
-	/**
-	 * If a client is marked or not.
-	 */
-	marked: boolean;
-
-	/**
-	 * Return if a client has a fixed size or not.
-	 */
-	readonly is_fixed: boolean;
-
-	/**
-	 * Is the client immobilized horizontally?
-	 */
-	readonly immobilized_horizontal: boolean;
-
-	/**
-	 * Is the client immobilized vertically?
-	 */
-	readonly immobilized_vertical: boolean;
-
-	/**
-	 * The client floating state.
-	 */
-	floating: boolean;
-
-	/**
-	 * If the client is dockable.
-	 */
-	dockable: boolean;
-
-	/**
-	 * If the client requests not to be decorated with a titlebar.
-	 *
-	 * The motif wm hints allow a client to request not to be decorated by the
-	 * WM in various ways. This property uses the motif `MWM_DECOR_TITLE` hint
-	 * and interprets it as the client (not) wanting a titlebar.
-	 */
-	requests_no_titlebar: boolean;
-
-	/**
-	 * Set the client shape.
-	 */
-	shape: shape;
-
-	/**
-	 * Return true if the client is active (has focus).
-	 */
-	readonly active: boolean;
 }
 
 /**
  * @noSelf
  */
 interface AwesomeGlobalClient
-	extends SignalObjectNoSelf<AwesomeClientSignal, AwesomeClientSignalMap> {
+	extends SignalObjectWithSubscribableProps<
+		AwesomeClientSignal,
+		AwesomeClientSignalMap,
+		AwesomeClientSubscribableProps,
+		true
+	> {
 	/**
 	 * Get the number of instances.
 	 * @returns The number of client objects alive.

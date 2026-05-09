@@ -513,7 +513,7 @@ interface AwfulClient {
 		 *
 		 * @deprecated It is now possible to use `c.value` directly.
 		 */
-		get<K extends NonFunctionKeys<AwesomeClient>>(
+		get<K extends NonOnly<AwesomeClient, (...args: unknown[]) => unknown>>(
 			c: AwesomeClient,
 			prop: K,
 		): AwesomeClient[K];
@@ -527,7 +527,7 @@ interface AwfulClient {
 		 *
 		 * @deprecated It is now possible to use `c.value = value` directly.
 		 */
-		set<K extends NonFunctionKeys<AwesomeClient>>(
+		set<K extends NonOnly<AwesomeClient, (...args: unknown[]) => unknown>>(
 			c: AwesomeClient,
 			prop: K,
 			value: AwesomeClient[K],

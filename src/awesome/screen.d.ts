@@ -465,7 +465,7 @@ interface AwesomeScreen
 	 *
 	 * This adds a "buffer" section on each side of the screen.
 	 */
-	padding: Geometry | number;
+	padding: AwesomeClientStrut | number;
 
 	/**
 	 * A list of outputs for this screen with their size in mm.

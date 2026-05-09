@@ -1,3 +1,7 @@
-type NonFunctionKeys<T> = {
-	[K in keyof T]: T[K] extends (...args: unknown[]) => unknown ? never : K;
+type Only<T, What> = {
+	[K in keyof T]: T[K] extends What ? K : never;
+}[keyof T];
+
+type NonOnly<T, What> = {
+	[K in keyof T]: T[K] extends What ? never : K;
 }[keyof T];

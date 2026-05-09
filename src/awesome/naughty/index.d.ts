@@ -96,10 +96,12 @@ interface NaughtyNotificationSignalMap
 }
 
 interface NaughtyNotification
-	extends SignalObject<
-		NaughtyNotificationSignal,
-		NaughtyNotificationSignalMap
-	> {
+	extends NotificationSubscribableProps,
+		SignalObjectWithSubscribableProps<
+			NaughtyNotificationSignal,
+			NaughtyNotificationSignalMap,
+			NotificationSubscribableProps
+		> {
 	/**
 	 * Destroy notification by notification object.
 	 *
@@ -141,38 +143,30 @@ interface NaughtyNotification
 	deny(permission: string, context: string): void;
 }
 
-interface NotificationProperties {
+interface NotificationSubscribableProps {
 	/**
 	 * Text of the notification.
 	 * @default ""
 	 */
-	text?: string;
+	text: string;
 
 	/**
 	 * Title of the notification.
 	 */
-	title?: string;
+	title: string;
 
 	/**
 	 * Time in seconds after which popup expires. Set 0 for no timeout.
 	 * @default 5
 	 */
-	timeout?: number;
-
-	/**
-	 * Delay in seconds after which hovered popup disappears.
-	 */
-	hover_timeout?: number;
-
-	// Not mentioned in docs, but is in rc.lua
-	message?: string;
+	timeout: number;
 
 	/**
 	 * Target screen for the notification.
 	 * @default focused
 	 */
-	screen?:
-		| ((c?: AwesomeClient) => AwesomeScreen)
+	screen:
+		| ((c: AwesomeClient) => AwesomeScreen)
 		| AwesomeScreen
 		| number
 		| string;
@@ -181,7 +175,7 @@ interface NotificationProperties {
 	 * Corner of the workarea displaying the popups.
 	 * @default "top_right"
 	 */
-	position?:
+	position:
 		| "top_left"
 		| "top_right"
 		| "bottom_left"
@@ -191,29 +185,37 @@ interface NotificationProperties {
 		| "middle";
 
 	/**
+	 * Delay in seconds after which hovered popup disappears.
+	 */
+	hover_timeout: number;
+
+	// Not mentioned in docs, but is in rc.lua
+	message: string;
+
+	/**
 	 * Boolean forcing popups to display on top.
 	 * @default true
 	 */
-	ontop?: boolean;
+	ontop: boolean;
 
 	/**
 	 * Popup height.
 	 * @default `beautiful.notification_height` or auto
 	 */
-	height?: number;
+	height: number;
 
 	/**
 	 * Popup width.
 	 * @default `beautiful.notification_width` or auto
 	 */
-	width?: number;
+	width: number;
 
 	/**
 	 * Notification font.
 	 * @default `beautiful.notification_font` or `beautiful.font` or
 	 * `awesome.font`
 	 */
-	font?: string | lgi.Pango.FontDescription;
+	font: string | lgi.Pango.FontDescription;
 
 	/**
 	 * "All in one" way to access the default image or icon.
@@ -232,83 +234,197 @@ interface NotificationProperties {
 	 * - The [icon](https://awesomewm.org/apidoc/core_components/naughty.notification.html#icon) from a client with `normal` type.
 	 * - The [icon](https://awesomewm.org/apidoc/core_components/naughty.notification.html#icon) of a client with `dialog` type.
 	 */
-	icon?: awesome_image;
+	icon: awesome_image;
 
 	/**
 	 * Desired icon size in px.
 	 */
-	icon_size?: number;
+	icon_size: number;
 
 	/**
 	 * Foreground color.
 	 * @default `beautiful.notification_fg` or `beautiful.fg_focus` or
 	 * `'#ffffff'`
 	 */
-	fg?: string;
+	fg: string;
 
 	/**
 	 * Background color.
 	 * @default `beautiful.notification_fg` or `beautiful.bg_focus` or
 	 * `'#535d6c'`
 	 */
-	bg?: string;
+	bg: string;
 
 	/**
 	 * Border width.
 	 * @default `beautiful.notification_border_width` or 1
 	 */
-	border_width?: number;
+	border_width: number;
 
 	/**
 	 * Border color.
 	 * @default `beautiful.notification_border_color` or
 	 * `beautiful.border_color_active` or `'#535d6c'`
 	 */
-	border_color?: cairo_solid_pattern;
+	border_color: cairo_solid_pattern;
 
 	/**
 	 * Widget shape.
 	 * @default `beautiful.notification_shape`
 	 */
-	shape?: shape | ((cr: any, width: number, height: number) => void);
+	shape: shape | ((cr: any, width: number, height: number) => void);
 
 	/**
 	 * Widget opacity.
 	 * @default `beautiful.notification_opacity`
 	 */
-	opacity?: number;
+	opacity: number;
 
 	/**
 	 * Widget margin.
 	 * @default `beautiful.notification_margin`
 	 */
-	margin?: AwesomeClientStrut | number;
+	margin: AwesomeClientStrut | number;
 
+	/**
+	 * If set to true this notification will be shown even if notifications are
+	 * suspended via {@link naughty.suspend}.
+	 * @default false
+	 */
+	ignore_suspend: boolean;
+
+	// TODO: these weren't mentioned in "args", but they're in whatever's
+	// returned from naughty.notification
+
+	/**
+	 * The icon provided in the app_icon field of the DBus notification.
+	 *
+	 * This should always be either the URI (path) to an icon or a valid XDG
+	 * icon name to be fetched from the theme.
+	 */
+	app_icon: string;
+
+	/**
+	 * The application name specified by the notification.
+	 *
+	 * This can be anything. It is usually less relevant than the
+	 * {@link clients} property, but can sometime be specified for remote or
+	 * headless notifications. In these case, it helps to triage and detect the
+	 * notification from the rules.
+	 */
+	app_name: string;
+
+	/**
+	 * If the timeout needs to be reset when a property changes.
+	 *
+	 * By default it falls back to `naughty.auto_reset_timeout`, which itself is
+	 * true by default.
+	 */
+	auto_reset_timeout: boolean;
+
+	/**
+	 * The notification category.
+	 *
+	 * The category should be named using the x-vendor.class.name naming scheme
+	 * or use one of [the default
+	 * categories](https://awesomewm.org/apidoc/core_components/naughty.notification.html#category).
+	 */
+	category: string;
+
+	/**
+	 * Ignore this notification, do not display.
+	 *
+	 * Note that this property has to be set in a {@link naughty.preset} or in a
+	 * `request::preset` handler.
+	 */
+	ignore: boolean;
+
+	/**
+	 * The notification image.
+	 *
+	 * This is usually provided as a
+	 * [gears.surface](https://awesomewm.org/apidoc/libraries/gears.surface.html#)
+	 * object. The image is used instead of the
+	 * [app_icon](https://awesomewm.org/apidoc/core_components/naughty.notification.html#app_icon)
+	 * by notification assets which are auto-generated or stored elsewhere than
+	 * the filesystem (databases, web, Android phones, etc).
+	 */
+	image: unknown;
+
+	/**
+	 * The notification (animated) images.
+	 *
+	 * Note that calling this without first setting
+	 * [naughty.image_animations_enabled](https://awesomewm.org/apidoc/libraries/naughty.html#image_animations_enabled)
+	 * to true will throw an exception.
+	 *
+	 * Also note that there is zero support for this anywhere else in `naughty`
+	 * and very, very few applications support this.
+	 *
+	 * This exists purely to comply with the specification.
+	 */
+	images: table;
+
+	/**
+	 * The maximum popup width.
+	 *
+	 * Some notifications have overlong message, cap them to this width. Note
+	 * that this is ignored by {@link naughty.list.notifications} because it
+	 * delegate this decision to the layout.
+	 */
+	max_width: number;
+
+	/**
+	 * True if the notification should be kept when an action is pressed.
+	 *
+	 * By default, invoking an action will destroy the notification. Some
+	 * actions, like the "Snooze" action of alarm clock, will cause the
+	 * notification to be updated with a date further in the future.
+	 * @default false
+	 */
+	resident: boolean;
+
+	/**
+	 * The notification urgency level.
+	 * @default "normal"
+	 */
+	urgency: "low" | "normal" | "critical";
+
+	/**
+	 * The widget template used to represent the notification.
+	 *
+	 * Some notifications, such as chat messages or music applications are
+	 * better off with a specialized notification widget.
+	 */
+	widget_template: BaseWidget;
+}
+
+interface NotificationProperties extends NotificationSubscribableProps {
 	/**
 	 * Function to run on left click. The notification object will be passed to
 	 * it as an argument. You need to call e.g.
 	 * `notification.die(naughty.notification_closed_reason.dismissedByUser)`
 	 * from there to dismiss the notification yourself.
 	 */
-	run?: (notification: NaughtyNotification) => void;
+	run: (notification: NaughtyNotification) => void;
 
 	/**
 	 * Function to run when notification is destroyed.
 	 */
-	destroy?: () => void;
+	destroy: () => void;
 
 	/**
 	 * Table with any of the above parameters. Note: Any parameters specified
 	 * directly in args will override ones defined in the preset.
 	 */
-	preset?: NotificationPreset;
+	preset: NotificationPreset;
 
 	/**
 	 * Function that will be called with all arguments. The notification will
 	 * only be displayed if the function returns true. Note: this function is
 	 * only relevant to notifications sent via dbus.
 	 */
-	callback?: (
+	callback: (
 		legacy_data: table,
 		appname: string,
 		replaces_id: number,
@@ -323,52 +439,7 @@ interface NotificationProperties {
 	/**
 	 * A list of {@link naughty.action}.
 	 */
-	actions?: NaughtyAction[];
-
-	/**
-	 * If set to true this notification will be shown even if notifications are
-	 * suspended via {@link naughty.suspend}.
-	 * @default false
-	 */
-	ignore_suspend?: boolean;
-
-	// TODO: these weren't mentioned in "args", but they're in whatever's
-	// returned from naughty.notification
-
-	/**
-	 * The icon provided in the app_icon field of the DBus notification.
-	 *
-	 * This should always be either the URI (path) to an icon or a valid XDG
-	 * icon name to be fetched from the theme.
-	 */
-	app_icon?: string;
-
-	/**
-	 * The application name specified by the notification.
-	 *
-	 * This can be anything. It is usually less relevant than the
-	 * {@link clients} property, but can sometime be specified for remote or
-	 * headless notifications. In these case, it helps to triage and detect the
-	 * notification from the rules.
-	 */
-	app_name?: string;
-
-	/**
-	 * If the timeout needs to be reset when a property changes.
-	 *
-	 * By default it falls back to `naughty.auto_reset_timeout`, which itself is
-	 * true by default.
-	 */
-	auto_reset_timeout?: boolean;
-
-	/**
-	 * The notification category.
-	 *
-	 * The category should be named using the x-vendor.class.name naming scheme
-	 * or use one of [the default
-	 * categories](https://awesomewm.org/apidoc/core_components/naughty.notification.html#category).
-	 */
-	category?: string;
+	actions: NaughtyAction[];
 
 	/**
 	 * A list of clients associated with this notification.
@@ -379,86 +450,19 @@ interface NotificationProperties {
 	 * applications (and scripts) calling the `notify-send` command wont have
 	 * any client.
 	 */
-	clients?: AwesomeClient[];
-
-	/**
-	 * Ignore this notification, do not display.
-	 *
-	 * Note that this property has to be set in a {@link naughty.preset} or in a
-	 * `request::preset` handler.
-	 */
-	ignore?: boolean;
-
-	/**
-	 * The notification image.
-	 *
-	 * This is usually provided as a
-	 * [gears.surface](https://awesomewm.org/apidoc/libraries/gears.surface.html#)
-	 * object. The image is used instead of the
-	 * [app_icon](https://awesomewm.org/apidoc/core_components/naughty.notification.html#app_icon)
-	 * by notification assets which are auto-generated or stored elsewhere than
-	 * the filesystem (databases, web, Android phones, etc).
-	 */
-	image?: unknown;
-
-	/**
-	 * The notification (animated) images.
-	 *
-	 * Note that calling this without first setting
-	 * [naughty.image_animations_enabled](https://awesomewm.org/apidoc/libraries/naughty.html#image_animations_enabled)
-	 * to true will throw an exception.
-	 *
-	 * Also note that there is zero support for this anywhere else in `naughty`
-	 * and very, very few applications support this.
-	 *
-	 * This exists purely to comply with the specification.
-	 */
-	images?: table;
+	readonly clients: AwesomeClient[];
 
 	/**
 	 * If the notification is expired.
 	 */
-	is_expired?: boolean;
-
-	/**
-	 * The maximum popup width.
-	 *
-	 * Some notifications have overlong message, cap them to this width. Note
-	 * that this is ignored by {@link naughty.list.notifications} because it
-	 * delegate this decision to the layout.
-	 */
-	max_width?: number;
-
-	/**
-	 * True if the notification should be kept when an action is pressed.
-	 *
-	 * By default, invoking an action will destroy the notification. Some
-	 * actions, like the "Snooze" action of alarm clock, will cause the
-	 * notification to be updated with a date further in the future.
-	 * @default false
-	 */
-	resident?: boolean;
+	is_expired: boolean;
 
 	/**
 	 * Tell if the notification is currently suspended (read only).
 	 *
 	 * This is always equal to {@link naughty.suspended}.
 	 */
-	readonly suspended?: boolean;
-
-	/**
-	 * The notification urgency level.
-	 * @default "normal"
-	 */
-	urgency?: "low" | "normal" | "critical";
-
-	/**
-	 * The widget template used to represent the notification.
-	 *
-	 * Some notifications, such as chat messages or music applications are
-	 * better off with a specialized notification widget.
-	 */
-	widget_template?: BaseWidget;
+	readonly suspended: boolean;
 }
 
 interface NotificationPreset {
