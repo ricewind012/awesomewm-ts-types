@@ -35,7 +35,8 @@ interface WiboxWidgetSeparatorProps extends BaseWidgetProps {
 	border_width?: number;
 }
 
-interface WiboxWidgetSeparator extends BaseWidget {}
+interface WiboxWidgetSeparator
+	extends WiboxWidgetInstance<WiboxWidgetSeparatorProps> {}
 
 /**
  * @noSelf

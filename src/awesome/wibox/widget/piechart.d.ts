@@ -30,7 +30,8 @@ interface WiboxWidgetPieChartProps {
 	display_labels: boolean;
 }
 
-interface WiboxWidgetPieChart extends BaseWidget {}
+interface WiboxWidgetPieChart
+	extends WiboxWidgetInstance<WiboxWidgetPieChartProps> {}
 
 /**
  * @noSelf

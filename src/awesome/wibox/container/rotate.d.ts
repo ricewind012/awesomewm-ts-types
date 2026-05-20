@@ -5,7 +5,8 @@ interface WiboxContainerRotateProps {
 	direction?: "north" | "east" | "south" | "west";
 }
 
-interface WiboxContainerRotate extends BaseWidget, WiboxContainerRotateProps {
+interface WiboxContainerRotate
+	extends WiboxWidgetInstance<WiboxContainerRotateProps> {
 	/**
 	 * Reset this layout. The widget will be removed and the rotation reset.
 	 */

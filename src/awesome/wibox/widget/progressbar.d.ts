@@ -80,7 +80,8 @@ interface WiboxWidgetProgressBarProps {
 	value: number;
 }
 
-interface WiboxWidgetProgressBar extends BaseWidget {}
+interface WiboxWidgetProgressBar
+	extends WiboxWidgetInstance<WiboxWidgetProgressBarProps> {}
 
 /**
  * @noSelf

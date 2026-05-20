@@ -25,7 +25,8 @@ interface WiboxContainerTileProps extends WiboxContainerPlaceProps {
 	tiled?: boolean;
 }
 
-interface WiboxContainerTile extends BaseWidget, WiboxContainerTileProps {}
+interface WiboxContainerTile
+	extends WiboxWidgetInstance<WiboxContainerTileProps> {}
 
 /**
  * @noSelf

@@ -2,17 +2,17 @@ interface WiboxContainerConstraintProps {
 	/**
 	 * Set the strategy to use for the constraining.
 	 */
-	strategy: "max" | "min" | "exact";
+	strategy?: "max" | "min" | "exact";
 
 	/**
 	 * Set the maximum width to val.
 	 */
-	width: number;
+	width?: number;
 
 	/**
 	 * Set the maximum height to val.
 	 */
-	height: number;
+	height?: number;
 }
 
 interface WiboxContainerConstraint

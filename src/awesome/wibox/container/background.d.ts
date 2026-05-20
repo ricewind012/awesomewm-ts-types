@@ -53,18 +53,7 @@ interface WiboxContainerBackgroundProps {
 }
 
 interface WiboxContainerBackground
-	extends BaseWidget,
-		WiboxContainerBackgroundProps {
-	// TODO: put into uhhh a set_ kv type
-	/**
-	 * Set the background shape. Any other arguments will be passed to the shape function.
-	 *
-	 * @param shape
-	 */
-	set_shape(
-		shape: shape | ((context: string, width: number, height: number) => void),
-	): void;
-}
+	extends WiboxWidgetInstance<WiboxContainerBackgroundProps> {}
 
 /**
  * @noSelf

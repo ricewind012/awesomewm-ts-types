@@ -2,7 +2,7 @@ interface WiboxWidgetCheckboxProps {
 	/**
 	 * The outer (unchecked area) border width.
 	 */
-	border_width: number;
+	border_width?: number;
 
 	/**
 	 * The outer (unchecked area) background color, pattern or gradient.
@@ -55,7 +55,8 @@ interface WiboxWidgetCheckboxProps {
 	checked: boolean;
 }
 
-interface WiboxWidgetCheckbox extends BaseWidget {}
+interface WiboxWidgetCheckbox
+	extends WiboxWidgetInstance<WiboxWidgetCheckboxProps> {}
 
 /**
  * @noSelf

@@ -2,90 +2,90 @@ interface WiboxWidgetGraphProps {
 	/**
 	 * Set the graph border_width.
 	 */
-	border_width: number;
+	border_width?: number;
 
 	/**
 	 * Set the graph border color.
 	 */
-	border_color: AwesomeColor | undefined;
+	border_color?: AwesomeColor;
 
 	/**
 	 * Set the graph foreground color.
 	 */
-	color: AwesomeColor;
+	color?: AwesomeColor;
 
 	/**
 	 * Set the graph background color.
 	 */
-	background_color: AwesomeColor;
+	background_color?: AwesomeColor;
 
 	/**
 	 * Set the colors for data groups.
 	 */
-	group_colors: (AwesomeColor | undefined)[];
+	group_colors?: AwesomeColor[];
 
 	/**
 	 * The maximum value the graph should handle.
 	 */
-	max_value: number;
+	max_value?: number;
 
 	/**
 	 * The minimum value the graph should handle.
 	 */
-	min_value: number;
+	min_value?: number;
 
 	/**
 	 * Set the graph to automatically scale its values.
 	 */
-	scale: boolean;
+	scale?: boolean;
 
 	/**
 	 * Clamp graph bars to keep them inside the widget for out-of-range values.
 	 */
-	clamp_bars: boolean;
+	clamp_bars?: boolean;
 
 	/**
 	 * The value corresponding to the starting point of graph bars.
 	 */
-	baseline_value: number;
+	baseline_value?: number;
 
 	/**
 	 * Set the width or the individual steps.
 	 */
-	step_width: number;
+	step_width?: number;
 
 	/**
 	 * Set the spacing between the steps.
 	 */
-	step_spacing: number;
+	step_spacing?: number;
 
 	/**
 	 * The step shape.
 	 */
-	step_shape: shape;
+	step_shape?: shape;
 
 	/**
 	 * Set the graph to draw stacks.
 	 */
-	stack: boolean;
+	stack?: boolean;
 
 	/**
 	 * Display NaN indication.
 	 */
-	nan_indication: boolean;
+	nan_indication?: boolean;
 
 	/**
 	 * The color of NaN indication.
 	 */
-	nan_color: AwesomeColor;
+	nan_color?: AwesomeColor;
 
 	/**
 	 * Set the graph capacity.
 	 */
-	capacity: number | undefined;
+	capacity?: number;
 }
 
-interface WiboxWidgetGraph extends BaseWidget {
+interface WiboxWidgetGraph extends WiboxWidgetInstance<WiboxWidgetGraphProps> {
 	/**
 	 * Determine the color to paint a data group with. The graph uses this
 	 * method to choose a color for a given data group. The default

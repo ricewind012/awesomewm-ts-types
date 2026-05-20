@@ -61,8 +61,7 @@ interface WiboxContainerArcchartProps {
 }
 
 interface WiboxContainerArcchart
-	extends BaseWidget,
-		WiboxContainerArcchartProps {
+	extends WiboxWidgetInstance<WiboxContainerArcchartProps> {
 	/**
 	 * Reset this layout. The widget will be removed and the rotation reset.
 	 */

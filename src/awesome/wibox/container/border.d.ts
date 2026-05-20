@@ -91,7 +91,8 @@ interface WiboxContainerBorderProps {
 	expand_corners?: boolean;
 }
 
-interface WiboxContainerBorder extends BaseWidget, WiboxContainerBorderProps {
+interface WiboxContainerBorder
+	extends WiboxWidgetInstance<WiboxContainerBorderProps> {
 	/**
 	 * Reset this layout. The widget will be removed and the rotation reset.
 	 */

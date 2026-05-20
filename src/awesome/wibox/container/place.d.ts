@@ -30,7 +30,8 @@ interface WiboxContainerPlaceProps {
 	content_fill_horizontal?: boolean;
 }
 
-interface WiboxContainerPlace extends BaseWidget, WiboxContainerPlaceProps {
+interface WiboxContainerPlace
+	extends WiboxWidgetInstance<WiboxContainerPlaceProps> {
 	/**
 	 * Reset this layout. The widget will be removed and the rotation reset.
 	 */

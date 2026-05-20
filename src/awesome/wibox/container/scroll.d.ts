@@ -1,6 +1,7 @@
 interface WiboxContainerScrollProps {}
 
-interface WiboxContainerScroll extends BaseWidget, WiboxContainerScrollProps {
+interface WiboxContainerScroll
+	extends WiboxWidgetInstance<WiboxContainerScrollProps> {
 	/**
 	 * Pause the scrolling animation.
 	 */

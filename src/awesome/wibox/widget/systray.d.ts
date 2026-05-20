@@ -20,7 +20,8 @@ interface WiboxWidgetSystemTrayProps {
 	screen?: AwesomeScreen;
 }
 
-interface WiboxWidgetSystemTray extends BaseWidget {}
+interface WiboxWidgetSystemTray
+	extends WiboxWidgetInstance<WiboxWidgetSystemTrayProps> {}
 
 /**
  * @noSelf

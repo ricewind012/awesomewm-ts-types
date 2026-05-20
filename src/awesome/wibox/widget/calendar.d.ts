@@ -25,12 +25,12 @@ interface WiboxWidgetCalendarProps {
 	/**
 	 * The calendar date.
 	 */
-	date: CalendarDate | undefined;
+	date?: CalendarDate;
 
 	/**
 	 * The calendar font.
 	 */
-	font: string | lgi.Pango.FontDescription;
+	font?: string | lgi.Pango.FontDescription;
 
 	/**
 	 * The calendar spacing.
@@ -38,27 +38,27 @@ interface WiboxWidgetCalendarProps {
 	 * The spacing between cells in the month. The spacing between months in a
 	 * year calendar is twice this value.
 	 */
-	spacing: number;
+	spacing?: number;
 
 	/**
 	 * Display the calendar week numbers.
 	 */
-	week_numbers: boolean;
+	week_numbers?: boolean;
 
 	/**
 	 * Start the week on Sunday.
 	 */
-	start_sunday: boolean;
+	start_sunday?: boolean;
 
 	/**
 	 * Format the weekdays with three characters instead of two
 	 */
-	long_weekdays: boolean;
+	long_weekdays?: boolean;
 
 	/**
 	 * The widget encapsulating function.
 	 */
-	fn_embed: (
+	fn_embed?: (
 		widget: BaseWidget,
 		flag?:
 			| "header"
@@ -74,40 +74,41 @@ interface WiboxWidgetCalendarProps {
 	/**
 	 * Allow cells to have flexible height
 	 */
-	flex_height: boolean;
+	flex_height?: boolean;
 
 	/**
 	 * Set the calendar border width.
 	 */
-	border_width: AwesomeClientStrut | number;
+	border_width?: AwesomeClientStrut | number;
 
 	/**
 	 * Set the calendar border color.
 	 */
-	border_color: AwesomeColor;
+	border_color?: AwesomeColor;
 
 	/**
 	 * Set the color for the empty cells.
 	 */
-	empty_color: AwesomeColor | undefined;
+	empty_color?: AwesomeColor;
 
 	/**
 	 * Set a widget for the empty cells.
 	 */
-	empty_widget: BaseWidget | undefined;
+	empty_widget?: BaseWidget;
 
 	/**
 	 * How should the cells outside of the current month should be handled.
 	 */
-	empty_cell_mode: CalendarEmptyCellMode;
+	empty_cell_mode?: CalendarEmptyCellMode;
 }
 
-interface WiboxWidgetCalendar extends BaseWidget {}
+interface WiboxWidgetCalendar
+	extends WiboxWidgetInstance<WiboxWidgetCalendarProps> {}
 
 /**
  * @noSelf
  */
 interface WiboxWidgetCalendarConstructor {
-	month(props: Partial<WiboxWidgetCalendarProps>): WiboxWidgetCalendar;
-	year(props: Partial<WiboxWidgetCalendarProps>): WiboxWidgetCalendar;
+	month(props: WiboxWidgetCalendarProps): WiboxWidgetCalendar;
+	year(props: WiboxWidgetCalendarProps): WiboxWidgetCalendar;
 }

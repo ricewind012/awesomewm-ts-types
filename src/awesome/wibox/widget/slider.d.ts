@@ -85,7 +85,8 @@ interface WiboxWidgetSliderProps {
 	maximum: number;
 }
 
-interface WiboxWidgetSlider extends BaseWidget {}
+interface WiboxWidgetSlider
+	extends WiboxWidgetInstance<WiboxWidgetSliderProps> {}
 
 /**
  * @noSelf

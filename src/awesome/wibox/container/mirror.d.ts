@@ -8,7 +8,8 @@ interface WiboxContainerMirrorProps {
 	};
 }
 
-interface WiboxContainerMirror extends BaseWidget, WiboxContainerMirrorProps {
+interface WiboxContainerMirror
+	extends WiboxWidgetInstance<WiboxContainerMirrorProps> {
 	/**
 	 * Reset this layout. The widget will be removed and the rotation reset.
 	 */

@@ -36,8 +36,7 @@ interface WiboxContainerRadialProgressBarProps {
 }
 
 interface WiboxContainerRadialProgressBar
-	extends BaseWidget,
-		WiboxContainerRadialProgressBarProps {
+	extends WiboxWidgetInstance<WiboxContainerRadialProgressBarProps> {
 	/**
 	 * Reset this layout. The widget will be removed and the rotation reset.
 	 */

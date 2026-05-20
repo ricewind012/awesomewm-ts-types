@@ -55,7 +55,8 @@ interface WiboxWidgetTextBoxProps {
 	indent?: number;
 }
 
-interface WiboxWidgetTextBox extends BaseWidget {
+interface WiboxWidgetTextBox
+	extends WiboxWidgetInstance<WiboxWidgetTextBoxProps> {
 	/**
 	 * Get the preferred size of a textbox. This returns the size that the
 	 * textbox would use if infinite space were available.

@@ -16,7 +16,9 @@ interface WiboxWidgetTextClockProps extends WiboxWidgetTextBoxProps {
 	refresh?: number;
 }
 
-interface WiboxWidgetTextClock extends WiboxWidgetTextBox {
+interface WiboxWidgetTextClock
+	extends WiboxWidgetInstance<WiboxWidgetTextClockProps>,
+		WiboxWidgetTextBox {
 	/**
 	 * Force a textclock to update now.
 	 */

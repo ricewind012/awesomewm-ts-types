@@ -175,6 +175,11 @@ interface BaseWidgetProps {
 	forced_width?: number;
 
 	/**
+	 * Widget's ID, may be used with {@link BaseWidget.get_children_by_id}.
+	 */
+	id?: string;
+
+	/**
 	 * The widget opacity (transparency, value is from 0 to 1).
 	 */
 	opacity?: number;
@@ -232,6 +237,11 @@ interface BaseWidget
 	): void;
 
 	/**
+	 * Gets the widget's children by an ID.
+	 */
+	get_children_by_id<T extends BaseWidget>(id: string): T[];
+
+	/**
 	 * Get the index of a widget.
 	 *
 	 * @param widget The widget to look for.
@@ -247,6 +257,11 @@ interface BaseWidget
 		...widgets: BaseWidget[]
 	): LuaMultiReturn<[number, T, table]>;
 }
+
+type WiboxWidgetInstance<P> = BaseWidget &
+	P & {
+		[K in keyof Required<P> as `set_${string & K}`]: (value: P[K]) => void;
+	};
 
 /**
  * @noSelf

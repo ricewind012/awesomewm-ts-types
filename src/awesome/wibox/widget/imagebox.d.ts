@@ -80,7 +80,8 @@ interface WiboxWidgetImageBoxProps extends BaseWidgetProps {
 	scaling_quality?: ImageScalingQuality;
 }
 
-interface WiboxWidgetImageBox extends BaseWidget {}
+interface WiboxWidgetImageBox
+	extends WiboxWidgetInstance<WiboxWidgetImageBoxProps> {}
 
 /**
  * @noSelf

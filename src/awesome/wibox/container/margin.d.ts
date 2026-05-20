@@ -35,7 +35,8 @@ interface WiboxContainerMarginProps {
 	bottom?: number;
 }
 
-interface WiboxContainerMargin extends BaseWidget, WiboxContainerMarginProps {
+interface WiboxContainerMargin
+	extends WiboxWidgetInstance<WiboxContainerMarginProps> {
 	/**
 	 * Reset this layout. The widget will be removed and the rotation reset.
 	 */
