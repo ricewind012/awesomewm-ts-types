@@ -27,8 +27,6 @@ type AwesomeClientSignal =
 	| "request::titlebars"
 	| "request::border";
 
-// TODO: the first argument is *always* a client. The docs don't mention this,
-// but I get this on every single signal for some reason
 interface AwesomeClientSignalMap extends SignalMap<AwesomeClientSignal> {
 	/**
 	 * Emitted when AwesomeWM is about to scan for existing clients.
@@ -36,7 +34,7 @@ interface AwesomeClientSignalMap extends SignalMap<AwesomeClientSignal> {
 	 * Connect to this signal when code needs to be executed after screens are
 	 * initialized, but before clients are added.
 	 */
-	scanning: (this: void) => void;
+	scanning: (this: void, c: AwesomeClient) => void;
 
 	/**
 	 * Emitted when AwesomeWM is done scanning for clients.
@@ -44,7 +42,7 @@ interface AwesomeClientSignalMap extends SignalMap<AwesomeClientSignal> {
 	 * This is emitted before the `startup` signal and after the `scanning`
 	 * signal.
 	 */
-	scanned: (this: void) => void;
+	scanned: (this: void, c: AwesomeClient) => void;
 
 	/**
 	 * Emitted when a client gains focus.
@@ -55,7 +53,7 @@ interface AwesomeClientSignalMap extends SignalMap<AwesomeClientSignal> {
 	 * Emitted before `request::manage`, after `request::unmanage`, and when
 	 * clients swap.
 	 */
-	list: (this: void) => void;
+	list: (this: void, c: AwesomeClient) => void;
 
 	/**
 	 * Emitted when 2 clients are swapped
@@ -117,6 +115,7 @@ interface AwesomeClientSignalMap extends SignalMap<AwesomeClientSignal> {
 	 */
 	"button::press": (
 		this: void,
+		c: AwesomeClient,
 		x: number,
 		y: number,
 		button: MouseButtonName,
@@ -128,6 +127,7 @@ interface AwesomeClientSignalMap extends SignalMap<AwesomeClientSignal> {
 	 */
 	"button::release": (
 		this: void,
+		c: AwesomeClient,
 		x: number,
 		y: number,
 		button: MouseButtonName,
@@ -150,7 +150,7 @@ interface AwesomeClientSignalMap extends SignalMap<AwesomeClientSignal> {
 	 * @param x Mouse X coordinate.
 	 * @param y Mouse Y coordinate.
 	 */
-	"mouse::move": (this: void, x: number, y: number) => void;
+	"mouse::move": (this: void, c: AwesomeClient, x: number, y: number) => void;
 
 	/**
 	 * Emitted when a client should get activated (focused and/or raised).
@@ -263,7 +263,11 @@ interface AwesomeClientSignalMap extends SignalMap<AwesomeClientSignal> {
 	 *
 	 * @param context The reason why the signal was sent.
 	 */
-	"request::default_mousebindings": (this: void, context: "startup") => void;
+	"request::default_mousebindings": (
+		this: void,
+		c: AwesomeClient,
+		context: "startup",
+	) => void;
 
 	/**
 	 * Emitted once to request default client keybindings during the initial startup
@@ -275,7 +279,11 @@ interface AwesomeClientSignalMap extends SignalMap<AwesomeClientSignal> {
 	 *
 	 * @param context The reason why the signal was sent.
 	 */
-	"request::default_keybindings": (this: void, context: "startup") => void;
+	"request::default_keybindings": (
+		this: void,
+		c: AwesomeClient,
+		context: "startup",
+	) => void;
 
 	/**
 	 * Emitted when a client gets tagged.
@@ -295,12 +303,12 @@ interface AwesomeClientSignalMap extends SignalMap<AwesomeClientSignal> {
 	/**
 	 * Emitted when the client is raised within its layer.
 	 */
-	raised: (this: void) => void;
+	raised: (this: void, c: AwesomeClient) => void;
 
 	/**
 	 * Emitted when the client is lowered within its layer.
 	 */
-	lowered: (this: void) => void;
+	lowered: (this: void, c: AwesomeClient) => void;
 
 	/**
 	 * The last geometry when client was floating.
@@ -577,12 +585,12 @@ interface AwesomeClientProperties {
 	/**
 	 * Get or set mouse buttons bindings for a client.
 	 */
-	buttons: any[];
+	buttons: AwfulButtonInstance[];
 
 	/**
 	 * Get or set keys bindings for a client.
 	 */
-	keys: any[];
+	keys: AwfulKeyInstance[];
 
 	/**
 	 * If a client is marked or not.

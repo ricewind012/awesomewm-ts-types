@@ -48,7 +48,7 @@ interface AwfulSpawn {
 	(
 		// https://github.com/TypeScriptToLua/TypeScriptToLua/issues/1661
 		this: void,
-		cmd: string | table,
+		cmd: string | string[],
 		// TODO see in https://awesomewm.org/apidoc/core_components/client.html#placement
 		sn_rules?: table | boolean,
 		callback?: () => void,
@@ -174,7 +174,7 @@ interface AwfulSpawn {
 	 * @param callback A callback function when the client is created.
 	 */
 	once(
-		cmd: string | table,
+		cmd: string | string[],
 		rules?: table,
 		matcher?: (...args: unknown[]) => void,
 		unique_id?: string,
@@ -209,7 +209,7 @@ interface AwfulSpawn {
 	 * @param callback A callback function when the client is created.
 	 */
 	single_instance(
-		cmd: string | table,
+		cmd: string | string[],
 		rules?: table,
 		matcher?: (...args: unknown[]) => void,
 		unique_id?: string,
@@ -236,7 +236,7 @@ interface AwfulSpawn {
 	 * @returns The client if it already exists.
 	 */
 	raise_or_spawn(
-		cmd: string | table,
+		cmd: string | string[],
 		rules?: table,
 		matcher?: (...args: unknown[]) => void,
 		unique_id?: string,

@@ -84,8 +84,8 @@ interface MenuCreationOptions {
 
 	// TODO: XD
 	// https://github.com/awesomeWM/awesome/blob/master/lib/awful/menu.lua#L115
-	theme?: Partial<Theme> &
-		Partial<{
+	theme?: Partial<
+		Theme & {
 			border: any;
 			border_width: any;
 			fg_focus: any;
@@ -97,7 +97,8 @@ interface MenuCreationOptions {
 			height: any;
 			width: any;
 			font: any;
-		}>;
+		}
+	>;
 }
 
 /**

@@ -139,7 +139,4 @@ interface GearsTimer {
 		callback: T,
 		...args: Parameters<T>
 	): void;
-
-	// TODO: ?
-	timer: unknown;
 }

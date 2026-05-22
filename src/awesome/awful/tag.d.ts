@@ -77,7 +77,7 @@ interface AwfulTag {
 	 */
 	find_fallback(
 		screen?: AwesomeScreen,
-		invalids?: table,
+		invalids?: AwesomeTag[],
 	): AwesomeTag | undefined;
 
 	/**
@@ -234,7 +234,7 @@ interface AwfulTag {
 	 * @param screen The screen of the tags.
 	 * @param maximum The maximum number of tags to select.
 	 */
-	viewmore(tags: table, screen?: AwesomeScreen, maximum?: number): void;
+	viewmore(tags: AwesomeTag[], screen?: AwesomeScreen, maximum?: number): void;
 
 	/**
 	 * Toggle selection of a tag

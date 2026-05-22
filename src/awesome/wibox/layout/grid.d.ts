@@ -259,7 +259,7 @@ interface WiboxLayoutGridWidget
 		col: number,
 		row_span?: number,
 		col_span?: number,
-	): any[] | undefined;
+	): BaseWidget[] | undefined;
 
 	/**
 	 * Insert column at index.

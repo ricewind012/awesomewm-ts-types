@@ -10,8 +10,7 @@ type AwesomeTagSignal =
 	| "request::screen"
 	| "removal-pending";
 
-// TODO: the first argument is *always* a tag. The docs don't mention this,
-// but I get this on every single signal for some reason
+	
 interface AwesomeTagSignalMap extends SignalMap<AwesomeTagSignal> {
 	/**
 	 * Emitted when a tag requests to be selected.
@@ -21,14 +20,13 @@ interface AwesomeTagSignalMap extends SignalMap<AwesomeTagSignal> {
 	 *
 	 * @param context The reason why it was called.
 	 */
-	"request::select": (this: void, context: string) => boolean;
-
+	"request::select": (this: void,t:AwesomeTag, context: string) => void
 	/**
 	 * This signal is emitted to request the list of default layouts.
 	 *
 	 * @param context The context (currently always "startup").
 	 */
-	"request::default_layouts": (this: void, context: "startup") => void;
+	"request::default_layouts": (this: void, t:AwesomeTag,context: "startup") => void;
 
 	/**
 	 * This signals is emitted when a tag needs layouts for the first time.
@@ -36,7 +34,7 @@ interface AwesomeTagSignalMap extends SignalMap<AwesomeTagSignal> {
 	 * @param context The context (currently always "awful").
 	 * @param hints A, currently empty, table with hints.
 	 */
-	"request::layouts": (this: void, context: "awful", hints: table) => void;
+	"request::layouts": (this: void, t:AwesomeTag,context: "awful", hints: table) => void;
 
 	/**
 	 * Emitted when a client gets tagged with this tag.

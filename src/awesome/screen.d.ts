@@ -14,8 +14,6 @@ type AwesomeScreenSignal =
 	| "request::resize"
 	| "tag::history::update";
 
-// TODO: the first argument is *always* a screen. The docs don't mention this,
-// but I get this on every single signal for some reason
 interface AwesomeScreenSignalMap extends SignalMap<AwesomeScreenSignal> {
 	/**
 	 * AwesomeWM is done scanning for screens.

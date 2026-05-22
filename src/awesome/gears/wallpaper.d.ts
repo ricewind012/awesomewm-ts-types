@@ -40,7 +40,7 @@ interface GearsWallpaper {
 	 * size).
 	 */
 	centered(
-		surf: string | table,
+		surf: string | cairo_image_surface,
 		s?: AwesomeScreen,
 		background?: any,
 		scale?: number,
@@ -54,7 +54,11 @@ interface GearsWallpaper {
 	 * case all screens are set.
 	 * @param offset This can be set to a table with entries x and y.
 	 */
-	tiled(surf: string | table, s?: AwesomeScreen, offset?: Coords): void;
+	tiled(
+		surf: string | cairo_image_surface,
+		s?: AwesomeScreen,
+		offset?: Coords,
+	): void;
 
 	/**
 	 * Set a maximized wallpaper.
@@ -67,7 +71,7 @@ interface GearsWallpaper {
 	 * @param offset This can be set to a table with entries x and y.
 	 */
 	maximized(
-		surf: string | table,
+		surf: string | cairo_image_surface,
 		s?: AwesomeScreen,
 		ignore_aspect?: boolean,
 		offset?: Coords,
@@ -82,5 +86,9 @@ interface GearsWallpaper {
 	 * @param background The background color that should be used. Gets handled
 	 * via `gears.color`. The default is black.
 	 */
-	fit(surf: string | table, s?: AwesomeScreen, background?: any): void;
+	fit(
+		surf: string | cairo_image_surface,
+		s?: AwesomeScreen,
+		background?: any,
+	): void;
 }
